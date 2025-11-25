@@ -1,25 +1,14 @@
 
 from langchain_openai import  ChatOpenAI
 from langchain.prompts import PromptTemplate
+from langchain_community.chat_models import ChatZhipuAI
 
 
 model = ChatOpenAI(
-    model="Qwen2.5-7B-Instruct", # "qwen3-coder", #"qwen3-max",  
-    base_url='http://172.31.24.111:9050/v1',  
-    api_key='EMPTY',
+    model="qwen-plus", # "qwen3-coder", #"qwen3-max",  
+    base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',  
+    api_key='sk-4e27d583808849128b07458af74724a6',
     temperature=0,)
-
-# model = ChatOpenAI(
-#     model="Qwen2.5-Coder-32B-Instruct", # "qwen3-coder", #"qwen3-max",  
-#     base_url='http://172.31.24.112:33080/v1',  
-#     api_key='yfzx202510',
-#     temperature=0,)
-
-# model = ChatOpenAI(
-#     model="Qwen2.5-14B-Instruct", # "qwen3-coder", #"qwen3-max",  
-#     base_url='http://172.31.24.111:33071/v1',  
-#     api_key='EMPTY',
-#     temperature=0,)
 
 prompt = """
 # 根据以下多个工单内容生成一个主题，格式为【地址】 + 【事件】的格式，不超过15字
@@ -32,12 +21,5 @@ prompt = """
 
 # 主题
 """
-result = []
-for i in range(1000):
-    res = model.invoke(prompt)
-    result.append(res.content)
 
-import numpy as np 
-print(np.unique(result))
-
-
+print(model.invoke(prompt))
