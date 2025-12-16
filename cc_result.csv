@@ -1,0 +1,100 @@
+query,sql,是否正确,正确SQL
+设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计,"SELECT 
+    `event_type_name`, 
+    COUNT(`event_id`) AS `alarm_count`
+FROM 
+    event_history
+JOIN 
+    t_bz_config_ci_ne_root ON event_history.ne_id = t_bz_config_ci_ne_root.ne_id
+WHERE 
+    t_bz_config_ci_ne_root.host_name LIKE '%ciscoA%' 
+    AND event_time >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+    AND event_time < CURDATE()
+GROUP BY 
+    `event_type_name`
+ORDER BY 
+    `alarm_count` DESC
+LIMIT 10;",正确,
+列出平台上设备device state down状态超过3个月的设备清单及客户名称,"SELECT 
+    `t_bz_config_ci_ne_root`.`NE_ID`,
+    `t_bz_config_ci_ne_root`.`HOST_NAME`,
+    `t_bz_config_customer`.`CUSTOMER_NAME`
+FROM 
+    `t_bz_config_ci_ne_root`
+JOIN 
+    `t_bz_config_customer` ON `t_bz_config_ci_ne_root`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`
+JOIN 
+    `event_history` ON `t_bz_config_ci_ne_root`.`NE_ID` = `event_history`.`NE_ID`
+WHERE 
+    `event_history`.`EVENT_TYPE_NAME` LIKE '%down%' 
+    AND `event_history`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)
+GROUP BY 
+    `t_bz_config_ci_ne_root`.`NE_ID`, `t_bz_config_customer`.`CUSTOMER_NAME`
+HAVING 
+    COUNT(DISTINCT `event_history`.`EVENT_ID`) > 0
+LIMIT 10;",错误,"select a.* from (
+SELECT 
+    `t_bz_config_ci_ne_root`.`NE_ID`,
+    `t_bz_config_ci_ne_root`.`HOST_NAME`,
+    `t_bz_config_customer`.`CUSTOMER_NAME`
+FROM 
+    `t_bz_config_ci_ne_root`
+JOIN 
+    `t_bz_config_customer` ON `t_bz_config_ci_ne_root`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`
+JOIN 
+    `event_history` ON `t_bz_config_ci_ne_root`.`NE_ID` = `event_history`.`NE_ID`
+WHERE 
+    `event_history`.`EVENT_NAME` LIKE 'Device state%' 
+    AND `event_history`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)
+GROUP BY 
+    `t_bz_config_ci_ne_root`.`NE_ID`, `t_bz_config_customer`.`CUSTOMER_NAME`
+HAVING 
+    COUNT(DISTINCT `event_history`.`EVENT_ID`) > 0
+) a where `a`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) and `a`.`EVENT_STATUS_NAME` = 'alarm'
+LIMIT 10;"
+现在平台上有多少家客户,"SELECT COUNT(`CUSTOMER_ID`) AS `customer_count`
+FROM t_bz_config_customer
+WHERE `IS_ACTIVE` = 1
+LIMIT 10;",正确,
+现在平台上有多少台设备,"SELECT COUNT(`CI_ID`) AS `device_count`
+FROM t_bz_config_ci_ne_root
+WHERE `IS_DELETED` = 0
+LIMIT 10;",正确,
+上个月上线的新设备有多少,"SELECT COUNT(`CI_ID`) AS `new_device_count`
+FROM `t_bz_config_ci_ne_root`
+WHERE `ONLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+AND YEAR(`ONLINE_TIME`) = 2025
+LIMIT 10;",正确,
+上个月下线的设备有多少,"SELECT COUNT(`CI_ID`) AS `offline_device_count`
+FROM `t_bz_config_ci_ne_root`
+WHERE `OFFLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+  AND `OFFLINE_TIME` < CURDATE()
+LIMIT 10;",正确,
+某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？,"SELECT 
+    `event_history`.`EVENT_TYPE_NAME`, 
+    `event_history`.`EVENT_TIME`, 
+    `event_history`.`ACK_TIME`
+FROM 
+    `event_history`
+JOIN 
+    `t_bz_config_ci_ne_root` 
+ON 
+    `event_history`.`NE_ID` = `t_bz_config_ci_ne_root`.`NE_ID`
+WHERE 
+    `event_history`.`EVENT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+    AND `event_history`.`IS_ACK` = 1
+LIMIT 10;",错误,"SELECT
+ `t_bz_config_customer`.`CUSTOMER_NAME`,
+ `t_bz_config_ci_ne_root`.`HOST_NAME`,
+ `event_history`.`EVENT_NAME`,
+ `event_history`.`EVENT_TIME`
+FROM
+ `event_history`
+JOIN `t_bz_config_ci_ne_root` ON `event_history`.`NE_ID` = `t_bz_config_ci_ne_root`.`NE_ID`
+JOIN `t_bz_config_customer` ON `event_history`.`CUSTOMER_ID` = `t_bz_config_customer`.ID
+WHERE
+ `event_history`.`EVENT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+AND `event_history`.`EVENT_STATUS_NAME` = 'alarm'
+AND `t_bz_config_customer`.`CUSTOMER_NAME` = 'xxx'
+LIMIT 10;
+"

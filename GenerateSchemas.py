@@ -120,33 +120,33 @@ def response_filtering(
 
 
 def load_retrieval_top_k(db_size):
-    # Minimal retrieval for maximum precision (target: ~3 tables)
+    # High retrieval for maximum recall
     if db_size <= 200:
-        return 5
+        return 50
     elif db_size <= 500:
-        return 6
+        return 60
     elif db_size <= 1000:
-        return 8
+        return 80
     elif db_size <= 5000:
-        return 10
+        return 100
     else:
-        return 12
+        return 120
 
 
 def load_retrieval_turn_n(db_size):
-    # Minimal turns for maximum precision (target: ~3 tables)
+    # More turns for better recall
     if db_size <= 50:
-        return 1
+        return 2
     elif db_size <= 200:
-        return 1
+        return 2
     elif db_size <= 350:
-        return 1
+        return 3
     elif db_size <= 1000:
-        return 1
+        return 3
     elif db_size <= 5000:
-        return 2
+        return 3
     else:
-        return 2
+        return 3
 
 
 def load_post_retrival_param(db_size):
@@ -231,12 +231,12 @@ def get_schema(
         schema_path_param: str = None,
         db_info_param: list = None,
         external_info_path_param: str = None,
-        reserve_size: int = 30,  # Minimal: keep all only if db_size < 30
-        min_retrival_size: int = 50,  # Start retrieval very early
-        filter_chunk_size: int = 100,  # Small chunks for aggressive filtering
-        post_retrieval_size: int = 30,  # Trigger filtering frequently
-        post_retrieval_turn: int = 4,  # More filtering rounds
-        reserve_rate: float = 0.15,  # Very aggressive: keep only 15% from each round
+        reserve_size: int = 90,  # Original value
+        min_retrival_size: int = 250,  # Original value
+        filter_chunk_size: int = 250,  # Original - larger chunks = fewer LLM calls
+        post_retrieval_size: int = 100,  # Original - only filter when > 100 columns
+        post_retrieval_turn: int = 4,  # Original value
+        reserve_rate: float = 0.4,  # Slightly more aggressive than original 0.5
         open_schema_linking: bool = False
 ):
     """ 检索问题需要的数据库模式 """

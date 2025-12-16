@@ -1,0 +1,1101 @@
+[
+  {
+    "test_id": 1,
+    "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "steps": [
+      {
+        "step": "1. 向量检索+增强",
+        "time": "144.2s",
+        "columns": 400,
+        "tables": 146,
+        "expected_found": [
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_missing": []
+      },
+      {
+        "step": "2. 计算 reserve_df",
+        "columns": 77,
+        "tables": 43,
+        "expected_in_reserve": [
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_not_in_reserve": []
+      },
+      {
+        "step": "3.1 LLM过滤轮次1",
+        "columns_before": 400,
+        "tables_before": 146,
+        "tables_after": 52,
+        "removed_count": 94,
+        "expected_before": [
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.2 LLM过滤轮次2",
+        "columns_before": "same",
+        "tables_before": 52,
+        "tables_after": 44,
+        "removed_count": 8,
+        "expected_before": [
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.3 LLM过滤轮次3",
+        "columns_before": "same",
+        "tables_before": 44,
+        "tables_after": 44,
+        "removed_count": 0,
+        "expected_before": [
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.4 LLM过滤轮次4",
+        "columns_before": "same",
+        "tables_before": 44,
+        "tables_after": 44,
+        "removed_count": 0,
+        "expected_before": [
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3. LLM过滤总结",
+        "time": "422.1s",
+        "final_columns": 105,
+        "final_tables": 44
+      },
+      {
+        "step": "4. SQL生成",
+        "table_recall": "2/2",
+        "missing": []
+      }
+    ],
+    "final_tables": [
+      "trap_snmp",
+      "t_bz_config_ci_entity",
+      "ne_service_item",
+      "event_backup",
+      "t_gn_business_application_change",
+      "t_bz_sdn_alarm",
+      "t_dc_config_device_type",
+      "t_dc_config_circuit_type",
+      "t_gn_weaknesses_attack",
+      "t_gn_botnet",
+      "event_ping",
+      "t_gn_all_net_workorder",
+      "syslog_filter_script",
+      "t_bz_config_ci_ne_root",
+      "ne_template_collect_config",
+      "ne_syslog_filter_script",
+      "report_cust_reachability_ext",
+      "t_bz_monitor_chart_config",
+      "hardware",
+      "customer_cloud_monitor_count_config",
+      "t_bz_monitor_chart_sql",
+      "month_availability",
+      "report_cust_reachability",
+      "trap",
+      "event_history",
+      "t_gn_security_access",
+      "t_dc_incident_status",
+      "event",
+      "t_dc_incident_category",
+      "t_bz_incident_event_record",
+      "t_dc_config_channel",
+      "t_bz_incident_info",
+      "t_bz_task_main",
+      "report_new_dev",
+      "cc_cmdb_global_config",
+      "t_dc_incident_priority",
+      "week_availability",
+      "t_gn_traffic_abnormality",
+      "event_history_sdwan",
+      "day_availability",
+      "event_sdn",
+      "t_dc_incident_property",
+      "customer_cloud_monitor_key",
+      "t_bz_sys_sms_record"
+    ],
+    "generated_sql": "SELECT `EVENT_TYPE_ID`, COUNT(*) AS `alert_count`\nFROM `event_history`\nWHERE `EVENT_TIME` BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))\n  AND `NE_NAME` = 'ciscoA'\nGROUP BY `EVENT_TYPE_ID`;",
+    "table_recall": 1.0,
+    "missing_tables": [],
+    "lost_at_step": null,
+    "old_sql": "SELECT \n    `event_type_name`, \n    COUNT(`event_id`) AS `alarm_count`\nFROM \n    event_history\nJOIN \n    t_bz_config_ci_ne_root ON event_history.ne_id = t_bz_config_ci_ne_root.ne_id\nWHERE \n    t_bz_config_ci_ne_root.host_name LIKE '%ciscoA%' \n    AND event_time >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n    AND event_time < CURDATE()\nGROUP BY \n    `event_type_name`\nORDER BY \n    `alarm_count` DESC\nLIMIT 10;",
+    "correct_sql": "SELECT \n    `event_type_name`, \n    COUNT(`event_id`) AS `alarm_count`\nFROM \n    event_history\nJOIN \n    t_bz_config_ci_ne_root ON event_history.ne_id = t_bz_config_ci_ne_root.ne_id\nWHERE \n    t_bz_config_ci_ne_root.host_name LIKE '%ciscoA%' \n    AND event_time >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n    AND event_time < CURDATE()\nGROUP BY \n    `event_type_name`\nORDER BY \n    `alarm_count` DESC\nLIMIT 10;",
+    "old_is_correct": "正确",
+    "total_time": "567.8s"
+  },
+  {
+    "test_id": 2,
+    "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "steps": [
+      {
+        "step": "1. 向量检索+增强",
+        "time": "104.1s",
+        "columns": 400,
+        "tables": 148,
+        "expected_found": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_missing": []
+      },
+      {
+        "step": "2. 计算 reserve_df",
+        "columns": 77,
+        "tables": 54,
+        "expected_in_reserve": [
+          "t_bz_config_customer",
+          "event_history"
+        ],
+        "expected_not_in_reserve": [
+          "t_bz_config_ci_ne_root"
+        ]
+      },
+      {
+        "step": "3.1 LLM过滤轮次1",
+        "columns_before": 400,
+        "tables_before": 148,
+        "tables_after": 127,
+        "removed_count": 21,
+        "expected_before": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.2 LLM过滤轮次2",
+        "columns_before": "same",
+        "tables_before": 127,
+        "tables_after": 64,
+        "removed_count": 63,
+        "expected_before": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_customer",
+          "event_history"
+        ],
+        "lost_expected": [
+          "t_bz_config_ci_ne_root"
+        ]
+      },
+      {
+        "step": "3.3 LLM过滤轮次3",
+        "columns_before": "same",
+        "tables_before": 64,
+        "tables_after": 55,
+        "removed_count": 9,
+        "expected_before": [
+          "t_bz_config_customer",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_customer",
+          "event_history"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.4 LLM过滤轮次4",
+        "skipped": true,
+        "reason": "列数 90 <= 100"
+      },
+      {
+        "step": "3. LLM过滤总结",
+        "time": "557.3s",
+        "final_columns": 90,
+        "final_tables": 55
+      },
+      {
+        "step": "4. SQL生成",
+        "table_recall": "2/3",
+        "missing": [
+          "t_bz_config_ci_ne_root"
+        ]
+      }
+    ],
+    "final_tables": [
+      "t_gn_topo_link",
+      "temp",
+      "ne_service_item",
+      "event_backup",
+      "t_gn_business_application_change",
+      "t_dc_config_status",
+      "t_bz_sdn_alarm",
+      "t_dc_config_device_type",
+      "t_dc_config_circuit_type",
+      "t_dc_change_category",
+      "event_ping",
+      "t_dc_config_circuit_level",
+      "t_dc_problem_status",
+      "origin_availability",
+      "t_bz_service_ci_record",
+      "t_bz_task_group",
+      "t_dc_knowledge_status",
+      "event_yjk_history",
+      "sdwan_device",
+      "t_dc_service_status",
+      "customer_collector_v2",
+      "report_cust_reachability_ext",
+      "hardware",
+      "t_bz_ip_subnet_manage",
+      "customer_cloud_monitor_count_config",
+      "t_bz_yun_circuit",
+      "month_availability",
+      "cc_cmdb_sync_history",
+      "cc_cmdb_sync_modify_record",
+      "event_history",
+      "sdw_dp_device",
+      "t_bz_config_contact",
+      "collector_monitor",
+      "t_bz_config_circuit_provider",
+      "report_ne_ping",
+      "t_bz_config_service_item",
+      "t_dc_incident_status",
+      "customer",
+      "event",
+      "t_bz_incident_info",
+      "t_bz_sys_operator_record",
+      "t_gn_topo_device",
+      "t_bz_task_main",
+      "atomic_aft_order",
+      "uptime",
+      "t_gn_all_net_device",
+      "t_gn_traffic_abnormality",
+      "customer_model_rl",
+      "event_history_sdwan",
+      "day_availability",
+      "ne_connection_log",
+      "t_bz_config_ci_circuit",
+      "t_bz_config_customer",
+      "ont_status",
+      "t_dc_problem_limit"
+    ],
+    "generated_sql": "SELECT `t_gn_all_net_device`.`customer_id`, `t_bz_config_customer`.`CUSTOMER_NAME`\nFROM `t_gn_all_net_device`\nJOIN `t_bz_config_customer` ON `t_gn_all_net_device`.`customer_id` = `t_bz_config_customer`.`CUSTOMER_ID`\nWHERE `t_gn_all_net_device`.`customer_id` IN (\n    SELECT `CUSTOMER_ID` FROM `uptime`\n    WHERE `DOWN_TIME` < DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\n);",
+    "table_recall": 0.6666666666666666,
+    "missing_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "lost_at_step": "LLM过滤轮次2",
+    "old_sql": "SELECT \n    `t_bz_config_ci_ne_root`.`NE_ID`,\n    `t_bz_config_ci_ne_root`.`HOST_NAME`,\n    `t_bz_config_customer`.`CUSTOMER_NAME`\nFROM \n    `t_bz_config_ci_ne_root`\nJOIN \n    `t_bz_config_customer` ON `t_bz_config_ci_ne_root`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`\nJOIN \n    `event_history` ON `t_bz_config_ci_ne_root`.`NE_ID` = `event_history`.`NE_ID`\nWHERE \n    `event_history`.`EVENT_TYPE_NAME` LIKE '%down%' \n    AND `event_history`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\nGROUP BY \n    `t_bz_config_ci_ne_root`.`NE_ID`, `t_bz_config_customer`.`CUSTOMER_NAME`\nHAVING \n    COUNT(DISTINCT `event_history`.`EVENT_ID`) > 0\nLIMIT 10;",
+    "correct_sql": "select a.* from (\nSELECT \n    `t_bz_config_ci_ne_root`.`NE_ID`,\n    `t_bz_config_ci_ne_root`.`HOST_NAME`,\n    `t_bz_config_customer`.`CUSTOMER_NAME`\nFROM \n    `t_bz_config_ci_ne_root`\nJOIN \n    `t_bz_config_customer` ON `t_bz_config_ci_ne_root`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`\nJOIN \n    `event_history` ON `t_bz_config_ci_ne_root`.`NE_ID` = `event_history`.`NE_ID`\nWHERE \n    `event_history`.`EVENT_NAME` LIKE 'Device state%' \n    AND `event_history`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\nGROUP BY \n    `t_bz_config_ci_ne_root`.`NE_ID`, `t_bz_config_customer`.`CUSTOMER_NAME`\nHAVING \n    COUNT(DISTINCT `event_history`.`EVENT_ID`) > 0\n) a where `a`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) and `a`.`EVENT_STATUS_NAME` = 'alarm'\nLIMIT 10;",
+    "old_is_correct": "错误",
+    "total_time": "663.4s"
+  },
+  {
+    "test_id": 3,
+    "question": "现在平台上有多少家客户",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "steps": [
+      {
+        "step": "1. 向量检索+增强",
+        "time": "158.6s",
+        "columns": 400,
+        "tables": 153,
+        "expected_found": [
+          "t_bz_config_customer"
+        ],
+        "expected_missing": []
+      },
+      {
+        "step": "2. 计算 reserve_df",
+        "columns": 77,
+        "tables": 52,
+        "expected_in_reserve": [
+          "t_bz_config_customer"
+        ],
+        "expected_not_in_reserve": []
+      },
+      {
+        "step": "3.1 LLM过滤轮次1",
+        "columns_before": 400,
+        "tables_before": 153,
+        "tables_after": 122,
+        "removed_count": 31,
+        "expected_before": [
+          "t_bz_config_customer"
+        ],
+        "expected_after": [
+          "t_bz_config_customer"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.2 LLM过滤轮次2",
+        "columns_before": "same",
+        "tables_before": 122,
+        "tables_after": 65,
+        "removed_count": 57,
+        "expected_before": [
+          "t_bz_config_customer"
+        ],
+        "expected_after": [
+          "t_bz_config_customer"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.3 LLM过滤轮次3",
+        "columns_before": "same",
+        "tables_before": 65,
+        "tables_after": 53,
+        "removed_count": 12,
+        "expected_before": [
+          "t_bz_config_customer"
+        ],
+        "expected_after": [
+          "t_bz_config_customer"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.4 LLM过滤轮次4",
+        "columns_before": "same",
+        "tables_before": 53,
+        "tables_after": 52,
+        "removed_count": 1,
+        "expected_before": [
+          "t_bz_config_customer"
+        ],
+        "expected_after": [
+          "t_bz_config_customer"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3. LLM过滤总结",
+        "time": "480.8s",
+        "final_columns": 119,
+        "final_tables": 52
+      },
+      {
+        "step": "4. SQL生成",
+        "table_recall": "1/1",
+        "missing": []
+      }
+    ],
+    "final_tables": [
+      "temp",
+      "collector_health",
+      "ne_service_item",
+      "t_dc_change_category",
+      "t_bz_authority_customer_group",
+      "t_gn_all_net_workorder",
+      "ne_service_collect",
+      "origin_availability",
+      "t_bz_service_ci_record",
+      "t_bz_task_group",
+      "ne_protocol_inst",
+      "protocol_inst",
+      "customer_collector_v2",
+      "t_bz_yun_circuit",
+      "customer_cloud_monitor_count_config",
+      "t_gn_all_net_line",
+      "month_availability",
+      "ne_token",
+      "temp_import_customer_record",
+      "sdw_dp_port_performance",
+      "t_gn_topo",
+      "event_history",
+      "trap",
+      "atomic_cutover_order",
+      "t_bz_config_contact",
+      "t_bz_sys_log",
+      "r_template_customer",
+      "ne_collect_history",
+      "report_port_info",
+      "t_bz_config_service_item",
+      "customer",
+      "sequence",
+      "cc_cmdb_sync_history_record",
+      "t_bz_sys_operator_record",
+      "t_gn_topo_device",
+      "t_bz_task_main",
+      "ne_collect_record",
+      "uptime",
+      "t_gn_all_net_event",
+      "route_log",
+      "t_bz_customer_poller_config",
+      "report_qos_info",
+      "identity",
+      "t_gn_traffic_abnormality",
+      "customer_model_rl",
+      "event_history_sdwan",
+      "t_bz_config_ci_circuit",
+      "t_bz_config_customer",
+      "customer_cloud_monitor_key",
+      "ont_status",
+      "t_bz_sys_operate_audit",
+      "t_rl_user_customer"
+    ],
+    "generated_sql": "SELECT COUNT(*) FROM `customer`;",
+    "table_recall": 1.0,
+    "missing_tables": [],
+    "lost_at_step": null,
+    "old_sql": "SELECT COUNT(`CUSTOMER_ID`) AS `customer_count`\nFROM t_bz_config_customer\nWHERE `IS_ACTIVE` = 1\nLIMIT 10;",
+    "correct_sql": "SELECT COUNT(`CUSTOMER_ID`) AS `customer_count`\nFROM t_bz_config_customer\nWHERE `IS_ACTIVE` = 1\nLIMIT 10;",
+    "old_is_correct": "正确",
+    "total_time": "640.0s"
+  },
+  {
+    "test_id": 4,
+    "question": "现在平台上有多少台设备",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "steps": [
+      {
+        "step": "1. 向量检索+增强",
+        "time": "190.1s",
+        "columns": 400,
+        "tables": 125,
+        "expected_found": [
+          "t_bz_config_ci_ne_root"
+        ],
+        "expected_missing": []
+      },
+      {
+        "step": "2. 计算 reserve_df",
+        "columns": 77,
+        "tables": 41,
+        "expected_in_reserve": [],
+        "expected_not_in_reserve": [
+          "t_bz_config_ci_ne_root"
+        ]
+      },
+      {
+        "step": "3.1 LLM过滤轮次1",
+        "columns_before": 400,
+        "tables_before": 125,
+        "tables_after": 58,
+        "removed_count": 67,
+        "expected_before": [
+          "t_bz_config_ci_ne_root"
+        ],
+        "expected_after": [],
+        "lost_expected": [
+          "t_bz_config_ci_ne_root"
+        ]
+      },
+      {
+        "step": "3.2 LLM过滤轮次2",
+        "columns_before": "same",
+        "tables_before": 58,
+        "tables_after": 49,
+        "removed_count": 9,
+        "expected_before": [],
+        "expected_after": [],
+        "lost_expected": []
+      },
+      {
+        "step": "3.3 LLM过滤轮次3",
+        "columns_before": "same",
+        "tables_before": 49,
+        "tables_after": 49,
+        "removed_count": 0,
+        "expected_before": [],
+        "expected_after": [],
+        "lost_expected": []
+      },
+      {
+        "step": "3.4 LLM过滤轮次4",
+        "columns_before": "same",
+        "tables_before": 49,
+        "tables_after": 44,
+        "removed_count": 5,
+        "expected_before": [],
+        "expected_after": [],
+        "lost_expected": []
+      },
+      {
+        "step": "3. LLM过滤总结",
+        "time": "479.7s",
+        "final_columns": 88,
+        "final_tables": 44
+      },
+      {
+        "step": "4. SQL生成",
+        "table_recall": "0/1",
+        "missing": [
+          "t_bz_config_ci_ne_root"
+        ]
+      }
+    ],
+    "final_tables": [
+      "t_gn_topo_link",
+      "trap_snmp",
+      "t_gn_scanning_probe",
+      "t_dc_config_status",
+      "collector_health",
+      "t_gn_business_application_change",
+      "t_bz_sdn_alarm",
+      "t_dc_config_device_type",
+      "event_ping",
+      "event_yjk_history",
+      "sdwan_device",
+      "sub_change_num",
+      "sdw_dp_site_status",
+      "hardware",
+      "t_bz_yun_circuit",
+      "customer_cloud_monitor_count_config",
+      "framework_authority",
+      "cc_cmdb_sync_history",
+      "report_port_95_top",
+      "t_gn_security_access",
+      "event_history",
+      "sdwan_ipsubnets",
+      "sdw_dp_device",
+      "t_bz_config_commissioned_unit",
+      "report_port_info",
+      "t_dc_incident_status",
+      "t_dc_config_channel",
+      "cc_cmdb_sync_history_record",
+      "t_bz_config_vendor",
+      "collector_instance_v2",
+      "t_gn_topo_device",
+      "sdw_dp_device_performance",
+      "t_dc_incident_priority",
+      "report_qos_info",
+      "identity",
+      "report_hardware_info",
+      "t_gn_traffic_abnormality",
+      "sdwan_tenant",
+      "report_netflow_info",
+      "week_availability",
+      "day_availability",
+      "event_history_sdwan",
+      "t_dc_incident_property",
+      "t_gn_all_net_device"
+    ],
+    "generated_sql": "SELECT COUNT(*) AS `device_count` FROM `sdw_dp_device`;",
+    "table_recall": 0.0,
+    "missing_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "lost_at_step": "LLM过滤轮次1",
+    "old_sql": "SELECT COUNT(`CI_ID`) AS `device_count`\nFROM t_bz_config_ci_ne_root\nWHERE `IS_DELETED` = 0\nLIMIT 10;",
+    "correct_sql": "SELECT COUNT(`CI_ID`) AS `device_count`\nFROM t_bz_config_ci_ne_root\nWHERE `IS_DELETED` = 0\nLIMIT 10;",
+    "old_is_correct": "正确",
+    "total_time": "670.4s"
+  },
+  {
+    "test_id": 5,
+    "question": "上个月上线的新设备有多少",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "steps": [
+      {
+        "step": "1. 向量检索+增强",
+        "time": "105.2s",
+        "columns": 400,
+        "tables": 147,
+        "expected_found": [
+          "t_bz_config_ci_ne_root"
+        ],
+        "expected_missing": []
+      },
+      {
+        "step": "2. 计算 reserve_df",
+        "columns": 77,
+        "tables": 45,
+        "expected_in_reserve": [],
+        "expected_not_in_reserve": [
+          "t_bz_config_ci_ne_root"
+        ]
+      },
+      {
+        "step": "3.1 LLM过滤轮次1",
+        "columns_before": 400,
+        "tables_before": 147,
+        "tables_after": 109,
+        "removed_count": 38,
+        "expected_before": [
+          "t_bz_config_ci_ne_root"
+        ],
+        "expected_after": [],
+        "lost_expected": [
+          "t_bz_config_ci_ne_root"
+        ]
+      },
+      {
+        "step": "3.2 LLM过滤轮次2",
+        "columns_before": "same",
+        "tables_before": 109,
+        "tables_after": 50,
+        "removed_count": 59,
+        "expected_before": [],
+        "expected_after": [],
+        "lost_expected": []
+      },
+      {
+        "step": "3.3 LLM过滤轮次3",
+        "columns_before": "same",
+        "tables_before": 50,
+        "tables_after": 48,
+        "removed_count": 2,
+        "expected_before": [],
+        "expected_after": [],
+        "lost_expected": []
+      },
+      {
+        "step": "3.4 LLM过滤轮次4",
+        "skipped": true,
+        "reason": "列数 92 <= 100"
+      },
+      {
+        "step": "3. LLM过滤总结",
+        "time": "418.5s",
+        "final_columns": 92,
+        "final_tables": 48
+      },
+      {
+        "step": "4. SQL生成",
+        "table_recall": "0/1",
+        "missing": [
+          "t_bz_config_ci_ne_root"
+        ]
+      }
+    ],
+    "final_tables": [
+      "t_gn_topo_link",
+      "t_bz_config_work_policy",
+      "trap_snmp",
+      "t_gn_business_application_change",
+      "t_dc_config_device_type",
+      "report_inst",
+      "t_gn_weaknesses_attack",
+      "t_gn_all_net_workorder",
+      "origin_availability",
+      "ne",
+      "t_gn_security_situation_awareness_log",
+      "t_dc_change_status",
+      "sub_change_num",
+      "report_cust_reachability_ext",
+      "report_template",
+      "hardware",
+      "customer_cloud_monitor_count_config",
+      "month_availability",
+      "report_cust_reachability",
+      "trap",
+      "event_history",
+      "t_rl_change_relationship",
+      "t_gn_security_access",
+      "atomic_pre_order",
+      "cc_cmdb_field_mapping",
+      "t_gn_work_order_information",
+      "sdw_dp_device",
+      "t_bz_incident_ci_record",
+      "t_bz_config_commissioned_unit",
+      "t_dc_clouds_type",
+      "t_gn_vulnerability_clear_transmission",
+      "t_dc_incident_status",
+      "t_gn_topo_device",
+      "atomic_aft_order",
+      "report_new_dev",
+      "ne_collect_record",
+      "sdw_dp_device_performance",
+      "customer_svr_pkg_limit",
+      "t_gn_account",
+      "week_availability",
+      "t_gn_traffic_abnormality",
+      "report_qos_info",
+      "day_availability",
+      "dcs_ack_result",
+      "t_bz_incorporate_config",
+      "t_bz_config_customer",
+      "t_bz_incident_approval",
+      "t_dc_problem_limit"
+    ],
+    "generated_sql": "SELECT COUNT(*) AS new_device_count\nFROM `report_new_dev`\nWHERE `REP_MONTH` = DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n  AND `STATUS` = '上线';",
+    "table_recall": 0.0,
+    "missing_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "lost_at_step": "LLM过滤轮次1",
+    "old_sql": "SELECT COUNT(`CI_ID`) AS `new_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `ONLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\nAND YEAR(`ONLINE_TIME`) = 2025\nLIMIT 10;",
+    "correct_sql": "SELECT COUNT(`CI_ID`) AS `new_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `ONLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\nAND YEAR(`ONLINE_TIME`) = 2025\nLIMIT 10;",
+    "old_is_correct": "正确",
+    "total_time": "524.7s"
+  },
+  {
+    "test_id": 6,
+    "question": "上个月下线的设备有多少",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "steps": [
+      {
+        "step": "1. 向量检索+增强",
+        "time": "93.2s",
+        "columns": 400,
+        "tables": 135,
+        "expected_found": [
+          "t_bz_config_ci_ne_root"
+        ],
+        "expected_missing": []
+      },
+      {
+        "step": "2. 计算 reserve_df",
+        "columns": 77,
+        "tables": 45,
+        "expected_in_reserve": [],
+        "expected_not_in_reserve": [
+          "t_bz_config_ci_ne_root"
+        ]
+      },
+      {
+        "step": "3.1 LLM过滤轮次1",
+        "columns_before": 400,
+        "tables_before": 135,
+        "tables_after": 56,
+        "removed_count": 79,
+        "expected_before": [
+          "t_bz_config_ci_ne_root"
+        ],
+        "expected_after": [
+          "t_bz_config_ci_ne_root"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.2 LLM过滤轮次2",
+        "columns_before": "same",
+        "tables_before": 56,
+        "tables_after": 49,
+        "removed_count": 7,
+        "expected_before": [
+          "t_bz_config_ci_ne_root"
+        ],
+        "expected_after": [
+          "t_bz_config_ci_ne_root"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.3 LLM过滤轮次3",
+        "columns_before": "same",
+        "tables_before": 49,
+        "tables_after": 47,
+        "removed_count": 2,
+        "expected_before": [
+          "t_bz_config_ci_ne_root"
+        ],
+        "expected_after": [],
+        "lost_expected": [
+          "t_bz_config_ci_ne_root"
+        ]
+      },
+      {
+        "step": "3.4 LLM过滤轮次4",
+        "skipped": true,
+        "reason": "列数 94 <= 100"
+      },
+      {
+        "step": "3. LLM过滤总结",
+        "time": "395.5s",
+        "final_columns": 94,
+        "final_tables": 47
+      },
+      {
+        "step": "4. SQL生成",
+        "table_recall": "0/1",
+        "missing": [
+          "t_bz_config_ci_ne_root"
+        ]
+      }
+    ],
+    "final_tables": [
+      "temp",
+      "ne_service_item",
+      "t_gn_business_application_change",
+      "t_bz_sys_dev_additional",
+      "t_dc_config_device_type",
+      "t_dc_config_circuit_type",
+      "ne_collect_history_record",
+      "event_ping",
+      "t_gn_all_net_workorder",
+      "ne_service_collect",
+      "ne_template_collect_config",
+      "sdwan_device",
+      "t_bz_incident_wait",
+      "sub_change_num",
+      "ne_syslog_filter_script",
+      "t_bz_config_ci_audit_flow",
+      "report_cust_reachability_ext",
+      "t_bz_monitor_chart_config",
+      "customer_cloud_monitor_count_config",
+      "month_availability",
+      "report_port_95_top",
+      "report_cust_reachability",
+      "event_history",
+      "atomic_cutover_order",
+      "cc_cmdb_field_mapping",
+      "sdw_dp_device",
+      "t_dc_task_status",
+      "service_item",
+      "ne_collect_history",
+      "customer_cloud_monitor_region",
+      "t_dc_incident_status",
+      "t_gn_topo_device",
+      "t_bz_task_main",
+      "atomic_aft_order",
+      "ne_type",
+      "sdw_dp_device_performance",
+      "cc_cmdb_global_config",
+      "week_availability",
+      "report_hardware_info",
+      "event_history_sdwan",
+      "day_availability",
+      "ne_connection_log",
+      "t_bz_config_ci_circuit",
+      "ne_collect_connector",
+      "ont_status",
+      "t_bz_sys_operate_audit",
+      "t_dc_problem_limit"
+    ],
+    "generated_sql": "SELECT COUNT(*) AS `offline_device_count`\nFROM `t_gn_business_application_change`\nWHERE `status` = '下线' AND `data_time` BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 MONTH));",
+    "table_recall": 0.0,
+    "missing_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "lost_at_step": "LLM过滤轮次3",
+    "old_sql": "SELECT COUNT(`CI_ID`) AS `offline_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `OFFLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n  AND `OFFLINE_TIME` < CURDATE()\nLIMIT 10;",
+    "correct_sql": "SELECT COUNT(`CI_ID`) AS `offline_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `OFFLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n  AND `OFFLINE_TIME` < CURDATE()\nLIMIT 10;",
+    "old_is_correct": "正确",
+    "total_time": "490.0s"
+  },
+  {
+    "test_id": 7,
+    "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "steps": [
+      {
+        "step": "1. 向量检索+增强",
+        "time": "94.7s",
+        "columns": 400,
+        "tables": 119,
+        "expected_found": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_missing": []
+      },
+      {
+        "step": "2. 计算 reserve_df",
+        "columns": 77,
+        "tables": 39,
+        "expected_in_reserve": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_not_in_reserve": []
+      },
+      {
+        "step": "3.1 LLM过滤轮次1",
+        "columns_before": 400,
+        "tables_before": 119,
+        "tables_after": 101,
+        "removed_count": 18,
+        "expected_before": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.2 LLM过滤轮次2",
+        "columns_before": "same",
+        "tables_before": 101,
+        "tables_after": 101,
+        "removed_count": 0,
+        "expected_before": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.3 LLM过滤轮次3",
+        "columns_before": "same",
+        "tables_before": 101,
+        "tables_after": 92,
+        "removed_count": 9,
+        "expected_before": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3.4 LLM过滤轮次4",
+        "columns_before": "same",
+        "tables_before": 92,
+        "tables_after": 54,
+        "removed_count": 38,
+        "expected_before": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "expected_after": [
+          "t_bz_config_customer",
+          "t_bz_config_ci_ne_root",
+          "event_history"
+        ],
+        "lost_expected": []
+      },
+      {
+        "step": "3. LLM过滤总结",
+        "time": "864.1s",
+        "final_columns": 222,
+        "final_tables": 54
+      },
+      {
+        "step": "4. SQL生成",
+        "table_recall": "3/3",
+        "missing": []
+      }
+    ],
+    "final_tables": [
+      "t_bz_config_ci_entity",
+      "event_backup",
+      "customer_global_config",
+      "ne_service_item",
+      "dcs_ack_result",
+      "t_bz_sdn_alarm",
+      "t_dc_config_device_type",
+      "t_dc_config_circuit_type",
+      "heartbeat",
+      "event_ping",
+      "syslog_filter_script",
+      "ne_service_collect",
+      "t_bz_task_group",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_gn_security_situation_awareness_log",
+      "event_knowledge",
+      "t_bz_incident_wait",
+      "ne_syslog_filter_script",
+      "customer_collector_v2",
+      "t_bz_incident_transfer",
+      "customer_cloud_monitor_count_config",
+      "t_bz_incident_work_info",
+      "event_history",
+      "t_bz_problem_info",
+      "sdw_dp_device",
+      "t_bz_incident_response",
+      "event_type",
+      "t_dc_incident_finish",
+      "t_bz_sys_sms_record",
+      "t_dc_incident_status",
+      "event",
+      "t_dc_incident_category",
+      "t_bz_incident_event_record",
+      "t_dc_incident_accident_type",
+      "t_bz_sys_note",
+      "t_bz_incident_info",
+      "t_bz_task_main",
+      "t_gn_all_net_event",
+      "cc_cmdb_sync_service_catalog",
+      "sdw_dp_device_performance",
+      "cc_cmdb_global_config",
+      "t_dc_incident_priority",
+      "week_availability",
+      "sdwan_tenant",
+      "event_to_cloudcare_record",
+      "event_history_sdwan",
+      "event_sdn",
+      "day_availability",
+      "t_bz_config_ci_circuit",
+      "t_dc_incident_property",
+      "t_bz_config_customer",
+      "ne_collect_connector",
+      "event_condition"
+    ],
+    "generated_sql": "SELECT `event_type`.`EVENT_TYPE_NAME`, `event_yjk_history`.`trigger_time` AS `alarm_time`, `event_yjk_history`.`recover_time` AS `recover_time`\nFROM `event_yjk_history`\nJOIN `event_type` ON `event_yjk_history`.`event_tag` = `event_type`.`EVENT_TYPE_ID`\nWHERE `event_yjk_history`.`customer_no` = 'xxx'\n  AND `event_yjk_history`.`trigger_time` >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK);",
+    "table_recall": 1.0,
+    "missing_tables": [],
+    "lost_at_step": null,
+    "old_sql": "SELECT \n    `event_history`.`EVENT_TYPE_NAME`, \n    `event_history`.`EVENT_TIME`, \n    `event_history`.`ACK_TIME`\nFROM \n    `event_history`\nJOIN \n    `t_bz_config_ci_ne_root` \nON \n    `event_history`.`NE_ID` = `t_bz_config_ci_ne_root`.`NE_ID`\nWHERE \n    `event_history`.`EVENT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\n    AND `event_history`.`IS_ACK` = 1\nLIMIT 10;",
+    "correct_sql": "SELECT\n `t_bz_config_customer`.`CUSTOMER_NAME`,\n `t_bz_config_ci_ne_root`.`HOST_NAME`,\n `event_history`.`EVENT_NAME`,\n `event_history`.`EVENT_TIME`\nFROM\n `event_history`\nJOIN `t_bz_config_ci_ne_root` ON `event_history`.`NE_ID` = `t_bz_config_ci_ne_root`.`NE_ID`\nJOIN `t_bz_config_customer` ON `event_history`.`CUSTOMER_ID` = `t_bz_config_customer`.ID\nWHERE\n `event_history`.`EVENT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\nAND `event_history`.`EVENT_STATUS_NAME` = 'alarm'\nAND `t_bz_config_customer`.`CUSTOMER_NAME` = 'xxx'\nLIMIT 10;\n",
+    "old_is_correct": "错误",
+    "total_time": "961.0s"
+  }
+]

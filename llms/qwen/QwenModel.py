@@ -65,16 +65,24 @@ class QwenModel(CustomLLM):
         # print(prompt)
         # print("----------------------------------------------")
         if self.is_call:
-            response = self.client.chat.completions.create(
-                model=self.model_name,  # 填写需要调用的模型编码
-                messages=[
+            # 构建请求参数
+            request_params = {
+                "model": self.model_name,
+                "messages": [
                     {"role": "user", "content": prompt},
                 ],
-                stream=self.is_stream,
-                max_tokens=self.max_tokens,
-                temperature=self.temperature,
-                timeout=100.0
-            )
+                "stream": self.is_stream,
+                "max_tokens": self.max_tokens,
+                "temperature": self.temperature,
+                "timeout": 300.0,
+            }
+
+            # 对于 Qwen3 等支持思考模式的模型，添加 extra_body 来禁用思考
+            # 这会让模型直接输出结果，不输出 <think> 标签
+            if 'qwen' in self.model_name.lower() or 'Qwen' in self.model_name:
+                request_params["extra_body"] = {"enable_thinking": False}
+
+            response = self.client.chat.completions.create(**request_params)
             if not self.is_stream:
                 completion_response = response.choices[0].message.content
                 # self.input_token += response.usage.prompt_tokens

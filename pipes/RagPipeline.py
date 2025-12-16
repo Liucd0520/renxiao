@@ -48,9 +48,15 @@ class RagPipeLines:
 
         if embed_model_name is None:
             embed_model_name = cls.EMBED_MODEL_NAME
-        embed_model_name = (embed_model_name if embed_model_name not in embed_model_map_name_to_path.keys() else
-                            embed_model_map_name_to_path[embed_model_name])  # 如果预训练模型在本地保存，则优先使用本地模型
-        Settings.embed_model = HuggingFaceEmbedding(embed_model_name)
+        
+        # 检查是否使用 BGE-M3 多语言模型
+        if embed_model_name == "BAAI/bge-m3":
+            from embed_model.BGEM3Embedding import BGEM3Embedding
+            Settings.embed_model = BGEM3Embedding()
+        else:
+            embed_model_name = (embed_model_name if embed_model_name not in embed_model_map_name_to_path.keys() else
+                                embed_model_map_name_to_path[embed_model_name])  # 如果预训练模型在本地保存，则优先使用本地模型
+            Settings.embed_model = HuggingFaceEmbedding(embed_model_name)
 
         index_method = None if index_method and index_method not in ["SummaryIndex",
                                                                      "VectorStoreIndex"] else index_method

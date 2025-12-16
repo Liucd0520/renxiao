@@ -1,0 +1,557 @@
+[
+  {
+    "test_id": 1,
+    "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "correct_sql": "SELECT \n    `event_type_name`, \n    COUNT(`event_id`) AS `alarm_count`\nFROM \n    event_history\nJOIN \n    t_bz_config_ci_ne_root ON event_history.ne_id = t_bz_config_ci_ne_root.ne_id\nWHERE \n    t_bz_config_ci_ne_root.host_name LIKE '%ciscoA%' \n    AND event_time >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n    AND event_time < CURDATE()\nGROUP BY \n    `event_type_name`\nORDER BY \n    `alarm_count` DESC\nLIMIT 10;",
+    "steps": [
+      {
+        "step": "A. 表级别向量检索",
+        "time": "2.9s",
+        "retrieved_tables": [
+          "report_new_dev",
+          "t_dc_incident_accident_type",
+          "event_history",
+          "event_yjk_history",
+          "t_dc_incident_finish",
+          "t_dc_problem_category",
+          "t_bz_sdn_alarm",
+          "ne_business_severity",
+          "event_sdn",
+          "syslog_facility"
+        ],
+        "retrieved_scores": [
+          "0.6469",
+          "0.6348",
+          "0.6245",
+          "0.6071",
+          "0.5987",
+          "0.5984",
+          "0.5943",
+          "0.5912",
+          "0.5856",
+          "0.5850"
+        ]
+      },
+      {
+        "step": "B. 加载完整 Schema",
+        "time": "0.0s",
+        "schema_tables": 10,
+        "schema_length": 3908
+      },
+      {
+        "step": "C. LLM 生成 SQL",
+        "time": "1.5s",
+        "sql_length": 269
+      },
+      {
+        "step": "D. LLM 评判 SQL 正确性",
+        "time": "15.1s",
+        "score": 60,
+        "summary": "表结构和字段映射存在关键差异，导致无法正确获取告警类型分类数据"
+      }
+    ],
+    "table_recall": 0.5,
+    "found_tables": [
+      "event_history"
+    ],
+    "missing_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "generated_sql": "SELECT `t_bz_sdn_alarm`.`ALARM_TYPE`, COUNT(*) AS `alarm_count`\nFROM `t_bz_sdn_alarm`\nWHERE `t_bz_sdn_alarm`.`DEVICE_NAME` = 'ciscoA'\n  AND `t_bz_sdn_alarm`.`OCCUR_TIME` BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE()\nGROUP BY `t_bz_sdn_alarm`.`ALARM_TYPE`;",
+    "evaluation": {
+      "score": 60,
+      "raw_response": "<think>\n好的，我现在需要对比用户提供的生成的SQL和正确的SQL，看看生成的SQL是否能正确回答用户的问题。用户的问题是关于设备ciscoA上个月发生的告警次数，按告警类型分类统计。\n\n首先看表选择。生成的SQL用了t_bz_sdn_alarm表，而正确的SQL用了event_history和t_bz_config_ci_ne_root两个表。用户问题中提到的设备名称是ciscoA，正确的SQL通过JOIN操作将event_history与t_bz_config_ci_ne_root连接，而生成的SQL直接使用了t_bz_sdn_alarm表，可能这个表里已经包含了设备名和告警类型的信息。如果t_bz_sdn_alarm表确实包含DEVICE_NAME和ALARM_TYPE字段，那么表选择可能没问题。但正确的SQL可能认为告警类型在event_type_name字段里，而设备信息在另一个表中，所以需要JOIN。这里可能生成的SQL表选择不正确，因为它没有连接到正确的表来获取告警类型。\n\n接下来看列选择。生成的SQL选择了ALARM_TYPE和COUNT(*)，而正确的SQL选择了event_type_name和COUNT(event_id)。如果正确的SQL中的event_type_name对应的是告警类型，而生成的SQL的ALARM_TYPE是同样的字段，那么列选择可能正确。不过，如果正确的SQL中的event_type_name是正确的告警类型字段，而生成的SQL的ALARM_TYPE可能不是，或者是否应该用COUNT(*)还是COUNT(event_id)？可能生成的SQL用COUNT(*)是对的，但正确的SQL用了COUNT(event_id)，这可能更准确，因为告警可能有多个记录，但每个告警事件可能有唯一的event_id。不过用户问题中并没有提到需要统计具体的事件数量，而是告警类型出现的次数，所以COUNT(*)可能也正确。不过这里可能生成的SQL的列选择不正确，因为字段名可能不一致。\n\n连接条件方面，生成的SQL没有使用JOIN，而正确的SQL用了JOIN。如果生成的SQL的t_bz_sdn_alarm表已经包含了设备名和告警类型，可能不需要JOIN，但正确的SQL可能认为告警类型在另一个表中，所以需要连接。这可能取决于数据库设计，但用户问题中没有提到需要连接其他表，所以生成的SQL可能没有连接条件，但正确的SQL有。如果正确的SQL是正确的，那么生成的SQL可能缺少必要的JOIN，导致无法正确获取告警类型。\n\n过滤条件方面，生成的SQL使用了BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE()，而正确的SQL用了event_time >= DATE_SUB(...) AND event_time < CURDATE()。BETWEEN是包含两边的，而正确的SQL的第二个条件是小于当前日期，可能生成的SQL的结束时间是包含当天的，但用户的问题是“上个月”，可能应该排除当前日期。不过，这可能是一个小问题，因为如果上个月的结束时间是到昨天的话，正确的SQL更准确。不过生成的SQL的过滤条件可能不正确，因为它可能包括当前日期的部分时间，而正确的SQL用的是严格小于当前日期，这样更准确。\n\n聚合逻辑方面，生成的SQL使用了GROUP BY ALARM_TYPE，而正确的SQL是GROUP BY event_type_name。如果这两个字段对应的是同一类数据，那么聚合逻辑是对的。但可能生成的SQL的GROUP BY字段不正确，或者正确的SQL需要JOIN后的字段。如果生成的SQL没有JOIN，而正确的SQL需要连接两个表来获取告警类型，那么生成的SQL可能没有正确聚合，因为它可能没有正确关联设备和告警类型。\n\n总结的话，生成的SQL可能没有正确连接表，导致告警类型字段可能不正确，或者没有正确过滤时间范围，导致统计结果可能包含当前日期的数据，或者不包含。此外，如果正确的SQL需要JOIN，而生成的SQL没有，那么表选择和连接条件都是错误的。不过，如果t_bz_sdn_alarm表已经包含了所有必要的信息，那么生成的SQL可能正确，但需要确认字段是否正确。不过根据正确的SQL，可能生成的SQL的列选择和表选择都不正确，因为它可能没有正确获取告警类型字段，或者设备名字段的位置不同。\n</think>\n\n评分: 60\n表选择: 错误 - 生成的SQL仅使用了t_bz_sdn_alarm表，而正确的SQL需要通过JOIN操作关联event_history和t_bz_config_ci_ne_root表来获取告警类型信息\n列选择: 错误 - 生成的SQL使用了ALARM_TYPE列，而正确的SQL使用了event_type_name列，且正确的SQL使用COUNT(event_id)更精确地统计具体事件数量\n连接条件: 不适用 - 生成的SQL没有使用JOIN操作，而正确的SQL需要通过ne_id字段连接两个表\n过滤条件: 部分正确 - 生成的SQL使用了BETWEEN...AND CURDATE()，但正确的SQL使用更精确的event_time >= ... AND event_time < CURDATE()，避免包含当前日期\n聚合逻辑: 部分正确 - 生成的SQL使用了GROUP BY ALARM_TYPE，但若ALARM_TYPE字段与正确的SQL中的event_type_name不对应，会导致分类统计错误\n\n总结: 表结构和字段映射存在关键差异，导致无法正确获取告警类型分类数据",
+      "table_selection": "错误 - 生成的SQL仅使用了t_bz_sdn_alarm表，而正确的SQL需要通过JOIN操作关联event_history和t_bz_config_ci_ne_root表来获取告警类型信息",
+      "column_selection": "错误 - 生成的SQL使用了ALARM_TYPE列，而正确的SQL使用了event_type_name列，且正确的SQL使用COUNT(event_id)更精确地统计具体事件数量",
+      "join_condition": "不适用 - 生成的SQL没有使用JOIN操作，而正确的SQL需要通过ne_id字段连接两个表",
+      "filter_condition": "部分正确 - 生成的SQL使用了BETWEEN...AND CURDATE()，但正确的SQL使用更精确的event_time >= ... AND event_time < CURDATE()，避免包含当前日期",
+      "aggregation": "部分正确 - 生成的SQL使用了GROUP BY ALARM_TYPE，但若ALARM_TYPE字段与正确的SQL中的event_type_name不对应，会导致分类统计错误",
+      "summary": "表结构和字段映射存在关键差异，导致无法正确获取告警类型分类数据"
+    },
+    "sql_score": 60,
+    "generated_tables": [
+      "t_bz_sdn_alarm"
+    ],
+    "tables_match": false,
+    "tables_partial": false
+  },
+  {
+    "test_id": 2,
+    "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "correct_sql": "select a.* from (\nSELECT \n    `t_bz_config_ci_ne_root`.`NE_ID`,\n    `t_bz_config_ci_ne_root`.`HOST_NAME`,\n    `t_bz_config_customer`.`CUSTOMER_NAME`\nFROM \n    `t_bz_config_ci_ne_root`\nJOIN \n    `t_bz_config_customer` ON `t_bz_config_ci_ne_root`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`\nJOIN \n    `event_history` ON `t_bz_config_ci_ne_root`.`NE_ID` = `event_history`.`NE_ID`\nWHERE \n    `event_history`.`EVENT_NAME` LIKE 'Device state%' \n    AND `event_history`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\nGROUP BY \n    `t_bz_config_ci_ne_root`.`NE_ID`, `t_bz_config_customer`.`CUSTOMER_NAME`\nHAVING \n    COUNT(DISTINCT `event_history`.`EVENT_ID`) > 0\n) a where `a`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) and `a`.`EVENT_STATUS_NAME` = 'alarm'\nLIMIT 10;",
+    "steps": [
+      {
+        "step": "A. 表级别向量检索",
+        "time": "0.1s",
+        "retrieved_tables": [
+          "ont_status",
+          "ne_business_severity",
+          "month_availability",
+          "t_dc_change_status",
+          "sdwan_users",
+          "t_dc_problem_status",
+          "uptime",
+          "t_dc_service_status",
+          "t_bz_config_ci_ne_root",
+          "week_availability"
+        ],
+        "retrieved_scores": [
+          "0.5764",
+          "0.5722",
+          "0.5710",
+          "0.5631",
+          "0.5540",
+          "0.5528",
+          "0.5504",
+          "0.5494",
+          "0.5489",
+          "0.5469"
+        ]
+      },
+      {
+        "step": "B. 加载完整 Schema",
+        "time": "0.0s",
+        "schema_tables": 10,
+        "schema_length": 3986
+      },
+      {
+        "step": "C. LLM 生成 SQL",
+        "time": "2.0s",
+        "sql_length": 480
+      },
+      {
+        "step": "D. LLM 评判 SQL 正确性",
+        "time": "18.3s",
+        "score": 40,
+        "summary": "生成SQL存在表结构、字段选择和过滤条件的重大错误，无法正确获取所需数据"
+      }
+    ],
+    "table_recall": 0.3333333333333333,
+    "found_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "missing_tables": [
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "generated_sql": "SELECT `t_dc_config_ci_ne_root`.`NE_IP` AS device_ip, `t_dc_config_ci_ne_root`.`GROUP_NAME` AS group_name, `t_dc_config_ci_ne_root`.`CUSTOMER_ID` AS customer_id, `t_bz_config_ci_ne_root`.`STATUS_NAME` AS customer_name\nFROM `t_dc_config_ci_ne_root`\nJOIN `t_dc_change_status` ON `t_dc_config_ci_ne_root`.`STATUS_ID` = `t_dc_change_status`.`STATUS_ID`\nWHERE `t_dc_change_status`.`STATUS_NAME` = 'down'\nAND `t_dc_config_ci_ne_root`.`DOWN_TIME` < DATE_SUB(CURDATE(), INTERVAL 3 MONTH);",
+    "evaluation": {
+      "score": 40,
+      "raw_response": "<think>\n好的，我现在需要仔细对比用户提供的生成SQL和正确SQL，看看生成的SQL是否能正确回答用户的问题。用户的问题是要列出平台上设备state为down超过3个月的设备清单及客户名称。\n\n首先看生成的SQL：\nSELECT `t_dc_config_ci_ne_root`.`NE_IP` AS device_ip, `t_dc_config_ci_ne_root`.`GROUP_NAME` AS group_name, `t_dc_config_ci_ne_root`.`CUSTOMER_ID` AS customer_id, `t_bz_config_ci_ne_root`.`STATUS_NAME` AS customer_name\nFROM `t_dc_config_ci_ne_root`\nJOIN `t_dc_change_status` ON `t_dc_config_ci_ne_root`.`STATUS_ID` = `t_dc_change_status`.`STATUS_ID`\nWHERE `t_dc_change_status`.`STATUS_NAME` = 'down'\nAND `t_dc_config_ci_ne_root`.`DOWN_TIME` < DATE_SUB(CURDATE(), INTERVAL 3 MONTH);\n\n而正确的SQL是：\nselect a.* from (\nSELECT \n    `t_bz_config_ci_ne_root`.`NE_ID`,\n    `t_bz_config_ci_ne_root`.`HOST_NAME`,\n    `t_bz_config_customer`.`CUSTOMER_NAME`\nFROM \n    `t_bz_config_ci_ne_root`\nJOIN \n    `t_bz_config_customer` ON `t_bz_config_ci_ne_root`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`\nJOIN \n    `event_history` ON `t_bz_config_ci_ne_root`.`NE_ID` = `event_history`.`NE_ID`\nWHERE \n    `event_history`.`EVENT_NAME` LIKE 'Device state%' \n    AND `event_history`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\nGROUP BY \n    `t_bz_config_ci_ne_root`.`NE_ID`, `t_bz_config_customer`.`CUSTOMER_NAME`\nHAVING \n    COUNT(DISTINCT `event_history`.`EVENT_ID`) > 0\n) a where `a`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) and `a`.`EVENT_STATUS_NAME` = 'alarm'\nLIMIT 10;\n\n用户问题的关键点是设备处于down状态超过3个月，需要设备清单和客户名称。生成的SQL使用了t_dc_config_ci_ne_root表和t_dc_change_status表，通过JOIN连接，条件是STATUS_NAME为down，并且DOWN_TIME早于3个月前。而正确的SQL使用了t_bz_config_ci_ne_root、t_bz_config_customer和event_history表，通过event_history的EVENT_NAME包含“Device state”且EVENT_TIME在3个月前，并且用GROUP BY和HAVING来确保有事件记录，最后还加了EVENT_STATUS_NAME = 'alarm'的条件。\n\n首先，表选择方面，生成的SQL用了t_dc_config_ci_ne_root和t_dc_change_status，而正确的SQL用了t_bz_config_ci_ne_root、t_bz_config_customer和event_history。表名不同，可能用户实际使用的表结构不同，但问题中没有给出具体表结构，所以需要看是否符合逻辑。生成的SQL可能没有正确使用客户名称所在的表，正确的SQL用了t_bz_config_customer来获取客户名称，而生成的SQL用了t_bz_config_ci_ne_root的STATUS_NAME作为客户名称，这明显是错误的，因为STATUS_NAME应该是状态名称，而不是客户名称。所以表选择可能有问题，生成的SQL可能没有正确连接客户表。\n\n列选择方面，生成的SQL选择了NE_IP、GROUP_NAME、CUSTOMER_ID和STATUS_NAME作为客户名称，但正确的SQL选择了NE_ID、HOST_NAME和CUSTOMER_NAME。这里生成的SQL的列可能不正确，尤其是客户名称的来源错误，用的是另一个表的STATUS_NAME，而正确的客户名称应该来自t_bz_config_customer表。\n\n连接条件方面，生成的SQL连接了t_dc_config_ci_ne_root和t_dc_change_status，条件是STATUS_ID相等。正确的SQL连接了t_bz_config_ci_ne_root和t_bz_config_customer，以及event_history，条件是NE_ID相等。生成的SQL可能没有正确连接客户表，而是连接了状态表，这可能导致客户名称无法正确获取。\n\n过滤条件方面，生成的SQL用了STATUS_NAME='down'和DOWN_TIME的条件。正确的SQL用了event_history的EVENT_NAME包含“Device state”和EVENT_TIME的条件，并且在子查询中使用了GROUP BY和HAVING。生成的SQL可能没有考虑到事件历史表，而是直接使用了设备表的DOWN_TIME字段，这可能不准确，因为设备处于down状态的时间可能需要通过事件记录来判断，而不仅仅是存储在DOWN_TIME字段里。此外，正确的SQL还添加了EVENT_STATUS_NAME='alarm'的条件，而生成的SQL没有这个条件，可能导致结果不准确。\n\n聚合逻辑方面，生成的SQL没有使用GROUP BY或COUNT，而正确的SQL用了GROUP BY和HAVING来确保至少有一个事件记录。这可能意味着生成的SQL没有处理可能的重复记录，导致结果可能不准确，或者包含没有足够事件记录的设备。\n\n总结来说，生成的SQL在表选择和列选择上有明显错误，客户名称的来源错误，且可能没有正确使用事件历史表来判断状态持续时间。过滤条件也缺少对事件状态的判断，聚合逻辑缺失，可能导致结果不准确。因此评分应该较低。\n</think>\n\n评分: 40\n表选择: 错误 - 生成SQL使用了t_dc_config_ci_ne_root和t_dc_change_status表，而正确SQL使用了t_bz_config_ci_ne_root、t_bz_config_customer和event_history表，表名不一致且缺少关键事件表\n列选择: 错误 - 生成SQL错误地将t_bz_config_ci_ne_root的STATUS_NAME字段作为客户名称，且选择了NE_IP、GROUP_NAME等非用户要求的字段，正确SQL选择了NE_ID、HOST_NAME和CUSTOMER_NAME\n连接条件: 错误 - 生成SQL错误地通过STATUS_ID连接状态表，而正确SQL通过NE_ID连接设备表和事件表，且缺少客户表连接\n过滤条件: 错误 - 生成SQL仅使用了状态名称和DOWN_TIME字段，而正确SQL需要同时满足事件名称、事件时间、事件状态等多个条件\n聚合逻辑: 不适用 - 生成SQL未使用GROUP BY或COUNT等聚合操作，而正确SQL使用了GROUP BY和HAVING来确保事件记录有效性\n总结: 生成SQL存在表结构、字段选择和过滤条件的重大错误，无法正确获取所需数据",
+      "table_selection": "错误 - 生成SQL使用了t_dc_config_ci_ne_root和t_dc_change_status表，而正确SQL使用了t_bz_config_ci_ne_root、t_bz_config_customer和event_history表，表名不一致且缺少关键事件表",
+      "column_selection": "错误 - 生成SQL错误地将t_bz_config_ci_ne_root的STATUS_NAME字段作为客户名称，且选择了NE_IP、GROUP_NAME等非用户要求的字段，正确SQL选择了NE_ID、HOST_NAME和CUSTOMER_NAME",
+      "join_condition": "错误 - 生成SQL错误地通过STATUS_ID连接状态表，而正确SQL通过NE_ID连接设备表和事件表，且缺少客户表连接",
+      "filter_condition": "错误 - 生成SQL仅使用了状态名称和DOWN_TIME字段，而正确SQL需要同时满足事件名称、事件时间、事件状态等多个条件",
+      "aggregation": "不适用 - 生成SQL未使用GROUP BY或COUNT等聚合操作，而正确SQL使用了GROUP BY和HAVING来确保事件记录有效性",
+      "summary": "生成SQL存在表结构、字段选择和过滤条件的重大错误，无法正确获取所需数据"
+    },
+    "sql_score": 40,
+    "generated_tables": [
+      "t_dc_change_status",
+      "t_dc_config_ci_ne_root"
+    ],
+    "tables_match": false,
+    "tables_partial": false
+  },
+  {
+    "test_id": 3,
+    "question": "现在平台上有多少家客户",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "correct_sql": "SELECT COUNT(`CUSTOMER_ID`) AS `customer_count`\nFROM t_bz_config_customer\nWHERE `IS_ACTIVE` = 1\nLIMIT 10;",
+    "steps": [
+      {
+        "step": "A. 表级别向量检索",
+        "time": "0.1s",
+        "retrieved_tables": [
+          "t_bz_config_customer",
+          "customer_cloud_monitor_count_config",
+          "customer",
+          "customer_svr_pkg_limit",
+          "customer_cloud_monitor_key",
+          "t_bz_ip_realm",
+          "ne_business_severity",
+          "customer_model_rl",
+          "t_gn_all_net_event",
+          "t_gn_all_net_device"
+        ],
+        "retrieved_scores": [
+          "0.5159",
+          "0.5119",
+          "0.4981",
+          "0.4915",
+          "0.4878",
+          "0.4875",
+          "0.4816",
+          "0.4784",
+          "0.4768",
+          "0.4761"
+        ]
+      },
+      {
+        "step": "B. 加载完整 Schema",
+        "time": "0.0s",
+        "schema_tables": 10,
+        "schema_length": 3642
+      },
+      {
+        "step": "C. LLM 生成 SQL",
+        "time": "0.3s",
+        "sql_length": 62
+      },
+      {
+        "step": "D. LLM 评判 SQL 正确性",
+        "time": "12.9s",
+        "score": 60,
+        "summary": "生成的SQL缺少关键过滤条件，可能导致统计结果包含非活跃客户。"
+      }
+    ],
+    "table_recall": 1.0,
+    "found_tables": [
+      "t_bz_config_customer"
+    ],
+    "missing_tables": [],
+    "generated_sql": "SELECT COUNT(*) AS customer_count FROM `t_bz_config_customer`;",
+    "evaluation": {
+      "score": 60,
+      "raw_response": "<think>\n好的，我现在需要评审用户提供的生成SQL和正确SQL，看看生成的SQL是否能正确回答用户的问题。用户的问题是：“现在平台上有多少家客户”。首先，我要仔细分析这两个SQL语句的区别，以及它们是否满足用户的需求。\n\n首先看生成的SQL：SELECT COUNT(*) AS customer_count FROM `t_bz_config_customer`;。这个查询是从t_bz_config_customer表中统计所有行的数量，使用COUNT(*)，也就是不管有没有数据，所有行都会被计算进去。而正确的SQL是SELECT COUNT(`CUSTOMER_ID`) AS `customer_count` FROM t_bz_config_customer WHERE `IS_ACTIVE` = 1 LIMIT 10;。这里有几个不同点：正确的SQL用了COUNT(CUSTOMER_ID)，并且加了一个WHERE条件，只统计IS_ACTIVE为1的客户，还加了LIMIT 10。\n\n用户的问题是要知道现在平台上有多少家客户。这里的“现在”可能意味着需要考虑客户是否处于活跃状态，而正确的SQL通过IS_ACTIVE=1来过滤，这可能更符合实际需求，比如只统计当前有效的客户。而生成的SQL没有这个过滤条件，可能会包括所有历史客户，包括已停用的，这可能导致结果不准确。\n\n接下来分析各个评分点：\n\n表选择：生成的SQL和正确的SQL都使用了t_bz_config_customer表，所以表选择是正确的。用户问题中的“平台”可能指的是这个表，所以表名正确。\n\n列选择：生成的SQL用了COUNT(*)，而正确的SQL用了COUNT(CUSTOMER_ID)。COUNT(*)会统计所有行，包括可能有空值的行，而COUNT(CUSTOMER_ID)只统计该列非空的行。如果CUSTOMER_ID是主键，那么它应该是非空的，所以两者结果可能相同。但正确的SQL可能更准确，因为它明确统计客户ID的数量，而生成的可能在某些情况下有差异，比如如果表中有其他列允许空值，但COUNT(*)会统计所有行，而COUNT(CUSTOMER_ID)可能更精确。不过，如果用户问题只是问客户数量，而表中每个客户都有唯一的ID，那么两者可能结果一致。不过正确的SQL可能更符合业务需求，即只统计活跃客户。但生成的SQL没有过滤条件，所以可能列选择是正确的，但缺少过滤条件。\n\n连接条件：这里没有JOIN操作，所以不适用。\n\n过滤条件：生成的SQL没有WHERE子句，而正确的SQL有IS_ACTIVE=1的条件。用户的问题是否需要这个条件呢？如果“现在平台上有多少家客户”指的是当前活跃的客户，那么正确的SQL是必要的。但用户的问题可能没有明确说明是否需要过滤，所以生成的SQL可能没有考虑到这一点，导致结果可能包含不活跃的客户，这可能不符合实际需求。因此，过滤条件是错误的，因为缺少了IS_ACTIVE的判断。\n\n聚合逻辑：生成的SQL使用COUNT(*)，正确的使用COUNT(CUSTOMER_ID)。如果表中所有行都有有效的CUSTOMER_ID，那么COUNT(*)和COUNT(CUSTOMER_ID)结果相同。但正确的SQL可能更准确，因为COUNT(CUSTOMER_ID)只统计有客户ID的记录，而COUNT(*)可能包括其他情况，比如如果有其他列有空值，但这里可能没有问题。不过，如果用户的问题只是问客户数量，而表中每个客户都有一行记录，那么COUNT(*)是正确的。不过正确的SQL可能更符合业务逻辑，但生成的SQL的聚合逻辑是否正确取决于是否有其他条件需要考虑。不过这里的主要问题在于过滤条件，而不是聚合方式本身。\n\n总结：生成的SQL缺少过滤条件，可能统计了所有客户，包括不活跃的，而正确的SQL只统计活跃的。如果用户的问题隐含了“当前活跃”的客户，那么生成的SQL是错误的。但如果没有明确说明，可能生成的SQL是正确的。不过根据正确的SQL的存在，可能用户的问题确实需要过滤，所以生成的SQL可能不正确。\n</think>\n\n评分: 60\n表选择: 正确 - 两者都使用了正确的客户配置表t_bz_config_customer\n列选择: 部分正确 - COUNT(*)虽然语法正确，但不如COUNT(CUSTOMER_ID)精确，可能包含无效记录\n连接条件: 不适用 - 查询中没有JOIN操作\n过滤条件: 错误 - 缺少IS_ACTIVE=1的过滤条件，会统计所有客户包括非活跃客户\n聚合逻辑: 正确 - 使用COUNT函数进行聚合统计，但未配合过滤条件导致结果不准确\n总结: 生成的SQL缺少关键过滤条件，可能导致统计结果包含非活跃客户。",
+      "table_selection": "正确 - 两者都使用了正确的客户配置表t_bz_config_customer",
+      "column_selection": "部分正确 - COUNT(*)虽然语法正确，但不如COUNT(CUSTOMER_ID)精确，可能包含无效记录",
+      "join_condition": "不适用 - 查询中没有JOIN操作",
+      "filter_condition": "错误 - 缺少IS_ACTIVE=1的过滤条件，会统计所有客户包括非活跃客户",
+      "aggregation": "正确 - 使用COUNT函数进行聚合统计，但未配合过滤条件导致结果不准确",
+      "summary": "生成的SQL缺少关键过滤条件，可能导致统计结果包含非活跃客户。"
+    },
+    "sql_score": 60,
+    "generated_tables": [
+      "t_bz_config_customer"
+    ],
+    "tables_match": true,
+    "tables_partial": true
+  },
+  {
+    "test_id": 4,
+    "question": "现在平台上有多少台设备",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "correct_sql": "SELECT COUNT(`CI_ID`) AS `device_count`\nFROM t_bz_config_ci_ne_root\nWHERE `IS_DELETED` = 0\nLIMIT 10;",
+    "steps": [
+      {
+        "step": "A. 表级别向量检索",
+        "time": "0.1s",
+        "retrieved_tables": [
+          "t_bz_config_ci_ne_root",
+          "t_gn_all_net_device",
+          "ont_status",
+          "t_gn_topo_device",
+          "ne_business_severity",
+          "collector",
+          "customer_cloud_monitor_count_config",
+          "sdw_dp_device",
+          "sdwan_device",
+          "t_gn_website_host_vulnerabilities"
+        ],
+        "retrieved_scores": [
+          "0.5311",
+          "0.5308",
+          "0.5149",
+          "0.5123",
+          "0.4990",
+          "0.4910",
+          "0.4910",
+          "0.4901",
+          "0.4862",
+          "0.4830"
+        ]
+      },
+      {
+        "step": "B. 加载完整 Schema",
+        "time": "0.0s",
+        "schema_tables": 10,
+        "schema_length": 4297
+      },
+      {
+        "step": "C. LLM 生成 SQL",
+        "time": "0.4s",
+        "sql_length": 62
+      },
+      {
+        "step": "D. LLM 评判 SQL 正确性",
+        "time": "8.5s",
+        "score": 50,
+        "summary": "生成SQL缺少关键过滤条件，会导致统计结果包含已删除设备，与用户需求不符。"
+      }
+    ],
+    "table_recall": 1.0,
+    "found_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "missing_tables": [],
+    "generated_sql": "SELECT COUNT(*) AS device_count FROM `t_bz_config_ci_ne_root`;",
+    "evaluation": {
+      "score": 50,
+      "raw_response": "<think>\n好的，我现在需要对比用户提供的生成的SQL和正确的SQL，然后根据评判要求给出评分和分析。用户的问题是“现在平台上有多少台设备”，而生成的SQL是SELECT COUNT(*) AS device_count FROM `t_bz_config_ci_ne_root`;，正确的SQL是SELECT COUNT(`CI_ID`) AS `device_count` FROM t_bz_config_ci_ne_root WHERE `IS_DELETED` = 0 LIMIT 10;\n\n首先看表选择。生成的SQL和正确的SQL都用了t_bz_config_ci_ne_root表，所以表选择是正确的。用户的问题没有提到其他表，所以没问题。\n\n列选择方面，生成的SQL用了COUNT(*)，而正确的SQL用了COUNT(CI_ID)。COUNT(*)会统计所有行，包括可能被删除的记录，而正确的SQL只统计CI_ID列的非空值。不过用户问题问的是设备数量，可能CI_ID是设备的唯一标识，所以正确的SQL更准确。但生成的SQL虽然用了COUNT(*)，但可能结果会多出被删除的设备，所以这里可能有问题。\n\n过滤条件方面，正确的SQL有WHERE IS_DELETED = 0，而生成的SQL没有这个条件。这会导致生成的SQL统计所有记录，包括已删除的设备，而正确的SQL只统计未被删除的。这可能是一个重大错误，因为用户可能只关心未被删除的设备数量。\n\n聚合逻辑方面，两者都使用了COUNT，但生成的SQL用了COUNT(*)，而正确的用的是COUNT(CI_ID)。如果CI_ID有非空值，COUNT(CI_ID)和COUNT(*)的结果应该是一样的，但如果有被删除的记录，可能CI_ID是NULL或者有其他情况。不过，如果表中所有记录都有CI_ID值，那么COUNT(*)和COUNT(CI_ID)的结果相同，但正确的SQL可能更准确，因为它排除了被删除的记录。不过生成的SQL没有过滤条件，所以结果可能不正确。\n\n连接条件：两者都没有使用JOIN，所以是不适用的。\n\n总结的话，生成的SQL缺少过滤条件，导致统计结果可能包含已删除的设备，而用户可能需要的是当前存在的设备数量。所以虽然表和聚合函数正确，但过滤条件错误，导致结果不正确。因此评分应该在40-59分之间，可能给50分，因为方向正确但有重大错误。\n</think>\n\n评分: 50\n表选择: 正确 - 两者都使用了正确的表t_bz_config_ci_ne_root\n列选择: 部分正确 - 生成SQL使用COUNT(*)可能包含无效记录，正确SQL使用COUNT(CI_ID)更准确\n连接条件: 不适用 - 两个SQL都没有使用JOIN操作\n过滤条件: 错误 - 生成SQL缺少IS_DELETED=0的过滤条件，会导致统计包含已删除设备\n聚合逻辑: 正确 - 两者都使用了正确的COUNT聚合函数\n\n总结: 生成SQL缺少关键过滤条件，会导致统计结果包含已删除设备，与用户需求不符。",
+      "table_selection": "正确 - 两者都使用了正确的表t_bz_config_ci_ne_root",
+      "column_selection": "部分正确 - 生成SQL使用COUNT(*)可能包含无效记录，正确SQL使用COUNT(CI_ID)更准确",
+      "join_condition": "不适用 - 两个SQL都没有使用JOIN操作",
+      "filter_condition": "错误 - 生成SQL缺少IS_DELETED=0的过滤条件，会导致统计包含已删除设备",
+      "aggregation": "正确 - 两者都使用了正确的COUNT聚合函数",
+      "summary": "生成SQL缺少关键过滤条件，会导致统计结果包含已删除设备，与用户需求不符。"
+    },
+    "sql_score": 50,
+    "generated_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "tables_match": true,
+    "tables_partial": true
+  },
+  {
+    "test_id": 5,
+    "question": "上个月上线的新设备有多少",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "correct_sql": "SELECT COUNT(`CI_ID`) AS `new_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `ONLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\nAND YEAR(`ONLINE_TIME`) = 2025\nLIMIT 10;",
+    "steps": [
+      {
+        "step": "A. 表级别向量检索",
+        "time": "0.1s",
+        "retrieved_tables": [
+          "report_new_dev",
+          "month_availability",
+          "t_bz_config_ci_ne_root",
+          "week_availability",
+          "t_bz_config_ci_rfc",
+          "ne_business_severity",
+          "t_gn_topo_device",
+          "t_gn_all_net_device",
+          "sub_change_num",
+          "t_rl_release_relationship"
+        ],
+        "retrieved_scores": [
+          "0.5009",
+          "0.4816",
+          "0.4665",
+          "0.4606",
+          "0.4582",
+          "0.4571",
+          "0.4518",
+          "0.4494",
+          "0.4483",
+          "0.4392"
+        ]
+      },
+      {
+        "step": "B. 加载完整 Schema",
+        "time": "0.0s",
+        "schema_tables": 10,
+        "schema_length": 5028
+      },
+      {
+        "step": "C. LLM 生成 SQL",
+        "time": "1.7s",
+        "sql_length": 372
+      },
+      {
+        "step": "D. LLM 评判 SQL 正确性",
+        "time": "15.7s",
+        "score": 40,
+        "summary": ""
+      }
+    ],
+    "table_recall": 1.0,
+    "found_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "missing_tables": [],
+    "generated_sql": "SELECT COUNT(`t_bz_config_ci_ne_root`.`CI_ID`) AS new_device_count\nFROM `t_bz_config_ci_ne_root`\nJOIN `sub_change_num` ON `t_bz_config_ci_ne_root`.`NE_ID` = `sub_change_num`.`ne_id`\nWHERE `sub_change_num`.`discovery_type` = 'xxx'\n  AND `sub_change_num`.`data_time` BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE()\n  AND `t_bz_config_ci_ne_root`.`IS_ONLINE` = 1;",
+    "evaluation": {
+      "score": 40,
+      "raw_response": "<think>\n好的，我现在需要对比用户提供的生成的SQL和正确的SQL，看看生成的SQL是否能正确回答用户的问题。用户的问题是“上个月上线的新设备有多少”。首先，我得仔细分析这两个SQL语句的结构和各个部分是否符合要求。\n\n首先看正确的SQL：\nSELECT COUNT(`CI_ID`) AS `new_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `ONLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\nAND YEAR(`ONLINE_TIME`) = 2025\nLIMIT 10;\n\n这个查询是从表t_bz_config_ci_ne_root中选择CI_ID的数量，条件是ONLINE_TIME在上个月（即从当前日期减去一个月到当前日期之间），并且年份是2025，然后限制结果为10条。不过，这里有个问题，LIMIT 10可能不太合理，因为COUNT的结果是一个数字，限制10条可能没有意义，除非用户需要分页，但问题中没有提到分页，所以可能正确的SQL有误，或者用户可能想用LIMIT来测试。\n\n然后看生成的SQL：\nSELECT COUNT(`t_bz_config_ci_ne_root`.`CI_ID`) AS new_device_count\nFROM `t_bz_config_ci_ne_root`\nJOIN `sub_change_num` ON `t_bz_config_ci_ne_root`.`NE_ID` = `sub_change_num`.`ne_id`\nWHERE `sub_change_num`.`discovery_type` = 'xxx'\n  AND `sub_change_num`.`data_time` BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE()\n  AND `t_bz_config_ci_ne_root`.`IS_ONLINE` = 1;\n\n这个查询使用了两个表的JOIN，连接条件是NE_ID和ne_id相等。过滤条件包括sub_change_num的discovery_type等于'xxx'，data_time在上个月到当前日期之间，以及t_bz_config_ci_ne_root的IS_ONLINE为1。而正确的SQL没有JOIN，只用了ONLINE_TIME的条件，并且有YEAR的限制。\n\n接下来分析各个部分：\n\n表选择：生成的SQL用了t_bz_config_ci_ne_root和sub_change_num两个表，而正确的SQL只用了t_bz_config_ci_ne_root。用户的问题是关于新设备上线的数量，正确的SQL直接查询了设备表，而生成的SQL引入了另一个表sub_change_num，这可能不正确，除非新设备上线的信息存储在该表中。但用户的问题中没有提到需要关联其他表，所以可能生成的SQL表选择错误。\n\n列选择：生成的SQL选择了CI_ID进行计数，正确的SQL也是选择了CI_ID。这部分看起来是正确的，但正确的SQL中没有使用IS_ONLINE字段，而生成的SQL用了IS_ONLINE=1。这可能意味着正确的SQL中的ONLINE_TIME字段可能已经隐含了上线状态，或者用户的问题可能有其他条件。不过，用户的问题明确提到“新设备”，可能需要考虑是否在线的状态，但正确的SQL没有这个条件，而生成的SQL有。这可能是一个差异点。\n\n连接条件：生成的SQL使用了JOIN，连接条件是NE_ID和ne_id，而正确的SQL没有JOIN，所以连接条件是不适用的。但正确的SQL可能不需要连接其他表，因此生成的SQL在这里可能错误地引入了不必要的连接。\n\n过滤条件：生成的SQL的WHERE条件包括discovery_type='xxx'，data_time在上个月到当前日期之间，以及IS_ONLINE=1。正确的SQL的过滤条件是ONLINE_TIME在上个月到当前日期之间，并且年份是2025。这里有几个问题：生成的SQL使用了sub_change_num的data_time，而正确的SQL使用的是ONLINE_TIME字段，这可能属于不同的表。此外，正确的SQL还限制了年份为2025，而生成的SQL没有这个条件。另外，生成的SQL中的discovery_type='xxx'可能是一个错误的条件，因为用户的问题中没有提到这个类型，而正确的SQL没有这个条件。因此，过滤条件可能不正确。\n\n聚合逻辑：两个SQL都使用了COUNT，但正确的SQL没有GROUP BY，而生成的SQL也没有GROUP BY，所以这部分可能都是正确的，但需要看是否正确应用了COUNT。正确的SQL的COUNT是针对CI_ID，而生成的SQL也是，所以聚合逻辑可能正确。\n\n总结：生成的SQL引入了错误的JOIN和额外的过滤条件，可能无法正确统计上个月上线的新设备数量，因为使用了不同的时间字段和条件，且可能关联了错误的表。\n</think>\n\n评分: 40\n表选择: 错误 - 生成的SQL错误地引入了sub_change_num表，而正确的SQL仅使用了t_bz_config_ci_ne_root表。用户问题关注的是设备上线时间，无需关联其他表。\n列选择: 部分正确 - 生成的SQL使用了CI_ID进行计数（与正确SQL一致），但错误地依赖了sub_change_num表的字段（如discovery_type）作为过滤条件。\n连接条件: 错误 - 生成的SQL使用了NE_ID与ne_id的JOIN，但用户问题未要求关联其他表，且正确的SQL未包含任何JOIN操作。\n过滤条件: 错误 - 生成的SQL使用了discovery_type='xxx'（无依据）和sub_change_num.data_time（可能非上线时间字段），而正确的SQL使用ONLINE_TIME字段并限制年份为2025。\n聚合逻辑: 正确 - 两者均使用COUNT函数统计记录数，且无GROUP BY错误。",
+      "table_selection": "错误 - 生成的SQL错误地引入了sub_change_num表，而正确的SQL仅使用了t_bz_config_ci_ne_root表。用户问题关注的是设备上线时间，无需关联其他表。",
+      "column_selection": "部分正确 - 生成的SQL使用了CI_ID进行计数（与正确SQL一致），但错误地依赖了sub_change_num表的字段（如discovery_type）作为过滤条件。",
+      "join_condition": "错误 - 生成的SQL使用了NE_ID与ne_id的JOIN，但用户问题未要求关联其他表，且正确的SQL未包含任何JOIN操作。",
+      "filter_condition": "错误 - 生成的SQL使用了discovery_type='xxx'（无依据）和sub_change_num.data_time（可能非上线时间字段），而正确的SQL使用ONLINE_TIME字段并限制年份为2025。",
+      "aggregation": "正确 - 两者均使用COUNT函数统计记录数，且无GROUP BY错误。",
+      "summary": ""
+    },
+    "sql_score": 40,
+    "generated_tables": [
+      "sub_change_num",
+      "t_bz_config_ci_ne_root"
+    ],
+    "tables_match": false,
+    "tables_partial": true
+  },
+  {
+    "test_id": 6,
+    "question": "上个月下线的设备有多少",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "correct_sql": "SELECT COUNT(`CI_ID`) AS `offline_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `OFFLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n  AND `OFFLINE_TIME` < CURDATE()\nLIMIT 10;",
+    "steps": [
+      {
+        "step": "A. 表级别向量检索",
+        "time": "0.1s",
+        "retrieved_tables": [
+          "month_availability",
+          "t_bz_config_ci_ne_root",
+          "uptime",
+          "week_availability",
+          "ne_business_severity",
+          "t_gn_all_net_device",
+          "origin_availability",
+          "report_new_dev",
+          "ont_status",
+          "sub_change_num"
+        ],
+        "retrieved_scores": [
+          "0.4859",
+          "0.4822",
+          "0.4660",
+          "0.4612",
+          "0.4611",
+          "0.4491",
+          "0.4470",
+          "0.4467",
+          "0.4460",
+          "0.4419"
+        ]
+      },
+      {
+        "step": "B. 加载完整 Schema",
+        "time": "0.0s",
+        "schema_tables": 10,
+        "schema_length": 4670
+      },
+      {
+        "step": "C. LLM 生成 SQL",
+        "time": "1.0s",
+        "sql_length": 192
+      },
+      {
+        "step": "D. LLM 评判 SQL 正确性",
+        "time": "13.1s",
+        "score": 60,
+        "summary": "生成SQL使用了错误的字段和不精确的时间范围过滤条件，导致统计结果可能不准确。"
+      }
+    ],
+    "table_recall": 1.0,
+    "found_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "missing_tables": [],
+    "generated_sql": "SELECT COUNT(`ne_id`) \nFROM `t_bz_config_ci_ne_root` \nWHERE `IS_ONLINE` = 0 \n  AND `CALCTIME` BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 MONTH));",
+    "evaluation": {
+      "score": 60,
+      "raw_response": "<think>\n好的，我现在需要对比用户提供的生成SQL和正确SQL，看看生成的SQL是否能正确回答用户的问题。用户的问题是“上个月下线的设备有多少”，也就是要统计上个月内下线的设备数量。\n\n首先看表选择。两个SQL都用了t_bz_config_ci_ne_root这个表，所以表选择是正确的，没有问题。\n\n接下来是列选择。生成的SQL使用了COUNT(ne_id)，而正确的SQL用的是COUNT(CI_ID)。这里可能需要注意字段名是否正确，用户问题中的设备可能对应的是ne_id或者CI_ID，但题目中没有给出表结构，所以假设这两个字段都是设备的唯一标识，可能都是正确的。不过如果表中确实有CI_ID作为设备ID，而生成的SQL用了ne_id，可能列选择有误。但如果没有明确说明，可能需要认为列名是否正确存在疑问，但可能用户问题中的设备指的是ne_id，所以这里可能部分正确。\n\n然后是连接条件。两个SQL都没有使用JOIN，所以连接条件是不适用的，没有问题。\n\n过滤条件方面，生成的SQL用了IS_ONLINE = 0，并且CALCTIME在上个月的日期范围内。而正确的SQL使用的是OFFLINE_TIME >= 上个月第一天，并且小于当前日期。这里的关键是判断下线时间是否在上个月。生成的SQL的CALCTIME可能是指计算时间，但用户问题中的下线时间可能应该用OFFLINE_TIME字段。如果生成的SQL中的CALCTIME确实是记录下线时间的字段，那么它的BETWEEN条件可能有问题，因为上个月的最后一天可能不是当前日期减一个月的最后一天。例如，如果今天是2023年10月5日，上个月是9月，那么DATE_SUB(CURDATE(), INTERVAL 1 MONTH)是2023-09-05，而LAST_DAY的结果是2023-09-30。所以BETWEEN 2023-09-05和2023-09-30，这可能只包括从9月5日到9月30日的数据，而正确的SQL是OFFLINE_TIME >= 2023-09-01且小于2023-10-05，这样能正确覆盖整个上个月。所以生成的SQL的过滤条件可能不正确，因为它可能只统计了从当前日期减一个月到上个月最后一天的数据，而正确的SQL是统计上个月整个月份的数据，即从上个月的第一天到当前日期前一日。\n\n聚合逻辑方面，两个SQL都用了COUNT，但生成的SQL没有使用GROUP BY，而正确的SQL也没有，所以这里都是正确的。不过生成的SQL可能因为过滤条件的问题导致统计的范围不对，从而结果错误。\n\n总结的话，生成的SQL的表选择正确，但过滤条件可能不正确，因为使用了CALCTIME和IS_ONLINE，而正确的SQL用的是OFFLINE_TIME，并且时间范围的处理方式不同。如果CALCTIME确实是下线时间，那么生成的SQL可能正确，但通常BETWEEN的使用可能不准确，因为上个月的范围应该是从当月的第一天到上个月的最后一天，而生成的SQL可能只覆盖了从当前日期减一个月到上个月的最后一天，这可能不包括整个上个月的数据。例如，如果今天是2023年10月5日，生成的SQL会统计9月5日到9月30日的数据，而正确的SQL是9月1日到10月5日之间下线的设备，但用户的问题是“上个月下线的设备”，也就是整个9月份的数据，所以正确的SQL更准确。因此，生成的SQL的过滤条件可能不正确，导致结果错误。\n</think>\n\n评分: 60\n表选择: 正确 - 两个SQL都使用了正确的表t_bz_config_ci_ne_root\n列选择: 错误 - 生成SQL使用了ne_id而正确SQL使用了CI_ID，字段名存在差异且未明确说明是否等价\n连接条件: 不适用 - 两个SQL都没有使用JOIN操作，符合单表查询需求\n过滤条件: 错误 - 生成SQL使用IS_ONLINE=0和CALCTIME的BETWEEN条件，而正确SQL使用OFFLINE_TIME字段并精确限定上个月时间范围\n聚合逻辑: 正确 - 两个SQL都使用COUNT函数进行统计，但生成SQL缺少AS别名\n总结: 生成SQL使用了错误的字段和不精确的时间范围过滤条件，导致统计结果可能不准确。",
+      "table_selection": "正确 - 两个SQL都使用了正确的表t_bz_config_ci_ne_root",
+      "column_selection": "错误 - 生成SQL使用了ne_id而正确SQL使用了CI_ID，字段名存在差异且未明确说明是否等价",
+      "join_condition": "不适用 - 两个SQL都没有使用JOIN操作，符合单表查询需求",
+      "filter_condition": "错误 - 生成SQL使用IS_ONLINE=0和CALCTIME的BETWEEN条件，而正确SQL使用OFFLINE_TIME字段并精确限定上个月时间范围",
+      "aggregation": "正确 - 两个SQL都使用COUNT函数进行统计，但生成SQL缺少AS别名",
+      "summary": "生成SQL使用了错误的字段和不精确的时间范围过滤条件，导致统计结果可能不准确。"
+    },
+    "sql_score": 60,
+    "generated_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "tables_match": true,
+    "tables_partial": true
+  },
+  {
+    "test_id": 7,
+    "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "correct_sql": "SELECT\n `t_bz_config_customer`.`CUSTOMER_NAME`,\n `t_bz_config_ci_ne_root`.`HOST_NAME`,\n `event_history`.`EVENT_NAME`,\n `event_history`.`EVENT_TIME`\nFROM\n `event_history`\nJOIN `t_bz_config_ci_ne_root` ON `event_history`.`NE_ID` = `t_bz_config_ci_ne_root`.`NE_ID`\nJOIN `t_bz_config_customer` ON `event_history`.`CUSTOMER_ID` = `t_bz_config_customer`.ID\nWHERE\n `event_history`.`EVENT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\nAND `event_history`.`EVENT_STATUS_NAME` = 'alarm'\nAND `t_bz_config_customer`.`CUSTOMER_NAME` = 'xxx'\nLIMIT 10;\n",
+    "steps": [
+      {
+        "step": "A. 表级别向量检索",
+        "time": "0.1s",
+        "retrieved_tables": [
+          "report_new_dev",
+          "event_history",
+          "ne_business_severity",
+          "event_yjk_history",
+          "event_sdn",
+          "event_history_sdwan",
+          "t_bz_incident_wait",
+          "event_ping",
+          "t_bz_sdn_alarm",
+          "trap_ne"
+        ],
+        "retrieved_scores": [
+          "0.6418",
+          "0.6346",
+          "0.6280",
+          "0.6212",
+          "0.6190",
+          "0.6119",
+          "0.5992",
+          "0.5990",
+          "0.5891",
+          "0.5839"
+        ]
+      },
+      {
+        "step": "B. 加载完整 Schema",
+        "time": "0.0s",
+        "schema_tables": 10,
+        "schema_length": 4731
+      },
+      {
+        "step": "C. LLM 生成 SQL",
+        "time": "1.5s",
+        "sql_length": 372
+      },
+      {
+        "step": "D. LLM 评判 SQL 正确性",
+        "time": "19.8s",
+        "score": 65,
+        "summary": "表连接不完整且过滤条件字段错误，导致可能无法准确获取设备告警信息"
+      }
+    ],
+    "table_recall": 0.3333333333333333,
+    "found_tables": [
+      "event_history"
+    ],
+    "missing_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "generated_sql": "SELECT `event_history`.EVENT_TYPE_NAME, `event_history`.EVENT_TIME, `event_history`.RECOVER_TIME\nFROM `event_history`\nJOIN `event_yjk_history` ON `event_history`.EVENT_ID = `event_yjk_history`.id\nWHERE `event_yjk_history`.customer_no = 'xxx'\n  AND `event_yjk_history`.trigger_time >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)\n  AND `event_yjk_history`.recover_time IS NOT NULL;",
+    "evaluation": {
+      "score": 65,
+      "raw_response": "<think>\n好的，我现在需要对比用户提供的生成的SQL和正确的SQL，看看生成的SQL是否能正确回答用户的问题。用户的问题是：“某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？”\n\n首先，我得仔细分析这两个SQL语句的结构和内容。用户的问题有两个关键点：一是找出客户设备近一周内的告警类型，二是获取具体的告警时间和恢复时间。\n\n先看正确的SQL。正确的SQL从event_history表中选取了EVENT_NAME、EVENT_TIME，同时连接了t_bz_config_ci_ne_root和t_bz_config_customer表，通过NE_ID和CUSTOMER_ID进行连接。过滤条件是event_history的EVENT_TIME在最近一周内，且EVENT_STATUS_NAME为'alarm'，并且客户名称是'xxx'。这里还用了LIMIT 10，不过用户的问题中没有提到限制结果数量，可能只是示例。\n\n然后看生成的SQL。生成的SQL使用了event_history和event_yjk_history两个表，通过EVENT_ID和id进行连接。过滤条件是event_yjk_history的customer_no为'xxx'，trigger_time在最近一周内，并且recover_time不为空。选择的列是event_history的EVENT_TYPE_NAME、EVENT_TIME和RECOVER_TIME。\n\n接下来逐个分析评判要求的各个方面：\n\n1. 表选择：正确的SQL用了event_history、t_bz_config_ci_ne_root和t_bz_config_customer三个表，而生成的SQL用了event_history和event_yjk_history。用户的问题中提到的是“客户设备”，可能需要关联客户信息和设备信息，而正确的SQL通过连接客户表和设备表来获取客户名称和设备名称。生成的SQL中的event_yjk_history表是否有客户信息？根据过滤条件，event_yjk_history有customer_no字段，可能存储了客户信息。但不确定是否event_yjk_history表中包含设备信息，或者是否需要连接其他表来获取设备名称。如果event_yjk_history表中没有设备信息，那么生成的SQL可能缺少设备相关的连接，而正确的SQL则正确连接了设备表。所以表选择可能部分正确，因为可能缺少设备表，或者event_yjk_history是否包含必要的信息？\n\n2. 列选择：用户需要的是告警类型、告警时间和恢复时间。正确的SQL选择了EVENT_NAME（可能对应告警类型），而生成的SQL选择了EVENT_TYPE_NAME。这可能是一个差异，但不确定哪个更准确。另外，正确的SQL没有恢复时间，而生成的SQL有RECOVER_TIME，但正确的SQL可能没有这个字段，或者可能在event_history表中存在？需要看表结构。如果event_history表有EVENT_TYPE_NAME和RECOVER_TIME，而正确的SQL用了EVENT_NAME，那么生成的SQL可能列选择有误。但用户的问题中的“类型”可能对应EVENT_TYPE_NAME，而正确的SQL用了EVENT_NAME，这可能不一致。不过正确的SQL可能有其他字段，比如EVENT_STATUS_NAME设置为'alarm'，而生成的SQL没有这个条件，可能包含非告警事件。不过列选择方面，生成的SQL有EVENT_TYPE_NAME、EVENT_TIME和RECOVER_TIME，而正确的SQL没有RECOVER_TIME，但用户的问题需要恢复时间，所以生成的SQL可能更符合用户需求。不过正确的SQL可能遗漏了恢复时间，而生成的SQL可能包含正确的列，但需要确认表是否正确。\n\n3. 连接条件：生成的SQL连接了event_history和event_yjk_history，使用EVENT_ID和id。正确的SQL连接了event_history与两个配置表，使用NE_ID和CUSTOMER_ID。如果event_yjk_history表中的id对应event_history的EVENT_ID，那么连接条件可能正确，但需要确认。如果event_yjk_history表中的id是event_history的主键，那么连接是正确的。但正确的SQL可能需要连接设备表和客户表来获取设备和客户信息，而生成的SQL可能没有连接设备表，只连接了客户信息所在的event_yjk_history表。所以连接条件可能部分正确，如果event_yjk_history确实包含客户信息和设备信息，但可能缺少设备表的连接。\n\n4. 过滤条件：正确的SQL使用event_history的EVENT_TIME在最近一周内，且EVENT_STATUS_NAME为'alarm'，客户名称为'xxx'。生成的SQL使用event_yjk_history的trigger_time在最近一周内，customer_no为'xxx'，并且recover_time不为空。这里可能有错误，因为用户的问题是关于告警的，而生成的SQL的过滤条件中recover_time不为空可能意味着只选择已恢复的告警，而正确的SQL可能没有这个限制，或者用户是否需要包括未恢复的告警？用户的问题问的是“发生过哪些类型的告警”，可能包括已恢复和未恢复的，但生成的SQL只选恢复时间不为空的，这可能遗漏了未恢复的告警。此外，正确的SQL使用的是EVENT_TIME，而生成的SQL用的是trigger_time，这可能对应不同的时间字段，是否正确？\n\n5. 聚合逻辑：两个SQL都没有使用GROUP BY或COUNT，所以可能不适用。但正确的SQL是否有聚合？用户的问题不需要聚合，只是列出每条告警的类型、时间和恢复时间，所以聚合逻辑可能不适用，两者都正确。\n\n总结：生成的SQL可能缺少连接设备表，导致无法获取设备信息，但用户的问题可能只需要客户信息，而正确的SQL可能连接了更多表。此外，过滤条件中的时间字段和状态可能不同，导致结果不准确。列选择中，生成的SQL有RECOVER_TIME，而正确的SQL没有，但用户需要恢复时间，所以生成的SQL可能更正确。不过如果event_yjk_history表中的trigger_time对应的是告警发生的时间，而正确的SQL用的是EVENT_TIME，这可能有差异。另外，生成的SQL可能只包括已恢复的告警，而用户可能需要所有告警，包括未恢复的。所以生成的SQL可能部分正确，但存在过滤条件和连接表的问题。\n</think>\n\n评分: 65\n表选择: 部分正确 - 生成SQL使用了event_history和event_yjk_history表，但未连接设备表（如t_bz_config_ci_ne_root），可能无法获取具体设备信息\n列选择: 部分正确 - 包含EVENT_TYPE_NAME（告警类型）、EVENT_TIME（告警时间）和RECOVER_TIME（恢复时间）三个关键字段，但缺少设备标识字段\n连接条件: 部分正确 - 使用EVENT_ID=id连接两个表，但未连接设备表，可能无法定位具体设备\n过滤条件: 错误 - 使用event_yjk_history的trigger_time和customer_no字段，而正确的SQL应使用event_history的EVENT_TIME和EVENT_STATUS_NAME字段\n聚合逻辑: 不适用 - 两个SQL均未使用GROUP BY/聚合函数，符合查询需求\n总结: 表连接不完整且过滤条件字段错误，导致可能无法准确获取设备告警信息",
+      "table_selection": "部分正确 - 生成SQL使用了event_history和event_yjk_history表，但未连接设备表（如t_bz_config_ci_ne_root），可能无法获取具体设备信息",
+      "column_selection": "部分正确 - 包含EVENT_TYPE_NAME（告警类型）、EVENT_TIME（告警时间）和RECOVER_TIME（恢复时间）三个关键字段，但缺少设备标识字段",
+      "join_condition": "部分正确 - 使用EVENT_ID=id连接两个表，但未连接设备表，可能无法定位具体设备",
+      "filter_condition": "错误 - 使用event_yjk_history的trigger_time和customer_no字段，而正确的SQL应使用event_history的EVENT_TIME和EVENT_STATUS_NAME字段",
+      "aggregation": "不适用 - 两个SQL均未使用GROUP BY/聚合函数，符合查询需求",
+      "summary": "表连接不完整且过滤条件字段错误，导致可能无法准确获取设备告警信息"
+    },
+    "sql_score": 65,
+    "generated_tables": [
+      "event_history",
+      "event_yjk_history"
+    ],
+    "tables_match": false,
+    "tables_partial": true
+  }
+]

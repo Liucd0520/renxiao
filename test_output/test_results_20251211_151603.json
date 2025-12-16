@@ -1,0 +1,56 @@
+[
+  {
+    "instance_id": "test_001",
+    "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "predicted_tables": [
+      "t_gn_topo_link",
+      "business",
+      "t_bz_config_vendor",
+      "topology",
+      "t_gn_topo_device"
+    ],
+    "schema_linking_recall": 0.0,
+    "schema_linking_precision": 0.0,
+    "schema_linking_f1": 0,
+    "missing_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "generated_sql": "SELECT \n    tgd.device_name,\n    tgd.device_ip,\n    tgd.device_status,\n    tgd.topo_id,\n    tgd.device_alias,\n    tgd.device_location_name,\n    tgd.device_desc,\n    b.BUSINESS_NAME AS customer_name\nFROM \n    t_gn_topo_device tgd\nJOIN \n    business b ON tgd.customer_id = b.BUSINESS_ID\nWHERE \n    tgd.device_status = 'down'\n    AND tgd.update_time < DATE_SUB(CURDATE(), INTERVAL 3 MONTH);",
+    "ground_truth_sql": "SELECT t_bz_config_ci_ne_root.NE_ID, t_bz_config_ci_ne_root.HOST_NAME, t_bz_config_customer.CUSTOMER_NAME FROM t_bz_config_ci_ne_root JOIN t_bz_config_customer ON t_bz_config_ci_ne_root.CUSTOMER_ID = t_bz_config_customer.CUSTOMER_ID JOIN event_history ON t_bz_config_ci_ne_root.NE_ID = event_history.NE_ID WHERE event_history.EVENT_NAME LIKE 'Device state%' AND event_history.EVENT_TIME <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND event_history.EVENT_STATUS_NAME = 'alarm'",
+    "elapsed_seconds": 2.261760711669922
+  },
+  {
+    "instance_id": "test_002",
+    "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "predicted_tables": [
+      "event_yjk_history",
+      "t_bz_problem_info",
+      "t_dc_incident_finish",
+      "t_dc_change_priority",
+      "t_dc_release_status"
+    ],
+    "schema_linking_recall": 0.0,
+    "schema_linking_precision": 0.0,
+    "schema_linking_f1": 0,
+    "missing_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "generated_sql": "SELECT \n    e.name AS alert_name,\n    e.trigger_time AS trigger_time,\n    e.recover_time AS recover_time\nFROM \n    event_yjk_history e\nJOIN \n    t_bz_problem_info p ON e.hash = p.PROBLEM_INFO\nJOIN \n    t_dc_incident_finish f ON p.FINISH_ID = f.FINISH_ID\nWHERE \n    e.create_time >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\n    AND e.deleted = 0\n    AND e.is_ack = 1\n    AND e.priority IN ('info', 'warn');",
+    "ground_truth_sql": "SELECT t_bz_config_customer.CUSTOMER_NAME, t_bz_config_ci_ne_root.HOST_NAME, event_history.EVENT_NAME, event_history.EVENT_TIME FROM event_history JOIN t_bz_config_ci_ne_root ON event_history.NE_ID = t_bz_config_ci_ne_root.NE_ID JOIN t_bz_config_customer ON event_history.CUSTOMER_ID = t_bz_config_customer.ID WHERE event_history.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND event_history.EVENT_STATUS_NAME = 'alarm'",
+    "elapsed_seconds": 2.518232822418213
+  }
+]

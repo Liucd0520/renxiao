@@ -67,7 +67,7 @@ def get_table_columns(connection, table_name):
         return [], {}
 
 
-def get_sample_rows(connection, table_name, column_name, limit=3):
+def get_sample_rows(connection, table_name, column_name, limit=10):
     """获取列的示例数据"""
     try:
         with connection.cursor() as cursor:
