@@ -141,7 +141,7 @@ def generate_embedding_text(table_name, table_comment, columns):
     return "\n".join(parts)
 
 
-def extract_table_level_schema(connection, db_name, output_dir, max_columns=20):
+def extract_table_level_schema(connection, db_name, output_dir):
     """
     提取表级别 Schema
     
@@ -232,7 +232,7 @@ def main():
     parser.add_argument("--password", default="Netcare@13579", help="MySQL 密码")
     parser.add_argument("--database", default="netcaredb_ai", help="数据库名")
     parser.add_argument("--output", default="./spider2_dev/schemas_table_level", help="输出目录")
-    parser.add_argument("--max-columns", type=int, default=20, help="embedding_text 中最多展示的列数")
+    # 注意：现在 embedding_text 包含所有列（无限制），以充分利用 BGE-M3 的 8192 token 上下文窗口
     
     args = parser.parse_args()
     
@@ -241,7 +241,7 @@ def main():
     print("=" * 60)
     print(f"数据库: {args.database}")
     print(f"主机: {args.host}:{args.port}")
-    print(f"最大列数: {args.max_columns}")
+    print(f"嵌入列数: 全部（无限制）")
     print("=" * 60 + "\n")
     
     # 连接数据库
@@ -261,8 +261,7 @@ def main():
         table_count = extract_table_level_schema(
             connection,
             args.database,
-            args.output,
-            args.max_columns
+            args.output
         )
         elapsed = time.time() - start_time
         
