@@ -255,4 +255,101 @@ def expand_with_fk(retrieved_tables):
 
 ---
 
-*报告完成时间: 2025-12-17 12:10*
+## 附录：详细检索过程示例
+
+### A.1 测试 1：设备ciscoA告警统计（成功案例）
+
+**问题**: "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计"
+
+**期望表**: `event_history`, `t_bz_config_ci_ne_root`
+
+#### 表级别 Sparse Top 10
+
+| 排名 | 表名 | 分数 | 命中 |
+|-----|------|------|-----|
+| 1 | t_dc_release_type | 0.1940 |  |
+| 2 | t_dc_incident_accident_type | 0.1917 |  |
+| **3** | **event_history** | **0.1870** | ✅ |
+| 4 | t_bz_config_ci_rfc | 0.1681 |  |
+| 5 | t_gn_weaknesses_attack | 0.1617 |  |
+
+**表级别召回**: 1/2（缺 t_bz_config_ci_ne_root）
+
+#### 列级别 Sparse Top 5 列
+
+| 排名 | 表名 | 列名 | 分数 |
+|-----|------|------|-----|
+| 1 | **t_bz_config_ci_ne_root** | ALARM_TYPE | 0.1589 |
+| 2 | t_gn_weaknesses_attack | classify1_id | 0.1501 |
+| 3 | t_gn_botnet | classify1_id | 0.1477 |
+| 4 | t_bz_config_ci_rfc | MODIFY_CLASSIFY | 0.1467 |
+| 5 | t_gn_vulnerability_hole | classify1_id | 0.1422 |
+
+#### 列级别累加分 Top 5 表
+
+| 排名 | 表名 | 累加分 | 命中 |
+|-----|------|-------|-----|
+| **1** | **t_bz_config_ci_ne_root** | **1.2052** | ✅ |
+| 2 | event_sdn | 0.8150 |  |
+| 3 | t_gn_business_application_change | 0.7916 |  |
+
+**列级别召回**: 1/2（缺 event_history）
+
+#### 融合结果
+
+- 表级别贡献: 10 表（含 event_history）
+- 列级别贡献: 10 表（含 t_bz_config_ci_ne_root）
+- 融合并集: 19 表
+- **融合召回: 2/2 ✅**
+
+**关键洞察**: 表级别找到 event_history，列级别找到 t_bz_config_ci_ne_root，**互补成功**！
+
+---
+
+### A.2 测试 2：设备down超3个月（失败案例）
+
+**问题**: "列出平台上设备device state down状态超过3个月的设备清单及客户名称"
+
+**期望表**: `t_bz_config_ci_ne_root`, `t_bz_config_customer`, `event_history`
+
+#### 表级别 Sparse Top 10
+
+| 排名 | 表名 | 分数 | 命中 |
+|-----|------|------|-----|
+| **1** | **t_bz_config_ci_ne_root** | **0.1742** | ✅ |
+| 2 | sdw_dp_device | 0.1720 |  |
+| 3 | t_gn_all_net_device | 0.1658 |  |
+
+**表级别召回**: 1/3
+
+#### 列级别 Sparse Top 5 列
+
+| 排名 | 表名 | 列名 | 分数 |
+|-----|------|------|-----|
+| 1 | t_gn_topo_device | device_status | 0.1946 |
+| 2 | sdw_dp_device_performance | device_status | 0.1455 |
+| 3 | sdw_dp_port_performance | port_state | 0.1404 |
+
+#### 列级别累加分 Top 5 表
+
+| 排名 | 表名 | 累加分 | 命中 |
+|-----|------|-------|-----|
+| 1 | t_gn_topo_device | 1.1563 |  |
+| 2 | t_gn_topo_link | 1.0702 |  |
+| **3** | **t_bz_config_customer** | **1.0427** | ✅ |
+| 4 | sdw_dp_device | 0.8267 |  |
+| **10** | **t_bz_config_ci_ne_root** | **0.3073** | ✅ |
+
+**列级别召回**: 2/3
+
+#### 融合结果
+
+- 融合并集: 14 表
+- **融合召回: 2/3 ❌**
+- **缺失**: `event_history`
+
+**失败原因**: 问题关键词"设备状态/down"与 event_history 表（"告警/事件"）语义不匹配，两个级别都检索不到。
+
+---
+
+*报告完成时间: 2025-12-17 14:00*
