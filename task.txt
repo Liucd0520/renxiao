@@ -1,0 +1,25 @@
+我们现在要干的事是这样的，我们现在没有足够的问题和测试样本，我给你这个 deepseek 的商用大模型，你让他去仿照我们之前 @cc_result.csv 或者是刚才我发给你的那些问题，让他阅读数据库的 schema 来生成问题，记得把答案也生成了，然后我们要去测试我们的模型。
+
+然后这个是 api 
+# Please install OpenAI SDK first: `pip3 install openai`
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ.get('DEEPSEEK_API_KEY'),
+    base_url="https://api.deepseek.com")
+
+response = client.chat.completions.create(
+    model="deepseek-chat",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant"},
+        {"role": "user", "content": "Hello"},
+    ],
+    stream=False
+)
+
+print(response.choices[0].message.content)
+
+sk-6670dc8295234c4192dbd5e579b4a0ac
+
+你先用这个来生成 100 个问题和对应的答案表格
