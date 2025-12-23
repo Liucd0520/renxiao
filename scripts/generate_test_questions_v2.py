@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-使用 DeepSeek 生成 300 个更像人问的测试问题
+使用真实数据库值生成 300 个测试问题
 
-- 简单 100 个
-- 中等 100 个
-- 困难 100 个
-
-参考风格：
-- "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计"
-- "最近一年某客户的告警按照类型统计"
-- "哪些设备告警持续时间最长，给出TOP排名"
+关键改进：
+- 使用数据库中真实的设备名、客户名、区域名等
+- 让 DeepSeek 在问题中使用这些真实值
+- 这样列级别检索才能匹配到真实数据
 """
 
 import os
@@ -30,34 +26,17 @@ DEEPSEEK_API_KEY = "sk-6670dc8295234c4192dbd5e579b4a0ac"
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
 DEEPSEEK_MODEL = "deepseek-chat"
 
-# Schema 路径
+# 路径配置
 TABLE_SCHEMA_DIR = "./spider2_dev/schemas_table_level_enhanced/netcaredb_ai"
+REAL_VALUES_FILE = "./docs/milestone_20241219/real_values_from_db.json"
+OUTPUT_JSON = "./docs/milestone_20241219/test_questions_300_v2.json"
+OUTPUT_CSV = "./docs/milestone_20241219/test_questions_300_v2.csv"
 
-# 输出路径
-OUTPUT_JSON = "./docs/milestone_20241219/test_questions_300.json"
-OUTPUT_CSV = "./docs/milestone_20241219/test_questions_300.csv"
 
-# 参考问题（来自 cc_result.csv 和用户提供的 6 个）
-REFERENCE_QUESTIONS = """
-## 参考问题风格（务必模仿这种口语化、具体的风格）：
-
-1. 设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计
-2. 列出平台上设备device state down状态超过3个月的设备清单及客户名称
-3. 每个类型的设备各有多少台
-4. 统计平台上有多少客户
-5. 上周华东区域产生的告警各级别统计
-6. 查询下某个客户设备各状态的统计以及对应的设备名称
-7. 某客户告警超过某个时间段没有处理的告警有哪些
-
-## 用户真实会问的问题（更口语化）：
-
-1. 最近一年某客户的告警按照类型统计
-2. 哪些设备告警持续时间最长，给出TOP排名
-3. 某客户设备按照区域分别统计数量和设备详情，如设备名称、别名、区域、场所、IP、激活状态等
-4. 哪些设备近1个月告警次数最多给出排名
-5. 统计某客户工作日上班时间早上9点至晚上6点之间的告警情况
-6. 全平台告警级别分别统计
-"""
+def load_real_values():
+    """加载真实数据库值"""
+    with open(REAL_VALUES_FILE, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 
 def load_all_table_schemas():
@@ -88,7 +67,7 @@ def call_deepseek(prompt, max_tokens=8000):
         response = client.chat.completions.create(
             model=DEEPSEEK_MODEL,
             messages=[
-                {"role": "system", "content": "你是一个网络运维平台的资深用户，熟悉设备管理、告警监控、客户服务等业务。"},
+                {"role": "system", "content": "你是网络运维平台的资深用户，熟悉设备管理、告警监控、客户服务等业务。"},
                 {"role": "user", "content": prompt}
             ],
             max_tokens=max_tokens,
@@ -106,11 +85,10 @@ def parse_json_response(text):
     if not text:
         return []
     
-    # 尝试提取 JSON 数组
     patterns = [
-        r'\[\s*\{.*?\}\s*\]',  # [...] 格式
-        r'```json\s*(\[.*?\])\s*```',  # ```json [...] ``` 格式
-        r'```\s*(\[.*?\])\s*```',  # ``` [...] ``` 格式
+        r'\[\s*\{.*?\}\s*\]',
+        r'```json\s*(\[.*?\])\s*```',
+        r'```\s*(\[.*?\])\s*```',
     ]
     
     for pattern in patterns:
@@ -122,7 +100,6 @@ def parse_json_response(text):
             except:
                 continue
     
-    # 尝试直接解析
     try:
         return json.loads(text)
     except:
@@ -131,82 +108,95 @@ def parse_json_response(text):
     return []
 
 
-def generate_questions_by_difficulty(difficulty, count, schema_text):
-    """按难度生成问题"""
+def generate_questions_by_difficulty(difficulty, count, schema_text, real_values):
+    """按难度生成问题，使用真实值"""
     
     difficulty_desc = {
         "easy": """
 【简单问题特点】
 - 单表查询，不需要 JOIN
 - 简单的 COUNT、SUM 统计
-- 直接的条件过滤（如：某个客户、某种状态）
-- 示例："平台上有多少客户"、"router类型的设备有多少台"、"某客户有几个设备"
+- 直接的条件过滤
 """,
         "medium": """
 【中等问题特点】
 - 需要 2-3 张表 JOIN
-- 带有时间范围过滤（上个月、近一周、最近一年）
+- 带有时间范围过滤
 - 需要 GROUP BY 分组统计
-- 示例："设备ciscoA上个月告警按类型统计"、"华东区域上周告警级别统计"、"某客户设备按区域统计"
 """,
         "hard": """
 【困难问题特点】
 - 需要 3 张以上表 JOIN
-- 复杂的时间条件（工作日、上班时间、持续时间超过X）
-- 需要排名、TOP N
-- 子查询或复杂聚合
-- 示例："告警持续时间最长的设备TOP10"、"工作日上班时间告警统计"、"设备状态down超过3个月的清单"
+- 复杂的时间条件
+- 需要排名、TOP N、子查询
 """
     }
     
-    # 核心表名提示
-    core_tables = """
-## 核心表（必须使用以下真实表名！）：
-- t_bz_config_ci_ne_root: 设备表（存储设备信息，如设备名、IP、状态等）
-- t_bz_config_customer: 客户表（存储客户信息）
-- event_history: 告警历史表（存储告警事件）
-- collector_v2: 采集机表
-- ne_type: 设备类型表
-- ne_service_package: 服务包表
-- t_bz_config_contact: 联系人表
-- t_bz_config_region: 区域表
+    # 核心表和真实值
+    real_values_text = f"""
+## 真实数据库值（必须在问题中使用！）：
+
+### 真实设备名（来自 t_bz_config_ci_ne_root.HOST_NAME）：
+{', '.join(real_values.get('设备名_HOST_NAME', [])[:10])}
+
+### 真实客户名（来自 t_bz_config_customer.CUSTOMER_NAME）：
+{', '.join(real_values.get('客户名_CUSTOMER_NAME', [])[:10])}
+
+### 真实区域名（来自 t_bz_config_region.REGION_NAME）：
+{', '.join(real_values.get('区域名_REGION_NAME', [])[:10])}
+
+### 真实告警类型（来自 event_history.EVENT_TYPE_NAME）：
+{', '.join(real_values.get('告警类型_EVENT_TYPE_NAME', [])[:7])}
+
+### 真实设备类型（来自 ne_type.NE_TYPE_NAME）：
+{', '.join(real_values.get('设备类型_NE_TYPE_NAME', [])[:10])}
+
+### 真实采集机名（来自 collector_v2.COLLECTOR_NAME）：
+{', '.join(real_values.get('采集机名_COLLECTOR_NAME', [])[:10])}
 """
-
+    
+    core_tables = """
+## 核心表（必须使用真实表名！）：
+- t_bz_config_ci_ne_root: 设备表（HOST_NAME 是设备名）
+- t_bz_config_customer: 客户表（CUSTOMER_NAME 是客户名）
+- event_history: 告警历史表（EVENT_TYPE_NAME 是告警类型）
+- collector_v2: 采集机表（COLLECTOR_NAME 是采集机名）
+- ne_type: 设备类型表（NE_TYPE_NAME 是设备类型）
+- t_bz_config_region: 区域表（REGION_NAME 是区域名）
+"""
+    
     prompt = f"""请生成 {count} 个 {difficulty} 难度的自然语言问题，用于查询网络运维数据库。
-
-{REFERENCE_QUESTIONS}
 
 {difficulty_desc[difficulty]}
 
+{real_values_text}
+
 {core_tables}
 
-## 完整数据库 Schema（共344张表）：
-{schema_text[:8000]}
+## Schema（部分）：
+{schema_text[:6000]}
 
-## ⚠️ 重要要求 ⚠️：
-1. **表名必须使用 Schema 中的真实表名**：
-   - 设备表必须用 `t_bz_config_ci_ne_root`，不能用 `ne` 或 `device`
-   - 客户表必须用 `t_bz_config_customer`，不能用 `customer`
-   - 告警表必须用 `event_history`
-   - **禁止自己编造或简化表名！**
+## ⚠️ 最重要的要求 ⚠️：
+1. **问题中必须使用上面提供的真实值！** 例如：
+   - 设备名用 cx-sx-cc002、tdk-shanghai-b 等真实设备名
+   - 客户名用 测试、ngg-319009、南京研发中心 等真实客户名
+   - 区域名用 上海、浦东、南京 等真实区域名
+   - 告警类型用 Ping event、Trap event 等真实告警类型
 
-2. **问题风格**：口语化，使用"某客户"、"哪些设备"、"给出排名"等表达
-3. **包含具体场景**：使用具体设备名（如 ciscoA）、客户名（如 ABC公司）
-4. **时间范围多样**：上个月、近一周、最近一年等
+2. **禁止使用假数据！** 如 ABC公司、Router-01、华东区域 等都禁止使用！
 
-## 输出格式（严格 JSON）：
+3. **表名必须使用真实表名**：设备表用 t_bz_config_ci_ne_root，不能简化！
+
+4. **问题风格**：口语化，不要使用引号和括号
+
+## 输出格式（JSON）：
 ```json
 [
-  {{
-    "question": "问题文本",
-    "sql": "MySQL 查询语句（必须用 Schema 中的真实表名）",
-    "tables": ["t_bz_config_ci_ne_root", "t_bz_config_customer"],
-    "difficulty": "{difficulty}"
-  }}
+  {{"question": "设备cx-sx-cc002上个月告警次数统计", "sql": "SELECT...", "tables": ["t_bz_config_ci_ne_root", "event_history"], "difficulty": "{difficulty}"}}
 ]
 ```
 
-请生成 {count} 个问题，tables 字段必须是 Schema 中真实存在的表名：
+请生成 {count} 个问题，必须使用真实的设备名、客户名、区域名：
 """
     
     print(f"正在生成 {difficulty} 难度问题...")
@@ -214,7 +204,6 @@ def generate_questions_by_difficulty(difficulty, count, schema_text):
     
     if response:
         questions = parse_json_response(response)
-        # 确保难度标签正确
         for q in questions:
             q["difficulty"] = difficulty
         return questions
@@ -224,18 +213,23 @@ def generate_questions_by_difficulty(difficulty, count, schema_text):
 
 def main():
     print("=" * 70)
-    print("生成 300 个更像人问的测试问题")
+    print("使用真实数据库值生成 300 个测试问题")
     print("=" * 70)
     print(f"开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    # 加载真实值
+    print("加载真实数据库值...")
+    real_values = load_real_values()
+    for key, values in real_values.items():
+        print(f"  {key}: {len(values)} 个")
     
     # 加载 Schema
     print("加载数据库 Schema...")
     schema_text = load_all_table_schemas()
-    print(f"Schema 长度: {len(schema_text)} 字符")
     
     all_questions = []
     
-    # 分批生成（每个难度生成 4 批，每批 25 个）
+    # 分批生成
     for difficulty in ["easy", "medium", "hard"]:
         print(f"\n{'='*50}")
         print(f"生成 {difficulty} 难度问题 (目标: 100 个)")
@@ -247,7 +241,7 @@ def main():
         
         for batch in range(batches):
             print(f"  批次 {batch+1}/{batches}...")
-            questions = generate_questions_by_difficulty(difficulty, batch_size, schema_text)
+            questions = generate_questions_by_difficulty(difficulty, batch_size, schema_text, real_values)
             if questions:
                 difficulty_questions.extend(questions)
                 print(f"    获得 {len(questions)} 个问题")
@@ -282,6 +276,17 @@ def main():
     for d in ["easy", "medium", "hard"]:
         count = sum(1 for q in all_questions if q.get("difficulty") == d)
         print(f"{d}: {count} 个")
+    
+    # 验证真实值使用情况
+    print("\n验证真实值使用情况:")
+    real_names = set(real_values.get('设备名_HOST_NAME', []) + real_values.get('客户名_CUSTOMER_NAME', []))
+    used = 0
+    for q in all_questions:
+        for name in real_names:
+            if name in q.get("question", ""):
+                used += 1
+                break
+    print(f"  使用真实值的问题: {used}/{len(all_questions)} = {used/len(all_questions)*100:.1f}%")
     
     print(f"\n完成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
