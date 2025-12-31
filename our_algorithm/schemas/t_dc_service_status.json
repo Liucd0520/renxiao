@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_service_status"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_service_status表存储设备服务状态信息，用于客户订单告警监控及用户权限管理。",
+  "columns": [
+    {
+      "name": "STATUS_ID",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS_NAME",
+      "type": "varchar(10)",
+      "description": "STATUS_NAME。常见值: 未处理, 处理中, 已完成"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_service_status表存储设备服务状态信息，用于客户订单告警监控及用户权限管理。\n表名: t_dc_service_status\n其他列: STATUS_ID, STATUS_NAME"
+}

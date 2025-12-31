@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_change_type"
+  },
+  "table_comment": null,
+  "llm_description": "存储变更类型信息，用于客户、设备、权限等业务场景的分类管理。",
+  "columns": [
+    {
+      "name": "TYPE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "TYPE_NAME",
+      "type": "varchar(25)",
+      "description": "TYPE_NAME。常见值: 紧急变更, 标准变更, 重大变更, 一般变更"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "存储变更类型信息，用于客户、设备、权限等业务场景的分类管理。\n表名: t_dc_change_type\n其他列: TYPE_ID, TYPE_NAME"
+}

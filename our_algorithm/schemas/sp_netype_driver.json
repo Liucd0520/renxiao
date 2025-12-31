@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sp_netype_driver"
+  },
+  "table_comment": "服务包网元类型驱动关系表",
+  "llm_description": "存储服务包与网元类型驱动的映射关系，用于客户设备数据处理及告警规则配置。",
+  "columns": [
+    {
+      "name": "SERVICE_PACKAGE",
+      "type": "varchar(128)",
+      "description": "服务包"
+    },
+    {
+      "name": "NE_TYPE_ID",
+      "type": "varchar(128)",
+      "description": "网元类型ID"
+    },
+    {
+      "name": "DATA_TYPE",
+      "type": "varchar(64)",
+      "description": "数据类型。常见值: device_basic_perf_data, interface_perf_data, device_availability_data, web_site_data, interface_status_data, common_data, qos_data, icmp_ping_data, ip_sla_data, atomic_circuit_data"
+    },
+    {
+      "name": "DRIVER",
+      "type": "varchar(128)",
+      "description": "服务包映射驱动"
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储服务包与网元类型驱动的映射关系，用于客户设备数据处理及告警规则配置。\n表名: sp_netype_driver\n表注释: 服务包网元类型驱动关系表\n列信息: SERVICE_PACKAGE(服务包), NE_TYPE_ID(网元类型ID), DATA_TYPE(数据类型), DRIVER(服务包映射驱动)"
+}

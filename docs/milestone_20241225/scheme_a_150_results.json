@@ -1,0 +1,4375 @@
+[
+  {
+    "question": "查询所有设备的基础信息",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_bz_config_customer",
+      "t_gn_botnet",
+      "t_gn_traffic_abnormality",
+      "t_gn_vulnerability_hole",
+      "t_gn_vulnerability_clear_transmission",
+      "t_gn_weaknesses_attack",
+      "t_gn_scanning_probe",
+      "t_gn_vulnerability_weak_password",
+      "sdw_dp_device",
+      "event_history",
+      "hardware",
+      "event",
+      "collector",
+      "ne_collect_record",
+      "t_gn_all_net_device"
+    ],
+    "expected_sql": "SELECT * FROM t_bz_config_ci_ne_root",
+    "generated_sql": "SELECT * FROM t_bz_config_ci_ne_root;"
+  },
+  {
+    "question": "查询所有在线设备的ID和主机名",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_info",
+      "t_bz_problem_info",
+      "t_bz_change_info",
+      "event_history",
+      "t_bz_config_ci_entity",
+      "t_gn_business_application_change",
+      "t_bz_release_info",
+      "t_bz_config_customer",
+      "event_backup",
+      "ont_status",
+      "t_gn_topo_device",
+      "customer",
+      "collector",
+      "identity",
+      "uptime",
+      "hardware"
+    ],
+    "expected_sql": "SELECT CI_ID, HOST_NAME FROM t_bz_config_ci_ne_root WHERE IS_ONLINE = 1",
+    "generated_sql": "SELECT CI_ID, HOST_NAME FROM t_bz_config_ci_ne_root WHERE IS_ONLINE = 1;"
+  },
+  {
+    "question": "查询所有已激活的设备数量",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_gn_traffic_abnormality",
+      "t_gn_botnet",
+      "t_gn_weaknesses_attack",
+      "t_gn_scanning_probe",
+      "t_gn_topo_link",
+      "t_gn_vulnerability_hole",
+      "t_gn_vulnerability_clear_transmission",
+      "ne_template_access_config",
+      "t_bz_config_customer",
+      "event_history",
+      "t_bz_config_contact",
+      "customer",
+      "t_bz_config_group",
+      "collector_v2",
+      "collector",
+      "t_gn_all_net_device",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT COUNT(*) FROM t_bz_config_ci_ne_root WHERE IS_ACTIVE = 1",
+    "generated_sql": "SELECT COUNT(*) AS active_device_count FROM t_bz_config_ci_ne_root WHERE IS_ACTIVE = 1;"
+  },
+  {
+    "question": "查询设备型号为ciscoA的所有设备",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_ci_entity",
+      "t_bz_config_ci_circuit",
+      "t_gn_business_application_change",
+      "t_bz_service_ci_record",
+      "t_bz_incident_ci_record",
+      "t_bz_config_ci_audit_flow",
+      "t_bz_config_ci_rfc",
+      "ne_template_access_config",
+      "t_gn_botnet",
+      "event_history",
+      "t_rl_config_ci_contact",
+      "t_dc_config_ci_rel_type",
+      "hardware",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT * FROM t_bz_config_ci_ne_root WHERE NE_MODEL = 'ciscoA'",
+    "generated_sql": "SELECT * FROM t_bz_config_ci_ne_root WHERE NE_MODEL = 'ciscoA';"
+  },
+  {
+    "question": "查询主机名包含shanghai的设备",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_gn_botnet",
+      "report_qos_info",
+      "t_gn_scanning_probe",
+      "ne_template_access_config",
+      "t_gn_traffic_abnormality",
+      "sdw_dp_tunnel_basic",
+      "t_gn_topo_link",
+      "t_gn_weaknesses_attack",
+      "event_history",
+      "collector_v2",
+      "ne_collect_history_log",
+      "ne_collect_record",
+      "hardware",
+      "identity",
+      "identity_copy1",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT * FROM t_bz_config_ci_ne_root WHERE HOST_NAME LIKE '%shanghai%'",
+    "generated_sql": "SELECT * FROM t_bz_config_ci_ne_root WHERE HOST_NAME LIKE '%shanghai%';"
+  },
+  {
+    "question": "查询主机名为tdk-shanghai-b的设备的IP地址",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_incident_info",
+      "t_bz_problem_info",
+      "t_bz_change_info",
+      "t_gn_botnet",
+      "t_bz_release_info",
+      "t_bz_config_ci_entity",
+      "t_bz_monitor_chart_config",
+      "t_gn_scanning_probe",
+      "t_bz_config_location",
+      "t_gn_website_host_vulnerabilities",
+      "event_history",
+      "t_bz_config_ci_ne_root_region_location_relation",
+      "t_bz_ip_subnet_manage",
+      "collector_v2",
+      "collector_instance_v2"
+    ],
+    "expected_sql": "SELECT NE_IP FROM t_bz_config_ci_ne_root WHERE HOST_NAME = 'tdk-shanghai-b'",
+    "generated_sql": "SELECT NE_IP FROM t_bz_config_ci_ne_root WHERE HOST_NAME = 'tdk-shanghai-b';"
+  },
+  {
+    "question": "查询所有离线设备的ID和名称",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_info",
+      "event_history",
+      "t_bz_problem_info",
+      "t_bz_change_info",
+      "t_bz_config_ci_entity",
+      "t_gn_business_application_change",
+      "t_bz_release_info",
+      "t_bz_config_customer",
+      "event_backup",
+      "ne",
+      "uptime",
+      "t_bz_sys_dev_additional",
+      "identity",
+      "hardware",
+      "ne_type",
+      "t_dc_change_status"
+    ],
+    "expected_sql": "SELECT CI_ID, HOST_NAME FROM t_bz_config_ci_ne_root WHERE IS_ONLINE = 0",
+    "generated_sql": "SELECT CI_ID, HOST_NAME FROM t_bz_config_ci_ne_root WHERE IS_ONLINE = 0;"
+  },
+  {
+    "question": "查询所有客户的信息",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "t_bz_problem_info",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_gn_botnet",
+      "t_gn_vulnerability_hole",
+      "event_history",
+      "event_yjk_history",
+      "t_gn_weaknesses_attack",
+      "t_bz_authority_users",
+      "temp",
+      "t_rl_user_customer",
+      "event",
+      "framework_role",
+      "t_bz_ip_realm"
+    ],
+    "expected_sql": "SELECT * FROM t_bz_config_customer",
+    "generated_sql": "SELECT * FROM t_bz_config_customer;"
+  },
+  {
+    "question": "查询客户名称为测试客户的所有信息",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "customer",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_config_work_policy_new",
+      "t_bz_sys_operate_audit",
+      "customer_collector_v2",
+      "t_gn_topo",
+      "t_bz_config_location",
+      "t_rl_user_customer",
+      "t_bz_config_department"
+    ],
+    "expected_sql": "SELECT * FROM t_bz_config_customer WHERE CUSTOMER_NAME = '测试客户'",
+    "generated_sql": "SELECT * FROM t_bz_config_customer WHERE CUSTOMER_NAME = '测试客户';"
+  },
+  {
+    "question": "查询所有已激活的客户数量",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "customer",
+      "t_gn_business_application_change",
+      "t_bz_authority_users",
+      "temp",
+      "t_bz_config_contact",
+      "t_bz_incident_info",
+      "event_yjk_history",
+      "event_history",
+      "t_bz_config_group",
+      "t_gn_all_net_workorder",
+      "nf_map",
+      "t_gn_all_net_device"
+    ],
+    "expected_sql": "SELECT COUNT(*) FROM t_bz_config_customer WHERE IS_ACTIVE = 1",
+    "generated_sql": "SELECT COUNT(*) AS active_customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;"
+  },
+  {
+    "question": "查询客户简称是上海理想公司的客户ID和联系电话",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_info",
+      "t_bz_problem_info",
+      "t_bz_config_ci_entity",
+      "event_history",
+      "t_bz_change_info",
+      "t_bz_release_info",
+      "customer",
+      "event_backup",
+      "t_bz_config_contact",
+      "t_bz_authority_users",
+      "temp",
+      "t_bz_ip_subnet_manage",
+      "t_bz_config_location",
+      "uptime"
+    ],
+    "expected_sql": "SELECT CUSTOMER_ID, CUSTOMER_PHONE FROM t_bz_config_customer WHERE CUSTOMER_ABB = '上海理想公司'",
+    "generated_sql": "SELECT CUSTOMER_ID, CUSTOMER_PHONE FROM t_bz_config_customer WHERE CUSTOMER_ABB = '上海理想公司';"
+  },
+  {
+    "question": "查询客户名称为中国电信上海理想的客户邮箱",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "event_history",
+      "customer",
+      "t_gn_business_application_change",
+      "t_bz_config_location",
+      "t_bz_sys_operate_audit",
+      "t_bz_config_ci_ne_root",
+      "t_bz_sys_note",
+      "event_yjk_history",
+      "customer_collector_v2",
+      "t_bz_config_circuit_provider",
+      "t_bz_config_work_policy_new",
+      "t_gn_topo",
+      "t_bz_ip_region_manage",
+      "nf_map",
+      "t_bz_config_department"
+    ],
+    "expected_sql": "SELECT CUSTOMER_EMAIL FROM t_bz_config_customer WHERE CUSTOMER_NAME = '中国电信上海理想'",
+    "generated_sql": "SELECT CUSTOMER_EMAIL FROM t_bz_config_customer WHERE CUSTOMER_NAME = '中国电信上海理想';"
+  },
+  {
+    "question": "查询今天发生的所有告警记录",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "event_history",
+      "event_history_sdwan",
+      "t_bz_config_customer",
+      "ne_service_item",
+      "t_gn_all_net_event",
+      "t_gn_business_application_change",
+      "t_gn_traffic_abnormality",
+      "t_bz_incident_ci_record",
+      "ne_business_severity",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE DATE(EVENT_TIME) = CURDATE()",
+    "generated_sql": "SELECT * FROM event_sdn WHERE DATE(time_created) = CURDATE();"
+  },
+  {
+    "question": "查询昨天发生的所有告警数量",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "event_history",
+      "t_gn_business_application_change",
+      "event_history_sdwan",
+      "t_bz_problem_info",
+      "ne_service_item",
+      "t_gn_all_net_event",
+      "t_gn_traffic_abnormality",
+      "ne_business_severity",
+      "event",
+      "trap",
+      "t_rl_priority_config"
+    ],
+    "expected_sql": "SELECT COUNT(*) FROM event_history WHERE DATE(EVENT_TIME) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)",
+    "generated_sql": "SELECT COUNT(*) \nFROM event_sdn \nWHERE DATE(time_created) = CURDATE() - INTERVAL 1 DAY;"
+  },
+  {
+    "question": "查询最近7天发生的所有告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "event_history",
+      "t_bz_problem_info",
+      "ne_service_item",
+      "event_history_sdwan",
+      "t_gn_business_application_change",
+      "t_gn_all_net_event",
+      "t_gn_traffic_abnormality",
+      "ne_business_severity",
+      "event",
+      "t_rl_priority_config",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)",
+    "generated_sql": "SELECT * FROM event_sdn WHERE time_created >= NOW() - INTERVAL 7 DAY;"
+  },
+  {
+    "question": "查询最近30天发生的告警数量",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "event_history",
+      "event_history_sdwan",
+      "t_bz_problem_info",
+      "ne_service_item",
+      "t_gn_all_net_event",
+      "t_gn_traffic_abnormality",
+      "event",
+      "ne_business_severity",
+      "trap",
+      "t_rl_priority_config"
+    ],
+    "expected_sql": "SELECT COUNT(*) FROM event_history WHERE EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)",
+    "generated_sql": "SELECT COUNT(*) AS alarm_count\nFROM event_sdn\nWHERE time_created >= DATE_SUB(NOW(), INTERVAL 30 DAY);"
+  },
+  {
+    "question": "查询本月发生的所有告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "event_history",
+      "t_bz_problem_info",
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "event_history_sdwan",
+      "t_gn_all_net_event",
+      "t_gn_traffic_abnormality",
+      "ne_business_severity",
+      "event",
+      "t_rl_priority_config",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE YEAR(EVENT_TIME) = YEAR(CURDATE()) AND MONTH(EVENT_TIME) = MONTH(CURDATE())",
+    "generated_sql": "SELECT * FROM event_sdn WHERE DATE_FORMAT(time_created, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m');"
+  },
+  {
+    "question": "查询上个月发生的所有告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "event_history",
+      "t_bz_problem_info",
+      "event_history_sdwan",
+      "t_gn_business_application_change",
+      "ne_service_item",
+      "t_gn_all_net_event",
+      "t_gn_traffic_abnormality",
+      "ne_business_severity",
+      "event",
+      "t_rl_priority_config",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE YEAR(EVENT_TIME) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) AND MONTH(EVENT_TIME) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))",
+    "generated_sql": "SELECT * FROM event_sdn WHERE time_created >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND time_created < NOW();"
+  },
+  {
+    "question": "查询过去三个月发生的告警数量",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "event_history",
+      "t_bz_problem_info",
+      "event_history_sdwan",
+      "ne_service_item",
+      "t_gn_all_net_event",
+      "t_gn_traffic_abnormality",
+      "ne_business_severity",
+      "event",
+      "t_rl_priority_config",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT COUNT(*) FROM event_history WHERE EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)",
+    "generated_sql": "SELECT COUNT(*) AS alarm_count\nFROM event_sdn\nWHERE time_created >= DATE_SUB(NOW(), INTERVAL 3 MONTH);"
+  },
+  {
+    "question": "查询告警级别为严重的所有告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "t_bz_sdn_alarm",
+      "ne_template_collect_config",
+      "trap_ne_policy",
+      "event_history_sdwan",
+      "ne_service_item",
+      "t_bz_config_customer",
+      "syslog_facility",
+      "syslog_severity",
+      "t_rl_priority_config"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE SEVERITY = 1",
+    "generated_sql": "SELECT * FROM event_sdn WHERE perceived_severity = '严重';"
+  },
+  {
+    "question": "查询告警类型为Ping event的所有告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "event_sdn",
+      "event_history_sdwan",
+      "ne_syslog_filter_script",
+      "t_bz_config_customer",
+      "event",
+      "event_ping",
+      "event_condition",
+      "event_knowledge",
+      "event_type"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE EVENT_TYPE_NAME = 'Ping event'",
+    "generated_sql": "SELECT * FROM event_history WHERE EVENT_TYPE_NAME = 'Ping event';"
+  },
+  {
+    "question": "查询告警状态为已恢复的所有告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "t_bz_sdn_alarm",
+      "event_history_sdwan",
+      "trap_ne_policy",
+      "ne_service_item",
+      "collector_instance_v2",
+      "t_gn_business_application_change",
+      "trap",
+      "t_dc_incident_status",
+      "t_dc_incident_finish",
+      "report_ne_reachability"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE EVENT_STATUS = 2",
+    "generated_sql": "SELECT * FROM event_history WHERE EVENT_STATUS_NAME = '已恢复';"
+  },
+  {
+    "question": "查询告警级别为警告的所有告警数量",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "ne_template_collect_config",
+      "t_bz_sdn_alarm",
+      "t_gn_all_net_event",
+      "trap_ne_policy",
+      "event_history_sdwan",
+      "ne_service_item",
+      "event_history",
+      "syslog_facility",
+      "syslog_severity"
+    ],
+    "expected_sql": "SELECT COUNT(*) FROM event_history WHERE SEVERITY = 4",
+    "generated_sql": "SELECT COUNT(*) AS warning_alarm_count FROM event_sdn WHERE perceived_severity = '警告';"
+  },
+  {
+    "question": "查询告警类型为Trap event的所有告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "sdw_dp_port_basic",
+      "t_gn_business_application_change",
+      "t_bz_incident_info",
+      "event_sdn",
+      "event_history_sdwan",
+      "sdw_dp_site",
+      "event",
+      "event_ping",
+      "trap_ne_policy",
+      "event_knowledge",
+      "event_type"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE EVENT_TYPE_NAME = 'Trap event'",
+    "generated_sql": "SELECT * FROM event_history WHERE EVENT_TYPE_NAME = 'Trap event';"
+  },
+  {
+    "question": "查询告警状态为活动的所有告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "event_history",
+      "t_gn_ensure_coordination_businesses",
+      "t_bz_sdn_alarm",
+      "event_history_sdwan",
+      "trap_ne_policy",
+      "ne_service_item",
+      "collector_instance_v2",
+      "trap",
+      "t_dc_incident_status",
+      "report_ne_reachability",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE EVENT_STATUS = 1",
+    "generated_sql": "SELECT * FROM event_sdn WHERE is-acked = '活动';"
+  },
+  {
+    "question": "查询所有在线的设备数量",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_gn_traffic_abnormality",
+      "t_gn_botnet",
+      "ont_status",
+      "t_gn_topo_link",
+      "t_gn_scanning_probe",
+      "t_gn_weaknesses_attack",
+      "ne_template_access_config",
+      "t_gn_topo_device",
+      "t_gn_vulnerability_clear_transmission",
+      "event_history",
+      "t_bz_config_customer",
+      "collector",
+      "sub_change_num",
+      "t_bz_sys_dev_additional",
+      "t_gn_all_net_device",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT COUNT(*) FROM t_bz_config_ci_ne_root WHERE IS_ONLINE = 1",
+    "generated_sql": "SELECT COUNT(*) AS online_device_count FROM t_bz_config_ci_ne_root WHERE IS_ONLINE = 1;"
+  },
+  {
+    "question": "查询所有已激活的客户列表",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "customer",
+      "t_gn_business_application_change",
+      "t_bz_authority_users",
+      "temp",
+      "t_bz_config_contact",
+      "t_bz_incident_info",
+      "event_yjk_history",
+      "event_history",
+      "t_bz_config_group",
+      "t_bz_config_location",
+      "t_bz_config_ci_entity",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT CUSTOMER_NAME FROM t_bz_config_customer WHERE IS_ACTIVE = 1",
+    "generated_sql": "SELECT * FROM t_bz_config_customer WHERE IS_ACTIVE = 1;"
+  },
+  {
+    "question": "查询今天发生的所有告警记录",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "event_history",
+      "event_history_sdwan",
+      "t_bz_config_customer",
+      "ne_service_item",
+      "t_gn_all_net_event",
+      "t_gn_business_application_change",
+      "t_gn_traffic_abnormality",
+      "t_bz_incident_ci_record",
+      "ne_business_severity",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE DATE(EVENT_TIME) = CURDATE()",
+    "generated_sql": "SELECT * FROM event_sdn WHERE DATE(time_created) = CURDATE();"
+  },
+  {
+    "question": "查询主机名为 ciscoA 的设备信息",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_gn_botnet",
+      "t_bz_config_customer",
+      "t_gn_traffic_abnormality",
+      "ne_template_access_config",
+      "t_gn_vulnerability_hole",
+      "t_gn_vulnerability_clear_transmission",
+      "t_gn_weaknesses_attack",
+      "t_gn_scanning_probe",
+      "event_history",
+      "t_gn_website_host_vulnerabilities",
+      "customer_collector_v2",
+      "customer",
+      "collector_v2",
+      "ne_collect_record",
+      "collector_instance_v2",
+      "dcs_ack_result"
+    ],
+    "expected_sql": "SELECT * FROM t_bz_config_ci_ne_root WHERE HOST_NAME = 'ciscoA'",
+    "generated_sql": "SELECT * FROM t_bz_config_ci_ne_root WHERE HOST_NAME = 'ciscoA';"
+  },
+  {
+    "question": "查询客户名称为 测试客户 的详细信息",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "customer",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "ne_syslog_filter_script",
+      "t_bz_config_work_policy_new",
+      "syslog_filter_script",
+      "t_bz_sys_operate_audit",
+      "customer_collector_v2",
+      "t_gn_topo",
+      "t_bz_config_location",
+      "t_bz_authority_users_group",
+      "t_bz_config_department"
+    ],
+    "expected_sql": "SELECT * FROM t_bz_config_customer WHERE CUSTOMER_NAME = '测试客户'",
+    "generated_sql": "SELECT * FROM t_bz_config_customer WHERE CUSTOMER_NAME = '测试客户';"
+  },
+  {
+    "question": "查询昨天发生的所有严重级别的告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_event_record",
+      "event_history",
+      "t_bz_incident_info",
+      "t_bz_config_customer",
+      "ne_service_item",
+      "event_history_sdwan",
+      "t_bz_sdn_alarm",
+      "t_gn_all_net_event",
+      "severity",
+      "syslog_severity",
+      "ne_business_severity",
+      "syslog_facility"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE DATE(EVENT_TIME) = CURDATE() - INTERVAL 1 DAY AND SEVERITY = 1",
+    "generated_sql": "SELECT * FROM event_sdn WHERE DATE(time_created) = CURDATE() - INTERVAL 1 DAY AND perceived_severity = '严重';"
+  },
+  {
+    "question": "查询所有设备型号",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_gn_botnet",
+      "t_gn_traffic_abnormality",
+      "sdw_dp_device",
+      "sdw_dp_tunnel_basic",
+      "t_gn_scanning_probe",
+      "t_gn_weaknesses_attack",
+      "t_gn_topo_link",
+      "ne_template_access_config",
+      "event_history",
+      "t_bz_problem_info",
+      "t_gn_security_access",
+      "hardware",
+      "t_bz_sys_dev_additional",
+      "nf_map",
+      "t_bz_sys_no_increase",
+      "t_gn_all_net_device"
+    ],
+    "expected_sql": "SELECT DISTINCT NE_MODEL FROM t_bz_config_ci_ne_root",
+    "generated_sql": "SELECT DISTINCT NE_MODEL FROM t_bz_config_ci_ne_root UNION SELECT DISTINCT equipment_model FROM t_gn_business_application_change UNION SELECT DISTINCT dev_model FROM sdw_dp_device UNION SELECT DISTINCT model FROM t_gn_security_access UNION SELECT DISTINCT model_name FROM hardware;"
+  },
+  {
+    "question": "查询所有告警类型名称",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_bz_incident_info",
+      "event_history",
+      "t_bz_config_customer",
+      "t_bz_problem_info",
+      "ne_syslog_filter_script",
+      "event_yjk_history",
+      "sdw_dp_port_basic",
+      "t_bz_change_info",
+      "event_sdn",
+      "t_bz_incident_event_record",
+      "t_gn_traffic_abnormality",
+      "t_dc_incident_accident_type",
+      "event_knowledge",
+      "t_dc_incident_finish",
+      "t_dc_release_type",
+      "event_type"
+    ],
+    "expected_sql": "SELECT DISTINCT EVENT_TYPE_NAME FROM event_history",
+    "generated_sql": "SELECT DISTINCT EVENT_TYPE_NAME FROM event_history;"
+  },
+  {
+    "question": "查询主机名为 poller1 的设备是否在线",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_gn_botnet",
+      "collector_v2",
+      "polling_config",
+      "ont_status",
+      "t_gn_traffic_abnormality",
+      "t_gn_topo_device",
+      "t_gn_scanning_probe",
+      "t_gn_weaknesses_attack",
+      "event_history",
+      "collector",
+      "collector_instance_v2",
+      "identity_copy1",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT HOST_NAME, IS_ONLINE FROM t_bz_config_ci_ne_root WHERE HOST_NAME = 'poller1'",
+    "generated_sql": "SELECT IS_ONLINE FROM t_bz_config_ci_ne_root WHERE HOST_NAME = 'poller1';"
+  },
+  {
+    "question": "查询客户简称是 ngg-319009 的客户ID",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_bz_incident_info",
+      "t_bz_problem_info",
+      "t_bz_config_ci_entity",
+      "t_bz_change_info",
+      "event_history",
+      "t_bz_release_info",
+      "event_backup",
+      "customer",
+      "t_bz_authority_users",
+      "t_bz_config_ci_circuit",
+      "t_bz_authority_customer_group",
+      "t_gn_topo",
+      "uptime",
+      "customer_model_rl"
+    ],
+    "expected_sql": "SELECT CUSTOMER_ID FROM t_bz_config_customer WHERE CUSTOMER_ABB = 'ngg-319009'",
+    "generated_sql": "SELECT CUSTOMER_ID FROM t_bz_config_customer WHERE CUSTOMER_ABB = 'ngg-319009';"
+  },
+  {
+    "question": "查询最近7天内发生的所有告警事件ID和名称",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "t_bz_incident_info",
+      "t_bz_problem_info",
+      "t_bz_config_ci_entity",
+      "t_bz_change_info",
+      "t_bz_incident_event_record",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "trap",
+      "event",
+      "trap_snmp",
+      "t_dc_incident_source",
+      "t_dc_incident_influence",
+      "event_type"
+    ],
+    "expected_sql": "SELECT EVENT_ID, EVENT_NAME FROM event_history WHERE EVENT_TIME >= CURDATE() - INTERVAL 7 DAY",
+    "generated_sql": "SELECT eh.EVENT_ID, eh.EVENT_NAME\nFROM event_history eh\nWHERE eh.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);"
+  },
+  {
+    "question": "查询所有设备类型ID",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "t_bz_problem_info",
+      "t_bz_change_info",
+      "event_history",
+      "t_bz_config_customer",
+      "t_bz_config_ci_entity",
+      "event_backup",
+      "t_bz_release_info",
+      "t_bz_config_ci_rfc",
+      "identity",
+      "identity_copy1",
+      "ne_type",
+      "t_dc_incident_accident_type",
+      "t_dc_release_type",
+      "t_dc_change_type",
+      "event_type"
+    ],
+    "expected_sql": "SELECT DISTINCT NE_TYPE_ID FROM t_bz_config_ci_ne_root",
+    "generated_sql": "SELECT DISTINCT DEVICE_TYPE_ID FROM t_bz_config_ci_ne_root;"
+  },
+  {
+    "question": "查询所有状态为已恢复的告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "event_history",
+      "t_bz_incident_info",
+      "t_bz_sdn_alarm",
+      "event_history_sdwan",
+      "ne_service_item",
+      "t_gn_business_application_change",
+      "collector_instance_v2",
+      "trap",
+      "t_dc_incident_finish",
+      "t_dc_incident_status",
+      "report_ne_reachability"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE EVENT_STATUS = 2",
+    "generated_sql": "SELECT * FROM event_history WHERE EVENT_STATUS_NAME = '已恢复';"
+  },
+  {
+    "question": "查询本月创建的所有客户",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "customer",
+      "t_bz_authority_users",
+      "t_bz_incident_info",
+      "event_yjk_history",
+      "t_bz_config_work_policy_new",
+      "temp",
+      "event_history",
+      "t_bz_config_location",
+      "customer_collector_v2",
+      "t_bz_authority_users_group",
+      "ne_collect_record",
+      "customer_global_config",
+      "t_bz_config_commissioned_unit",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT CUSTOMER_NAME FROM t_bz_config_customer WHERE MONTH(CREATE_TIME) = MONTH(CURDATE()) AND YEAR(CREATE_TIME) = YEAR(CURDATE())",
+    "generated_sql": "SELECT * FROM t_bz_config_customer WHERE DATE_FORMAT(CREATE_TIME, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m');"
+  },
+  {
+    "question": "查询设备型号为空的设备有哪些",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_gn_weaknesses_attack",
+      "t_gn_traffic_abnormality",
+      "t_gn_scanning_probe",
+      "t_gn_botnet",
+      "sdw_dp_device",
+      "t_gn_vulnerability_clear_transmission",
+      "sdw_dp_tunnel_basic",
+      "t_gn_vulnerability_hole",
+      "event_history",
+      "t_gn_security_access",
+      "nf_map",
+      "hardware",
+      "t_bz_sys_dev_additional",
+      "t_bz_sys_no_increase",
+      "collector"
+    ],
+    "expected_sql": "SELECT HOST_NAME FROM t_bz_config_ci_ne_root WHERE NE_MODEL IS NULL OR NE_MODEL = ''",
+    "generated_sql": "SELECT * FROM t_bz_config_ci_ne_root WHERE NE_MODEL IS NULL OR NE_MODEL = '';"
+  },
+  {
+    "question": "查询告警类型为 Ping event 的所有告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "event_sdn",
+      "event_history_sdwan",
+      "ne_syslog_filter_script",
+      "t_bz_config_customer",
+      "event",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_type"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE EVENT_TYPE_NAME = 'Ping event'",
+    "generated_sql": "SELECT * FROM event_history WHERE EVENT_TYPE_NAME = 'Ping event';"
+  },
+  {
+    "question": "查询客户 南京研发中心 的联系电话和邮箱",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_contact",
+      "customer",
+      "t_gn_business_application_change",
+      "t_bz_authority_users",
+      "temp",
+      "t_bz_config_ci_ne_root",
+      "t_gn_ensure_coordination_businesses",
+      "t_bz_sys_note",
+      "t_gn_security_access",
+      "t_bz_config_location",
+      "t_bz_ip_subnet_manage",
+      "t_bz_config_circuit_provider",
+      "t_rl_config_ci_contact",
+      "t_bz_config_ci_entity",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT CUSTOMER_PHONE, CUSTOMER_EMAIL FROM t_bz_config_customer WHERE CUSTOMER_NAME = '南京研发中心'",
+    "generated_sql": "SELECT CUSTOMER_PHONE, CUSTOMER_EMAIL FROM t_bz_config_customer WHERE CUSTOMER_NAME = '南京研发中心';"
+  },
+  {
+    "question": "查询所有未激活的设备",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_gn_botnet",
+      "t_gn_weaknesses_attack",
+      "t_gn_traffic_abnormality",
+      "t_gn_vulnerability_hole",
+      "t_gn_vulnerability_clear_transmission",
+      "t_gn_scanning_probe",
+      "t_gn_topo_link",
+      "ne_template_access_config",
+      "event_history",
+      "collector_v2",
+      "t_bz_config_contact",
+      "customer",
+      "t_bz_config_group",
+      "syslog_filter_script",
+      "collector",
+      "t_bz_incorporate_config",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT HOST_NAME FROM t_bz_config_ci_ne_root WHERE IS_ACTIVE = 0",
+    "generated_sql": "SELECT * FROM t_bz_config_ci_ne_root WHERE IS_ACTIVE = 0;"
+  },
+  {
+    "question": "查询过去三个月内发生的所有主要级别告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_bz_incident_info",
+      "event_history",
+      "t_bz_config_customer",
+      "ne_service_item",
+      "t_gn_business_application_change",
+      "t_bz_sdn_alarm",
+      "t_gn_traffic_abnormality",
+      "t_gn_all_net_event",
+      "syslog_facility",
+      "ne_business_severity",
+      "event",
+      "syslog_severity"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE EVENT_TIME >= CURDATE() - INTERVAL 3 MONTH AND SEVERITY = 2",
+    "generated_sql": "SELECT * FROM event_sdn WHERE time_created >= DATE_SUB(NOW(), INTERVAL 3 MONTH) AND perceived_severity = '主要';"
+  },
+  {
+    "question": "查询主机名包含 shanghai 的设备",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "sdw_dp_port_basic",
+      "t_gn_botnet",
+      "sdw_dp_tunnel_basic",
+      "sdw_dp_site",
+      "sdw_dp_device",
+      "t_gn_scanning_probe",
+      "ne_template_access_config",
+      "t_gn_traffic_abnormality",
+      "event_history",
+      "collector_v2",
+      "ne",
+      "ne_collect_history_log",
+      "ne_collect_record",
+      "hardware",
+      "identity",
+      "identity_copy1",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT HOST_NAME FROM t_bz_config_ci_ne_root WHERE HOST_NAME LIKE '%shanghai%'",
+    "generated_sql": "SELECT * FROM t_bz_config_ci_ne_root WHERE HOST_NAME LIKE '%shanghai%';"
+  },
+  {
+    "question": "查询上个月创建的所有设备",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_gn_traffic_abnormality",
+      "t_gn_scanning_probe",
+      "t_gn_botnet",
+      "ne_template_access_config",
+      "t_gn_weaknesses_attack",
+      "t_gn_vulnerability_clear_transmission",
+      "t_gn_vulnerability_hole",
+      "t_gn_topo_link",
+      "event_history",
+      "t_gn_service_problems_treatment",
+      "ne_collect_history_log",
+      "cc_cmdb_sync_history_record",
+      "ne_collect_record",
+      "t_bz_config_commissioned_unit",
+      "ne_collect_history_record",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT HOST_NAME FROM t_bz_config_ci_ne_root WHERE MONTH(CREATE_TIME) = MONTH(CURDATE() - INTERVAL 1 MONTH) AND YEAR(CREATE_TIME) = YEAR(CURDATE() - INTERVAL 1 MONTH)",
+    "generated_sql": "SELECT * FROM t_bz_config_ci_ne_root WHERE CREATE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND CREATE_TIME < NOW();"
+  },
+  {
+    "question": "查询告警级别为警告的所有告警名称",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_template_collect_config",
+      "t_bz_config_customer",
+      "t_bz_sdn_alarm",
+      "syslog_facility",
+      "ne_service_item",
+      "syslog_severity",
+      "trap"
+    ],
+    "expected_sql": "SELECT EVENT_NAME FROM event_history WHERE SEVERITY = 4",
+    "generated_sql": "SELECT native_probable_cause FROM event_sdn WHERE perceived_severity = '警告';"
+  },
+  {
+    "question": "查询客户 上海理想公司 的创建时间",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "customer",
+      "t_gn_business_application_change",
+      "t_bz_authority_users",
+      "event_history",
+      "customer_collector_v2",
+      "event_yjk_history",
+      "t_bz_config_work_policy_new",
+      "t_bz_config_location",
+      "ne_service_item",
+      "ne_service_collect",
+      "customer_global_config",
+      "ne_collect_record",
+      "atomic_cutover_order",
+      "ne_collect_history",
+      "cc_cmdb_sync_history_record",
+      "t_bz_config_commissioned_unit",
+      "uptime"
+    ],
+    "expected_sql": "SELECT CREATE_TIME FROM t_bz_config_customer WHERE CUSTOMER_NAME = '上海理想公司'",
+    "generated_sql": "SELECT CREATE_TIME FROM t_bz_config_customer WHERE CUSTOMER_NAME = '上海理想公司';"
+  },
+  {
+    "question": "查询最近30天内发生的所有 Trap event 类型告警",
+    "difficulty": "simple",
+    "expected_tables": [
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "sdw_dp_port_basic",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "event_sdn",
+      "event_history_sdwan",
+      "sdw_dp_site",
+      "t_gn_botnet",
+      "event",
+      "event_ping",
+      "event_knowledge",
+      "event_type"
+    ],
+    "expected_sql": "SELECT * FROM event_history WHERE EVENT_TIME >= CURDATE() - INTERVAL 30 DAY AND EVENT_TYPE_NAME = 'Trap event'",
+    "generated_sql": "SELECT * FROM event_history WHERE EVENT_TYPE_NAME = 'Trap event' AND EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY);"
+  },
+  {
+    "question": "统计设备表里有多少个不同的区域ID",
+    "difficulty": "simple",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "t_bz_problem_info",
+      "t_bz_change_info",
+      "event_history",
+      "t_bz_config_customer",
+      "event_backup",
+      "t_bz_config_ci_entity",
+      "t_bz_release_info",
+      "day_availability",
+      "month_availability",
+      "week_availability",
+      "origin_availability",
+      "report_ipsla_info",
+      "report_hardware_info",
+      "uptime",
+      "identity",
+      "sequence"
+    ],
+    "expected_sql": "SELECT COUNT(DISTINCT REGION_ID) FROM t_bz_config_ci_ne_root",
+    "generated_sql": "SELECT COUNT(DISTINCT REGION_ID) AS distinct_region_count FROM t_bz_config_ci_ne_root;"
+  },
+  {
+    "question": "查询客户南京研发中心名下所有设备的名称和IP地址",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "event_history",
+      "t_gn_botnet",
+      "customer",
+      "t_gn_traffic_abnormality",
+      "t_gn_scanning_probe",
+      "ne_template_access_config",
+      "t_gn_vulnerability_hole",
+      "sdw_dp_device",
+      "ne",
+      "t_bz_config_location",
+      "ne_collect_record",
+      "sdwan_ipsubnets",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ne.NE_IP FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = '南京研发中心'",
+    "generated_sql": "SELECT ci.HOST_NAME, ci.NE_IP \nFROM t_bz_config_ci_ne_root ci \nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID \nWHERE c.CUSTOMER_NAME = '南京研发中心';"
+  },
+  {
+    "question": "统计每个客户拥有的在线设备数量，并按数量降序排列",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_incident_info",
+      "t_gn_botnet",
+      "t_bz_problem_info",
+      "event_history",
+      "t_bz_change_info",
+      "event_yjk_history",
+      "sdw_dp_port_basic",
+      "ont_status",
+      "day_availability",
+      "month_availability",
+      "week_availability",
+      "origin_availability",
+      "report_cust_reachability_ext",
+      "report_new_dev",
+      "uptime",
+      "t_gn_all_net_device"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ne.CI_ID) AS online_count FROM t_bz_config_customer cus LEFT JOIN t_bz_config_ci_ne_root ne ON cus.CUSTOMER_ID = ne.CUSTOMER_ID AND ne.IS_ONLINE = 1 GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME ORDER BY online_count DESC",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, COUNT(ci.CI_ID) AS online_device_count\nFROM t_bz_config_ci_ne_root ci\nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE ci.IS_ONLINE = 1\nGROUP BY c.CUSTOMER_NAME\nORDER BY online_device_count DESC;"
+  },
+  {
+    "question": "查询设备名为tdk-shanghai-b的所有历史告警记录，并显示告警名称和发生时间",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "t_bz_incident_event_record",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_config_customer",
+      "event_yjk_history",
+      "t_bz_problem_info",
+      "t_bz_change_info",
+      "event_history",
+      "t_gn_traffic_abnormality",
+      "t_bz_sdn_alarm",
+      "event_history_sdwan",
+      "ne_collect_history_record",
+      "ne_business_severity",
+      "report_ne_reachability"
+    ],
+    "expected_sql": "SELECT ev.EVENT_NAME, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ne.HOST_NAME = 'tdk-shanghai-b'",
+    "generated_sql": "SELECT e.EVENT_NAME, e.EVENT_TIME\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'tdk-shanghai-b';"
+  },
+  {
+    "question": "统计最近7天内，每个客户产生的严重告警数量",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "t_gn_business_application_change",
+      "customer",
+      "event_history_sdwan",
+      "t_gn_all_net_event",
+      "day_availability",
+      "t_bz_config_ci_entity",
+      "ne_business_severity",
+      "event_condition",
+      "t_bz_incident_ci_record",
+      "report_new_dev",
+      "event"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ev.EVENT_ID) AS severe_count FROM t_bz_config_customer cus JOIN event_history ev ON cus.CUSTOMER_ID = ev.CUSTOMER_ID WHERE ev.SEVERITY = 1 AND ev.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME",
+    "generated_sql": "SELECT \n    c.CUSTOMER_ID, \n    c.CUSTOMER_NAME, \n    COUNT(e.EVENT_ID) AS severe_alarm_count\nFROM \n    t_bz_config_customer c\nJOIN \n    event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID\nWHERE \n    e.SEVERITY_NAME = '严重' \n    AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY \n    c.CUSTOMER_ID, \n    c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询客户ngg-319009名下所有设备的型号和激活状态",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_gn_business_application_change",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_botnet",
+      "t_gn_vulnerability_hole",
+      "t_gn_traffic_abnormality",
+      "t_gn_vulnerability_clear_transmission",
+      "t_gn_scanning_probe",
+      "t_gn_weaknesses_attack",
+      "t_gn_vulnerability_weak_password",
+      "customer",
+      "event_history",
+      "t_bz_config_contact",
+      "t_bz_problem_info",
+      "t_bz_config_group",
+      "t_gn_all_net_device",
+      "cc_cmdb_sync_history_record",
+      "uptime",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ne.NE_MODEL, ne.IS_ACTIVE FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = 'ngg-319009'",
+    "generated_sql": "SELECT \n    tbc.CUSTOMER_NAME,\n    tbci.NE_MODEL,\n    tbci.IS_ACTIVE AS ACTIVATION_STATUS\nFROM \n    t_bz_config_customer tbc\nJOIN \n    t_bz_config_ci_ne_root tbci ON tbc.CUSTOMER_ID = tbci.CUSTOMER_ID\nWHERE \n    tbc.CUSTOMER_NAME = 'ngg-319009';"
+  },
+  {
+    "question": "统计本月发生的所有Trap event告警，并关联显示对应的设备名称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "event_sdn",
+      "event_history_sdwan",
+      "sdw_dp_port_basic",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "sdw_dp_tunnel_basic",
+      "event",
+      "sdw_dp_site",
+      "sdw_dp_device",
+      "event_condition",
+      "event_ping",
+      "trap_ne_policy",
+      "event_knowledge",
+      "ne_business_severity"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ev.EVENT_NAME, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ev.EVENT_TYPE_NAME = 'Trap event' AND YEAR(ev.EVENT_TIME) = YEAR(CURDATE()) AND MONTH(ev.EVENT_TIME) = MONTH(CURDATE())",
+    "generated_sql": "SELECT eh.EVENT_ID, eh.EVENT_NAME, eh.EVENT_TIME, eh.ROOT_NE_NAME AS DEVICE_NAME\nFROM event_history eh\nWHERE eh.EVENT_TYPE_NAME = 'Trap' AND YEAR(eh.EVENT_TIME) = YEAR(NOW()) AND MONTH(eh.EVENT_TIME) = MONTH(NOW());"
+  },
+  {
+    "question": "查询客户中国电信上海理想名下所有离线设备的名称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "event_history",
+      "customer",
+      "ne_template_access_config",
+      "ont_status",
+      "t_gn_botnet",
+      "sdw_dp_tunnel_basic",
+      "t_gn_traffic_abnormality",
+      "ne",
+      "t_gn_topo",
+      "uptime",
+      "ne_collect_record",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = '中国电信上海理想' AND ne.IS_ONLINE = 0",
+    "generated_sql": "SELECT t_bz_config_ci_ne_root.HOST_NAME \nFROM t_bz_config_ci_ne_root \nJOIN t_bz_config_customer ON t_bz_config_ci_ne_root.CUSTOMER_ID = t_bz_config_customer.CUSTOMER_ID \nWHERE t_bz_config_customer.CUSTOMER_NAME = '中国电信上海理想' AND t_bz_config_ci_ne_root.IS_ONLINE = 0;"
+  },
+  {
+    "question": "统计昨天发生的所有告警，并按告警级别分组统计数量",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "ne_service_item",
+      "t_bz_incident_info",
+      "event_history",
+      "t_gn_business_application_change",
+      "t_bz_sdn_alarm",
+      "t_bz_config_customer",
+      "t_gn_traffic_abnormality",
+      "t_gn_all_net_event",
+      "syslog_facility",
+      "report_new_dev",
+      "ne_business_severity",
+      "t_rl_config_group_contact"
+    ],
+    "expected_sql": "SELECT ev.SEVERITY, COUNT(*) AS count FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE DATE(ev.EVENT_TIME) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) GROUP BY ev.SEVERITY",
+    "generated_sql": "SELECT perceived_severity, COUNT(*) as count\nFROM event_sdn\nWHERE DATE(time_created) = CURDATE() - INTERVAL 1 DAY\nGROUP BY perceived_severity;"
+  },
+  {
+    "question": "查询设备名为ciscoA和ngg-rt-01的所有告警记录，包括告警类型和状态",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_bz_incident_info",
+      "t_bz_config_ci_entity",
+      "t_gn_botnet",
+      "ne_syslog_filter_script",
+      "event_history",
+      "t_gn_vulnerability_hole",
+      "event_yjk_history",
+      "syslog_filter_script",
+      "t_bz_config_customer",
+      "t_gn_traffic_abnormality",
+      "t_gn_weaknesses_attack",
+      "event_sdn",
+      "t_bz_incident_event_record",
+      "t_bz_incident_ci_record",
+      "t_bz_sdn_alarm",
+      "report_ne_reachability",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ev.EVENT_TYPE_NAME, ev.EVENT_STATUS_NAME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ne.HOST_NAME IN ('ciscoA', 'ngg-rt-01')",
+    "generated_sql": "SELECT e.EVENT_NAME, e.EVENT_TYPE_NAME, e.EVENT_STATUS_NAME\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE n.HOST_NAME IN ('ciscoA', 'ngg-rt-01');"
+  },
+  {
+    "question": "统计每个客户名下设备型号为空的设备数量",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_config_ci_ne_root",
+      "t_gn_traffic_abnormality",
+      "ne_template_access_config",
+      "t_gn_botnet",
+      "sdw_dp_device",
+      "t_gn_scanning_probe",
+      "t_gn_weaknesses_attack",
+      "t_gn_vulnerability_clear_transmission",
+      "day_availability",
+      "month_availability",
+      "origin_availability",
+      "week_availability",
+      "ne_collect_record",
+      "t_gn_all_net_device",
+      "uptime",
+      "report_cust_reachability_ext",
+      "report_new_dev"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ne.CI_ID) AS null_model_count FROM t_bz_config_customer cus LEFT JOIN t_bz_config_ci_ne_root ne ON cus.CUSTOMER_ID = ne.CUSTOMER_ID AND (ne.NE_MODEL IS NULL OR ne.NE_MODEL = '') GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, COUNT(d.CI_ID) AS device_count\nFROM t_bz_config_customer c\nLEFT JOIN t_bz_config_ci_ne_root d ON c.CUSTOMER_ID = d.CUSTOMER_ID\nWHERE d.NE_MODEL IS NULL OR d.NE_MODEL = ''\nGROUP BY c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询过去三个月内，客户测试客户产生的所有主要告警的详细信息",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "event_sdn",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "event_history",
+      "t_gn_business_application_change",
+      "customer",
+      "t_bz_config_work_policy_new",
+      "t_bz_config_ci_entity",
+      "t_bz_service_desk",
+      "event_history_sdwan",
+      "t_bz_config_location",
+      "t_gn_all_net_event",
+      "event",
+      "ne_business_severity"
+    ],
+    "expected_sql": "SELECT ev.EVENT_NAME, ev.EVENT_TIME, ev.EVENT_DESC FROM event_history ev JOIN t_bz_config_customer cus ON ev.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = '测试客户' AND ev.SEVERITY = 2 AND ev.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)",
+    "generated_sql": "SELECT eh.*\nFROM event_history eh\nJOIN t_bz_config_customer c ON eh.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE c.IS_TRIAL = 1 AND eh.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 3 MONTH);"
+  },
+  {
+    "question": "统计每个客户名下，处于活动状态的告警数量",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_business_application_change",
+      "customer",
+      "event_history",
+      "t_bz_incident_info",
+      "event_history_sdwan",
+      "origin_availability",
+      "t_gn_all_net_event",
+      "t_bz_incident_ci_record",
+      "report_new_dev",
+      "ne_business_severity",
+      "event",
+      "sdw_dp_site_status"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ev.EVENT_ID) AS active_alarm_count FROM t_bz_config_customer cus LEFT JOIN event_history ev ON cus.CUSTOMER_ID = ev.CUSTOMER_ID AND ev.EVENT_STATUS = 1 GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, COUNT(e.EVENT_ID) AS active_alarm_count\nFROM t_bz_config_customer c\nJOIN event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID\nWHERE c.IS_ACTIVE = 1 AND e.EVENT_STATUS = 1\nGROUP BY c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询设备名为v6-dcs21和poller1的创建时间和客户名称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_bz_customer_poller_config",
+      "collector_v2",
+      "customer_collector_v2",
+      "event_history",
+      "ne_template_access_config",
+      "customer",
+      "t_gn_botnet",
+      "t_bz_config_location",
+      "customer_global_config",
+      "ne_collect_record",
+      "nf_map",
+      "uptime"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ne.CREATE_TIME, cus.CUSTOMER_NAME FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE ne.HOST_NAME IN ('v6-dcs21', 'poller1')",
+    "generated_sql": "SELECT \n    ci.HOST_NAME AS 设备名称,\n    ci.CREATE_TIME AS 创建时间,\n    cust.CUSTOMER_NAME AS 客户名称\nFROM \n    t_bz_config_ci_ne_root ci\nJOIN \n    t_bz_config_customer cust ON ci.CUSTOMER_ID = cust.CUSTOMER_ID\nWHERE \n    ci.HOST_NAME IN ('v6-dcs21', 'poller1');"
+  },
+  {
+    "question": "统计最近30天内，每种告警类型发生的次数",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_config_customer",
+      "event_yjk_history",
+      "t_bz_problem_info",
+      "t_bz_change_info",
+      "event_history",
+      "sdw_dp_port_basic",
+      "event_sdn",
+      "t_bz_incident_event_record",
+      "t_gn_traffic_abnormality",
+      "day_availability",
+      "report_new_dev",
+      "t_dc_incident_accident_type",
+      "event_knowledge",
+      "t_dc_incident_finish",
+      "t_dc_release_type"
+    ],
+    "expected_sql": "SELECT ev.EVENT_TYPE_NAME, COUNT(*) AS count FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ev.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY ev.EVENT_TYPE_NAME",
+    "generated_sql": "SELECT EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history\nWHERE EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nGROUP BY EVENT_TYPE_NAME;"
+  },
+  {
+    "question": "查询客户上海理想公司名下，所有已恢复的告警记录及恢复时间",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "event_history",
+      "customer",
+      "t_gn_business_application_change",
+      "event_history_sdwan",
+      "t_gn_all_net_event",
+      "t_bz_incident_info",
+      "t_bz_incident_ci_record",
+      "ne_business_severity",
+      "t_dc_incident_finish",
+      "event_ping",
+      "sdw_dp_site_status"
+    ],
+    "expected_sql": "SELECT ev.EVENT_NAME, ev.EVENT_TIME, ev.RECOVER_TIME FROM event_history ev JOIN t_bz_config_customer cus ON ev.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = '上海理想公司' AND ev.EVENT_STATUS = 2",
+    "generated_sql": "SELECT eh.EVENT_NAME, eh.RECOVER_TIME\nFROM event_history eh\nJOIN t_bz_config_customer c ON eh.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = '上海理想' AND eh.EVENT_STATUS_NAME = '已恢复';"
+  },
+  {
+    "question": "查询设备名为demo-switch-01和test-router-02的客户联系邮箱",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_config_ci_ne_root",
+      "sdwan_route_policy",
+      "t_bz_config_contact",
+      "ne_template_access_config",
+      "customer",
+      "sdw_dp_device",
+      "ont_status",
+      "t_gn_traffic_abnormality",
+      "event_history",
+      "t_rl_config_ci_contact",
+      "ne_collect_record",
+      "t_rl_config_location_contact",
+      "t_rl_config_contact_policy",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, cus.CUSTOMER_EMAIL FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE ne.HOST_NAME IN ('demo-switch-01', 'test-router-02')",
+    "generated_sql": "SELECT DISTINCT c.CUSTOMER_EMAIL\nFROM t_bz_config_customer c\nJOIN t_bz_config_ci_ne_root d ON c.CUSTOMER_ID = d.CUSTOMER_ID\nWHERE d.HOST_NAME IN ('demo-switch-01', 'test-router-02');"
+  },
+  {
+    "question": "统计今天发生的所有Threshold event告警，并显示对应的设备IP地址",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "event_sdn",
+      "event_history_sdwan",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "event",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT ne.NE_IP, ev.EVENT_NAME, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ev.EVENT_TYPE_NAME = 'Threshold event' AND DATE(ev.EVENT_TIME) = CURDATE()",
+    "generated_sql": "SELECT EVENT_ID, EVENT_NAME, EVENT_TIME, ADDRESS AS DEVICE_IP\nFROM event_history\nWHERE EVENT_TYPE_NAME = 'Threshold event' AND DATE(EVENT_TIME) = CURDATE();"
+  },
+  {
+    "question": "查询客户南京研发中心名下，所有未激活的设备名称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "event_history",
+      "customer",
+      "ne_template_access_config",
+      "sdw_dp_device",
+      "t_gn_weaknesses_attack",
+      "t_gn_botnet",
+      "sdw_dp_tunnel_basic",
+      "t_bz_config_group",
+      "t_bz_config_contact",
+      "ne_collect_record",
+      "t_gn_topo",
+      "ne",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = '南京研发中心' AND ne.IS_ACTIVE = 0",
+    "generated_sql": "SELECT ci.HOST_NAME \nFROM t_bz_config_ci_ne_root ci \nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID \nWHERE c.CUSTOMER_NAME = '南京研发中心' AND ci.IS_ACTIVE = 0;"
+  },
+  {
+    "question": "统计每个客户名下，设备数量最多的前三个客户",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_config_ci_ne_root",
+      "ne_template_access_config",
+      "sdw_dp_device",
+      "ont_status",
+      "customer",
+      "t_gn_traffic_abnormality",
+      "t_gn_scanning_probe",
+      "t_gn_botnet",
+      "day_availability",
+      "month_availability",
+      "origin_availability",
+      "week_availability",
+      "ne_collect_record",
+      "t_gn_all_net_device",
+      "uptime",
+      "report_cust_reachability_ext",
+      "report_new_dev"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ne.CI_ID) AS device_count FROM t_bz_config_customer cus LEFT JOIN t_bz_config_ci_ne_root ne ON cus.CUSTOMER_ID = ne.CUSTOMER_ID GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME ORDER BY device_count DESC LIMIT 3",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, COUNT(d.CI_ID) AS device_count\nFROM t_bz_config_customer c\nJOIN t_bz_config_ci_ne_root d ON c.CUSTOMER_ID = d.CUSTOMER_ID\nGROUP BY c.CUSTOMER_NAME\nORDER BY device_count DESC\nLIMIT 3;"
+  },
+  {
+    "question": "查询设备名为cx-sx-cc002的所有Syslog event告警的描述信息",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "event_yjk_history",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "event_backup",
+      "event_sdn",
+      "t_gn_botnet",
+      "t_bz_config_customer",
+      "event_history_sdwan",
+      "trap_snmp",
+      "event",
+      "event_condition",
+      "event_ping",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT ev.EVENT_DESC, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ne.HOST_NAME = 'cx-sx-cc002' AND ev.EVENT_TYPE_NAME = 'Syslog event'",
+    "generated_sql": "SELECT EVENT_DESC FROM event_history WHERE ROOT_NE_NAME = 'cx-sx-cc002';"
+  },
+  {
+    "question": "统计最近7天内，告警级别为警告且状态为已确认的告警数量，按客户分组",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_business_application_change",
+      "event_history",
+      "ne_service_item",
+      "origin_availability",
+      "day_availability",
+      "t_gn_all_net_event",
+      "event_condition",
+      "t_bz_task_group",
+      "report_new_dev",
+      "t_rl_config_group_contact"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ev.EVENT_ID) AS confirmed_warning_count FROM t_bz_config_customer cus JOIN event_history ev ON cus.CUSTOMER_ID = ev.CUSTOMER_ID WHERE ev.SEVERITY = 4 AND ev.EVENT_STATUS = 3 AND ev.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME, \n    COUNT(e.EVENT_ID) AS WARNING_CONFIRMED_ALERT_COUNT\nFROM \n    t_bz_config_customer c\nJOIN \n    event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID\nWHERE \n    e.SEVERITY_NAME = '警告' \n    AND e.IS_ACK = 1 \n    AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY \n    c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询所有发生过Ping event告警的设备名称和客户简称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_yjk_history",
+      "event_backup",
+      "t_bz_config_customer",
+      "event_sdn",
+      "event_history_sdwan",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "event",
+      "ne_syslog_filter_script",
+      "event_condition",
+      "event_ping",
+      "trap_snmp",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT DISTINCT ne.HOST_NAME, cus.CUSTOMER_ABB FROM t_bz_config_ci_ne_root ne JOIN event_history ev ON ne.NE_ID = ev.NE_ID JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE ev.EVENT_TYPE_NAME = 'Ping event'",
+    "generated_sql": "SELECT DISTINCT eh.ROOT_NE_NAME AS 设备名称, tbc.CUSTOMER_ABB AS 客户简称\nFROM event_history eh\nJOIN t_bz_config_customer tbc ON eh.CUSTOMER_ID = tbc.CUSTOMER_ID\nWHERE eh.EVENT_NAME LIKE '%Ping%' AND eh.EVENT_STATUS = 1;"
+  },
+  {
+    "question": "查询客户ngg-319009名下，所有设备的最后更新时间",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_gn_business_application_change",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_botnet",
+      "t_gn_vulnerability_hole",
+      "t_gn_vulnerability_clear_transmission",
+      "t_gn_traffic_abnormality",
+      "t_gn_scanning_probe",
+      "ne_template_access_config",
+      "t_gn_weaknesses_attack",
+      "event_history",
+      "customer_global_config",
+      "ne_collect_record",
+      "t_gn_service_problems_treatment",
+      "atomic_aft_order",
+      "ne",
+      "ne_business_severity",
+      "uptime",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ne.UPDATE_TIME FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = 'ngg-319009' ORDER BY ne.UPDATE_TIME DESC",
+    "generated_sql": "SELECT ci.CI_ID, ci.HOST_NAME, MAX(ci.UPDATE_TIME) AS last_update_time\nFROM t_bz_config_customer c\nJOIN t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = 'ngg-319009'\nGROUP BY ci.CI_ID, ci.HOST_NAME;"
+  },
+  {
+    "question": "查询客户ngg-319009名下所有设备的主机名和IP地址",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_gn_business_application_change",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_botnet",
+      "t_gn_vulnerability_hole",
+      "t_gn_traffic_abnormality",
+      "t_gn_vulnerability_clear_transmission",
+      "t_gn_scanning_probe",
+      "t_gn_weaknesses_attack",
+      "t_gn_vulnerability_weak_password",
+      "customer",
+      "event_history",
+      "t_gn_website_host_vulnerabilities",
+      "ne_collect_record",
+      "t_gn_service_problems_treatment",
+      "t_gn_all_net_device",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ne.NE_IP FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = 'ngg-319009'",
+    "generated_sql": "SELECT t_bz_config_ci_ne_root.HOST_NAME, t_bz_config_ci_ne_root.NE_IP \nFROM t_bz_config_ci_ne_root \nJOIN t_bz_config_customer ON t_bz_config_ci_ne_root.CUSTOMER_ID = t_bz_config_customer.CUSTOMER_ID \nWHERE t_bz_config_customer.CUSTOMER_NAME = 'ngg-319009';"
+  },
+  {
+    "question": "统计每个客户拥有的在线设备数量，并列出客户名称和数量",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "ont_status",
+      "customer",
+      "ne_template_access_config",
+      "sdw_dp_device",
+      "t_gn_traffic_abnormality",
+      "t_gn_botnet",
+      "day_availability",
+      "month_availability",
+      "origin_availability",
+      "week_availability",
+      "uptime",
+      "t_gn_all_net_device",
+      "report_cust_reachability_ext",
+      "report_new_dev"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ne.CI_ID) AS online_device_count FROM t_bz_config_customer cus JOIN t_bz_config_ci_ne_root ne ON cus.CUSTOMER_ID = ne.CUSTOMER_ID WHERE ne.IS_ONLINE = 1 GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, COUNT(bci.CI_ID) AS online_device_count\nFROM t_bz_config_customer c\nJOIN t_bz_config_ci_ne_root bci ON c.CUSTOMER_ID = bci.CUSTOMER_ID\nWHERE bci.IS_ONLINE = 1\nGROUP BY c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询设备名为ciscoA的所有历史告警记录，包括告警名称和发生时间",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_ci_entity",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "t_gn_business_application_change",
+      "event_history",
+      "t_bz_config_ci_circuit",
+      "t_bz_incident_ci_record",
+      "t_bz_service_ci_record",
+      "t_bz_config_ci_audit_flow",
+      "event_history_sdwan",
+      "t_bz_sdn_alarm",
+      "ne_collect_history_record",
+      "ne_business_severity",
+      "report_ne_reachability"
+    ],
+    "expected_sql": "SELECT ev.EVENT_NAME, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ne.HOST_NAME = 'ciscoA'",
+    "generated_sql": "SELECT e.EVENT_NAME, e.EVENT_TIME\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'ciscoA';"
+  },
+  {
+    "question": "统计最近7天内，每个客户产生的严重级别告警数量",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_sdn",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "t_gn_business_application_change",
+      "customer",
+      "event_history_sdwan",
+      "t_gn_all_net_event",
+      "day_availability",
+      "ne_business_severity",
+      "event_condition",
+      "syslog_severity",
+      "report_new_dev"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ev.EVENT_ID) AS critical_alarm_count FROM t_bz_config_customer cus JOIN event_history ev ON cus.CUSTOMER_ID = ev.CUSTOMER_ID WHERE ev.SEVERITY = 1 AND ev.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME",
+    "generated_sql": "SELECT \n    c.CUSTOMER_ID, \n    c.CUSTOMER_NAME, \n    COUNT(eh.EVENT_ID) AS severe_alarm_count\nFROM \n    t_bz_config_customer c\nJOIN \n    event_history eh ON c.CUSTOMER_ID = eh.CUSTOMER_ID\nWHERE \n    eh.SEVERITY_NAME = '严重' \n    AND eh.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY \n    c.CUSTOMER_ID, \n    c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询客户中国电信上海理想名下，所有处于离线状态的设备名称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "event_history",
+      "customer",
+      "ne_template_access_config",
+      "ont_status",
+      "t_gn_scanning_probe",
+      "t_gn_traffic_abnormality",
+      "sdw_dp_tunnel_basic",
+      "event_yjk_history",
+      "uptime",
+      "nf_map",
+      "t_dc_change_status"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = '中国电信上海理想' AND ne.IS_ONLINE = 0",
+    "generated_sql": "SELECT ci.HOST_NAME \nFROM t_bz_config_ci_ne_root ci \nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID \nWHERE c.CUSTOMER_NAME = '中国电信上海理想' AND ci.IS_ONLINE = 0;"
+  },
+  {
+    "question": "查询昨天发生的所有Trap event告警，并关联显示对应的设备名称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "event_sdn",
+      "event_history_sdwan",
+      "sdw_dp_port_basic",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "sdw_dp_tunnel_basic",
+      "event",
+      "t_gn_business_application_change",
+      "sdw_dp_device",
+      "event_condition",
+      "event_ping",
+      "trap_ne_policy",
+      "event_knowledge"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ev.EVENT_NAME, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ev.EVENT_TYPE_NAME = 'Trap event' AND DATE(ev.EVENT_TIME) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)",
+    "generated_sql": "SELECT eh.EVENT_ID, eh.EVENT_NAME, eh.EVENT_TIME, eh.ROOT_NE_NAME AS DEVICE_NAME\nFROM event_history eh\nWHERE eh.EVENT_TYPE_NAME = 'Trap' AND DATE(eh.EVENT_TIME) = CURDATE() - INTERVAL 1 DAY;"
+  },
+  {
+    "question": "统计本月每个设备型号产生的告警总数，按数量降序排列",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "ne_syslog_filter_script",
+      "event_sdn",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_botnet",
+      "t_bz_incident_info",
+      "t_gn_traffic_abnormality",
+      "event_history",
+      "event_history_sdwan",
+      "day_availability",
+      "trap",
+      "ne_business_severity",
+      "event",
+      "report_new_dev",
+      "report_ne_reachability"
+    ],
+    "expected_sql": "SELECT ne.NE_MODEL, COUNT(ev.EVENT_ID) AS alarm_count FROM t_bz_config_ci_ne_root ne JOIN event_history ev ON ne.NE_ID = ev.NE_ID WHERE YEAR(ev.EVENT_TIME) = YEAR(CURDATE()) AND MONTH(ev.EVENT_TIME) = MONTH(CURDATE()) GROUP BY ne.NE_MODEL ORDER BY alarm_count DESC",
+    "generated_sql": "SELECT \n    tbcn.NE_MODEL, \n    COUNT(eh.EVENT_ID) AS alarm_count\nFROM \n    t_bz_config_ci_ne_root tbcn\nJOIN \n    event_history eh ON tbcn.NE_ID = eh.NE_ID\nWHERE \n    YEAR(eh.EVENT_TIME) = YEAR(NOW()) AND MONTH(eh.EVENT_TIME) = MONTH(NOW())\nGROUP BY \n    tbcn.NE_MODEL\nORDER BY \n    alarm_count DESC;"
+  },
+  {
+    "question": "查询客户上海理想公司名下，所有发生过严重告警的设备名称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "t_gn_business_application_change",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "customer",
+      "event_history_sdwan",
+      "severity",
+      "ne_business_severity",
+      "trap_snmp",
+      "event_condition",
+      "trap",
+      "t_bz_incident_info",
+      "event"
+    ],
+    "expected_sql": "SELECT DISTINCT ne.HOST_NAME FROM t_bz_config_ci_ne_root ne JOIN event_history ev ON ne.NE_ID = ev.NE_ID JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = '上海理想公司' AND ev.SEVERITY = 1",
+    "generated_sql": "SELECT DISTINCT ci.HOST_NAME\nFROM t_bz_config_ci_ne_root ci\nJOIN event_history eh ON ci.CI_ID = eh.NE_ID\nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = '上海理想公司' AND eh.SEVERITY_NAME = '严重';"
+  },
+  {
+    "question": "查询设备tdk-shanghai-b在过去三个月内的所有告警，按发生时间倒序排列",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_bz_incident_info",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_sdn",
+      "t_bz_problem_info",
+      "t_bz_change_info",
+      "t_bz_config_customer",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "event_history",
+      "t_gn_traffic_abnormality",
+      "t_bz_sdn_alarm",
+      "event_history_sdwan",
+      "trap",
+      "ne_business_severity",
+      "report_ne_reachability"
+    ],
+    "expected_sql": "SELECT ev.EVENT_NAME, ev.EVENT_TYPE_NAME, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ne.HOST_NAME = 'tdk-shanghai-b' AND ev.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) ORDER BY ev.EVENT_TIME DESC",
+    "generated_sql": "SELECT e.*\nFROM event_history e\nJOIN t_bz_config_ci_ne_root d ON e.NE_ID = d.NE_ID\nWHERE d.HOST_NAME = 'tdk-shanghai-b' AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 3 MONTH)\nORDER BY e.EVENT_TIME DESC;"
+  },
+  {
+    "question": "查询今天所有状态为已恢复的告警，并显示对应的客户简称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "event_sdn",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "ne_syslog_filter_script",
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_event_record",
+      "event_history",
+      "customer",
+      "t_gn_business_application_change",
+      "t_bz_config_work_policy_new",
+      "t_bz_incident_info",
+      "event_history_sdwan",
+      "t_gn_all_net_event",
+      "t_bz_incident_ci_record",
+      "t_bz_sys_sms_process",
+      "sdw_dp_site_status",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT ev.EVENT_NAME, cus.CUSTOMER_ABB, ev.RECOVER_TIME FROM event_history ev JOIN t_bz_config_customer cus ON ev.CUSTOMER_ID = cus.CUSTOMER_ID WHERE ev.EVENT_STATUS = 2 AND DATE(ev.RECOVER_TIME) = CURDATE()",
+    "generated_sql": "SELECT eh.EVENT_ID, eh.EVENT_NAME, eh.EVENT_TIME, eh.RECOVER_TIME, c.CUSTOMER_ABB\nFROM event_history eh\nJOIN customer c ON eh.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE DATE(eh.RECOVER_TIME) = CURDATE() AND eh.EVENT_STATUS_NAME = '已恢复';"
+  },
+  {
+    "question": "查询设备v6-dcs21产生的所有Threshold event告警的详细描述",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "event_sdn",
+      "t_gn_botnet",
+      "event_history_sdwan",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT ev.EVENT_DESC, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ne.HOST_NAME = 'v6-dcs21' AND ev.EVENT_TYPE_NAME = 'Threshold event'",
+    "generated_sql": "SELECT EVENT_DESC \nFROM event_history \nWHERE ROOT_NE_NAME = 'v6-dcs21' AND EVENT_TYPE_NAME LIKE '%Threshold event%';"
+  },
+  {
+    "question": "统计每个客户名下，设备型号为空的设备数量",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_config_ci_ne_root",
+      "ne_template_access_config",
+      "t_gn_traffic_abnormality",
+      "sdw_dp_device",
+      "t_gn_botnet",
+      "t_gn_scanning_probe",
+      "t_gn_weaknesses_attack",
+      "ont_status",
+      "day_availability",
+      "month_availability",
+      "origin_availability",
+      "week_availability",
+      "ne_collect_record",
+      "t_gn_all_net_device",
+      "uptime",
+      "report_cust_reachability_ext",
+      "report_new_dev"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ne.CI_ID) AS null_model_count FROM t_bz_config_customer cus JOIN t_bz_config_ci_ne_root ne ON cus.CUSTOMER_ID = ne.CUSTOMER_ID WHERE ne.NE_MODEL IS NULL OR ne.NE_MODEL = '' GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, COUNT(d.CI_ID) AS device_count\nFROM t_bz_config_customer c\nLEFT JOIN t_bz_config_ci_ne_root d ON c.CUSTOMER_ID = d.CUSTOMER_ID\nWHERE d.NE_MODEL IS NULL OR d.NE_MODEL = ''\nGROUP BY c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询最近30天内，告警级别为主要的告警，并关联显示设备IP地址",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_sdn",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_botnet",
+      "t_gn_traffic_abnormality",
+      "t_bz_sdn_alarm",
+      "event_history",
+      "t_gn_scanning_probe",
+      "sdw_dp_device",
+      "ne_business_severity",
+      "syslog_facility",
+      "t_rl_incident_relationship",
+      "t_rl_priority_config"
+    ],
+    "expected_sql": "SELECT ne.NE_IP, ev.EVENT_NAME, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ev.SEVERITY = 2 AND ev.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)",
+    "generated_sql": "SELECT e.EVENT_ID, e.EVENT_TIME, e.EVENT_NAME, c.NE_IP\nFROM event_history e\nJOIN t_bz_config_ci_ne_root c ON e.NE_ID = c.NE_ID\nWHERE e.SEVERITY_NAME = '主要' AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY);"
+  },
+  {
+    "question": "查询客户测试客户名下，所有已激活设备的最近更新时间",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "ne_template_access_config",
+      "customer",
+      "event_history",
+      "event_yjk_history",
+      "t_gn_botnet",
+      "t_bz_config_work_policy_new",
+      "ne_syslog_filter_script",
+      "customer_global_config",
+      "t_bz_config_group",
+      "ne_collect_record",
+      "ne_business_severity",
+      "uptime",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ne.UPDATE_TIME FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = '测试客户' AND ne.IS_ACTIVE = 1 ORDER BY ne.UPDATE_TIME DESC",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, ci.HOST_NAME, MAX(ci.UPDATE_TIME) AS LAST_UPDATE_TIME\nFROM t_bz_config_customer c\nJOIN t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = '测试客户名' AND ci.IS_ACTIVE = 1\nGROUP BY c.CUSTOMER_NAME, ci.HOST_NAME;"
+  },
+  {
+    "question": "统计本月每种告警类型发生的次数",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "ne_syslog_filter_script",
+      "t_bz_config_customer",
+      "syslog_filter_script",
+      "t_bz_problem_info",
+      "event_yjk_history",
+      "t_bz_change_info",
+      "event_history",
+      "sdw_dp_port_basic",
+      "event_sdn",
+      "t_bz_incident_event_record",
+      "t_gn_traffic_abnormality",
+      "trap",
+      "report_new_dev",
+      "t_dc_incident_accident_type",
+      "event_knowledge",
+      "t_dc_incident_finish",
+      "t_dc_release_type"
+    ],
+    "expected_sql": "SELECT ev.EVENT_TYPE_NAME, COUNT(ev.EVENT_ID) AS count FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE YEAR(ev.EVENT_TIME) = YEAR(CURDATE()) AND MONTH(ev.EVENT_TIME) = MONTH(CURDATE()) GROUP BY ev.EVENT_TYPE_NAME",
+    "generated_sql": "SELECT EVENT_TYPE_NAME, COUNT(*) AS occurrence_count\nFROM event_history\nWHERE EVENT_TIME >= DATE_FORMAT(NOW(), '%Y-%m-01') AND EVENT_TIME < DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')\nGROUP BY EVENT_TYPE_NAME;"
+  },
+  {
+    "question": "查询设备poller1和demo-switch-01的所有告警记录，包括告警状态名称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "t_gn_business_application_change",
+      "event_history",
+      "t_bz_customer_poller_config",
+      "t_gn_botnet",
+      "t_gn_traffic_abnormality",
+      "t_bz_sdn_alarm",
+      "event_history_sdwan",
+      "ne_business_severity",
+      "report_ne_reachability"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ev.EVENT_NAME, ev.EVENT_STATUS_NAME, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ne.HOST_NAME IN ('poller1', 'demo-switch-01')",
+    "generated_sql": "SELECT e.EVENT_ID, e.EVENT_NAME, e.EVENT_TIME, e.EVENT_STATUS_NAME\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE n.HOST_NAME IN ('poller1', 'demo-switch-01');"
+  },
+  {
+    "question": "查询客户南京研发中心名下，设备创建时间在最近一年的所有设备",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "ne_template_access_config",
+      "t_gn_scanning_probe",
+      "t_gn_traffic_abnormality",
+      "t_gn_botnet",
+      "t_gn_vulnerability_hole",
+      "t_gn_weaknesses_attack",
+      "t_gn_vulnerability_clear_transmission",
+      "event_history",
+      "customer_global_config",
+      "t_bz_config_location",
+      "ne_collect_record",
+      "t_gn_service_problems_treatment",
+      "cc_cmdb_sync_history_record",
+      "t_bz_config_commissioned_unit",
+      "nf_map",
+      "uptime"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, ne.NE_MODEL, ne.CREATE_TIME FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer cus ON ne.CUSTOMER_ID = cus.CUSTOMER_ID WHERE cus.CUSTOMER_NAME = '南京研发中心' AND ne.CREATE_TIME >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)",
+    "generated_sql": "SELECT ci.*\nFROM t_bz_config_ci_ne_root ci\nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = '南京研发中心'\n  AND ci.CREATE_TIME >= DATE_SUB(NOW(), INTERVAL 1 YEAR);"
+  },
+  {
+    "question": "统计过去三个月内，每个设备产生的警告级别告警数量，只显示数量大于5的设备",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "event_sdn",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_botnet",
+      "t_gn_traffic_abnormality",
+      "t_gn_topo_link",
+      "t_bz_sdn_alarm",
+      "event_history",
+      "syslog_facility",
+      "ne_business_severity",
+      "day_availability",
+      "report_new_dev",
+      "trap"
+    ],
+    "expected_sql": "SELECT ne.HOST_NAME, COUNT(ev.EVENT_ID) AS warning_count FROM t_bz_config_ci_ne_root ne JOIN event_history ev ON ne.NE_ID = ev.NE_ID WHERE ev.SEVERITY = 4 AND ev.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) GROUP BY ne.NE_ID, ne.HOST_NAME HAVING warning_count > 5",
+    "generated_sql": "SELECT e.NE_ID, COUNT(*) AS warning_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root c ON e.NE_ID = c.NE_ID\nWHERE e.SEVERITY_NAME = 'Warning'\n  AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 3 MONTH)\nGROUP BY e.NE_ID\nHAVING warning_count > 5;"
+  },
+  {
+    "question": "查询所有Syslog event告警，并关联显示对应的客户名称和告警发生时间",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "ne_syslog_filter_script",
+      "event_yjk_history",
+      "syslog_filter_script",
+      "event_backup",
+      "t_bz_config_customer",
+      "event_sdn",
+      "event_history_sdwan",
+      "ne_connection_log",
+      "t_bz_config_ci_ne_root",
+      "event",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "ne_business_severity"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, ev.EVENT_NAME, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_customer cus ON ev.CUSTOMER_ID = cus.CUSTOMER_ID WHERE ev.EVENT_TYPE_NAME = 'Syslog event' ORDER BY ev.EVENT_TIME DESC",
+    "generated_sql": "SELECT eh.EVENT_ID, eh.EVENT_NAME, eh.CUSTOMER_NAME, eh.EVENT_TIME\nFROM event_history eh\nWHERE eh.EVENT_TYPE_NAME = 'Syslog'\nORDER BY eh.EVENT_TIME DESC;"
+  },
+  {
+    "question": "查询设备test-router-02的最后一次告警记录详情",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "event_sdn",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "t_gn_business_application_change",
+      "t_gn_vulnerability_clear_transmission",
+      "t_gn_traffic_abnormality",
+      "sdwan_route_policy",
+      "t_bz_change_approval",
+      "t_bz_sdn_alarm",
+      "event_history_sdwan",
+      "event_history",
+      "ne_business_severity",
+      "report_ne_reachability",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT ev.EVENT_NAME, ev.EVENT_TYPE_NAME, ev.SEVERITY, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ne.HOST_NAME = 'test-router-02' ORDER BY ev.EVENT_TIME DESC LIMIT 1",
+    "generated_sql": "SELECT es.*\nFROM event_sdn es\nJOIN t_bz_config_ci_ne_root ci ON es.ip_ddress = ci.NE_IP\nWHERE ci.HOST_NAME = 'test-router-02'\nORDER BY es.time_created DESC\nLIMIT 1;"
+  },
+  {
+    "question": "统计每个客户名下，当前在线的设备数量与总设备数量的比例",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "ne_template_access_config",
+      "ont_status",
+      "t_gn_traffic_abnormality",
+      "t_gn_botnet",
+      "t_gn_scanning_probe",
+      "event_history",
+      "t_gn_weaknesses_attack",
+      "day_availability",
+      "month_availability",
+      "week_availability",
+      "ne_collect_record",
+      "origin_availability",
+      "uptime",
+      "t_gn_all_net_device",
+      "report_cust_reachability_ext"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ne.CI_ID) AS total, SUM(CASE WHEN ne.IS_ONLINE = 1 THEN 1 ELSE 0 END) AS online FROM t_bz_config_customer cus JOIN t_bz_config_ci_ne_root ne ON cus.CUSTOMER_ID = ne.CUSTOMER_ID GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    SUM(CASE WHEN ci.IS_ONLINE = 1 THEN 1 ELSE 0 END) / COUNT(ci.CI_ID) AS online_ratio\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nGROUP BY \n    c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询昨天所有状态为活动的告警，并显示对应的设备型号",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "event_history",
+      "t_gn_traffic_abnormality",
+      "t_gn_botnet",
+      "t_gn_scanning_probe",
+      "t_bz_sdn_alarm",
+      "trap",
+      "trap_snmp",
+      "report_ne_reachability",
+      "t_dc_incident_status"
+    ],
+    "expected_sql": "SELECT ne.NE_MODEL, ev.EVENT_NAME, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ev.EVENT_STATUS = 1 AND DATE(ev.EVENT_TIME) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)",
+    "generated_sql": "SELECT e.EVENT_ID, e.EVENT_NAME, e.EVENT_TIME, c.NE_MODEL\nFROM event_history e\nJOIN t_bz_config_ci_ne_root c ON e.NE_ID = c.NE_ID\nWHERE e.EVENT_TIME >= CURDATE() - INTERVAL 1 DAY AND e.EVENT_TIME < CURDATE()\nAND e.EVENT_STATUS = 1;"
+  },
+  {
+    "question": "查询设备ngg-rt-01产生的所有次要告警，按发生时间正序排列",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_gn_business_application_change",
+      "t_bz_config_ci_ne_root",
+      "t_gn_botnet",
+      "ne_syslog_filter_script",
+      "t_gn_vulnerability_hole",
+      "syslog_filter_script",
+      "t_gn_vulnerability_clear_transmission",
+      "event_sdn",
+      "event_yjk_history",
+      "t_gn_traffic_abnormality",
+      "event_history",
+      "event_history_sdwan",
+      "t_bz_sdn_alarm",
+      "trap_snmp",
+      "trap",
+      "ne_business_severity",
+      "report_ne_reachability"
+    ],
+    "expected_sql": "SELECT ev.EVENT_NAME, ev.EVENT_DESC, ev.EVENT_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ne.HOST_NAME = 'ngg-rt-01' AND ev.SEVERITY = 3 ORDER BY ev.EVENT_TIME ASC",
+    "generated_sql": "SELECT eh.*\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root cnr ON eh.ADDRESS = cnr.NE_IP\nWHERE cnr.HOST_NAME = 'ngg-rt-01' AND eh.SEVERITY_NAME = '次要'\nORDER BY eh.EVENT_TIME ASC;"
+  },
+  {
+    "question": "统计本月每个客户产生的Ping event告警数量",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "t_bz_config_customer",
+      "event_sdn",
+      "event_history_sdwan",
+      "event",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "event_condition",
+      "event_ping",
+      "t_bz_config_ci_ne_root",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT cus.CUSTOMER_NAME, COUNT(ev.EVENT_ID) AS ping_event_count FROM t_bz_config_customer cus JOIN event_history ev ON cus.CUSTOMER_ID = ev.CUSTOMER_ID WHERE ev.EVENT_TYPE_NAME = 'Ping event' AND YEAR(ev.EVENT_TIME) = YEAR(CURDATE()) AND MONTH(ev.EVENT_TIME) = MONTH(CURDATE()) GROUP BY cus.CUSTOMER_ID, cus.CUSTOMER_NAME",
+    "generated_sql": "SELECT CUSTOMER_ID, CUSTOMER_NAME, COUNT(EVENT_ID) AS ping_event_count\nFROM event_ping\nWHERE EVENT_TIME >= DATE_FORMAT(NOW(), '%Y-%m-01') AND EVENT_TIME < DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')\nGROUP BY CUSTOMER_ID, CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询设备cx-sx-cc002的所有告警恢复记录，包括恢复时间和告警名称",
+    "difficulty": "medium",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "event_history",
+      "t_bz_incident_event_record",
+      "t_gn_business_application_change",
+      "t_gn_vulnerability_clear_transmission",
+      "t_gn_traffic_abnormality",
+      "t_gn_vulnerability_hole",
+      "event_history_sdwan",
+      "t_bz_sdn_alarm",
+      "ne_collect_history_record",
+      "ne_business_severity",
+      "report_ne_reachability"
+    ],
+    "expected_sql": "SELECT ev.EVENT_NAME, ev.RECOVER_TIME FROM event_history ev JOIN t_bz_config_ci_ne_root ne ON ev.NE_ID = ne.NE_ID WHERE ne.HOST_NAME = 'cx-sx-cc002' AND ev.RECOVER_TIME IS NOT NULL ORDER BY ev.RECOVER_TIME DESC",
+    "generated_sql": "SELECT eh.EVENT_TIME AS 恢复时间, eh.EVENT_NAME AS 告警名称\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ci ON eh.NE_ID = ci.NE_ID\nWHERE ci.HOST_NAME = 'cx-sx-cc002' AND eh.EVENT_STATUS_NAME = '恢复';"
+  },
+  {
+    "question": "查询客户中国电信上海理想名下所有设备的名称和IP地址",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "event_history",
+      "customer",
+      "t_gn_botnet",
+      "t_gn_scanning_probe",
+      "ne_template_access_config",
+      "t_gn_traffic_abnormality",
+      "t_gn_weaknesses_attack",
+      "t_bz_config_location",
+      "ne",
+      "t_bz_ip_subnet_manage",
+      "ne_collect_record",
+      "sdwan_ipsubnets",
+      "nf_map"
+    ],
+    "expected_sql": "SELECT n.HOST_NAME, n.NE_IP FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.CUSTOMER_ID = c.CUSTOMER_ID WHERE c.CUSTOMER_NAME = '中国电信上海理想'",
+    "generated_sql": "SELECT ci.HOST_NAME AS 设备名称, ci.NE_IP AS IP地址\nFROM t_bz_config_ci_ne_root ci\nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = '中国电信上海理想';"
+  },
+  {
+    "question": "统计每个客户拥有的在线设备数量，并列出客户名称和数量",
+    "difficulty": "medium",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "ont_status",
+      "customer",
+      "ne_template_access_config",
+      "sdw_dp_device",
+      "t_gn_traffic_abnormality",
+      "t_gn_botnet",
+      "day_availability",
+      "month_availability",
+      "origin_availability",
+      "week_availability",
+      "uptime",
+      "t_gn_all_net_device",
+      "report_cust_reachability_ext",
+      "report_new_dev"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, COUNT(n.CI_ID) AS online_device_count FROM t_bz_config_customer c LEFT JOIN t_bz_config_ci_ne_root n ON c.CUSTOMER_ID = n.CUSTOMER_ID AND n.IS_ONLINE = 1 GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, COUNT(bci.CI_ID) AS online_device_count\nFROM t_bz_config_customer c\nJOIN t_bz_config_ci_ne_root bci ON c.CUSTOMER_ID = bci.CUSTOMER_ID\nWHERE bci.IS_ONLINE = 1\nGROUP BY c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "找出最近30天内发生过严重告警，并且设备型号为特定型号的所有设备，同时显示其所属客户名称和告警发生次数",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "event_history",
+      "t_bz_incident_event_record",
+      "t_gn_vulnerability_hole",
+      "sdw_dp_device",
+      "event_history_sdwan",
+      "trap_snmp",
+      "trap",
+      "t_gn_all_net_event",
+      "ne_business_severity",
+      "event_condition",
+      "event"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, n.HOST_NAME, n.NE_MODEL, COUNT(e.EVENT_ID) AS alarm_count FROM t_bz_config_ci_ne_root n INNER JOIN t_bz_config_customer c ON n.CUSTOMER_ID = c.CUSTOMER_ID INNER JOIN event_history e ON n.NE_ID = e.NE_ID WHERE e.SEVERITY = 1 AND e.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND n.NE_MODEL IS NOT NULL GROUP BY c.CUSTOMER_NAME, n.HOST_NAME, n.NE_MODEL HAVING alarm_count > 0 ORDER BY alarm_count DESC;",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    ci.HOST_NAME AS DEVICE_NAME,\n    COUNT(e.EVENT_ID) AS ALARM_COUNT\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nJOIN \n    event_history e ON ci.NE_ID = e.NE_ID\nWHERE \n    ci.NE_MODEL = '特定型号'\n    AND e.SEVERITY_NAME = '严重'\n    AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nGROUP BY \n    c.CUSTOMER_NAME, ci.HOST_NAME;"
+  },
+  {
+    "question": "统计本月每个客户产生的每种告警类型的数量，即使某些客户本月没有告警也要显示出来",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_incident_info",
+      "event_yjk_history",
+      "ne_syslog_filter_script",
+      "t_bz_problem_info",
+      "syslog_filter_script",
+      "event_history",
+      "t_bz_change_info",
+      "t_bz_config_ci_entity",
+      "day_availability",
+      "report_new_dev",
+      "ne_business_severity",
+      "t_gn_all_net_event",
+      "event_knowledge",
+      "t_dc_release_type",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, e.EVENT_TYPE_NAME, COUNT(e.EVENT_ID) AS type_count FROM t_bz_config_customer c LEFT JOIN event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID AND YEAR(e.EVENT_TIME) = YEAR(CURDATE()) AND MONTH(e.EVENT_TIME) = MONTH(CURDATE()) LEFT JOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID WHERE c.CUSTOMER_NAME IN ('中国电信上海理想', '测试客户', '南京研发中心', 'ngg-319009', '上海理想公司') GROUP BY c.CUSTOMER_NAME, e.EVENT_TYPE_NAME ORDER BY c.CUSTOMER_NAME, type_count DESC;",
+    "generated_sql": "SELECT \n    c.CUSTOMER_ID,\n    c.CUSTOMER_NAME,\n    e.EVENT_TYPE_NAME,\n    COUNT(e.EVENT_ID) AS ALARM_COUNT\nFROM \n    t_bz_config_customer c\nLEFT JOIN \n    event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID AND YEAR(e.EVENT_TIME) = YEAR(NOW()) AND MONTH(e.EVENT_TIME) = MONTH(NOW())\nGROUP BY \n    c.CUSTOMER_ID, c.CUSTOMER_NAME, e.EVENT_TYPE_NAME\nORDER BY \n    c.CUSTOMER_ID, e.EVENT_TYPE_NAME;"
+  },
+  {
+    "question": "查询上个月告警总数最多的前3个客户，并列出这些客户下所有在线设备的名称和IP地址",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "event_history",
+      "customer",
+      "event_history_sdwan",
+      "t_bz_incident_info",
+      "t_bz_config_location",
+      "t_bz_incident_ci_record",
+      "ne_business_severity",
+      "trap_snmp",
+      "event",
+      "event_ping"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, n.HOST_NAME, n.NE_IP, COUNT(e.EVENT_ID) AS total_alarms FROM t_bz_config_customer c INNER JOIN event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID AND YEAR(e.EVENT_TIME) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) AND MONTH(e.EVENT_TIME) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) INNER JOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID AND n.IS_ONLINE = 1 WHERE c.CUSTOMER_NAME IN ('中国电信上海理想', '测试客户', '南京研发中心') GROUP BY c.CUSTOMER_NAME, n.HOST_NAME, n.NE_IP ORDER BY total_alarms DESC LIMIT 3;",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, ci.HOST_NAME, ci.NE_IP\nFROM (\n    SELECT CUSTOMER_ID, COUNT(*) AS alarm_count\n    FROM event_history\n    WHERE EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\n    GROUP BY CUSTOMER_ID\n    ORDER BY alarm_count DESC\n    LIMIT 3\n) top_customers\nJOIN t_bz_config_customer c ON top_customers.CUSTOMER_ID = c.CUSTOMER_ID\nJOIN t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID AND ci.IS_ONLINE = 1;"
+  },
+  {
+    "question": "查询昨天发生告警且告警状态为已恢复的设备，需要显示设备名、客户名、告警类型和告警恢复时间",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_bz_config_customer",
+      "t_bz_incident_info",
+      "event_yjk_history",
+      "ne_syslog_filter_script",
+      "event_history",
+      "syslog_filter_script",
+      "t_gn_botnet",
+      "t_bz_problem_info",
+      "event_backup",
+      "event_history_sdwan",
+      "t_bz_sdn_alarm",
+      "ne_business_severity",
+      "event_knowledge",
+      "t_dc_incident_finish",
+      "t_dc_release_type"
+    ],
+    "expected_sql": "SELECT n.HOST_NAME, c.CUSTOMER_NAME, e.EVENT_TYPE_NAME, e.RECOVER_TIME FROM t_bz_config_ci_ne_root n INNER JOIN t_bz_config_customer c ON n.CUSTOMER_ID = c.CUSTOMER_ID INNER JOIN event_history e ON n.NE_ID = e.NE_ID WHERE e.EVENT_STATUS = 2 AND DATE(e.EVENT_TIME) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND n.HOST_NAME IN ('cx-sx-cc002', 'tdk-shanghai-b') ORDER BY e.RECOVER_TIME DESC;",
+    "generated_sql": "SELECT \n    ci.HOST_NAME AS 设备名,\n    cu.CUSTOMER_NAME AS 客户名,\n    eh.EVENT_TYPE_NAME AS 告警类型,\n    eh.ACTION_TIME AS 告警恢复时间\nFROM \n    t_bz_config_ci_ne_root ci\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nJOIN \n    event_history eh ON ci.NE_ID = eh.NE_ID\nWHERE \n    DATE(eh.EVENT_TIME) = CURDATE() - INTERVAL 1 DAY\n    AND eh.EVENT_STATUS_NAME = '已恢复'\n    AND eh.ACTION_TIME IS NOT NULL;"
+  },
+  {
+    "question": "统计每个客户在最近7天内，每种告警级别的发生次数，并只显示告警总次数大于5次的客户",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_sdn",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_event_record",
+      "day_availability",
+      "month_availability",
+      "t_gn_business_application_change",
+      "ne_service_item",
+      "event_history",
+      "t_bz_config_ci_entity",
+      "event_history_sdwan",
+      "t_gn_all_net_event",
+      "ne_business_severity",
+      "event",
+      "report_new_dev"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, e.SEVERITY, COUNT(e.EVENT_ID) AS severity_count FROM t_bz_config_customer c INNER JOIN event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID AND e.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) INNER JOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID GROUP BY c.CUSTOMER_NAME, e.SEVERITY HAVING SUM(COUNT(e.EVENT_ID)) OVER (PARTITION BY c.CUSTOMER_NAME) > 5 ORDER BY c.CUSTOMER_NAME, e.SEVERITY;",
+    "generated_sql": "SELECT \n    eh.CUSTOMER_ID,\n    eh.CUSTOMER_NAME,\n    eh.SEVERITY_NAME AS alarm_level,\n    COUNT(eh.EVENT_ID) AS alarm_count\nFROM \n    event_history eh\nJOIN \n    t_bz_config_customer c ON eh.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE \n    eh.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY \n    eh.CUSTOMER_ID, eh.CUSTOMER_NAME, eh.SEVERITY_NAME\nHAVING \n    alarm_count > 5;"
+  },
+  {
+    "question": "找出客户名为中国电信上海理想或南京研发中心，且设备名为cx-sx-cc002或v6-dcs21的所有历史告警记录，按告警发生时间倒序排列",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "ne_syslog_filter_script",
+      "event_yjk_history",
+      "syslog_filter_script",
+      "event_sdn",
+      "event_history",
+      "t_bz_incident_info",
+      "t_bz_incident_event_record",
+      "event_history_sdwan",
+      "t_bz_service_ci_record",
+      "t_bz_incident_ci_record",
+      "ne_collect_history_record",
+      "ne_business_severity",
+      "event_ping",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, n.HOST_NAME, e.EVENT_NAME, e.EVENT_TYPE_NAME, e.EVENT_TIME, e.SEVERITY FROM t_bz_config_customer c INNER JOIN t_bz_config_ci_ne_root n ON c.CUSTOMER_ID = n.CUSTOMER_ID INNER JOIN event_history e ON n.NE_ID = e.NE_ID WHERE c.CUSTOMER_NAME IN ('中国电信上海理想', '南京研发中心') AND n.HOST_NAME IN ('cx-sx-cc002', 'v6-dcs21') ORDER BY e.EVENT_TIME DESC;",
+    "generated_sql": "SELECT * \nFROM event_history \nWHERE CUSTOMER_NAME IN ('中国电信上海理想', '南京研发中心') \n  AND ROOT_NE_NAME IN ('cx-sx-cc002', 'v6-dcs21') \nORDER BY EVENT_TIME DESC;"
+  },
+  {
+    "question": "查询本月告警数量最多的设备，并显示该设备所属的客户信息以及设备的具体型号",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "event_sdn",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_traffic_abnormality",
+      "sdw_dp_device",
+      "t_gn_botnet",
+      "event_history",
+      "event_history_sdwan",
+      "t_bz_problem_info",
+      "t_bz_incident_info",
+      "t_gn_all_net_event",
+      "event_condition",
+      "ne_business_severity",
+      "event"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, n.HOST_NAME, n.NE_MODEL, COUNT(e.EVENT_ID) AS month_alarm_count FROM t_bz_config_ci_ne_root n INNER JOIN t_bz_config_customer c ON n.CUSTOMER_ID = c.CUSTOMER_ID INNER JOIN event_history e ON n.NE_ID = e.NE_ID AND YEAR(e.EVENT_TIME) = YEAR(CURDATE()) AND MONTH(e.EVENT_TIME) = MONTH(CURDATE()) GROUP BY c.CUSTOMER_NAME, n.HOST_NAME, n.NE_MODEL ORDER BY month_alarm_count DESC LIMIT 1;",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    ci.NE_MODEL,\n    COUNT(e.EVENT_ID) AS alarm_count\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root ci ON e.NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE \n    YEAR(e.EVENT_TIME) = YEAR(NOW()) AND MONTH(e.EVENT_TIME) = MONTH(NOW())\nGROUP BY \n    c.CUSTOMER_NAME, ci.NE_MODEL\nORDER BY \n    alarm_count DESC\nLIMIT 1;"
+  },
+  {
+    "question": "统计过去三个月每个客户下，产生过告警的设备数量与总设备数量的比例",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "sdw_dp_device",
+      "ne_template_access_config",
+      "event_history",
+      "event_history_sdwan",
+      "day_availability",
+      "ne_business_severity",
+      "report_new_dev",
+      "report_cust_reachability_ext",
+      "trap_snmp",
+      "event",
+      "t_bz_incident_info"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, COUNT(DISTINCT n.CI_ID) AS total_devices, COUNT(DISTINCT CASE WHEN e.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) THEN n.NE_ID END) AS alarmed_devices, ROUND(COUNT(DISTINCT CASE WHEN e.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) THEN n.NE_ID END) / COUNT(DISTINCT n.CI_ID) * 100, 2) AS alarm_ratio FROM t_bz_config_customer c LEFT JOIN t_bz_config_ci_ne_root n ON c.CUSTOMER_ID = n.CUSTOMER_ID LEFT JOIN event_history e ON n.NE_ID = e.NE_ID WHERE c.IS_ACTIVE = 1 GROUP BY c.CUSTOMER_NAME HAVING total_devices > 0;",
+    "generated_sql": "SELECT \n    c.CUSTOMER_ID,\n    c.CUSTOMER_NAME,\n    COUNT(DISTINCT CASE WHEN e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 3 MONTH) THEN ci.CI_ID END) AS ALERTED_DEVICE_COUNT,\n    COUNT(ci.CI_ID) AS TOTAL_DEVICE_COUNT,\n    (COUNT(DISTINCT CASE WHEN e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 3 MONTH) THEN ci.CI_ID END) / COUNT(ci.CI_ID)) AS ALERTED_DEVICE_RATIO\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nLEFT JOIN \n    event_history e ON ci.NE_ID = e.NE_ID\nGROUP BY \n    c.CUSTOMER_ID, c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询最近30天内，告警级别为次要或警告，且尚未恢复（状态为活动）的告警，关联显示设备及其客户信息",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_sdn",
+      "event_yjk_history",
+      "t_gn_business_application_change",
+      "t_bz_incident_event_record",
+      "event_history",
+      "t_gn_botnet",
+      "sdw_dp_device",
+      "t_bz_incident_info",
+      "ne_business_severity",
+      "event_condition",
+      "t_bz_incident_ci_record",
+      "event",
+      "t_rl_config_ci_contact",
+      "t_rl_config_contact_policy"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, n.HOST_NAME, e.EVENT_NAME, e.EVENT_TYPE_NAME, e.EVENT_TIME, e.EVENT_DESC FROM t_bz_config_customer c INNER JOIN t_bz_config_ci_ne_root n ON c.CUSTOMER_ID = n.CUSTOMER_ID INNER JOIN event_history e ON n.NE_ID = e.NE_ID WHERE e.SEVERITY IN (3, 4) AND e.EVENT_STATUS = 1 AND e.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) ORDER BY e.EVENT_TIME;",
+    "generated_sql": "SELECT \n    eh.EVENT_ID,\n    eh.EVENT_NAME,\n    eh.SEVERITY_NAME,\n    eh.EVENT_TIME,\n    eh.CUSTOMER_NAME,\n    eh.NE_NAME,\n    eh.ADDRESS\nFROM \n    event_history eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE \n    eh.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n    AND eh.SEVERITY_NAME IN ('次要', '警告')\n    AND eh.EVENT_STATUS = 1;"
+  },
+  {
+    "question": "找出上个月平均每天告警次数超过3次的客户，并列出这些客户下所有设备的名称",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "t_gn_business_application_change",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "event_history",
+      "ne_template_access_config",
+      "day_availability",
+      "event_history_sdwan",
+      "trap_snmp",
+      "trap",
+      "t_bz_incident_info",
+      "ne_business_severity",
+      "event",
+      "event_ping"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, n.HOST_NAME, COUNT(e.EVENT_ID)/DAY(LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))) AS avg_daily_alarms FROM t_bz_config_customer c INNER JOIN event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID AND YEAR(e.EVENT_TIME) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) AND MONTH(e.EVENT_TIME) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) INNER JOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID GROUP BY c.CUSTOMER_NAME, n.HOST_NAME HAVING avg_daily_alarms > 3 ORDER BY avg_daily_alarms DESC;",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, ci.HOST_NAME\nFROM t_bz_config_customer c\nJOIN t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nWHERE c.CUSTOMER_ID IN (\n    SELECT e.CUSTOMER_ID\n    FROM event_history e\n    WHERE e.EVENT_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n      AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\n    GROUP BY e.CUSTOMER_ID\n    HAVING AVG(COUNT(e.EVENT_ID)) OVER (PARTITION BY e.CUSTOMER_ID, DATE(e.EVENT_TIME)) > 3\n);"
+  },
+  {
+    "question": "查询设备名为ciscoA或ngg-rt-01的所有历史告警，并按客户分组统计每个客户的告警总数和最近一次告警时间",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_bz_config_customer",
+      "ne_syslog_filter_script",
+      "t_bz_config_ci_entity",
+      "syslog_filter_script",
+      "event_sdn",
+      "event_yjk_history",
+      "t_gn_botnet",
+      "t_gn_vulnerability_hole",
+      "event_history",
+      "t_bz_incident_ci_record",
+      "event_history_sdwan",
+      "day_availability",
+      "t_rl_config_ci_contact",
+      "origin_availability",
+      "ne_business_severity",
+      "event",
+      "report_new_dev"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, COUNT(e.EVENT_ID) AS total_alarms, MAX(e.EVENT_TIME) AS last_alarm_time FROM t_bz_config_customer c INNER JOIN t_bz_config_ci_ne_root n ON c.CUSTOMER_ID = n.CUSTOMER_ID INNER JOIN event_history e ON n.NE_ID = e.NE_ID WHERE n.HOST_NAME IN ('ciscoA', 'ngg-rt-01') GROUP BY c.CUSTOMER_NAME ORDER BY total_alarms DESC;",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    COUNT(e.EVENT_ID) AS ALARM_TOTAL,\n    MAX(e.EVENT_TIME) AS LAST_ALARM_TIME\nFROM \n    t_bz_config_ci_ne_root n\nJOIN \n    event_history e ON n.NE_ID = e.NE_ID\nJOIN \n    t_bz_config_customer c ON n.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE \n    n.HOST_NAME IN ('ciscoA', 'ngg-rt-01')\nGROUP BY \n    c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "找出最近7天内，同时产生过Ping event和Threshold event两种告警类型的设备，并显示其客户信息",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "event_sdn",
+      "event_history_sdwan",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT DISTINCT c.CUSTOMER_NAME, n.HOST_NAME FROM t_bz_config_customer c INNER JOIN t_bz_config_ci_ne_root n ON c.CUSTOMER_ID = n.CUSTOMER_ID INNER JOIN event_history e ON n.NE_ID = e.NE_ID WHERE e.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND e.EVENT_TYPE_NAME = 'Ping event' AND n.NE_ID IN (SELECT NE_ID FROM event_history WHERE EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND EVENT_TYPE_NAME = 'Threshold event') ORDER BY c.CUSTOMER_NAME;",
+    "generated_sql": "SELECT DISTINCT eh.CUSTOMER_ID, eh.CUSTOMER_NAME\nFROM event_history eh\nJOIN (\n    SELECT ROOT_NE_ID\n    FROM event_history\n    WHERE EVENT_TYPE_NAME = 'Ping event' AND EVENT_TIME >= NOW() - INTERVAL 7 DAY\n    GROUP BY ROOT_NE_ID\n) ping_events ON eh.ROOT_NE_ID = ping_events.ROOT_NE_ID\nJOIN (\n    SELECT ROOT_NE_ID\n    FROM event_history\n    WHERE EVENT_TYPE_NAME = 'Threshold event' AND EVENT_TIME >= NOW() - INTERVAL 7 DAY\n    GROUP BY ROOT_NE_ID\n) threshold_events ON eh.ROOT_NE_ID = threshold_events.ROOT_NE_ID;"
+  },
+  {
+    "question": "统计每个客户在昨天发生的不同告警级别的数量，并以客户名称和告警级别作为行，数量作为列进行展示",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_incident_info",
+      "event_yjk_history",
+      "ne_syslog_filter_script",
+      "event_history",
+      "syslog_filter_script",
+      "t_bz_problem_info",
+      "t_bz_change_info",
+      "t_bz_config_ci_entity",
+      "day_availability",
+      "event_history_sdwan",
+      "event",
+      "ne_business_severity",
+      "report_new_dev",
+      "t_gn_all_net_event",
+      "t_dc_problem_limit",
+      "t_gn_all_net_security"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, SUM(CASE WHEN e.SEVERITY = 1 THEN 1 ELSE 0 END) AS '严重', SUM(CASE WHEN e.SEVERITY = 2 THEN 1 ELSE 0 END) AS '主要', SUM(CASE WHEN e.SEVERITY = 3 THEN 1 ELSE 0 END) AS '次要', SUM(CASE WHEN e.SEVERITY = 4 THEN 1 ELSE 0 END) AS '警告' FROM t_bz_config_customer c LEFT JOIN event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID AND DATE(e.EVENT_TIME) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) LEFT JOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID WHERE c.CUSTOMER_NAME IN ('中国电信上海理想', '测试客户', '南京研发中心') GROUP BY c.CUSTOMER_NAME;",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    e.SEVERITY_NAME,\n    COUNT(e.EVENT_ID) AS COUNT\nFROM \n    t_bz_config_customer c\nJOIN \n    event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID\nWHERE \n    DATE(e.EVENT_TIME) = CURDATE() - INTERVAL 1 DAY\nGROUP BY \n    c.CUSTOMER_NAME, e.SEVERITY_NAME\nORDER BY \n    c.CUSTOMER_NAME, e.SEVERITY_NAME;"
+  },
+  {
+    "question": "查询所有设备创建时间在一年以内，且在过去三个月内产生过严重或主要告警的设备清单，包含客户名",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "event_sdn",
+      "event_history",
+      "ne_template_access_config",
+      "t_gn_botnet",
+      "t_bz_incident_info",
+      "t_bz_config_location",
+      "event_history_sdwan",
+      "atomic_cutover_order",
+      "ne_collect_record",
+      "ne_business_severity",
+      "event"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, n.HOST_NAME, n.CREATE_TIME, COUNT(e.EVENT_ID) AS recent_alarms FROM t_bz_config_customer c INNER JOIN t_bz_config_ci_ne_root n ON c.CUSTOMER_ID = n.CUSTOMER_ID AND n.CREATE_TIME >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) INNER JOIN event_history e ON n.NE_ID = e.NE_ID AND e.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND e.SEVERITY IN (1, 2) GROUP BY c.CUSTOMER_NAME, n.HOST_NAME, n.CREATE_TIME HAVING recent_alarms > 0 ORDER BY recent_alarms DESC;",
+    "generated_sql": "SELECT ci.CI_ID, ci.HOST_NAME, cu.CUSTOMER_NAME\nFROM t_bz_config_ci_ne_root ci\nJOIN t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nJOIN event_history eh ON ci.CI_ID = eh.NE_ID\nWHERE ci.CREATE_TIME >= DATE_SUB(NOW(), INTERVAL 1 YEAR)\nAND eh.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 3 MONTH)\nAND eh.SEVERITY_NAME IN ('严重', '主要');"
+  },
+  {
+    "question": "找出本月告警恢复平均时间最长的前5个设备，并显示其所属客户和平均恢复时间（分钟）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "t_gn_business_application_change",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "event_sdn",
+      "t_bz_incident_event_record",
+      "ne_service_item",
+      "event_history",
+      "ne_template_access_config",
+      "origin_availability",
+      "event_history_sdwan",
+      "t_bz_config_location",
+      "ne_business_severity",
+      "t_bz_incident_info",
+      "report_cust_reachability_ext",
+      "event_ping",
+      "event"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, n.HOST_NAME, AVG(TIMESTAMPDIFF(MINUTE, e.EVENT_TIME, e.RECOVER_TIME)) AS avg_recover_minutes FROM t_bz_config_customer c INNER JOIN t_bz_config_ci_ne_root n ON c.CUSTOMER_ID = n.CUSTOMER_ID INNER JOIN event_history e ON n.NE_ID = e.NE_ID WHERE YEAR(e.EVENT_TIME) = YEAR(CURDATE()) AND MONTH(e.EVENT_TIME) = MONTH(CURDATE()) AND e.EVENT_STATUS = 2 AND e.RECOVER_TIME IS NOT NULL GROUP BY c.CUSTOMER_NAME, n.HOST_NAME ORDER BY avg_recover_minutes DESC LIMIT 5;",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    ci.HOST_NAME AS DEVICE_NAME,\n    AVG(TIMESTAMPDIFF(MINUTE, eh.EVENT_TIME, eh.RECOVER_TIME)) AS AVG_RECOVERY_TIME_MINUTES\nFROM \n    event_history eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE \n    eh.EVENT_STATUS = 3 -- Assuming 3 is the status for recovered events\n    AND YEAR(eh.EVENT_TIME) = YEAR(NOW())\n    AND MONTH(eh.EVENT_TIME) = MONTH(NOW())\nGROUP BY \n    c.CUSTOMER_NAME, ci.HOST_NAME\nORDER BY \n    AVG_RECOVERY_TIME_MINUTES DESC\nLIMIT 5;"
+  },
+  {
+    "question": "查询客户测试客户名下，所有设备在最近30天内的告警总数，以及这些设备中当前在线的数量",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_sdn",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "event_history",
+      "t_gn_traffic_abnormality",
+      "ne_template_access_config",
+      "day_availability",
+      "event_history_sdwan",
+      "event_condition",
+      "event",
+      "ne_business_severity",
+      "t_bz_incident_info",
+      "event_ping"
+    ],
+    "expected_sql": "SELECT COUNT(DISTINCT n.CI_ID) AS total_devices, SUM(CASE WHEN n.IS_ONLINE = 1 THEN 1 ELSE 0 END) AS online_devices, COUNT(e.EVENT_ID) AS total_alarms FROM t_bz_config_customer c INNER JOIN t_bz_config_ci_ne_root n ON c.CUSTOMER_ID = n.CUSTOMER_ID LEFT JOIN event_history e ON n.NE_ID = e.NE_ID AND e.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) WHERE c.CUSTOMER_NAME = '测试客户';",
+    "generated_sql": "SELECT \n    COUNT(DISTINCT e.EVENT_ID) AS total_alarm_count,\n    SUM(CASE WHEN ci.IS_ONLINE = 1 THEN 1 ELSE 0 END) AS online_device_count\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nLEFT JOIN \n    event_history e ON ci.NE_ID = e.NE_ID AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nWHERE \n    c.CUSTOMER_NAME = '测试客户名'\nGROUP BY \n    c.CUSTOMER_ID;"
+  },
+  {
+    "question": "查询设备型号相同的设备集合，并统计每个型号在最近7天内产生的告警总数，同时列出拥有该型号设备的一个示例客户",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_bz_config_customer",
+      "t_bz_incident_info",
+      "event_yjk_history",
+      "event_history",
+      "ne_syslog_filter_script",
+      "t_bz_problem_info",
+      "t_gn_botnet",
+      "syslog_filter_script",
+      "sdw_dp_device",
+      "event_history_sdwan",
+      "event",
+      "ne_business_severity",
+      "report_cust_reachability_ext",
+      "report_new_dev",
+      "day_availability"
+    ],
+    "expected_sql": "SELECT n.NE_MODEL, COUNT(e.EVENT_ID) AS week_alarms, MAX(c.CUSTOMER_NAME) AS example_customer FROM t_bz_config_ci_ne_root n INNER JOIN event_history e ON n.NE_ID = e.NE_ID AND e.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) INNER JOIN t_bz_config_customer c ON n.CUSTOMER_ID = c.CUSTOMER_ID WHERE n.NE_MODEL IS NOT NULL GROUP BY n.NE_MODEL HAVING week_alarms > 0 ORDER BY week_alarms DESC;",
+    "generated_sql": "SELECT \n    ci.NE_MODEL AS device_model,\n    COUNT(e.EVENT_ID) AS alarm_count,\n    c.CUSTOMER_NAME AS example_customer_name\nFROM \n    t_bz_config_ci_ne_root ci\nJOIN \n    event_history e ON ci.CI_ID = e.ROOT_NE_ID\nJOIN \n    t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE \n    e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY \n    ci.NE_MODEL, c.CUSTOMER_NAME\nORDER BY \n    ci.NE_MODEL;"
+  },
+  {
+    "question": "统计本月每个客户下，处于活动状态的告警数量与已恢复告警数量的比值",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "event_sdn",
+      "event_yjk_history",
+      "syslog_filter_script",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "t_bz_incident_event_record",
+      "event_history",
+      "t_gn_business_application_change",
+      "ne_service_item",
+      "day_availability",
+      "customer",
+      "origin_availability",
+      "event_history_sdwan",
+      "t_gn_all_net_event",
+      "event_condition",
+      "report_new_dev",
+      "event_policy",
+      "event_knowledge"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, SUM(CASE WHEN e.EVENT_STATUS = 1 THEN 1 ELSE 0 END) AS active_alarms, SUM(CASE WHEN e.EVENT_STATUS = 2 THEN 1 ELSE 0 END) AS recovered_alarms, CASE WHEN SUM(CASE WHEN e.EVENT_STATUS = 2 THEN 1 ELSE 0 END) = 0 THEN NULL ELSE ROUND(SUM(CASE WHEN e.EVENT_STATUS = 1 THEN 1 ELSE 0 END) / SUM(CASE WHEN e.EVENT_STATUS = 2 THEN 1 ELSE 0 END), 2) END AS active_to_recovered_ratio FROM t_bz_config_customer c LEFT JOIN event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID AND YEAR(e.EVENT_TIME) = YEAR(CURDATE()) AND MONTH(e.EVENT_TIME) = MONTH(CURDATE()) LEFT JOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID GROUP BY c.CUSTOMER_NAME HAVING active_alarms > 0 OR recovered_alarms > 0;",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    SUM(CASE WHEN eh.EVENT_STATUS = 1 AND eh.ALARM_CLEAR_TIME IS NULL THEN 1 ELSE 0 END) AS active_alarm_count,\n    SUM(CASE WHEN eh.EVENT_STATUS = 1 AND eh.ALARM_CLEAR_TIME IS NOT NULL THEN 1 ELSE 0 END) AS recovered_alarm_count,\n    CASE \n        WHEN SUM(CASE WHEN eh.EVENT_STATUS = 1 AND eh.ALARM_CLEAR_TIME IS NOT NULL THEN 1 ELSE 0 END) > 0 \n        THEN SUM(CASE WHEN eh.EVENT_STATUS = 1 AND eh.ALARM_CLEAR_TIME IS NULL THEN 1 ELSE 0 END) / SUM(CASE WHEN eh.EVENT_STATUS = 1 AND eh.ALARM_CLEAR_TIME IS NOT NULL THEN 1 ELSE 0 END) \n        ELSE NULL \n    END AS active_to_recovered_ratio\nFROM \n    t_bz_config_customer c\nJOIN \n    event_history_sdwan eh ON c.CUSTOMER_ID = eh.CUSTOMER_ID\nWHERE \n    YEAR(eh.ALARM_TIME) = YEAR(NOW()) AND MONTH(eh.ALARM_TIME) = MONTH(NOW())\nGROUP BY \n    c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "找出上个月告警频率（告警总数/设备数）最高的客户，并列出该客户下所有产生过告警的设备名及告警次数",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "customer",
+      "ne_template_access_config",
+      "event_history",
+      "event_history_sdwan",
+      "trap_snmp",
+      "t_bz_incident_info",
+      "event_condition",
+      "ne_business_severity",
+      "event",
+      "t_bz_incident_ci_record",
+      "event_ping"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, n.HOST_NAME, COUNT(e.EVENT_ID) AS device_alarm_count FROM t_bz_config_customer c INNER JOIN t_bz_config_ci_ne_root n ON c.CUSTOMER_ID = n.CUSTOMER_ID INNER JOIN event_history e ON n.NE_ID = e.NE_ID AND YEAR(e.EVENT_TIME) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) AND MONTH(e.EVENT_TIME) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) WHERE c.CUSTOMER_ID = (SELECT c2.CUSTOMER_ID FROM t_bz_config_customer c2 INNER JOIN t_bz_config_ci_ne_root n2 ON c2.CUSTOMER_ID = n2.CUSTOMER_ID INNER JOIN event_history e2 ON n2.NE_ID = e2.NE_ID AND YEAR(e2.EVENT_TIME) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) AND MONTH(e2.EVENT_TIME) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) GROUP BY c2.CUSTOMER_ID ORDER BY COUNT(e2.EVENT_ID)/COUNT(DISTINCT n2.CI_ID) DESC LIMIT 1) GROUP BY c.CUSTOMER_NAME, n.HOST_NAME HAVING device_alarm_count > 0 ORDER BY device_alarm_count DESC;",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, ci.HOST_NAME, COUNT(e.EVENT_ID) AS ALARM_COUNT\nFROM t_bz_config_customer c\nJOIN t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nJOIN event_history e ON ci.NE_ID = e.NE_ID\nWHERE e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY c.CUSTOMER_ID, ci.HOST_NAME\nHAVING c.CUSTOMER_ID = (\n    SELECT c2.CUSTOMER_ID\n    FROM t_bz_config_customer c2\n    JOIN t_bz_config_ci_ne_root ci2 ON c2.CUSTOMER_ID = ci2.CUSTOMER_ID\n    JOIN event_history e2 ON ci2.NE_ID = e2.NE_ID\n    WHERE e2.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e2.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\n    GROUP BY c2.CUSTOMER_ID\n    ORDER BY COUNT(e2.EVENT_ID) / COUNT(DISTINCT ci2.CI_ID) DESC\n    LIMIT 1\n)\nORDER BY ALARM_COUNT DESC;"
+  },
+  {
+    "question": "查询最近30天内，每天产生的告警总数，并关联显示当天产生告警最多的那个客户名称",
+    "difficulty": "hard",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "customer",
+      "t_gn_business_application_change",
+      "t_bz_config_work_policy_new",
+      "t_gn_all_net_event",
+      "t_bz_config_ci_entity",
+      "t_bz_incident_ci_record",
+      "ne_business_severity",
+      "event",
+      "t_rl_config_ci_contact",
+      "t_rl_config_contact_policy"
+    ],
+    "expected_sql": "SELECT DATE(e.EVENT_TIME) AS alarm_date, COUNT(e.EVENT_ID) AS daily_total, (SELECT c2.CUSTOMER_NAME FROM t_bz_config_customer c2 INNER JOIN event_history e2 ON c2.CUSTOMER_ID = e2.CUSTOMER_ID AND DATE(e2.EVENT_TIME) = DATE(e.EVENT_TIME) GROUP BY c2.CUSTOMER_NAME ORDER BY COUNT(e2.EVENT_ID) DESC LIMIT 1) AS top_customer FROM event_history e WHERE e.EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY DATE(e.EVENT_TIME) ORDER BY alarm_date DESC;",
+    "generated_sql": "SELECT \n    DATE(event_time) AS alert_date,\n    COUNT(*) AS total_alerts,\n    MAX(customer_name) AS customer_with_most_alerts\nFROM \n    event_history\nWHERE \n    event_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nGROUP BY \n    DATE(event_time)\nORDER BY \n    alert_date;"
+  },
+  {
+    "question": "查询每个客户在过去30天内至少发生过一次严重告警（SEVERITY='CRITICAL'）的在线设备数量，并按设备数量降序排列",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "t_bz_incident_info",
+      "event_history",
+      "event_yjk_history",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_gn_botnet",
+      "t_bz_problem_info",
+      "event_backup",
+      "event_history_sdwan",
+      "ne_business_severity",
+      "event_condition",
+      "event",
+      "t_gn_all_net_event",
+      "t_bz_report_qos_level"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, COUNT(DISTINCT r.NE_ID) AS online_critical_devices FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 AND e.SEVERITY = 'CRITICAL' AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME ORDER BY online_critical_devices DESC",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, COUNT(DISTINCT e.NE_ID) AS online_device_count\nFROM t_bz_config_ci_ne_root n\nJOIN t_bz_config_customer c ON n.CUSTOMER_ID = c.CUSTOMER_ID\nJOIN event_history e ON n.NE_ID = e.NE_ID\nWHERE n.IS_ONLINE = 1\n  AND e.SEVERITY_NAME = 'CRITICAL'\n  AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nGROUP BY c.CUSTOMER_NAME\nHAVING online_device_count > 0\nORDER BY online_device_count DESC;"
+  },
+  {
+    "question": "找出客户名为'测试客户'或'ngg-319009'的设备中，最近7天内发生'Ping event'告警次数最多的前5台设备（显示设备名、客户名、告警次数）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_yjk_history",
+      "event_backup",
+      "t_bz_config_customer",
+      "event_sdn",
+      "t_gn_business_application_change",
+      "event_history_sdwan",
+      "t_bz_config_ci_ne_root",
+      "t_gn_botnet",
+      "ne_syslog_filter_script",
+      "event",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_policy",
+      "report_ne_ping"
+    ],
+    "expected_sql": "SELECT r.HOST_NAME, c.CUSTOMER_NAME, COUNT(*) AS ping_event_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE c.CUSTOMER_NAME IN ('测试客户', 'ngg-319009') AND e.EVENT_TYPE_NAME = 'Ping event' AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY r.NE_ID, r.HOST_NAME, c.CUSTOMER_NAME ORDER BY ping_event_count DESC LIMIT 5",
+    "generated_sql": "SELECT \n    ROOT_NE_NAME AS 设备名,\n    CUSTOMER_NAME AS 客户名,\n    COUNT(*) AS 告警次数\nFROM \n    event_history\nWHERE \n    CUSTOMER_NAME IN ('测试客户', 'ngg-319009')\n    AND EVENT_NAME = 'Ping event'\n    AND EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY \n    ROOT_NE_NAME, CUSTOMER_NAME\nORDER BY \n    告警次数 DESC\nLIMIT 5;"
+  },
+  {
+    "question": "查询每个客户在线设备的'Ping event'和'Trap event'告警总数，并计算两种告警的比例（Ping/Trap），仅显示比例大于2的客户",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_yjk_history",
+      "event_backup",
+      "t_bz_config_customer",
+      "event_sdn",
+      "event_history_sdwan",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "sdw_dp_port_basic",
+      "syslog_filter_script",
+      "event",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, SUM(CASE WHEN e.EVENT_TYPE_NAME = 'Ping event' THEN 1 ELSE 0 END) AS ping_count, SUM(CASE WHEN e.EVENT_TYPE_NAME = 'Trap event' THEN 1 ELSE 0 END) AS trap_count, ROUND(SUM(CASE WHEN e.EVENT_TYPE_NAME = 'Ping event' THEN 1 ELSE 0 END) / NULLIF(SUM(CASE WHEN e.EVENT_TYPE_NAME = 'Trap event' THEN 1 ELSE 0 END), 0), 2) AS ping_trap_ratio FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME HAVING ping_trap_ratio > 2",
+    "generated_sql": "SELECT \n    eh.CUSTOMER_NAME,\n    SUM(CASE WHEN eh.EVENT_TYPE_NAME = 'Ping event' THEN 1 ELSE 0 END) AS ping_count,\n    SUM(CASE WHEN eh.EVENT_TYPE_NAME = 'Trap event' THEN 1 ELSE 0 END) AS trap_count,\n    (SUM(CASE WHEN eh.EVENT_TYPE_NAME = 'Ping event' THEN 1 ELSE 0 END) / SUM(CASE WHEN eh.EVENT_TYPE_NAME = 'Trap event' THEN 1 ELSE 0 END)) AS ping_to_trap_ratio\nFROM \n    event_history eh\nJOIN \n    t_bz_config_ci_ne_root ne ON eh.ROOT_NE_ID = ne.NE_ID\nWHERE \n    ne.IS_ONLINE = 1\nGROUP BY \n    eh.CUSTOMER_NAME\nHAVING \n    ping_to_trap_ratio > 2;"
+  },
+  {
+    "question": "找出设备名为'cx-sx-cc002'或'tdk-shanghai-b'的设备，在最近30天内每小时的平均告警数量，并按小时和客户名分组",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "t_bz_incident_event_record",
+      "event_yjk_history",
+      "t_bz_incident_info",
+      "t_bz_problem_info",
+      "event_history",
+      "day_availability",
+      "event_history_sdwan",
+      "t_bz_incident_ci_record",
+      "t_bz_report_qos_level",
+      "ne_business_severity",
+      "event",
+      "event_ping"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, HOUR(e.EVENT_TIME) AS hour_of_day, COUNT(*) / COUNT(DISTINCT DATE(e.EVENT_TIME)) AS avg_alerts_per_hour FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.HOST_NAME IN ('cx-sx-cc002', 'tdk-shanghai-b') AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY c.CUSTOMER_NAME, HOUR(e.EVENT_TIME) ORDER BY c.CUSTOMER_NAME, hour_of_day",
+    "generated_sql": "SELECT \n    DATE_FORMAT(e.EVENT_TIME, '%Y-%m-%d %H:00:00') AS hour,\n    c.CUSTOMER_NAME,\n    AVG(CASE WHEN e.NE_NAME IN ('cx-sx-cc002', 'tdk-shanghai-b') THEN 1 ELSE 0 END) AS avg_alarm_count\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nJOIN \n    t_bz_config_customer c ON n.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE \n    e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nGROUP BY \n    hour, c.CUSTOMER_NAME\nORDER BY \n    hour, c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询每个客户严重告警（SEVERITY='CRITICAL'）最多的在线设备，显示客户名、设备名、告警次数",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "t_gn_business_application_change",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "event_history",
+      "t_bz_incident_event_record",
+      "event_history_sdwan",
+      "ne_template_access_config",
+      "ne_business_severity",
+      "event_backup",
+      "event_condition",
+      "trap_snmp",
+      "t_gn_all_net_event",
+      "event",
+      "t_bz_report_qos_level"
+    ],
+    "expected_sql": "WITH ranked_devices AS (SELECT c.CUSTOMER_NAME, r.HOST_NAME, COUNT(*) AS critical_count, ROW_NUMBER() OVER (PARTITION BY c.CUSTOMER_ID ORDER BY COUNT(*) DESC) AS rn FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 AND e.SEVERITY = 'CRITICAL' GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME, r.NE_ID, r.HOST_NAME) SELECT CUSTOMER_NAME, HOST_NAME, critical_count FROM ranked_devices WHERE rn = 1",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME, \n    ci.HOST_NAME AS DEVICE_NAME, \n    COUNT(e.EVENT_ID) AS CRITICAL_ALARM_COUNT\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nJOIN \n    event_history e ON ci.NE_ID = e.NE_ID\nWHERE \n    ci.IS_ONLINE = 1 \n    AND e.SEVERITY_NAME = 'CRITICAL'\nGROUP BY \n    c.CUSTOMER_NAME, ci.HOST_NAME\nORDER BY \n    CRITICAL_ALARM_COUNT DESC\nLIMIT 1;"
+  },
+  {
+    "question": "查询每个客户在线设备中，'Ping event'告警持续时间最长的设备（假设连续告警为持续时间），显示客户名、设备名、最大持续天数",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_yjk_history",
+      "event_backup",
+      "t_bz_config_customer",
+      "event_sdn",
+      "t_bz_config_ci_ne_root",
+      "event_history_sdwan",
+      "event",
+      "ne_syslog_filter_script",
+      "t_gn_business_application_change",
+      "syslog_filter_script",
+      "event_ping",
+      "event_condition",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "WITH ping_events AS (SELECT c.CUSTOMER_NAME, r.HOST_NAME, e.EVENT_TIME, LAG(e.EVENT_TIME) OVER (PARTITION BY r.NE_ID ORDER BY e.EVENT_TIME) AS prev_time FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 AND e.EVENT_TYPE_NAME = 'Ping event'), durations AS (SELECT CUSTOMER_NAME, HOST_NAME, MAX(DATEDIFF(EVENT_TIME, prev_time)) AS max_duration_days FROM ping_events WHERE prev_time IS NOT NULL GROUP BY CUSTOMER_NAME, HOST_NAME) SELECT CUSTOMER_NAME, HOST_NAME, max_duration_days FROM durations WHERE max_duration_days = (SELECT MAX(max_duration_days) FROM durations d2 WHERE d2.CUSTOMER_NAME = durations.CUSTOMER_NAME)",
+    "generated_sql": "SELECT \n    eh.CUSTOMER_NAME AS 客户名,\n    eh.ROOT_NE_NAME AS 设备名,\n    MAX(TIMESTAMPDIFF(DAY, eh.EVENT_TIME, eh.RECOVER_TIME)) AS 最大持续天数\nFROM \n    event_history eh\nWHERE \n    eh.EVENT_NAME = 'Ping event'\n    AND eh.EVENT_STATUS_NAME = 'Recovered'\n    AND eh.ROOT_NE_ID IN (\n        SELECT \n            CI_ID \n        FROM \n            t_bz_config_ci_ne_root \n        WHERE \n            IS_ONLINE = 1\n    )\nGROUP BY \n    eh.CUSTOMER_NAME, eh.ROOT_NE_NAME\nORDER BY \n    最大持续天数 DESC;"
+  },
+  {
+    "question": "找出每个客户在过去24小时内告警频率最高的设备（告警次数/在线时长），假设在线时长从最早告警时间计算",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_sdn",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "day_availability",
+      "ne_service_item",
+      "ne_template_access_config",
+      "event_history",
+      "origin_availability",
+      "event_history_sdwan",
+      "t_bz_config_location",
+      "t_bz_incident_info",
+      "t_bz_incident_wait",
+      "ne_business_severity",
+      "event_ping"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, r.HOST_NAME, COUNT(*) AS alert_count, TIMESTAMPDIFF(HOUR, MIN(e.EVENT_TIME), MAX(e.EVENT_TIME)) AS hours_span, ROUND(COUNT(*) / NULLIF(TIMESTAMPDIFF(HOUR, MIN(e.EVENT_TIME), MAX(e.EVENT_TIME)), 0), 2) AS alerts_per_hour FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 24 HOUR) GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME, r.NE_ID, r.HOST_NAME ORDER BY alerts_per_hour DESC",
+    "generated_sql": "SELECT \n    c.CUSTOMER_ID,\n    c.CUSTOMER_NAME,\n    eh.NE_ID,\n    eh.NE_NAME,\n    COUNT(eh.EVENT_ID) / TIMESTAMPDIFF(SECOND, MIN(eh.EVENT_TIME), NOW()) AS alert_frequency\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nJOIN \n    event_history eh ON ci.NE_ID = eh.NE_ID\nWHERE \n    eh.EVENT_TIME >= NOW() - INTERVAL 24 HOUR\nGROUP BY \n    c.CUSTOMER_ID, c.CUSTOMER_NAME, eh.NE_ID, eh.NE_NAME\nORDER BY \n    alert_frequency DESC\nLIMIT 1;"
+  },
+  {
+    "question": "查询每个客户不同类型告警（EVENT_TYPE_NAME）的分布比例，并找出'Ping event'占比超过30%的客户",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_incident_info",
+      "t_gn_business_application_change",
+      "event_history_sdwan",
+      "event_sdn",
+      "event",
+      "event_ping",
+      "event_condition",
+      "event_knowledge",
+      "event_type",
+      "event_policy"
+    ],
+    "expected_sql": "WITH event_totals AS (SELECT c.CUSTOMER_ID, c.CUSTOMER_NAME, e.EVENT_TYPE_NAME, COUNT(*) AS type_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME, e.EVENT_TYPE_NAME), customer_totals AS (SELECT CUSTOMER_ID, SUM(type_count) AS total_alerts FROM event_totals GROUP BY CUSTOMER_ID) SELECT et.CUSTOMER_NAME, et.EVENT_TYPE_NAME, et.type_count, ROUND(et.type_count / ct.total_alerts * 100, 2) AS percentage FROM event_totals et JOIN customer_totals ct ON et.CUSTOMER_ID = ct.CUSTOMER_ID WHERE et.EVENT_TYPE_NAME = 'Ping event' AND et.type_count / ct.total_alerts > 0.3",
+    "generated_sql": "SELECT eh.CUSTOMER_ID, eh.CUSTOMER_NAME, \n       et.EVENT_TYPE_NAME, \n       COUNT(eh.EVENT_ID) AS event_count, \n       (COUNT(CASE WHEN et.EVENT_TYPE_NAME = 'Ping event' THEN 1 END) / COUNT(eh.EVENT_ID)) * 100 AS ping_event_percentage\nFROM event_history eh\nJOIN event_type et ON eh.EVENT_TYPE_ID = et.EVENT_TYPE_ID\nGROUP BY eh.CUSTOMER_ID, eh.CUSTOMER_NAME, et.EVENT_TYPE_NAME\nHAVING ping_event_percentage > 30;"
+  },
+  {
+    "question": "找出每个客户中，同时存在'Ping event'和'Trap event'告警的在线设备数量",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "t_bz_config_customer",
+      "event_sdn",
+      "event_history_sdwan",
+      "t_bz_config_ci_ne_root",
+      "sdw_dp_port_basic",
+      "t_gn_business_application_change",
+      "event",
+      "sdw_dp_tunnel_basic",
+      "sdw_dp_device",
+      "event_ping",
+      "event_condition",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, COUNT(DISTINCT r.NE_ID) AS devices_with_both_events FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 AND e.EVENT_TYPE_NAME IN ('Ping event', 'Trap event') GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME HAVING COUNT(DISTINCT CASE WHEN e.EVENT_TYPE_NAME = 'Ping event' THEN 1 END) > 0 AND COUNT(DISTINCT CASE WHEN e.EVENT_TYPE_NAME = 'Trap event' THEN 1 END) > 0",
+    "generated_sql": "SELECT eh.CUSTOMER_ID, COUNT(DISTINCT eh.ROOT_NE_ID) AS online_device_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ROOT_NE_ID = ne.NE_ID\nWHERE eh.EVENT_TYPE_NAME IN ('Ping event', 'Trap event')\n  AND ne.IS_ONLINE = 1\nGROUP BY eh.CUSTOMER_ID\nHAVING COUNT(DISTINCT CASE WHEN eh.EVENT_TYPE_NAME = 'Ping event' THEN eh.ROOT_NE_ID END) > 0\n   AND COUNT(DISTINCT CASE WHEN eh.EVENT_TYPE_NAME = 'Trap event' THEN eh.ROOT_NE_ID END) > 0;"
+  },
+  {
+    "question": "查询每个客户在过去7天内，每小时告警数量的标准差，找出告警最不稳定的客户（标准差最大）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "event_sdn",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_incident_event_record",
+      "customer",
+      "t_gn_business_application_change",
+      "event_history",
+      "t_bz_config_policy",
+      "day_availability",
+      "event_history_sdwan",
+      "t_gn_all_net_event",
+      "t_bz_config_ci_entity",
+      "t_bz_incident_wait",
+      "t_bz_incident_ci_record",
+      "ne_business_severity",
+      "event"
+    ],
+    "expected_sql": "WITH hourly_counts AS (SELECT c.CUSTOMER_NAME, HOUR(e.EVENT_TIME) AS hour, COUNT(*) AS alert_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY c.CUSTOMER_NAME, HOUR(e.EVENT_TIME)) SELECT CUSTOMER_NAME, ROUND(STDDEV(alert_count), 2) AS std_deviation FROM hourly_counts GROUP BY CUSTOMER_NAME ORDER BY std_deviation DESC LIMIT 1",
+    "generated_sql": "SELECT \n    c.CUSTOMER_ID,\n    c.CUSTOMER_NAME,\n    STDDEV(alarm_count) AS std_dev_alarm_count\nFROM \n    t_bz_config_customer c\nJOIN \n    (SELECT \n         e.CUSTOMER_ID,\n         DATE_FORMAT(e.EVENT_TIME, '%Y-%m-%d %H') AS hour_key,\n         COUNT(*) AS alarm_count\n     FROM \n         event_history e\n     WHERE \n         e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n     GROUP BY \n         e.CUSTOMER_ID, hour_key) AS hourly_alarms\nON \n    c.CUSTOMER_ID = hourly_alarms.CUSTOMER_ID\nGROUP BY \n    c.CUSTOMER_ID, c.CUSTOMER_NAME\nORDER BY \n    std_dev_alarm_count DESC\nLIMIT 1;"
+  },
+  {
+    "question": "找出每个客户中，告警严重程度（SEVERITY）从低到高升级的设备（例如从WARNING升级到CRITICAL），显示客户名、设备名、升级次数",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "t_gn_business_application_change",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "event_history",
+      "t_bz_incident_event_record",
+      "event_history_sdwan",
+      "t_gn_botnet",
+      "ne_business_severity",
+      "event_backup",
+      "event_condition",
+      "trap_snmp",
+      "t_gn_all_net_event",
+      "t_bz_report_qos_level",
+      "event",
+      "event_ping"
+    ],
+    "expected_sql": "WITH severity_ranks AS (SELECT c.CUSTOMER_NAME, r.HOST_NAME, e.EVENT_TIME, e.SEVERITY, CASE e.SEVERITY WHEN 'WARNING' THEN 1 WHEN 'MINOR' THEN 2 WHEN 'MAJOR' THEN 3 WHEN 'CRITICAL' THEN 4 END AS severity_rank, LAG(CASE e.SEVERITY WHEN 'WARNING' THEN 1 WHEN 'MINOR' THEN 2 WHEN 'MAJOR' THEN 3 WHEN 'CRITICAL' THEN 4 END) OVER (PARTITION BY r.NE_ID ORDER BY e.EVENT_TIME) AS prev_rank FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID) SELECT CUSTOMER_NAME, HOST_NAME, COUNT(*) AS severity_escalations FROM severity_ranks WHERE prev_rank IS NOT NULL AND severity_rank > prev_rank GROUP BY CUSTOMER_NAME, HOST_NAME HAVING COUNT(*) > 0",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    ci.HOST_NAME AS DEVICE_NAME,\n    COUNT(CASE WHEN e.SEVERITY_NAME = 'CRITICAL' AND EXISTS (\n        SELECT 1 FROM event_history e2 \n        WHERE e2.ROOT_NE_ID = e.ROOT_NE_ID \n          AND e2.CUSTOMER_ID = e.CUSTOMER_ID \n          AND e2.SEVERITY_NAME IN ('WARNING', 'MINOR') \n          AND e2.EVENT_TIME < e.EVENT_TIME\n    ) THEN 1 END) AS UPGRADE_COUNT\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nJOIN \n    event_history e ON ci.NE_ID = e.NE_ID AND c.CUSTOMER_ID = e.CUSTOMER_ID\nWHERE \n    e.SEVERITY_NAME = 'CRITICAL'\nGROUP BY \n    c.CUSTOMER_NAME, ci.HOST_NAME\nHAVING \n    UPGRADE_COUNT > 0;"
+  },
+  {
+    "question": "查询每个客户在线设备的平均告警间隔时间（分钟），仅显示间隔时间小于30分钟的客户",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_sdn",
+      "event_yjk_history",
+      "t_gn_business_application_change",
+      "ne_service_item",
+      "t_bz_incident_event_record",
+      "event_history",
+      "ne_template_access_config",
+      "origin_availability",
+      "event_history_sdwan",
+      "t_bz_config_location",
+      "event_policy",
+      "t_bz_incident_info",
+      "ne_business_severity",
+      "event",
+      "event_ping"
+    ],
+    "expected_sql": "WITH time_intervals AS (SELECT c.CUSTOMER_NAME, r.NE_ID, TIMESTAMPDIFF(MINUTE, LAG(e.EVENT_TIME) OVER (PARTITION BY r.NE_ID ORDER BY e.EVENT_TIME), e.EVENT_TIME) AS interval_minutes FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1) SELECT CUSTOMER_NAME, ROUND(AVG(interval_minutes), 2) AS avg_interval_minutes FROM time_intervals WHERE interval_minutes IS NOT NULL GROUP BY CUSTOMER_NAME HAVING avg_interval_minutes < 30",
+    "generated_sql": "SELECT \n    c.CUSTOMER_ID, \n    c.CUSTOMER_NAME, \n    AVG(TIMESTAMPDIFF(MINUTE, e.EVENT_TIME, LEAD(e.EVENT_TIME) OVER (PARTITION BY e.NE_ID ORDER BY e.EVENT_TIME))) AS avg_alarm_interval_minutes\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root d ON c.CUSTOMER_ID = d.CUSTOMER_ID\nJOIN \n    event_history e ON d.NE_ID = e.NE_ID\nWHERE \n    d.IS_ONLINE = 1\nGROUP BY \n    c.CUSTOMER_ID, \n    c.CUSTOMER_NAME\nHAVING \n    avg_alarm_interval_minutes < 30;"
+  },
+  {
+    "question": "找出每个客户中，最近3天内告警数量呈上升趋势的设备（每天告警数递增）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "t_gn_business_application_change",
+      "event_sdn",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_traffic_abnormality",
+      "ne_template_access_config",
+      "event_history",
+      "event_history_sdwan",
+      "t_bz_incident_info",
+      "ne_business_severity",
+      "trap_snmp",
+      "event",
+      "event_ping",
+      "t_rl_config_ci_contact",
+      "report_cust_reachability_ext"
+    ],
+    "expected_sql": "WITH daily_device_alerts AS (SELECT c.CUSTOMER_NAME, r.HOST_NAME, DATE(e.EVENT_TIME) AS alert_date, COUNT(*) AS daily_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 3 DAY) GROUP BY c.CUSTOMER_NAME, r.HOST_NAME, DATE(e.EVENT_TIME)), trend_check AS (SELECT CUSTOMER_NAME, HOST_NAME, alert_date, daily_count, LAG(daily_count) OVER (PARTITION BY CUSTOMER_NAME, HOST_NAME ORDER BY alert_date) AS prev_count FROM daily_device_alerts) SELECT CUSTOMER_NAME, HOST_NAME FROM trend_check WHERE prev_count IS NOT NULL GROUP BY CUSTOMER_NAME, HOST_NAME HAVING COUNT(CASE WHEN daily_count > prev_count THEN 1 END) = COUNT(*) - 1",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    ci.HOST_NAME AS DEVICE_NAME,\n    DATE(e.EVENT_TIME) AS ALARM_DATE,\n    COUNT(e.EVENT_ID) AS ALARM_COUNT\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nJOIN \n    event_history e ON ci.NE_ID = e.NE_ID\nWHERE \n    e.EVENT_TIME >= CURDATE() - INTERVAL 3 DAY\nGROUP BY \n    c.CUSTOMER_NAME, ci.HOST_NAME, DATE(e.EVENT_TIME)\nHAVING \n    COUNT(DISTINCT DATE(e.EVENT_TIME)) = 3\nORDER BY \n    c.CUSTOMER_NAME, ci.HOST_NAME, ALARM_DATE"
+  },
+  {
+    "question": "查询每个客户在过去30天内，不同严重程度告警的累计数量，并计算CRITICAL告警占比",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "event_sdn",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "event_history",
+      "t_gn_business_application_change",
+      "customer",
+      "t_bz_config_work_policy_new",
+      "event_history_sdwan",
+      "t_gn_all_net_event",
+      "t_bz_config_ci_entity",
+      "ne_business_severity",
+      "t_bz_incident_ci_record",
+      "event_condition",
+      "event"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, SUM(CASE WHEN e.SEVERITY = 'CRITICAL' THEN 1 ELSE 0 END) AS critical_count, SUM(CASE WHEN e.SEVERITY = 'MAJOR' THEN 1 ELSE 0 END) AS major_count, SUM(CASE WHEN e.SEVERITY = 'MINOR' THEN 1 ELSE 0 END) AS minor_count, SUM(CASE WHEN e.SEVERITY = 'WARNING' THEN 1 ELSE 0 END) AS warning_count, ROUND(SUM(CASE WHEN e.SEVERITY = 'CRITICAL' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS critical_percentage FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME ORDER BY critical_percentage DESC",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    COUNT(e.EVENT_ID) AS total_alerts,\n    SUM(CASE WHEN e.SEVERITY_NAME = 'CRITICAL' THEN 1 ELSE 0 END) AS critical_alerts,\n    (SUM(CASE WHEN e.SEVERITY_NAME = 'CRITICAL' THEN 1 ELSE 0 END) / COUNT(e.EVENT_ID)) * 100 AS critical_alert_percentage\nFROM \n    t_bz_config_customer c\nJOIN \n    event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID\nWHERE \n    e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nGROUP BY \n    c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "找出每个客户中，'Ping event'告警发生时间最密集的3小时时段（滑动窗口）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_yjk_history",
+      "event_backup",
+      "t_bz_config_customer",
+      "event_sdn",
+      "event_history_sdwan",
+      "event",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "WITH hourly_ping_counts AS (SELECT c.CUSTOMER_NAME, HOUR(e.EVENT_TIME) AS hour, COUNT(*) AS ping_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE e.EVENT_TYPE_NAME = 'Ping event' GROUP BY c.CUSTOMER_NAME, HOUR(e.EVENT_TIME)), window_sums AS (SELECT CUSTOMER_NAME, hour, SUM(ping_count) OVER (PARTITION BY CUSTOMER_NAME ORDER BY hour ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) AS three_hour_sum FROM hourly_ping_counts) SELECT CUSTOMER_NAME, hour AS center_hour, three_hour_sum FROM window_sums WHERE three_hour_sum = (SELECT MAX(three_hour_sum) FROM window_sums ws2 WHERE ws2.CUSTOMER_NAME = window_sums.CUSTOMER_NAME)",
+    "generated_sql": "SELECT \n    eh.CUSTOMER_ID,\n    eh.CUSTOMER_NAME,\n    DATE_FORMAT(eh.EVENT_TIME, '%Y-%m-%d %H:00:00') AS hour_start,\n    COUNT(*) AS ping_event_count\nFROM \n    event_ping eh\nWHERE \n    eh.EVENT_NAME = 'Ping event'\nGROUP BY \n    eh.CUSTOMER_ID,\n    eh.CUSTOMER_NAME,\n    DATE_FORMAT(eh.EVENT_TIME, '%Y-%m-%d %H:00:00')\nORDER BY \n    eh.CUSTOMER_ID,\n    ping_event_count DESC\nLIMIT 3;"
+  },
+  {
+    "question": "查询每个客户在线设备中，最近一次告警时间与当前时间间隔超过24小时的设备数量",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_sdn",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_traffic_abnormality",
+      "event_history",
+      "t_gn_botnet",
+      "t_bz_incident_info",
+      "event_history_sdwan",
+      "t_bz_config_location",
+      "event_policy",
+      "ne_business_severity",
+      "event",
+      "event_ping"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, COUNT(DISTINCT r.NE_ID) AS idle_devices_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID LEFT JOIN (SELECT NE_ID, CUSTOMER_ID, MAX(EVENT_TIME) AS last_alert FROM event_history GROUP BY NE_ID, CUSTOMER_ID) e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 AND (e.last_alert IS NULL OR TIMESTAMPDIFF(HOUR, e.last_alert, NOW()) > 24) GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME",
+    "generated_sql": "SELECT c.CUSTOMER_ID, COUNT(DISTINCT e.NE_ID) AS device_count\nFROM t_bz_config_ci_ne_root c\nJOIN event_history e ON c.CI_ID = e.NE_ID\nWHERE c.IS_ONLINE = 1\nAND e.EVENT_TIME <= DATE_SUB(NOW(), INTERVAL 24 HOUR)\nGROUP BY c.CUSTOMER_ID;"
+  },
+  {
+    "question": "找出每个客户中，告警类型数量最多的设备（显示客户名、设备名、告警类型数）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "t_bz_config_customer",
+      "t_bz_incident_info",
+      "ne_syslog_filter_script",
+      "event_yjk_history",
+      "event_history",
+      "t_bz_problem_info",
+      "syslog_filter_script",
+      "sdw_dp_port_basic",
+      "event_backup",
+      "event_history_sdwan",
+      "sdw_dp_device",
+      "ne_business_severity",
+      "report_new_dev",
+      "event_knowledge",
+      "t_dc_release_type",
+      "t_dc_incident_finish"
+    ],
+    "expected_sql": "WITH device_event_types AS (SELECT c.CUSTOMER_NAME, r.HOST_NAME, COUNT(DISTINCT e.EVENT_TYPE_NAME) AS event_type_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME, r.NE_ID, r.HOST_NAME) SELECT CUSTOMER_NAME, HOST_NAME, event_type_count FROM device_event_types WHERE event_type_count = (SELECT MAX(event_type_count) FROM device_event_types det2 WHERE det2.CUSTOMER_NAME = device_event_types.CUSTOMER_NAME)",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    ci.HOST_NAME AS DEVICE_NAME,\n    COUNT(DISTINCT e.EVENT_TYPE_NAME) AS ALARM_TYPE_COUNT\nFROM \n    t_bz_config_ci_ne_root ci\nJOIN \n    t_bz_incident_info e ON ci.CI_ID = e.OBJECT_ID\nJOIN \n    t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nGROUP BY \n    c.CUSTOMER_NAME, ci.HOST_NAME\nORDER BY \n    c.CUSTOMER_NAME, ALARM_TYPE_COUNT DESC;"
+  },
+  {
+    "question": "找出每个客户中，连续两天都有告警的设备数量",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "t_gn_business_application_change",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "sdw_dp_device",
+      "ne_template_access_config",
+      "event_history",
+      "event_history_sdwan",
+      "ne_business_severity",
+      "event",
+      "t_bz_incident_info",
+      "event_ping",
+      "t_rl_config_ci_contact",
+      "report_new_dev",
+      "report_cust_reachability_ext"
+    ],
+    "expected_sql": "WITH daily_alerts AS (SELECT c.CUSTOMER_ID, c.CUSTOMER_NAME, r.NE_ID, DATE(e.EVENT_TIME) AS alert_date FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME, r.NE_ID, DATE(e.EVENT_TIME)), consecutive_days AS (SELECT CUSTOMER_NAME, NE_ID, alert_date, LAG(alert_date) OVER (PARTITION BY CUSTOMER_NAME, NE_ID ORDER BY alert_date) AS prev_date FROM daily_alerts) SELECT CUSTOMER_NAME, COUNT(DISTINCT NE_ID) AS devices_with_consecutive_alerts FROM consecutive_days WHERE prev_date IS NOT NULL AND DATEDIFF(alert_date, prev_date) = 1 GROUP BY CUSTOMER_NAME",
+    "generated_sql": "SELECT \n    c.CUSTOMER_ID,\n    c.CUSTOMER_NAME,\n    COUNT(DISTINCT eh.NE_ID) AS DEVICE_COUNT\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nJOIN \n    event_history eh ON ci.NE_ID = eh.NE_ID\nWHERE \n    EXISTS (\n        SELECT 1 \n        FROM event_history eh2 \n        WHERE eh.NE_ID = eh2.NE_ID \n          AND DATE(eh.EVENT_TIME) = DATE_SUB(DATE(eh2.EVENT_TIME), INTERVAL 1 DAY)\n    )\nGROUP BY \n    c.CUSTOMER_ID, c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "查询每个客户在线设备中，告警数量排名前10%的设备（按告警总数）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_traffic_abnormality",
+      "ont_status",
+      "event_history",
+      "event_history_sdwan",
+      "t_bz_incident_info",
+      "ne_business_severity",
+      "event",
+      "trap_snmp",
+      "event_ping",
+      "report_new_dev",
+      "t_rl_config_ci_contact"
+    ],
+    "expected_sql": "WITH device_alert_ranks AS (SELECT c.CUSTOMER_NAME, r.HOST_NAME, COUNT(*) AS total_alerts, PERCENT_RANK() OVER (PARTITION BY c.CUSTOMER_ID ORDER BY COUNT(*) DESC) AS alert_percent_rank FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME, r.NE_ID, r.HOST_NAME) SELECT CUSTOMER_NAME, HOST_NAME, total_alerts, ROUND(alert_percent_rank * 100, 2) AS percentile FROM device_alert_ranks WHERE alert_percent_rank <= 0.1 ORDER BY CUSTOMER_NAME, alert_percent_rank",
+    "generated_sql": "SELECT c.CUSTOMER_NAME, ci.HOST_NAME, COUNT(e.EVENT_ID) AS ALARM_COUNT\nFROM t_bz_config_customer c\nJOIN t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID\nJOIN event_history e ON ci.NE_ID = e.NE_ID AND ci.IS_ONLINE = 1\nGROUP BY c.CUSTOMER_NAME, ci.HOST_NAME\nHAVING ALARM_COUNT > 0\nORDER BY ALARM_COUNT DESC\nLIMIT FLOOR((SELECT COUNT(*) FROM (SELECT ci.HOST_NAME FROM t_bz_config_customer c JOIN t_bz_config_ci_ne_root ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID JOIN event_history e ON ci.NE_ID = e.NE_ID AND ci.IS_ONLINE = 1 GROUP BY ci.HOST_NAME HAVING COUNT(e.EVENT_ID) > 0) AS subquery) * 0.1);"
+  },
+  {
+    "question": "找出每个客户中，'Ping event'告警平均响应时间最短的设备（假设响应时间为相邻'Trap event'的时间差）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_yjk_history",
+      "event_backup",
+      "t_bz_config_customer",
+      "event_sdn",
+      "event_history_sdwan",
+      "t_bz_config_ci_ne_root",
+      "t_gn_business_application_change",
+      "sdw_dp_port_basic",
+      "event",
+      "ne_syslog_filter_script",
+      "event_ping",
+      "event_condition",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "WITH ping_trap_pairs AS (SELECT c.CUSTOMER_NAME, r.HOST_NAME, e.EVENT_TIME AS ping_time, LEAD(e.EVENT_TIME) OVER (PARTITION BY r.NE_ID ORDER BY e.EVENT_TIME) AS next_trap_time, e.EVENT_TYPE_NAME FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE e.EVENT_TYPE_NAME IN ('Ping event', 'Trap event')), response_times AS (SELECT CUSTOMER_NAME, HOST_NAME, TIMESTAMPDIFF(SECOND, ping_time, next_trap_time) AS response_seconds FROM ping_trap_pairs WHERE EVENT_TYPE_NAME = 'Ping event' AND next_trap_time IS NOT NULL) SELECT CUSTOMER_NAME, HOST_NAME, ROUND(AVG(response_seconds), 2) AS avg_response_seconds FROM response_times GROUP BY CUSTOMER_NAME, HOST_NAME HAVING avg_response_seconds = (SELECT MIN(avg_response_seconds) FROM response_times rt2 WHERE rt2.CUSTOMER_NAME = response_times.CUSTOMER_NAME)",
+    "generated_sql": "SELECT \n    eh.CUSTOMER_ID,\n    eh.CUSTOMER_NAME,\n    eh.ROOT_NE_NAME AS DEVICE_NAME,\n    AVG(TIMESTAMPDIFF(SECOND, eh.EVENT_TIME, eh.ACK_TIME)) AS AVG_RESPONSE_TIME\nFROM \n    event_history eh\nWHERE \n    eh.EVENT_TYPE_NAME = 'Ping event'\n    AND eh.IS_ACK = 1\nGROUP BY \n    eh.CUSTOMER_ID, eh.CUSTOMER_NAME, eh.ROOT_NE_NAME\nORDER BY \n    AVG_RESPONSE_TIME ASC\nLIMIT 1;"
+  },
+  {
+    "question": "查询每个客户在过去30天内，工作日与周末告警数量的比例（工作日/周末）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "syslog_filter_script",
+      "ne_syslog_filter_script",
+      "event_sdn",
+      "t_bz_config_ci_ne_root",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_bz_config_work_policy",
+      "t_gn_business_application_change",
+      "t_bz_config_work_policy_new",
+      "customer",
+      "event_history",
+      "event_history_sdwan",
+      "t_bz_config_ci_entity",
+      "t_gn_all_net_event",
+      "event",
+      "ne_business_severity",
+      "t_bz_release_work_info"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, SUM(CASE WHEN DAYOFWEEK(e.EVENT_TIME) IN (2,3,4,5,6) THEN 1 ELSE 0 END) AS weekday_alerts, SUM(CASE WHEN DAYOFWEEK(e.EVENT_TIME) IN (1,7) THEN 1 ELSE 0 END) AS weekend_alerts, ROUND(SUM(CASE WHEN DAYOFWEEK(e.EVENT_TIME) IN (2,3,4,5,6) THEN 1 ELSE 0 END) / NULLIF(SUM(CASE WHEN DAYOFWEEK(e.EVENT_TIME) IN (1,7) THEN 1 ELSE 0 END), 0), 2) AS weekday_weekend_ratio FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME HAVING weekend_alerts > 0",
+    "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    COALESCE(SUM(CASE WHEN DAYOFWEEK(e.EVENT_TIME) BETWEEN 2 AND 6 THEN 1 ELSE 0 END), 0) / \n    COALESCE(SUM(CASE WHEN DAYOFWEEK(e.EVENT_TIME) IN (1, 7) THEN 1 ELSE 0 END), 1) AS weekday_weekend_ratio\nFROM \n    t_bz_config_customer c\nJOIN \n    event_history e ON c.CUSTOMER_ID = e.CUSTOMER_ID\nWHERE \n    e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nGROUP BY \n    c.CUSTOMER_NAME;"
+  },
+  {
+    "question": "找出每个客户中，告警数量月度增长率最高的设备（最近3个月）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "event_sdn",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_traffic_abnormality",
+      "ne_template_access_config",
+      "event_history",
+      "event_history_sdwan",
+      "ne_business_severity",
+      "report_cust_reachability_ext",
+      "t_bz_incident_info",
+      "report_new_dev",
+      "event",
+      "event_ping",
+      "trap_snmp"
+    ],
+    "expected_sql": "WITH monthly_device_alerts AS (SELECT c.CUSTOMER_NAME, r.HOST_NAME, DATE_FORMAT(e.EVENT_TIME, '%Y-%m') AS month, COUNT(*) AS monthly_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 3 MONTH) GROUP BY c.CUSTOMER_NAME, r.HOST_NAME, DATE_FORMAT(e.EVENT_TIME, '%Y-%m')), growth_rates AS (SELECT CUSTOMER_NAME, HOST_NAME, month, monthly_count, LAG(monthly_count) OVER (PARTITION BY CUSTOMER_NAME, HOST_NAME ORDER BY month) AS prev_count, ROUND((monthly_count - LAG(monthly_count) OVER (PARTITION BY CUSTOMER_NAME, HOST_NAME ORDER BY month)) / LAG(monthly_count) OVER (PARTITION BY CUSTOMER_NAME, HOST_NAME ORDER BY month) * 100, 2) AS growth_rate FROM monthly_device_alerts) SELECT CUSTOMER_NAME, HOST_NAME, MAX(growth_rate) AS max_growth_rate FROM growth_rates WHERE growth_rate IS NOT NULL GROUP BY CUSTOMER_NAME, HOST_NAME HAVING max_growth_rate = (SELECT MAX(max_growth_rate) FROM growth_rates gr2 WHERE gr2.CUSTOMER_NAME = growth_rates.CUSTOMER_NAME)",
+    "generated_sql": "SELECT \n    c.CUSTOMER_ID,\n    c.CUSTOMER_NAME,\n    e.NE_ID,\n    e.NE_NAME,\n    MAX(growth_rate) AS MAX_GROWTH_RATE\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root e ON c.CUSTOMER_ID = e.CUSTOMER_ID\nJOIN \n    (\n        SELECT \n            NE_ID,\n            DATE_FORMAT(EVENT_TIME, '%Y-%m') AS MONTH,\n            COUNT(*) AS ALARM_COUNT\n        FROM \n            event_history\n        WHERE \n            EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 3 MONTH)\n        GROUP BY \n            NE_ID, DATE_FORMAT(EVENT_TIME, '%Y-%m')\n    ) AS alarms ON e.NE_ID = alarms.NE_ID\nJOIN \n    (\n        SELECT \n            NE_ID,\n            MONTH,\n            ((LEAD(ALARM_COUNT) OVER (PARTITION BY NE_ID ORDER BY MONTH) - ALARM_COUNT) / ALARM_COUNT) * 100 AS growth_rate\n        FROM \n            (\n                SELECT \n                    NE_ID,\n                    DATE_FORMAT(EVENT_TIME, '%Y-%m') AS MONTH,\n                    COUNT(*) AS ALARM_COUNT\n                FROM \n                    event_history\n                WHERE \n                    EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 3 MONTH)\n                GROUP BY \n                    NE_ID, DATE_FORMAT(EVENT_TIME, '%Y-%m')\n            ) AS monthly_alarms\n    ) AS growth ON alarms.NE_ID = growth.NE_ID AND alarms.MONTH = growth.MONTH\nGROUP BY \n    c.CUSTOMER_ID, c.CUSTOMER_NAME, e.NE_ID, e.NE_NAME\nORDER BY \n    MAX_GROWTH_RATE DESC;"
+  },
+  {
+    "question": "查询每个客户在线设备中，不同严重程度告警的熵值（衡量告警分布的均匀程度）",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "event_yjk_history",
+      "t_bz_incident_event_record",
+      "t_gn_business_application_change",
+      "event_history",
+      "ne_service_item",
+      "event_history_sdwan",
+      "trap",
+      "trap_snmp",
+      "event_condition",
+      "ne_business_severity",
+      "event_policy",
+      "event_knowledge",
+      "report_cust_reachability_ext"
+    ],
+    "expected_sql": "WITH severity_probabilities AS (SELECT c.CUSTOMER_NAME, e.SEVERITY, COUNT(*) AS severity_count, COUNT(*) * 1.0 / SUM(COUNT(*)) OVER (PARTITION BY c.CUSTOMER_ID) AS probability FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME, e.SEVERITY) SELECT CUSTOMER_NAME, ROUND(-SUM(probability * LOG2(probability)), 3) AS entropy FROM severity_probabilities GROUP BY CUSTOMER_NAME ORDER BY entropy DESC",
+    "generated_sql": "SELECT \n    c.CUSTOMER_ID,\n    c.CUSTOMER_NAME,\n    s.SEVERITY_NAME,\n    -SUM(p.SEVERITY_COUNT * LOG(p.SEVERITY_COUNT / SUM(p.SEVERITY_COUNT) OVER (PARTITION BY c.CUSTOMER_ID))) AS ENTROPY\nFROM \n    t_bz_config_customer c\nJOIN \n    t_bz_config_ci_ne_root d ON c.CUSTOMER_ID = d.CUSTOMER_ID AND d.IS_ONLINE = 1\nJOIN \n    event_history e ON d.NE_ID = e.NE_ID\nJOIN \n    (SELECT \n         NE_ID, \n         SEVERITY_NAME, \n         COUNT(*) AS SEVERITY_COUNT\n     FROM \n         event_history\n     WHERE \n         NE_ID IN (SELECT NE_ID FROM t_bz_config_ci_ne_root WHERE IS_ONLINE = 1)\n     GROUP BY \n         NE_ID, SEVERITY_NAME) p ON e.NE_ID = p.NE_ID AND e.SEVERITY_NAME = p.SEVERITY_NAME\nGROUP BY \n    c.CUSTOMER_ID, c.CUSTOMER_NAME, s.SEVERITY_NAME;"
+  },
+  {
+    "question": "查询每个客户在过去30天内至少发生过一次'Ping event'告警的在线设备数量，并按设备数量降序排列，同时显示客户名称和设备总数。",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_gn_business_application_change",
+      "event_sdn",
+      "event_history_sdwan",
+      "t_bz_incident_info",
+      "ne_syslog_filter_script",
+      "event",
+      "event_ping",
+      "event_condition",
+      "event_knowledge",
+      "ne_business_severity",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, COUNT(DISTINCT r.NE_ID) AS online_device_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 AND e.EVENT_TYPE_NAME = 'Ping event' AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME ORDER BY online_device_count DESC",
+    "generated_sql": "SELECT \n    eh.CUSTOMER_NAME,\n    COUNT(DISTINCT eh.ROOT_NE_ID) AS online_device_count,\n    SUM(CASE WHEN tbci.IS_ONLINE = 1 THEN 1 ELSE 0 END) AS total_online_devices\nFROM \n    event_history eh\nJOIN \n    t_bz_config_ci_ne_root tbci ON eh.ROOT_NE_ID = tbci.NE_ID AND eh.CUSTOMER_ID = tbci.CUSTOMER_ID\nWHERE \n    eh.EVENT_NAME = 'Ping event'\n    AND eh.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n    AND tbci.IS_ONLINE = 1\nGROUP BY \n    eh.CUSTOMER_NAME\nHAVING \n    online_device_count > 0\nORDER BY \n    online_device_count DESC;"
+  },
+  {
+    "question": "找出客户'测试客户'下所有设备中，'Trap event'告警发生次数最多的前3台设备，显示设备名、告警次数和最近一次告警时间。",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_yjk_history",
+      "event_backup",
+      "t_bz_config_customer",
+      "event_sdn",
+      "t_bz_config_ci_ne_root",
+      "event_history_sdwan",
+      "sdw_dp_port_basic",
+      "ne_syslog_filter_script",
+      "t_gn_business_application_change",
+      "event",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT r.HOST_NAME, COUNT(e.EVENT_TYPE_NAME) AS trap_count, MAX(e.EVENT_TIME) AS latest_trap_time FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE c.CUSTOMER_NAME = '测试客户' AND e.EVENT_TYPE_NAME = 'Trap event' GROUP BY r.NE_ID, r.HOST_NAME ORDER BY trap_count DESC, latest_trap_time DESC LIMIT 3",
+    "generated_sql": "SELECT \n    eh.ROOT_NE_NAME AS 设备名,\n    COUNT(eh.EVENT_ID) AS 告警次数,\n    MAX(eh.EVENT_TIME) AS 最近一次告警时间\nFROM \n    event_history eh\nWHERE \n    eh.CUSTOMER_NAME = '测试客户'\n    AND eh.EVENT_TYPE_NAME = 'Trap event'\nGROUP BY \n    eh.ROOT_NE_NAME\nORDER BY \n    告警次数 DESC\nLIMIT 3;"
+  },
+  {
+    "question": "查询每个客户下在线设备与离线设备的'Ping event'告警总数对比，显示客户名、在线设备告警数、离线设备告警数。",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_yjk_history",
+      "event_backup",
+      "t_bz_config_customer",
+      "event_sdn",
+      "t_bz_config_ci_ne_root",
+      "event_history_sdwan",
+      "event",
+      "ne_syslog_filter_script",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_policy",
+      "ne_business_severity"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, SUM(CASE WHEN r.IS_ONLINE = 1 THEN 1 ELSE 0 END) AS online_ping_alerts, SUM(CASE WHEN r.IS_ONLINE = 0 THEN 1 ELSE 0 END) AS offline_ping_alerts FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE e.EVENT_TYPE_NAME = 'Ping event' GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME",
+    "generated_sql": "SELECT \n    eh.CUSTOMER_NAME,\n    SUM(CASE WHEN tn.IS_ONLINE = 1 THEN 1 ELSE 0 END) AS online_device_alarm_count,\n    SUM(CASE WHEN tn.IS_ONLINE = 0 THEN 1 ELSE 0 END) AS offline_device_alarm_count\nFROM \n    event_ping ep\nJOIN \n    event_history eh ON ep.EVENT_ID = eh.EVENT_ID\nJOIN \n    t_bz_config_ci_ne_root tn ON ep.ROOT_NE_ID = tn.NE_ID\nWHERE \n    eh.EVENT_NAME = 'Ping event'\nGROUP BY \n    eh.CUSTOMER_NAME;"
+  },
+  {
+    "question": "找出过去7天内，'ngg-319009'客户下所有设备中，同时产生过'Ping event'和'Trap event'告警的设备，显示设备名和两种告警各自的数量。",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_yjk_history",
+      "event_backup",
+      "event_sdn",
+      "t_gn_business_application_change",
+      "t_bz_config_customer",
+      "event_history_sdwan",
+      "t_gn_botnet",
+      "sdw_dp_port_basic",
+      "t_bz_config_ci_ne_root",
+      "event",
+      "event_ping",
+      "event_condition",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT r.HOST_NAME, SUM(CASE WHEN e.EVENT_TYPE_NAME = 'Ping event' THEN 1 ELSE 0 END) AS ping_count, SUM(CASE WHEN e.EVENT_TYPE_NAME = 'Trap event' THEN 1 ELSE 0 END) AS trap_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE c.CUSTOMER_NAME = 'ngg-319009' AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY) AND e.EVENT_TYPE_NAME IN ('Ping event', 'Trap event') GROUP BY r.NE_ID, r.HOST_NAME HAVING ping_count > 0 AND trap_count > 0",
+    "generated_sql": "SELECT \n    eh1.ROOT_NE_NAME AS device_name,\n    COUNT(CASE WHEN eh1.EVENT_TYPE_NAME = 'Ping event' THEN 1 END) AS ping_event_count,\n    COUNT(CASE WHEN eh1.EVENT_TYPE_NAME = 'Trap event' THEN 1 END) AS trap_event_count\nFROM \n    event_history eh1\nJOIN \n    event_history eh2 ON eh1.ROOT_NE_NAME = eh2.ROOT_NE_NAME AND eh1.CUSTOMER_NAME = eh2.CUSTOMER_NAME\nWHERE \n    eh1.CUSTOMER_NAME = 'ngg-319009'\n    AND eh1.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    AND eh2.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    AND eh1.EVENT_TYPE_NAME IN ('Ping event', 'Trap event')\n    AND eh2.EVENT_TYPE_NAME IN ('Ping event', 'Trap event')\nGROUP BY \n    eh1.ROOT_NE_NAME\nHAVING \n    ping_event_count > 0 AND trap_event_count > 0;"
+  },
+  {
+    "question": "查询每个客户下，设备'tdk-shanghai-b'在过去30天内产生的不同严重级别(SEVERITY)的'Trap event'告警分布，显示客户名、严重级别和告警数量。",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_sdn",
+      "event_history_sdwan",
+      "t_gn_business_application_change",
+      "sdw_dp_port_basic",
+      "ne_syslog_filter_script",
+      "event",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "ne_business_severity"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, e.SEVERITY, COUNT(*) AS alert_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.HOST_NAME = 'tdk-shanghai-b' AND e.EVENT_TYPE_NAME = 'Trap event' AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME, e.SEVERITY ORDER BY c.CUSTOMER_NAME, e.SEVERITY",
+    "generated_sql": "SELECT \n    CUSTOMER_NAME, \n    SEVERITY_NAME, \n    COUNT(*) AS ALERT_COUNT\nFROM \n    event_history\nWHERE \n    ROOT_NE_NAME = 'tdk-shanghai-b' \n    AND EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nGROUP BY \n    CUSTOMER_NAME, \n    SEVERITY_NAME;"
+  },
+  {
+    "question": "找出每个客户下，在线设备中'Ping event'告警频率最高的设备（告警总数/设备数），显示客户名、设备名和平均告警数。",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_yjk_history",
+      "event_backup",
+      "event_sdn",
+      "t_bz_config_customer",
+      "event_history_sdwan",
+      "t_bz_config_ci_ne_root",
+      "ne_syslog_filter_script",
+      "event",
+      "syslog_filter_script",
+      "t_gn_business_application_change",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_policy",
+      "ne_business_severity"
+    ],
+    "expected_sql": "SELECT c.CUSTOMER_NAME, r.HOST_NAME, COUNT(e.EVENT_TYPE_NAME) / COUNT(DISTINCT r.NE_ID) AS avg_ping_alerts FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE r.IS_ONLINE = 1 AND e.EVENT_TYPE_NAME = 'Ping event' GROUP BY c.CUSTOMER_ID, c.CUSTOMER_NAME, r.NE_ID, r.HOST_NAME ORDER BY avg_ping_alerts DESC LIMIT 1 PER CUSTOMER_ID",
+    "generated_sql": "SELECT \n    eh.CUSTOMER_NAME,\n    eh.ROOT_NE_NAME AS DEVICE_NAME,\n    COUNT(eh.EVENT_ID) / COUNT(DISTINCT eh.ROOT_NE_ID) AS AVG_ALARM_COUNT\nFROM \n    event_history eh\nJOIN \n    t_bz_config_ci_ne_root ne ON eh.ROOT_NE_ID = ne.NE_ID\nWHERE \n    eh.EVENT_TYPE_NAME = 'Ping event'\n    AND ne.IS_ONLINE = 1\nGROUP BY \n    eh.CUSTOMER_NAME, eh.ROOT_NE_NAME\nORDER BY \n    AVG_ALARM_COUNT DESC;"
+  },
+  {
+    "question": "查询'测试客户'下，设备'cx-sx-cc002'每月产生的'Trap event'告警趋势，显示年份、月份和告警数量。",
+    "difficulty": "hard",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "retrieved_tables": [
+      "event_history",
+      "event_backup",
+      "event_yjk_history",
+      "event_sdn",
+      "t_bz_config_customer",
+      "event_history_sdwan",
+      "t_bz_config_ci_ne_root",
+      "sdw_dp_port_basic",
+      "ne_syslog_filter_script",
+      "event",
+      "t_gn_business_application_change",
+      "event_condition",
+      "event_ping",
+      "event_knowledge",
+      "event_policy"
+    ],
+    "expected_sql": "SELECT YEAR(e.EVENT_TIME) AS alert_year, MONTH(e.EVENT_TIME) AS alert_month, COUNT(*) AS trap_count FROM t_bz_config_ci_ne_root r JOIN t_bz_config_customer c ON r.CUSTOMER_ID = c.CUSTOMER_ID JOIN event_history e ON r.NE_ID = e.NE_ID AND r.CUSTOMER_ID = e.CUSTOMER_ID WHERE c.CUSTOMER_NAME = '测试客户' AND r.HOST_NAME = 'cx-sx-cc002' AND e.EVENT_TYPE_NAME = 'Trap event' GROUP BY YEAR(e.EVENT_TIME), MONTH(e.EVENT_TIME) ORDER BY alert_year, alert_month",
+    "generated_sql": "SELECT \n    YEAR(EVENT_TIME) AS 年份,\n    MONTH(EVENT_TIME) AS 月份,\n    COUNT(*) AS 告警数量\nFROM \n    event_history\nWHERE \n    CUSTOMER_NAME = '测试客户'\n    AND ROOT_NE_NAME = 'cx-sx-cc002'\n    AND EVENT_TYPE_NAME = 'Trap event'\nGROUP BY \n    YEAR(EVENT_TIME), MONTH(EVENT_TIME)\nORDER BY \n    年份, 月份;"
+  }
+]

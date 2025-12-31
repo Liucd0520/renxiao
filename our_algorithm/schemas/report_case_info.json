@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_case_info"
+  },
+  "table_comment": null,
+  "llm_description": "report_case_info表存储告警案件基础信息，包含案件编号、地区、优先级等字段，用于客户与设备问题的工单管理及处理优先级划分。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REPORT_INST_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CASE_NUM",
+      "type": "int(10)",
+      "description": null
+    },
+    {
+      "name": "REGION_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PRIORITY_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "report_case_info表存储告警案件基础信息，包含案件编号、地区、优先级等字段，用于客户与设备问题的工单管理及处理优先级划分。\n表名: report_case_info\n其他列: ID, REPORT_INST_ID, CASE_NUM, REGION_ID, PRIORITY_ID"
+}

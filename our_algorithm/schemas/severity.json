@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "severity"
+  },
+  "table_comment": null,
+  "llm_description": "severity表存储严重等级ID及名称，用于管理告警、设备故障、客户问题、订单处理和用户权限的优先级分类。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(2,0)",
+      "description": "严重等级ID"
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(255)",
+      "description": "严重等级名称"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "severity表存储严重等级ID及名称，用于管理告警、设备故障、客户问题、订单处理和用户权限的优先级分类。\n表名: severity\n列信息: ID(严重等级ID), NAME(严重等级名称)"
+}

@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "syslog_server"
+  },
+  "table_comment": null,
+  "llm_description": "syslog_server表存储客户设备系统日志信息，包含日志等级、处理状态及网络数据包详情，用于告警监控与设备运维管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "系统日志ID"
+    },
+    {
+      "name": "message",
+      "type": "mediumtext",
+      "description": "日志信息"
+    },
+    {
+      "name": "severity",
+      "type": "varchar(255)",
+      "description": "日志等级。常见值: Notice, Informational, Emergency, Error, Warning, Alert, Critical"
+    },
+    {
+      "name": "facility",
+      "type": "varchar(255)",
+      "description": "日志级别"
+    },
+    {
+      "name": "handle",
+      "type": "varchar(255)",
+      "description": "处理"
+    },
+    {
+      "name": "ip_packet_address",
+      "type": "varchar(255)",
+      "description": "数据包地址"
+    },
+    {
+      "name": "ip_host_id",
+      "type": "varchar(255)",
+      "description": "设备主机ID"
+    },
+    {
+      "name": "ip_host_name",
+      "type": "varchar(255)",
+      "description": "设备主机名称"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(10,0)",
+      "description": "设备ID"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "syslog_server表存储客户设备系统日志信息，包含日志等级、处理状态及网络数据包详情，用于告警监控与设备运维管理。\n表名: syslog_server\n列信息: id(系统日志ID), message(日志信息), severity(日志等级), facility(日志级别), handle(处理), ip_packet_address(数据包地址), ip_host_id(设备主机ID), ip_host_name(设备主机名称), ne_id(设备ID), customer_id(客户ID), create_datetime(创建时间)"
+}

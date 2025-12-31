@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_service_transfer"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_service_transfer表存储服务交接记录，包含工位ID、处理用户、接收用户、交接时间、转移类型、是否成功及拒绝原因，用于追踪客户订单相关用户权限转移过程。",
+  "columns": [
+    {
+      "name": "TRANSFER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "DESK_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "DEAL_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "RECEIVE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "DEAL_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "RECEIVE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "TRANSFER_TYPE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_SUCCESS",
+      "type": "int(1)",
+      "description": null
+    },
+    {
+      "name": "REJECT_REASON",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "t_bz_service_transfer表存储服务交接记录，包含工位ID、处理用户、接收用户、交接时间、转移类型、是否成功及拒绝原因，用于追踪客户订单相关用户权限转移过程。\n表名: t_bz_service_transfer\n其他列: TRANSFER_ID, DESK_ID, DEAL_USER_ID, RECEIVE_USER_ID, DEAL_TIME, RECEIVE_TIME, TRANSFER_TYPE, IS_SUCCESS, REJECT_REASON"
+}

@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_knowledge"
+  },
+  "table_comment": null,
+  "llm_description": "event_knowledge表存储客户、订单、设备等业务事件类型及对应值，用于告警监控与权限管理。",
+  "columns": [
+    {
+      "name": "EVENT_NAME",
+      "type": "varchar(255)",
+      "description": "EVENT_NAME。常见值: threshold event, trap event, indicate event, ping event, interface event, system event, link event, Serial Number Change"
+    },
+    {
+      "name": "EVENT_TYPE_ID",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "EVENT_VALUE",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "event_knowledge表存储客户、订单、设备等业务事件类型及对应值，用于告警监控与权限管理。\n表名: event_knowledge\n其他列: EVENT_NAME, EVENT_TYPE_ID, EVENT_VALUE"
+}

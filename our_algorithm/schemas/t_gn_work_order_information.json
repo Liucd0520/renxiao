@@ -1,0 +1,157 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_work_order_information"
+  },
+  "table_comment": null,
+  "llm_description": "t_gn_work_order_information表存储工单基础信息及审批流程数据，用于记录订单处理状态、审批人意见和操作时间，涉及用户权限管理与业务流程跟踪。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "work_order_no",
+      "type": "varchar(50)",
+      "description": "工单单号"
+    },
+    {
+      "name": "title",
+      "type": "varchar(50)",
+      "description": "标题，格式：流程名称+单据单号"
+    },
+    {
+      "name": "order_no",
+      "type": "varchar(50)",
+      "description": "单据单号，流程单的单据单号"
+    },
+    {
+      "name": "work_order_status",
+      "type": "int(1)",
+      "description": "工单状态，1 未审核、2 未处理、3 已处理"
+    },
+    {
+      "name": "create_channel",
+      "type": "varchar(20)",
+      "description": "创建渠道"
+    },
+    {
+      "name": "one_approver_id",
+      "type": "int(11)",
+      "description": "审批人id，一级审批"
+    },
+    {
+      "name": "one_approval_opinion",
+      "type": "varchar(200)",
+      "description": "一级审批意见"
+    },
+    {
+      "name": "one_approval_datetime",
+      "type": "datetime",
+      "description": "一级审批时间"
+    },
+    {
+      "name": "two_approver_id",
+      "type": "int(11)",
+      "description": "审批人id，二级审批"
+    },
+    {
+      "name": "two_approval_opinion",
+      "type": "varchar(200)",
+      "description": "二级审批意见"
+    },
+    {
+      "name": "two_approval_datetime",
+      "type": "datetime",
+      "description": "二级审批时间"
+    },
+    {
+      "name": "three_approver_id",
+      "type": "int(11)",
+      "description": "审批人id，三级审批"
+    },
+    {
+      "name": "three_approval_opinion",
+      "type": "varchar(200)",
+      "description": "三级审批意见"
+    },
+    {
+      "name": "three_approval_datetime",
+      "type": "datetime",
+      "description": "三级审批时间"
+    },
+    {
+      "name": "creator_id",
+      "type": "int(11)",
+      "description": "创建人id"
+    },
+    {
+      "name": "department_id",
+      "type": "int(11)",
+      "description": "所属部门id"
+    },
+    {
+      "name": "flow_type",
+      "type": "varchar(10)",
+      "description": "流程类型，LC1_GG 公告信息、LC2_YWSQBG 业务申请及变更信息等。常见值: LC2_YWSQBG, LC1_GG"
+    },
+    {
+      "name": "table_name",
+      "type": "varchar(100)",
+      "description": "数据表名称"
+    },
+    {
+      "name": "include_id",
+      "type": "int(11)",
+      "description": "交班人员ID"
+    },
+    {
+      "name": "successor_id",
+      "type": "int(11)",
+      "description": "接班人员ID"
+    },
+    {
+      "name": "handler_id",
+      "type": "int(11)",
+      "description": "当前处理人员ID"
+    },
+    {
+      "name": "take_over_date",
+      "type": "datetime",
+      "description": "接班时间"
+    },
+    {
+      "name": "handle_date",
+      "type": "datetime",
+      "description": "处理时间"
+    },
+    {
+      "name": "deal_with_content",
+      "type": "varchar(200)",
+      "description": "处理内容"
+    },
+    {
+      "name": "reasons_refusal",
+      "type": "varchar(100)",
+      "description": "拒绝理由"
+    },
+    {
+      "name": "work_order_attachment",
+      "type": "varchar(500)",
+      "description": "附件"
+    },
+    {
+      "name": "retrieve_status",
+      "type": "int(1)",
+      "description": "检索状态，1 未审核、2 未处理、3 已处理"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 29,
+  "embedding_text": "t_gn_work_order_information表存储工单基础信息及审批流程数据，用于记录订单处理状态、审批人意见和操作时间，涉及用户权限管理与业务流程跟踪。\n表名: t_gn_work_order_information\n列信息: id(id), work_order_no(工单单号), title(标题，格式：流程名称+单据单号), order_no(单据单号，流程单的单据单号), work_order_status(工单状态，1 未审核、2 未处理、3 已处理), create_channel(创建渠道), one_approver_id(审批人id，一级审批), one_approval_opinion(一级审批意见), one_approval_datetime(一级审批时间), two_approver_id(审批人id，二级审批), two_approval_opinion(二级审批意见), two_approval_datetime(二级审批时间), three_approver_id(审批人id，三级审批), three_approval_opinion(三级审批意见), three_approval_datetime(三级审批时间)"
+}

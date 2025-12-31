@@ -1,0 +1,187 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_botnet"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备失陷事件记录，用于告警分析和资产分类管理，包含客户分支、设备类型、IP地址及事件日期等关键信息。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "event_key",
+      "type": "varchar(500)",
+      "description": "事件标识，用于查找日志"
+    },
+    {
+      "name": "asset_id",
+      "type": "int(11)",
+      "description": "资产唯一id"
+    },
+    {
+      "name": "classify_id",
+      "type": "int(11)",
+      "description": "设备全类型id"
+    },
+    {
+      "name": "classify1_id",
+      "type": "int(11)",
+      "description": "设备类型id一级分类"
+    },
+    {
+      "name": "branch_id",
+      "type": "varchar(20)",
+      "description": "分支id"
+    },
+    {
+      "name": "principle",
+      "type": "varchar(500)",
+      "description": "原理"
+    },
+    {
+      "name": "tag",
+      "type": "varchar(200)",
+      "description": "标签"
+    },
+    {
+      "name": "ip",
+      "type": "varchar(50)",
+      "description": "失陷的主机ip地址"
+    },
+    {
+      "name": "record_date",
+      "type": "int(11)",
+      "description": "事件产生的日期，非时间戳，20170701 具体到天"
+    },
+    {
+      "name": "detect_engine",
+      "type": "varchar(50)",
+      "description": "检测 引擎的名字"
+    },
+    {
+      "name": "rule_id",
+      "type": "varchar(20)",
+      "description": "规则id"
+    },
+    {
+      "name": "first_time",
+      "type": "int(11)",
+      "description": "当天第一次产生的具体时间，秒级时间戳"
+    },
+    {
+      "name": "last_time",
+      "type": "int(11)",
+      "description": "最新访问时间，秒级时间戳"
+    },
+    {
+      "name": "event_des",
+      "type": "varchar(500)",
+      "description": "事件描述"
+    },
+    {
+      "name": "info_security",
+      "type": "varchar(20)",
+      "description": "事件大类"
+    },
+    {
+      "name": "info_security_sub",
+      "type": "varchar(20)",
+      "description": "事件子类"
+    },
+    {
+      "name": "priority",
+      "type": "int(1)",
+      "description": "失陷确定性，1 低可疑、2 高可疑、3 已失陷"
+    },
+    {
+      "name": "reliability",
+      "type": "int(1)",
+      "description": "威胁性等级，1 低威胁、2 中威胁、3 高威胁"
+    },
+    {
+      "name": "stage",
+      "type": "int(1)",
+      "description": "攻击阶段，-1：全部阶段,1 遭受攻击、2 C&C 通信、3 黑产牟利、4 内网探测、5 内网扩散攻击、6 盗取数据"
+    },
+    {
+      "name": "host_risk",
+      "type": "varchar(100)",
+      "description": "风险主机"
+    },
+    {
+      "name": "branch_name",
+      "type": "varchar(50)",
+      "description": "分支名。常见值: 326_殷行街道办, 340_长海街道社区事务受理服务中心, 273_佳龙居委会, 60_自然资源确权登记事务中心, 243_黑山新村居委会, 311_长海路街道综治中心, 425_新江湾城城管中心, 科委在电信机房的服务器网段, 424_五角场城管中心, 576_司法局社区矫正中心"
+    },
+    {
+      "name": "deal_status",
+      "type": "int(1)",
+      "description": "处理状态，0 未处理、1 已处理"
+    },
+    {
+      "name": "proof",
+      "type": "mediumtext",
+      "description": "攻击举证proof"
+    },
+    {
+      "name": "solution",
+      "type": "varchar(1500)",
+      "description": "处理建议"
+    },
+    {
+      "name": "host_name",
+      "type": "varchar(50)",
+      "description": "用户名/主机名"
+    },
+    {
+      "name": "event_type",
+      "type": "int(1)",
+      "description": "是否为热点事件，0 不是、1 是"
+    },
+    {
+      "name": "log_params",
+      "type": "varchar(500)",
+      "description": "日志参数，用户用该字段去找对应日志信息"
+    },
+    {
+      "name": "top10",
+      "type": "varchar(500)",
+      "description": "安全事件日志top10"
+    },
+    {
+      "name": "device_info",
+      "type": "varchar(500)",
+      "description": "设备信息"
+    },
+    {
+      "name": "source",
+      "type": "varchar(20)",
+      "description": "数据来源，默认为“SIP”"
+    },
+    {
+      "name": "apikey",
+      "type": "varchar(100)",
+      "description": "apikey，默认为空，无需关注"
+    },
+    {
+      "name": "device_id",
+      "type": "varchar(20)",
+      "description": "设备id"
+    },
+    {
+      "name": "device_version",
+      "type": "varchar(500)",
+      "description": "设备版本号"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 35,
+  "embedding_text": "存储设备失陷事件记录，用于告警分析和资产分类管理，包含客户分支、设备类型、IP地址及事件日期等关键信息。\n表名: t_gn_botnet\n列信息: id(id), event_key(事件标识，用于查找日志), asset_id(资产唯一id), classify_id(设备全类型id), classify1_id(设备类型id一级分类), branch_id(分支id), principle(原理), tag(标签), ip(失陷的主机ip地址), record_date(事件产生的日期，非时间戳，20170701 具体到天), detect_engine(检测 引擎的名字), rule_id(规则id), first_time(当天第一次产生的具体时间，秒级时间戳), last_time(最新访问时间，秒级时间戳), event_des(事件描述)"
+}

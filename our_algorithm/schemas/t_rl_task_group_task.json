@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_task_group_task"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储任务组与任务的关联关系及坐标信息，用于客户订单处理中的流程布局与任务依赖管理。",
+  "columns": [
+    {
+      "name": "relationship_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "x_coordinate",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "y_coordinate",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "group_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "node_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "pre_task_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "task_id",
+      "type": "decimal(19,2)",
+      "description": null
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "该表存储任务组与任务的关联关系及坐标信息，用于客户订单处理中的流程布局与任务依赖管理。\n表名: t_rl_task_group_task\n其他列: relationship_id, x_coordinate, y_coordinate, group_id, node_id, pre_task_id, task_id"
+}

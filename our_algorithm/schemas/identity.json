@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "identity"
+  },
+  "table_comment": null,
+  "llm_description": "identity表存储设备类型及权限包含关系，用于管理客户设备的分类与访问控制配置。",
+  "columns": [
+    {
+      "name": "OID",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "NE_TYPE_ID",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "NE_TYPE_NAME",
+      "type": "varchar(255)",
+      "description": "NE_TYPE_NAME。常见值: Cisco Device, Windows Server, Juniper Device, BDCOM Device, SINO Device, F5 Device, Network Device, ZTE Device, RuiJie Device, HP Unix Server"
+    },
+    {
+      "name": "IS_INCLUDE",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "identity表存储设备类型及权限包含关系，用于管理客户设备的分类与访问控制配置。\n表名: identity\n其他列: OID, NE_TYPE_ID, NE_TYPE_NAME, IS_INCLUDE"
+}

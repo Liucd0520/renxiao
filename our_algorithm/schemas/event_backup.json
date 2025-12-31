@@ -1,0 +1,192 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_backup"
+  },
+  "table_comment": null,
+  "llm_description": "event_backup表用于存储客户、设备、用户等业务事件的备份数据，包含事件类型、状态、时间及描述，支持告警监控与状态追踪。",
+  "columns": [
+    {
+      "name": "EVENT_ID",
+      "type": "decimal(30,0)",
+      "description": null
+    },
+    {
+      "name": "EVENT_TYPE_ID",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "EVENT_TYPE_NAME",
+      "type": "varchar(255)",
+      "description": "EVENT_TYPE_NAME。常见值: Indicate event, Ping event, Threshold event, Interface event, Trap event, System event, Link event"
+    },
+    {
+      "name": "EVENT_NAME",
+      "type": "varchar(255)",
+      "description": "EVENT_NAME。常见值: IP SLA State, Device Syslog, Device state, Interface oper status, udpJitterResultsLostPacketRatioThreshold, Authentication Failure, Interface In Errors Packets, Interface Out Utilization, Interface In Utilization, Interface Out Errors Packets"
+    },
+    {
+      "name": "EVENT_VALUE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "EVENT_STATUS",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "EVENT_STATUS_NAME",
+      "type": "varchar(128)",
+      "description": "EVENT_STATUS_NAME。常见值: alarm, normal"
+    },
+    {
+      "name": "EVENT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "EVENT_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "GROUP_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "CORRELATION_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "BUSINESS_ID",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "BUSINESS_NAME",
+      "type": "varchar(255)",
+      "description": "BUSINESS_NAME。常见值: Network, Basic, Server"
+    },
+    {
+      "name": "SEVERITY_ID",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "SEVERITY_NAME",
+      "type": "varchar(255)",
+      "description": "SEVERITY_NAME。常见值: Warning, Normal, Unknown, Critical, Informational, Minor, Major, Monitoring"
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "NE_NAME",
+      "type": "varchar(255)",
+      "description": "NE_NAME。常见值: sla 1, sla 2, Ruijie-1, 设备23, user test4, LAPTOP-REAL-QJW, SP-H3C1, H3C01, NEW-RUIJIE-1, CPU"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "ROOT_NE_NAME",
+      "type": "varchar(512)",
+      "description": "ROOT_NE_NAME。常见值: Ruijie-2, NEW-RUIJIE-1, Ruijie-1, 设备23, 0415CISCO设备, SP-Huawei1, SP-H3C1, NEW-H3C, NEW-HUAWEI-1, LAPTOP-REAL-QJW"
+    },
+    {
+      "name": "SYSTEM_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "SYSTEM_NAME",
+      "type": "varchar(255)",
+      "description": "SYSTEM_NAME。常见值: NETCARE"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_NAME",
+      "type": "varchar(255)",
+      "description": "CUSTOMER_NAME。常见值: 理想公司, 007同步, 徐汇区政府"
+    },
+    {
+      "name": "ADDRESS",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "ADDITIONAL",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "SERVICE_PACKAGE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "SERVICE_ITEM",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "IS_ACK",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "ACK_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "ACK_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ACK_USER_NAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "IS_ACTION",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "ACTION_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "ACTION_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ACTION_USER_NAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "ACTION_NO",
+      "type": "varchar(64)",
+      "description": null
+    }
+  ],
+  "column_count": 36,
+  "embedding_text": "event_backup表用于存储客户、设备、用户等业务事件的备份数据，包含事件类型、状态、时间及描述，支持告警监控与状态追踪。\n表名: event_backup\n其他列: EVENT_ID, EVENT_TYPE_ID, EVENT_TYPE_NAME, EVENT_NAME, EVENT_VALUE, EVENT_STATUS, EVENT_STATUS_NAME, EVENT_TIME, EVENT_DESC, GROUP_ID, CORRELATION_ID, BUSINESS_ID, BUSINESS_NAME, SEVERITY_ID, SEVERITY_NAME"
+}

@@ -1,0 +1,642 @@
+[
+  {
+    "round": 1,
+    "results": [
+      {
+        "id": 1,
+        "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+        "sql": "SELECT e.EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.ROOT_NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'CiscoA' AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY e.EVENT_TYPE_NAME;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 2,
+        "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+        "sql": "SELECT \n    bcd.CUSTOMER_NAME, \n    td.device_name\nFROM \n    t_bz_config_customer bcd\nJOIN \n    t_gn_topo_device td ON bcd.CUSTOMER_ID = td.customer_id\nWHERE \n    td.device_status = 'down' \n    AND td.UPDATE_TIME < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+        "tables_ok": false,
+        "missing_tables": [
+          "event_history",
+          "t_bz_config_ci_ne_root"
+        ],
+        "bad_columns": []
+      },
+      {
+        "id": 3,
+        "question": "现在平台上有多少家客户",
+        "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 4,
+        "question": "现在平台上有多少台设备",
+        "sql": "SELECT COUNT(*) AS total_devices FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 5,
+        "question": "上个月上线的新设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 6,
+        "question": "上个月下线的设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 7,
+        "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+        "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = (SELECT CUSTOMER_ID FROM t_bz_config_ci_ne_root WHERE CI_ID = <指定设备CI_ID>) -- 请将<指定设备CI_ID>替换为实际的设备CI_ID\n    AND eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "results": [
+      {
+        "id": 1,
+        "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+        "sql": "SELECT e.EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.ROOT_NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'CiscoA' AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY e.EVENT_TYPE_NAME;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 2,
+        "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+        "sql": "SELECT \n    bcd.CUSTOMER_NAME, \n    td.device_name\nFROM \n    t_bz_config_customer bcd\nJOIN \n    t_gn_topo_device td ON bcd.CUSTOMER_ID = td.customer_id\nWHERE \n    td.device_status = 'down' \n    AND td.UPDATE_TIME < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+        "tables_ok": false,
+        "missing_tables": [
+          "event_history",
+          "t_bz_config_ci_ne_root"
+        ],
+        "bad_columns": []
+      },
+      {
+        "id": 3,
+        "question": "现在平台上有多少家客户",
+        "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 4,
+        "question": "现在平台上有多少台设备",
+        "sql": "SELECT COUNT(*) AS total_devices FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 5,
+        "question": "上个月上线的新设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 6,
+        "question": "上个月下线的设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 7,
+        "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+        "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = (SELECT CUSTOMER_ID FROM t_bz_config_ci_ne_root WHERE CI_ID = <指定设备CI_ID>) -- 请将<指定设备CI_ID>替换为实际的设备CI_ID\n    AND eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "results": [
+      {
+        "id": 1,
+        "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+        "sql": "SELECT e.EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.ROOT_NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'CiscoA' AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY e.EVENT_TYPE_NAME;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 2,
+        "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+        "sql": "SELECT \n    bcd.CUSTOMER_NAME, \n    td.device_name\nFROM \n    t_bz_config_customer bcd\nJOIN \n    t_gn_topo_device td ON bcd.CUSTOMER_ID = td.customer_id\nWHERE \n    td.device_status = 'down' \n    AND td.UPDATE_TIME < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+        "tables_ok": false,
+        "missing_tables": [
+          "event_history",
+          "t_bz_config_ci_ne_root"
+        ],
+        "bad_columns": []
+      },
+      {
+        "id": 3,
+        "question": "现在平台上有多少家客户",
+        "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 4,
+        "question": "现在平台上有多少台设备",
+        "sql": "SELECT COUNT(*) AS total_devices FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 5,
+        "question": "上个月上线的新设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 6,
+        "question": "上个月下线的设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 7,
+        "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+        "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = (SELECT CUSTOMER_ID FROM t_bz_config_ci_ne_root WHERE CI_ID = <指定设备CI_ID>) -- 请将<指定设备CI_ID>替换为实际的设备CI_ID\n    AND eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "results": [
+      {
+        "id": 1,
+        "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+        "sql": "SELECT e.EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.ROOT_NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'CiscoA' AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY e.EVENT_TYPE_NAME;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 2,
+        "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+        "sql": "SELECT \n    bcd.CUSTOMER_NAME, \n    td.device_name\nFROM \n    t_bz_config_customer bcd\nJOIN \n    t_gn_topo_device td ON bcd.CUSTOMER_ID = td.customer_id\nWHERE \n    td.device_status = 'down' \n    AND td.UPDATE_TIME < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+        "tables_ok": false,
+        "missing_tables": [
+          "event_history",
+          "t_bz_config_ci_ne_root"
+        ],
+        "bad_columns": []
+      },
+      {
+        "id": 3,
+        "question": "现在平台上有多少家客户",
+        "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 4,
+        "question": "现在平台上有多少台设备",
+        "sql": "SELECT COUNT(*) AS total_devices FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 5,
+        "question": "上个月上线的新设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 6,
+        "question": "上个月下线的设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 7,
+        "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+        "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = (SELECT CUSTOMER_ID FROM t_bz_config_ci_ne_root WHERE CI_ID = <指定设备CI_ID>) -- 请将<指定设备CI_ID>替换为实际的设备CI_ID\n    AND eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "results": [
+      {
+        "id": 1,
+        "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+        "sql": "SELECT e.EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.ROOT_NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'CiscoA' AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY e.EVENT_TYPE_NAME;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 2,
+        "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+        "sql": "SELECT \n    bcd.CUSTOMER_NAME, \n    td.device_name\nFROM \n    t_bz_config_customer bcd\nJOIN \n    t_gn_topo_device td ON bcd.CUSTOMER_ID = td.customer_id\nWHERE \n    td.device_status = 'down' \n    AND td.UPDATE_TIME < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+        "tables_ok": false,
+        "missing_tables": [
+          "event_history",
+          "t_bz_config_ci_ne_root"
+        ],
+        "bad_columns": []
+      },
+      {
+        "id": 3,
+        "question": "现在平台上有多少家客户",
+        "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 4,
+        "question": "现在平台上有多少台设备",
+        "sql": "SELECT COUNT(*) AS total_devices FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 5,
+        "question": "上个月上线的新设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 6,
+        "question": "上个月下线的设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 7,
+        "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+        "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = (SELECT CUSTOMER_ID FROM t_bz_config_ci_ne_root WHERE CI_ID = <指定设备CI_ID>) -- 请将<指定设备CI_ID>替换为实际的设备CI_ID\n    AND eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      }
+    ]
+  },
+  {
+    "round": 6,
+    "results": [
+      {
+        "id": 1,
+        "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+        "sql": "SELECT e.EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.ROOT_NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'CiscoA' AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY e.EVENT_TYPE_NAME;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 2,
+        "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+        "sql": "SELECT \n    bcd.CUSTOMER_NAME, \n    td.device_name\nFROM \n    t_bz_config_customer bcd\nJOIN \n    t_gn_topo_device td ON bcd.CUSTOMER_ID = td.customer_id\nWHERE \n    td.device_status = 'down' \n    AND td.UPDATE_TIME < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+        "tables_ok": false,
+        "missing_tables": [
+          "event_history",
+          "t_bz_config_ci_ne_root"
+        ],
+        "bad_columns": []
+      },
+      {
+        "id": 3,
+        "question": "现在平台上有多少家客户",
+        "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 4,
+        "question": "现在平台上有多少台设备",
+        "sql": "SELECT COUNT(*) AS total_devices FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 5,
+        "question": "上个月上线的新设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 6,
+        "question": "上个月下线的设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 7,
+        "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+        "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = (SELECT CUSTOMER_ID FROM t_bz_config_ci_ne_root WHERE CI_ID = <指定设备CI_ID>) -- 请将<指定设备CI_ID>替换为实际的设备CI_ID\n    AND eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "results": [
+      {
+        "id": 1,
+        "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+        "sql": "SELECT e.EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.ROOT_NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'CiscoA' AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY e.EVENT_TYPE_NAME;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 2,
+        "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+        "sql": "SELECT \n    bcd.CUSTOMER_NAME, \n    td.device_name\nFROM \n    t_bz_config_customer bcd\nJOIN \n    t_gn_topo_device td ON bcd.CUSTOMER_ID = td.customer_id\nWHERE \n    td.device_status = 'down' \n    AND td.UPDATE_TIME < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+        "tables_ok": false,
+        "missing_tables": [
+          "event_history",
+          "t_bz_config_ci_ne_root"
+        ],
+        "bad_columns": []
+      },
+      {
+        "id": 3,
+        "question": "现在平台上有多少家客户",
+        "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 4,
+        "question": "现在平台上有多少台设备",
+        "sql": "SELECT COUNT(*) AS total_devices FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 5,
+        "question": "上个月上线的新设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 6,
+        "question": "上个月下线的设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 7,
+        "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+        "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = (SELECT CUSTOMER_ID FROM t_bz_config_ci_ne_root WHERE CI_ID = <指定设备CI_ID>) -- 请将<指定设备CI_ID>替换为实际的设备CI_ID\n    AND eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "results": [
+      {
+        "id": 1,
+        "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+        "sql": "SELECT e.EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.ROOT_NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'CiscoA' AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY e.EVENT_TYPE_NAME;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 2,
+        "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+        "sql": "SELECT \n    bcd.CUSTOMER_NAME, \n    td.device_name\nFROM \n    t_bz_config_customer bcd\nJOIN \n    t_gn_topo_device td ON bcd.CUSTOMER_ID = td.customer_id\nWHERE \n    td.device_status = 'down' \n    AND td.UPDATE_TIME < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+        "tables_ok": false,
+        "missing_tables": [
+          "event_history",
+          "t_bz_config_ci_ne_root"
+        ],
+        "bad_columns": []
+      },
+      {
+        "id": 3,
+        "question": "现在平台上有多少家客户",
+        "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 4,
+        "question": "现在平台上有多少台设备",
+        "sql": "SELECT COUNT(*) AS total_devices FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 5,
+        "question": "上个月上线的新设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 6,
+        "question": "上个月下线的设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 7,
+        "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+        "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = (SELECT CUSTOMER_ID FROM t_bz_config_ci_ne_root WHERE CI_ID = <指定设备CI_ID>) -- 请将<指定设备CI_ID>替换为实际的设备CI_ID\n    AND eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      }
+    ]
+  },
+  {
+    "round": 9,
+    "results": [
+      {
+        "id": 1,
+        "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+        "sql": "SELECT e.EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.ROOT_NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'CiscoA' AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY e.EVENT_TYPE_NAME;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 2,
+        "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+        "sql": "SELECT \n    bcd.CUSTOMER_NAME, \n    td.device_name\nFROM \n    t_bz_config_customer bcd\nJOIN \n    t_gn_topo_device td ON bcd.CUSTOMER_ID = td.customer_id\nWHERE \n    td.device_status = 'down' \n    AND td.UPDATE_TIME < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+        "tables_ok": false,
+        "missing_tables": [
+          "event_history",
+          "t_bz_config_ci_ne_root"
+        ],
+        "bad_columns": []
+      },
+      {
+        "id": 3,
+        "question": "现在平台上有多少家客户",
+        "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 4,
+        "question": "现在平台上有多少台设备",
+        "sql": "SELECT COUNT(*) AS total_devices FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 5,
+        "question": "上个月上线的新设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 6,
+        "question": "上个月下线的设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 7,
+        "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+        "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = (SELECT CUSTOMER_ID FROM t_bz_config_ci_ne_root WHERE CI_ID = <指定设备CI_ID>) -- 请将<指定设备CI_ID>替换为实际的设备CI_ID\n    AND eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "results": [
+      {
+        "id": 1,
+        "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+        "sql": "SELECT e.EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.ROOT_NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'CiscoA' AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY e.EVENT_TYPE_NAME;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 2,
+        "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+        "sql": "SELECT \n    bcd.CUSTOMER_NAME, \n    td.device_name\nFROM \n    t_bz_config_customer bcd\nJOIN \n    t_gn_topo_device td ON bcd.CUSTOMER_ID = td.customer_id\nWHERE \n    td.device_status = 'down' \n    AND td.UPDATE_TIME < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+        "tables_ok": false,
+        "missing_tables": [
+          "event_history",
+          "t_bz_config_ci_ne_root"
+        ],
+        "bad_columns": []
+      },
+      {
+        "id": 3,
+        "question": "现在平台上有多少家客户",
+        "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 4,
+        "question": "现在平台上有多少台设备",
+        "sql": "SELECT COUNT(*) AS total_devices FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 5,
+        "question": "上个月上线的新设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 6,
+        "question": "上个月下线的设备有多少",
+        "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      },
+      {
+        "id": 7,
+        "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+        "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = (SELECT CUSTOMER_ID FROM t_bz_config_ci_ne_root WHERE CI_ID = <指定设备CI_ID>) -- 请将<指定设备CI_ID>替换为实际的设备CI_ID\n    AND eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+        "tables_ok": true,
+        "missing_tables": [],
+        "bad_columns": []
+      }
+    ]
+  }
+]

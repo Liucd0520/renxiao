@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_authority_customer_group"
+  },
+  "table_comment": null,
+  "llm_description": "客户分组权限表，存储客户组ID、名称、描述及关联服务提供商ID，用于管理客户权限分配。",
+  "columns": [
+    {
+      "name": "CUSTOMER_GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_GROUP_NAME",
+      "type": "varchar(255)",
+      "description": "CUSTOMER_GROUP_NAME。常见值: 123, 系统组, 政支区局客户组, EOP客户侧对接, 区局客户组, dev客户, 政支装维客户, 默认客户组, EOP测试, 测试小组"
+    },
+    {
+      "name": "CUSTOMER_GROUP_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "SP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "客户分组权限表，存储客户组ID、名称、描述及关联服务提供商ID，用于管理客户权限分配。\n表名: t_bz_authority_customer_group\n其他列: CUSTOMER_GROUP_ID, CUSTOMER_GROUP_NAME, CUSTOMER_GROUP_DESC, SP_ID"
+}

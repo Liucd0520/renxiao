@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_config_contact_policy"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户、设备与告警策略的关联配置，用于权限管理及通知规则设置。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "contact_id",
+      "type": "decimal(10,0)",
+      "description": "联系人ID"
+    },
+    {
+      "name": "policy_id",
+      "type": "decimal(10,0)",
+      "description": "策咯ID"
+    },
+    {
+      "name": "policy_type",
+      "type": "decimal(2,0)",
+      "description": "类别"
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储客户、设备与告警策略的关联配置，用于权限管理及通知规则设置。\n表名: t_rl_config_contact_policy\n列信息: contact_id(联系人ID), policy_id(策咯ID), policy_type(类别)\n其他列: ID"
+}

@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_protocol_inst"
+  },
+  "table_comment": "网元绑定协议实例表",
+  "llm_description": "存储客户网元与协议实例的绑定关系，用于管理设备配置及权限。",
+  "columns": [
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(11,0)",
+      "description": "根网元ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "PROTOCOL_INST_ID",
+      "type": "decimal(10,0)",
+      "description": "协议实例ID"
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储客户网元与协议实例的绑定关系，用于管理设备配置及权限。\n表名: ne_protocol_inst\n表注释: 网元绑定协议实例表\n列信息: NE_ID(网元ID), ROOT_NE_ID(根网元ID), CUSTOMER_ID(客户ID), PROTOCOL_INST_ID(协议实例ID)"
+}

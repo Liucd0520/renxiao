@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_task_status"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_task_status表存储任务状态信息，用于管理客户订单处理、设备告警跟踪及用户权限变更状态。",
+  "columns": [
+    {
+      "name": "status_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "status_name",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_task_status表存储任务状态信息，用于管理客户订单处理、设备告警跟踪及用户权限变更状态。\n表名: t_dc_task_status\n其他列: status_id, status_name"
+}

@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "topology_point_port"
+  },
+  "table_comment": "拓扑-TRACE记录",
+  "llm_description": "存储网络设备端口拓扑信息及状态，用于客户监控与告警。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(31)",
+      "description": "ID"
+    },
+    {
+      "name": "tp_id",
+      "type": "bigint(31)",
+      "description": "trace节点ID"
+    },
+    {
+      "name": "subnet",
+      "type": "varchar(512)",
+      "description": "子网"
+    },
+    {
+      "name": "address",
+      "type": "varchar(255)",
+      "description": "端口地址"
+    },
+    {
+      "name": "mac",
+      "type": "varchar(255)",
+      "description": "mac地址"
+    },
+    {
+      "name": "port_name",
+      "type": "varchar(255)",
+      "description": "端口名称。常见值: GigabitEthernet0/0/0, GigabitEthernet0/0, GigabitEthernet0/1, Vlan271, Vlan290, Vlan272, Vlan295, Vlan273, Vlan296, Vlan275"
+    },
+    {
+      "name": "port_index",
+      "type": "int(10)",
+      "description": "端口IDNEX"
+    },
+    {
+      "name": "state",
+      "type": "tinyint(1)",
+      "description": "端口状态 0 down 1 up"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "新增时间"
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "存储网络设备端口拓扑信息及状态，用于客户监控与告警。\n表名: topology_point_port\n表注释: 拓扑-TRACE记录\n列信息: id(ID), tp_id(trace节点ID), subnet(子网), address(端口地址), mac(mac地址), port_name(端口名称), port_index(端口IDNEX), state(端口状态 0 down 1 up), create_time(新增时间)"
+}

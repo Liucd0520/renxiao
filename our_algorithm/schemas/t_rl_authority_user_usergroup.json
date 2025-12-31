@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_authority_user_usergroup"
+  },
+  "table_comment": null,
+  "llm_description": "用户权限关联表，存储用户与用户组的权限分配关系，用于管理用户权限配置。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "USERS_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "USERS_GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "用户权限关联表，存储用户与用户组的权限分配关系，用于管理用户权限配置。\n表名: t_rl_authority_user_usergroup\n其他列: RELATIONSHIP_ID, USERS_ID, USERS_GROUP_ID"
+}

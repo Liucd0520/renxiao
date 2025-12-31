@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "customer_model_rl"
+  },
+  "table_comment": null,
+  "llm_description": "客户与模型关联表，用于管理客户对应的模型权限及设备订单配置。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "MODEL_ID",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "客户与模型关联表，用于管理客户对应的模型权限及设备订单配置。\n表名: customer_model_rl\n其他列: ID, MODEL_ID, CUSTOMER_ID"
+}

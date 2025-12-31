@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_authority_ui"
+  },
+  "table_comment": null,
+  "llm_description": "表t_bz_authority_ui存储用户界面权限配置信息，包含界面ID、描述、URL、所属系统、校验码、关联界面及模块ID，用于权限管理和界面关联控制。",
+  "columns": [
+    {
+      "name": "UI_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "UI_DESC",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "URL",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "SYSTEM_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CHECK_CODE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "RELATION_UI_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "MODULE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "表t_bz_authority_ui存储用户界面权限配置信息，包含界面ID、描述、URL、所属系统、校验码、关联界面及模块ID，用于权限管理和界面关联控制。\n表名: t_bz_authority_ui\n其他列: UI_ID, UI_DESC, URL, SYSTEM_ID, CHECK_CODE, RELATION_UI_ID, MODULE_ID"
+}

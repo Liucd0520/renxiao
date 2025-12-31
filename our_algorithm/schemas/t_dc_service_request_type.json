@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_service_request_type"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_service_request_type表存储服务请求类型信息，用于管理客户、设备及订单相关的请求分类与权限配置。",
+  "columns": [
+    {
+      "name": "REQUEST_ID",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "REQUEST_NAME",
+      "type": "varchar(10)",
+      "description": "REQUEST_NAME。常见值: 投诉、建议, 访问, 咨询, 修改信息, 业务咨询"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_service_request_type表存储服务请求类型信息，用于管理客户、设备及订单相关的请求分类与权限配置。\n表名: t_dc_service_request_type\n其他列: REQUEST_ID, REQUEST_NAME"
+}

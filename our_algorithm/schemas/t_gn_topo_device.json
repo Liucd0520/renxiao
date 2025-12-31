@@ -1,0 +1,82 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_topo_device"
+  },
+  "table_comment": null,
+  "llm_description": "t_gn_topo_device表存储设备拓扑关联数据，记录设备状态（正常/异常/不在线）、IP地址、位置坐标等信息，用于设备监控与告警管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "ID"
+    },
+    {
+      "name": "topo_id",
+      "type": "int(11)",
+      "description": "拓扑图id"
+    },
+    {
+      "name": "device_id",
+      "type": "int(11)",
+      "description": "设备id"
+    },
+    {
+      "name": "device_ip",
+      "type": "varchar(50)",
+      "description": "设备ip地址"
+    },
+    {
+      "name": "device_desc",
+      "type": "varchar(500)",
+      "description": "设备描述"
+    },
+    {
+      "name": "device_status",
+      "type": "varchar(100)",
+      "description": "设备状态: 1:正常 2: 异常 3:不在线 。常见值: up, down, UNKNOWN, 在线"
+    },
+    {
+      "name": "device_name",
+      "type": "varchar(255)",
+      "description": "device_name。常见值: dev-206, 154-dps1, dev-213, sanbb-com, dev-207, dev-208, H3CB, HuaweiC, dev-219, zhoujun-com"
+    },
+    {
+      "name": "device_type",
+      "type": "varchar(255)",
+      "description": "device_type。常见值: Unix/Linux Server, Router, Server, Windows Server, Switch, Huawei Yun, Ali Yun"
+    },
+    {
+      "name": "des_topo_id",
+      "type": "int(11)",
+      "description": "目标拓扑ID"
+    },
+    {
+      "name": "position_x",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "position_y",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "customer_id",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "device_alias",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "device_location_name",
+      "type": "varchar(255)",
+      "description": "device_location_name。常见值: 上海, 长宁区, 浦东新区, 安徽, 松江镇梅家浜路****弄***号*层, 上海市徐汇区斜土路街道大木桥路**号B*层****肯德基, 嘉定镇城中路***号, 默认"
+    }
+  ],
+  "column_count": 14,
+  "embedding_text": "t_gn_topo_device表存储设备拓扑关联数据，记录设备状态（正常/异常/不在线）、IP地址、位置坐标等信息，用于设备监控与告警管理。\n表名: t_gn_topo_device\n列信息: id(ID), topo_id(拓扑图id), device_id(设备id), device_ip(设备ip地址), device_desc(设备描述), device_status(设备状态: 1:正常 2: 异常 3:不在线 ), des_topo_id(目标拓扑ID)\n其他列: device_name, device_type, position_x, position_y, customer_id, device_alias, device_location_name"
+}

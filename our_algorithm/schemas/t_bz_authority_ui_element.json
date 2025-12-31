@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_authority_ui_element"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_authority_ui_element表存储用户界面元素权限配置，用于管理客户、订单、设备等业务模块的权限分配与层级关系。",
+  "columns": [
+    {
+      "name": "ELEMENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ELEMENT_NO",
+      "type": "varchar(30)",
+      "description": null
+    },
+    {
+      "name": "UI_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ELEMENT_REMARK",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "ELEMENT_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "ELEMENT_DESC",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "MENU_ID",
+      "type": "decimal(15,0)",
+      "description": null
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "t_bz_authority_ui_element表存储用户界面元素权限配置，用于管理客户、订单、设备等业务模块的权限分配与层级关系。\n表名: t_bz_authority_ui_element\n其他列: ELEMENT_ID, ELEMENT_NO, UI_ID, ELEMENT_REMARK, ELEMENT_TYPE, ELEMENT_DESC, PARENT_ID, MENU_ID"
+}

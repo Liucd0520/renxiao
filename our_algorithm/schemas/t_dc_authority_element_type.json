@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_authority_element_type"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_authority_element_type表存储权限元素类型信息，用于客户、用户、设备、订单及告警等对象的权限分类与管理。",
+  "columns": [
+    {
+      "name": "ELEMENT_TYPE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "ELEMENT_TYPE_NAME",
+      "type": "varchar(15)",
+      "description": "ELEMENT_TYPE_NAME。常见值: 按钮, 超链接, DIV"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_authority_element_type表存储权限元素类型信息，用于客户、用户、设备、订单及告警等对象的权限分类与管理。\n表名: t_dc_authority_element_type\n其他列: ELEMENT_TYPE_ID, ELEMENT_TYPE_NAME"
+}

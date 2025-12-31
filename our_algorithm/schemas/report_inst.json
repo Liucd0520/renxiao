@@ -1,0 +1,97 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_inst"
+  },
+  "table_comment": null,
+  "llm_description": "report_inst表存储客户报告实例信息，记录报告类型、周期、状态及执行时间，用于生成和管理订单相关业务报告。",
+  "columns": [
+    {
+      "name": "REPORT_INST_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REPORT_INST_NAME",
+      "type": "varchar(512)",
+      "description": "REPORT_INST_NAME。常见值: Cloudcare Create, CC_Home_Report, cc接口测试, laratest-18 test 2025年3月月报, 测试Uptime1, 理想公司 测试工作日 2025年3月月报, 理想公司 测试工作日 2025年1月月报, laratest-18 测试工作日 2025年3月月报, 理想公司 9-17报告 2025年3月月报, 理想公司 9-17报告 2025年1月月报"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REP_TYPE",
+      "type": "decimal(4,0)",
+      "description": null
+    },
+    {
+      "name": "REP_WEEK",
+      "type": "decimal(8,0)",
+      "description": null
+    },
+    {
+      "name": "REP_MONTH",
+      "type": "decimal(6,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "START_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "END_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "START_WORKTIME",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "END_WORKTIME",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "IS_ALL_WEEK",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "START_WEEKDATE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "END_WEEKDATE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "TEMPLATE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SPEED_TYPE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "IS_END",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 17,
+  "embedding_text": "report_inst表存储客户报告实例信息，记录报告类型、周期、状态及执行时间，用于生成和管理订单相关业务报告。\n表名: report_inst\n其他列: REPORT_INST_ID, REPORT_INST_NAME, CUSTOMER_ID, REP_TYPE, REP_WEEK, REP_MONTH, STATUS, START_TIME, END_TIME, START_WORKTIME, END_WORKTIME, IS_ALL_WEEK, START_WEEKDATE, END_WEEKDATE, TEMPLATE_ID"
+}

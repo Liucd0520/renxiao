@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "protocol_inst"
+  },
+  "table_comment": "协议简要实例表",
+  "llm_description": "协议实例表存储客户协议配置信息，包含实例ID、名称、描述及关联协议和客户，用于管理客户协议实例。",
+  "columns": [
+    {
+      "name": "PROTOCOL_INST_ID",
+      "type": "decimal(10,0)",
+      "description": "协议实例ID"
+    },
+    {
+      "name": "PROTOCOL_INST_NAME",
+      "type": "varchar(128)",
+      "description": "协议实例名称。常见值: 名称, default, SNMP v1 v2c, icmp, snmp_v1_v2c, Netcare_snmp, snmp, test_jdbc, Ruijie-Macc, TP-LINK"
+    },
+    {
+      "name": "PROTOCOL_INST_DESC",
+      "type": "varchar(512)",
+      "description": "协议实例描述"
+    },
+    {
+      "name": "PROTOCOL_ID",
+      "type": "varchar(64)",
+      "description": "协议ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "协议实例表存储客户协议配置信息，包含实例ID、名称、描述及关联协议和客户，用于管理客户协议实例。\n表名: protocol_inst\n表注释: 协议简要实例表\n列信息: PROTOCOL_INST_ID(协议实例ID), PROTOCOL_INST_NAME(协议实例名称), PROTOCOL_INST_DESC(协议实例描述), PROTOCOL_ID(协议ID), CUSTOMER_ID(客户ID)"
+}

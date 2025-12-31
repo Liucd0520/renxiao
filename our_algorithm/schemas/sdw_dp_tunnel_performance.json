@@ -1,0 +1,77 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdw_dp_tunnel_performance"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备隧道性能数据，记录丢包、抖动、时延等指标，用于网络监控与告警。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "dev_no",
+      "type": "varchar(255)",
+      "description": "设备编号"
+    },
+    {
+      "name": "tunnel_state",
+      "type": "varchar(255)",
+      "description": "隧道状态"
+    },
+    {
+      "name": "tunnel_no",
+      "type": "varchar(255)",
+      "description": "隧道编号"
+    },
+    {
+      "name": "tunnel_name",
+      "type": "varchar(255)",
+      "description": "隧道名称"
+    },
+    {
+      "name": "gather_time",
+      "type": "varchar(255)",
+      "description": "采集时间"
+    },
+    {
+      "name": "loss",
+      "type": "varchar(255)",
+      "description": "丢包（单位：个）"
+    },
+    {
+      "name": "jitter",
+      "type": "varchar(255)",
+      "description": "抖动（单位ms）"
+    },
+    {
+      "name": "delay",
+      "type": "varchar(255)",
+      "description": "时延（单位ms）"
+    },
+    {
+      "name": "platform_id",
+      "type": "varchar(255)",
+      "description": "平台编号"
+    },
+    {
+      "name": "ifinoctets",
+      "type": "varchar(255)",
+      "description": "流入字节数（单位bps）"
+    },
+    {
+      "name": "ifoutoctets",
+      "type": "varchar(255)",
+      "description": "流出字节数（单位bps）"
+    },
+    {
+      "name": "customer_id",
+      "type": "varchar(255)",
+      "description": "用户ID"
+    }
+  ],
+  "column_count": 13,
+  "embedding_text": "存储设备隧道性能数据，记录丢包、抖动、时延等指标，用于网络监控与告警。\n表名: sdw_dp_tunnel_performance\n列信息: dev_no(设备编号), tunnel_state(隧道状态), tunnel_no(隧道编号), tunnel_name(隧道名称), gather_time(采集时间), loss(丢包（单位：个）), jitter(抖动（单位ms）), delay(时延（单位ms）), platform_id(平台编号), ifinoctets(流入字节数（单位bps）), ifoutoctets(流出字节数（单位bps）), customer_id(用户ID)\n其他列: id"
+}

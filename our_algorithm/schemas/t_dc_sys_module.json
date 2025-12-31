@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_sys_module"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_sys_module表存储系统模块结构信息，包含模块ID、名称及父模块ID，用于用户权限分配和管理设备、告警等核心业务功能。",
+  "columns": [
+    {
+      "name": "MODULE_ID",
+      "type": "decimal(7,0)",
+      "description": null
+    },
+    {
+      "name": "MODULE_NAME",
+      "type": "varchar(50)",
+      "description": "MODULE_NAME。常见值: 设备管理, 设备联系人, 区域管理, 设备类型管理, 客户绑定服务包, 应用管理, 基础数据管理, 知识管理, 配置管理, 设备列表"
+    },
+    {
+      "name": "PARENT_MODULE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "t_dc_sys_module表存储系统模块结构信息，包含模块ID、名称及父模块ID，用于用户权限分配和管理设备、告警等核心业务功能。\n表名: t_dc_sys_module\n其他列: MODULE_ID, MODULE_NAME, PARENT_MODULE_ID"
+}

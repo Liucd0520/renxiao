@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_ip_segment_manage"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_ip_segment_manage表用于管理客户IP地址段配置，记录IP地址、掩码位及层级关系，支撑客户网络权限划分与资源分配。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(11,0)",
+      "description": "ip管理ID"
+    },
+    {
+      "name": "IP",
+      "type": "varchar(255)",
+      "description": "IP地址"
+    },
+    {
+      "name": "MASK",
+      "type": "varchar(50)",
+      "description": "掩码"
+    },
+    {
+      "name": "MASKBIT",
+      "type": "varchar(100)",
+      "description": "掩码位"
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "decimal(11,0)",
+      "description": "上级ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(11,0)",
+      "description": "客户ID"
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "t_bz_ip_segment_manage表用于管理客户IP地址段配置，记录IP地址、掩码位及层级关系，支撑客户网络权限划分与资源分配。\n表名: t_bz_ip_segment_manage\n列信息: ID(ip管理ID), IP(IP地址), MASK(掩码), MASKBIT(掩码位), PARENT_ID(上级ID), CUSTOMER_ID(客户ID)"
+}

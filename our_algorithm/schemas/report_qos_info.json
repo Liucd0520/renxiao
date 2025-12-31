@@ -1,0 +1,102 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_qos_info"
+  },
+  "table_comment": null,
+  "llm_description": "report_qos_info表存储网络设备服务质量(QoS)报告数据，包含设备ID、报告实例、速度、使用率等指标，用于客户网络性能监控及告警生成。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REPORT_INST_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(1024)",
+      "description": null
+    },
+    {
+      "name": "ITEMNAME",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "SPEED",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "VALUE_USAGE",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "VALUE_USAGE_95TH",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "VALUE_SUM",
+      "type": "decimal(38,0)",
+      "description": null
+    },
+    {
+      "name": "VALUE_AVG",
+      "type": "decimal(38,0)",
+      "description": null
+    },
+    {
+      "name": "VALUE_MIN",
+      "type": "decimal(38,0)",
+      "description": null
+    },
+    {
+      "name": "VALUE_MAX",
+      "type": "decimal(38,0)",
+      "description": null
+    },
+    {
+      "name": "VALUE_95TH",
+      "type": "decimal(38,0)",
+      "description": null
+    },
+    {
+      "name": "NUM_COUNTS",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "TIME_COUNTS",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PORT_NE_ID",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "NE_TYPE_ID",
+      "type": "varchar(128)",
+      "description": null
+    }
+  ],
+  "column_count": 18,
+  "embedding_text": "report_qos_info表存储网络设备服务质量(QoS)报告数据，包含设备ID、报告实例、速度、使用率等指标，用于客户网络性能监控及告警生成。\n表名: report_qos_info\n其他列: ID, REPORT_INST_ID, NE_ID, ROOT_NE_ID, NAME, ITEMNAME, SPEED, VALUE_USAGE, VALUE_USAGE_95TH, VALUE_SUM, VALUE_AVG, VALUE_MIN, VALUE_MAX, VALUE_95TH, NUM_COUNTS"
+}

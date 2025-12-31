@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "snmp_walk_result"
+  },
+  "table_comment": null,
+  "llm_description": "存储SNMP遍历结果数据，包含设备标识、OID、执行时间及任务状态，用于设备监控与告警处理。",
+  "columns": [
+    {
+      "name": "results",
+      "type": "longtext",
+      "description": "结果集"
+    },
+    {
+      "name": "oid",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "root_ne_id",
+      "type": "bigint(20)",
+      "description": "设备标识"
+    },
+    {
+      "name": "results_time",
+      "type": "datetime",
+      "description": "发送snmpwalk命令时间"
+    },
+    {
+      "name": "status",
+      "type": "varchar(255)",
+      "description": "process,finish"
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "存储SNMP遍历结果数据，包含设备标识、OID、执行时间及任务状态，用于设备监控与告警处理。\n表名: snmp_walk_result\n列信息: results(结果集), root_ne_id(设备标识), results_time(发送snmpwalk命令时间), status(process,finish)\n其他列: oid"
+}

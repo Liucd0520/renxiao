@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_incident_priority"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_incident_priority表存储客户/设备告警事件的优先级配置，定义响应时长和解决时长，用于订单处理及用户权限管理中的分级处理。",
+  "columns": [
+    {
+      "name": "PRIORITY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "PRIORITY_NAME",
+      "type": "varchar(25)",
+      "description": "PRIORITY_NAME。常见值: P1, P4, P7, P2, P5, P3, P6"
+    },
+    {
+      "name": "RESPONSE_PERIOD",
+      "type": "decimal(10,0)",
+      "description": "响应时长"
+    },
+    {
+      "name": "SOLVE_PERIOD",
+      "type": "decimal(10,0)",
+      "description": "解决时长"
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "t_dc_incident_priority表存储客户/设备告警事件的优先级配置，定义响应时长和解决时长，用于订单处理及用户权限管理中的分级处理。\n表名: t_dc_incident_priority\n列信息: RESPONSE_PERIOD(响应时长), SOLVE_PERIOD(解决时长)\n其他列: PRIORITY_ID, PRIORITY_NAME"
+}

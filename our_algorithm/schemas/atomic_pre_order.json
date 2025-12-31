@@ -1,0 +1,77 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "atomic_pre_order"
+  },
+  "table_comment": "售中工单",
+  "llm_description": "atomic_pre_order表存储售中工单信息，包含客户订单类型、订单号、状态及处理日期，用于跟踪客户订单处理流程和状态管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20) unsigned",
+      "description": null
+    },
+    {
+      "name": "accept_date",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "status_date",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "prod_acc_num",
+      "type": "varchar(32)",
+      "description": null
+    },
+    {
+      "name": "cust_order_type_name",
+      "type": "varchar(32)",
+      "description": "cust_order_type_name。常见值: 业务受理单"
+    },
+    {
+      "name": "cust_order_nbr",
+      "type": "varchar(32)",
+      "description": null
+    },
+    {
+      "name": "remark",
+      "type": "varchar(1024)",
+      "description": null
+    },
+    {
+      "name": "status_cd_name",
+      "type": "varchar(64)",
+      "description": "status_cd_name。常见值: 开通中"
+    },
+    {
+      "name": "scene_type_name",
+      "type": "varchar(128)",
+      "description": "scene_type_name。常见值: 政企受理"
+    },
+    {
+      "name": "o_status",
+      "type": "tinyint(1)",
+      "description": null
+    },
+    {
+      "name": "cust_no",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 13,
+  "embedding_text": "atomic_pre_order表存储售中工单信息，包含客户订单类型、订单号、状态及处理日期，用于跟踪客户订单处理流程和状态管理。\n表名: atomic_pre_order\n表注释: 售中工单\n列信息: create_time(创建时间), update_time(更新时间)\n其他列: id, accept_date, status_date, prod_acc_num, cust_order_type_name, cust_order_nbr, remark, status_cd_name, scene_type_name, o_status, cust_no"
+}

@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "netflow_translate"
+  },
+  "table_comment": null,
+  "llm_description": "netflow_translate表存储网络流量的业务映射关系，用于将技术字段转换为客户、设备、用户等关键信息，支持订单与告警关联分析。",
+  "columns": [
+    {
+      "name": "flow_type",
+      "type": "varchar(200)",
+      "description": "flow_type。常见值: Applications, TOS, Protocols"
+    },
+    {
+      "name": "flow_key",
+      "type": "varchar(200)",
+      "description": null
+    },
+    {
+      "name": "flow_value",
+      "type": "varchar(200)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "netflow_translate表存储网络流量的业务映射关系，用于将技术字段转换为客户、设备、用户等关键信息，支持订单与告警关联分析。\n表名: netflow_translate\n其他列: flow_type, flow_key, flow_value"
+}

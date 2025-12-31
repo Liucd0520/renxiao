@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_policy"
+  },
+  "table_comment": null,
+  "llm_description": "event_policy表存储告警事件阈值及报告间隔配置，用于监控设备状态并触发客户告警通知。",
+  "columns": [
+    {
+      "name": "EVENT_VALUE",
+      "type": "varchar(255)",
+      "description": "事件值"
+    },
+    {
+      "name": "REPORT_INTERVAL",
+      "type": "decimal(10,0)",
+      "description": "间隔"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "event_policy表存储告警事件阈值及报告间隔配置，用于监控设备状态并触发客户告警通知。\n表名: event_policy\n列信息: EVENT_VALUE(事件值), REPORT_INTERVAL(间隔)"
+}

@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_ne_app_relationship"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备与应用程序的关联关系，用于权限管理及告警配置。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "APP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_NAME",
+      "type": "varchar(255)",
+      "description": "NE_NAME。常见值: device 2020-6-4-3, clj-computer, 测试, H3C MSR30-60, CISCO-ISR4221K9, AR2204, Ruijie-device, H3C-ER5200G2, 测试11, test2"
+    },
+    {
+      "name": "APP_NAME",
+      "type": "varchar(255)",
+      "description": "APP_NAME。常见值: app2020-6-4-5, 123, 测试123, 888, app2020-6-4-6, 999, app2020-6-4-7, 22223333999, qwer, test22"
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "存储设备与应用程序的关联关系，用于权限管理及告警配置。\n表名: t_rl_ne_app_relationship\n其他列: RELATIONSHIP_ID, NE_ID, APP_ID, NE_NAME, APP_NAME"
+}

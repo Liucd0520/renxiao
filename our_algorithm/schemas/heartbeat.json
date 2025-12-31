@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "heartbeat"
+  },
+  "table_comment": null,
+  "llm_description": "heartbeat表存储采集机心跳信息，记录设备启动与探测状态，用于监控设备运行及告警触发。",
+  "columns": [
+    {
+      "name": "COLLECTOR_TOKEN",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "FIFTEENS",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "CONTENT",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "timestamp",
+      "description": null
+    },
+    {
+      "name": "HEART_BEAT_TYPE",
+      "type": "decimal(1,0)",
+      "description": "心跳标识、0:启动心跳，1:探测心跳"
+    },
+    {
+      "name": "collector_type",
+      "type": "decimal(1,0)",
+      "description": "采集机标识、0:v1版本采集机，1:v2版本采集机"
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "heartbeat表存储采集机心跳信息，记录设备启动与探测状态，用于监控设备运行及告警触发。\n表名: heartbeat\n列信息: HEART_BEAT_TYPE(心跳标识、0:启动心跳，1:探测心跳), collector_type(采集机标识、0:v1版本采集机，1:v2版本采集机)\n其他列: COLLECTOR_TOKEN, FIFTEENS, CONTENT, CREATE_TIME"
+}

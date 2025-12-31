@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_clouds_auth"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_clouds_auth表存储客户云服务访问权限信息，包含Access Key及Secret Key，关联云厂商类型用于权限认证和资源管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "access_key_id",
+      "type": "varchar(255)",
+      "description": "Access Key ID"
+    },
+    {
+      "name": "secret_access_key",
+      "type": "varchar(255)",
+      "description": "Secret Access Key"
+    },
+    {
+      "name": "cloud_type_id",
+      "type": "int(11)",
+      "description": "云厂商id，对应t_dc_clouds_type表"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "t_bz_clouds_auth表存储客户云服务访问权限信息，包含Access Key及Secret Key，关联云厂商类型用于权限认证和资源管理。\n表名: t_bz_clouds_auth\n列信息: access_key_id(Access Key ID), secret_access_key(Secret Access Key), cloud_type_id(云厂商id，对应t_dc_clouds_type表), customer_id(客户ID)\n其他列: id"
+}

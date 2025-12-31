@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_work_policy"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_config_work_policy表存储客户工作策略配置，包含默认策略、工作日策略、非工作日策略及周末策略，用于管理用户权限和告警规则。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(2000)",
+      "description": "名字"
+    },
+    {
+      "name": "DEFAULT_POLICY",
+      "type": "varchar(3600)",
+      "description": "默认工作策略"
+    },
+    {
+      "name": "IN_WORKING_POLICY",
+      "type": "varchar(3600)",
+      "description": "工作日工作策略"
+    },
+    {
+      "name": "OUT_WORKING_POLICY",
+      "type": "varchar(3600)",
+      "description": "非工作日工作策略"
+    },
+    {
+      "name": "WEEKEND_POLICY",
+      "type": "varchar(3600)",
+      "description": "周末工作策略"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "WORK_POLICY",
+      "type": "varchar(3600)",
+      "description": "工作策略"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "t_bz_config_work_policy表存储客户工作策略配置，包含默认策略、工作日策略、非工作日策略及周末策略，用于管理用户权限和告警规则。\n表名: t_bz_config_work_policy\n列信息: ID(ID), NAME(名字), DEFAULT_POLICY(默认工作策略), IN_WORKING_POLICY(工作日工作策略), OUT_WORKING_POLICY(非工作日工作策略), WEEKEND_POLICY(周末工作策略), CUSTOMER_ID(客户ID), WORK_POLICY(工作策略)"
+}

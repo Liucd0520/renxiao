@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_sys_dev_additional"
+  },
+  "table_comment": "设备技术文档表",
+  "llm_description": "设备技术文档表用于存储设备附加技术资料，包含文档名称、大小、路径、安全等级等信息，支持用户权限管理，关联设备ID实现客户设备维护与订单技术档案归档。",
+  "columns": [
+    {
+      "name": "ADDITIONAL_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ADDITIONAL_NAME",
+      "type": "varchar(255)",
+      "description": "ADDITIONAL_NAME。常见值: 20240918-服务包、服务包组、服务项清单.xlsx, 测试.txt, V6服务包监控项清单.xlsx, 3类业务Grafana看板集成.txt, activation_code.txt, flow.xls, 20240918-服务包服务包组服务项清单.xlsx, 1629440965(1).jpg, 0804华为.txt, MV对接表20201117.xlsx"
+    },
+    {
+      "name": "ADDITIONAL_SIZE",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "ADDITIONAL_PATH",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "SAFE_LEVEL",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "SUBMIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "ADDITIONAL_DESC",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "DEVICE_ID",
+      "type": "decimal(11,0)",
+      "description": null
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "设备技术文档表用于存储设备附加技术资料，包含文档名称、大小、路径、安全等级等信息，支持用户权限管理，关联设备ID实现客户设备维护与订单技术档案归档。\n表名: t_bz_sys_dev_additional\n表注释: 设备技术文档表\n其他列: ADDITIONAL_ID, ADDITIONAL_NAME, ADDITIONAL_SIZE, ADDITIONAL_PATH, SAFE_LEVEL, SUBMIT_TIME, ADDITIONAL_DESC, IS_DELETED, DEVICE_ID"
+}

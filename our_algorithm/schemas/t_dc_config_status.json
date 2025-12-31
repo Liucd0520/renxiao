@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_config_status"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_config_status表存储设备配置状态信息，记录配置状态变更时间及是否删除，用于管理设备配置状态和相关告警处理。",
+  "columns": [
+    {
+      "name": "STATUS_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS_NAME",
+      "type": "varchar(50)",
+      "description": "STATUS_NAME。常见值: 已返还, 已闲置, 已部署, 已借出, 维修中, 已入库, 已报废, 转移中, 运行中"
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "t_dc_config_status表存储设备配置状态信息，记录配置状态变更时间及是否删除，用于管理设备配置状态和相关告警处理。\n表名: t_dc_config_status\n其他列: STATUS_ID, STATUS_NAME, CREATE_TIME, UPDATE_TIME, IS_DELETED"
+}

@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_token"
+  },
+  "table_comment": "网元登录口令表",
+  "llm_description": "存储客户网元登录凭证，管理设备访问权限及用户分层认证信息。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(11,0)",
+      "description": "根网元ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "TOKEN_TYPE",
+      "type": "varchar(100)",
+      "description": "口令类型。常见值: telnet, ssh, rdp"
+    },
+    {
+      "name": "USERNAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "T_PASSWORD",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CMD",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "USERNAME2",
+      "type": "varchar(255)",
+      "description": "二次登入用户名"
+    },
+    {
+      "name": "PASSWORD2",
+      "type": "varchar(255)",
+      "description": "二次登入密码"
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "存储客户网元登录凭证，管理设备访问权限及用户分层认证信息。\n表名: ne_token\n表注释: 网元登录口令表\n列信息: ID(ID), NE_ID(网元ID), ROOT_NE_ID(根网元ID), CUSTOMER_ID(客户ID), TOKEN_TYPE(口令类型), USERNAME2(二次登入用户名), PASSWORD2(二次登入密码)\n其他列: USERNAME, T_PASSWORD, CMD"
+}

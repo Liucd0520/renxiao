@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_release_work_info"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储客户订单发布的工作信息，包含内容、提交时间、用户及权限状态，用于管理告警处理与设备维护任务。",
+  "columns": [
+    {
+      "name": "work_info_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "content",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "look_right",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "release_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "submit_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "submit_user",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "work_info_type",
+      "type": "decimal(19,2)",
+      "description": null
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "该表存储客户订单发布的工作信息，包含内容、提交时间、用户及权限状态，用于管理告警处理与设备维护任务。\n表名: t_bz_release_work_info\n其他列: work_info_id, content, look_right, release_id, submit_time, submit_user, work_info_type"
+}

@@ -1,0 +1,230 @@
+{
+  "test_time": "2025-12-31T10:50:53.521587",
+  "model": "qwen3_30b_a3b_2507",
+  "summary": {
+    "total": 7,
+    "correct": 7,
+    "accuracy": "100.0%"
+  },
+  "results": [
+    {
+      "id": 1,
+      "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root"
+      ],
+      "retrieved_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_incident_info",
+        "t_bz_config_ci_entity",
+        "ne_syslog_filter_script",
+        "t_bz_config_customer",
+        "t_gn_botnet",
+        "event_yjk_history",
+        "t_bz_problem_info",
+        "event_history",
+        "sdw_dp_port_basic",
+        "t_bz_config_ci_rfc",
+        "t_gn_vulnerability_weak_password",
+        "t_gn_weaknesses_attack",
+        "report_new_dev",
+        "t_dc_incident_accident_type",
+        "t_dc_release_type",
+        "t_dc_service_source_type",
+        "event_type"
+      ],
+      "generated_sql": "SELECT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    COUNT(*) AS alarm_count\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root c ON e.NE_ID = c.NE_ID\nWHERE \n    c.HOST_NAME = 'ciscoA'\n    AND e.EVENT_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n    AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY \n    e.EVENT_TYPE_NAME;",
+      "reference_sql": "SELECT \n    `event_type_name`, \n    COUNT(`event_id`) AS `alarm_count`\nFROM event_history\nJOIN t_bz_config_ci_ne_root ON event_history.ne_id = t_bz_config_ci_ne_root.ne_id\nWHERE t_bz_config_ci_ne_root.host_name LIKE '%ciscoA%' \n    AND event_time >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n    AND event_time < CURDATE()\nGROUP BY `event_type_name`\nORDER BY `alarm_count` DESC\nLIMIT 10;",
+      "tables_correct": true,
+      "missing_tables": []
+    },
+    {
+      "id": 2,
+      "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root",
+        "t_bz_config_customer"
+      ],
+      "retrieved_tables": [
+        "t_bz_config_customer",
+        "t_gn_topo_link",
+        "t_gn_topo_device",
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "sdw_dp_device",
+        "t_dc_config_device_type",
+        "sdw_dp_device_performance",
+        "event_history",
+        "customer",
+        "sdw_dp_port_performance",
+        "sdwan_device",
+        "t_gn_all_net_device",
+        "topology_point_port",
+        "atomic_cutover_order"
+      ],
+      "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    d.HOST_NAME AS device_name\nFROM \n    t_bz_config_ci_ne_root d\nJOIN \n    t_bz_config_customer c ON d.CUSTOMER_ID = c.CUSTOMER_ID\nJOIN \n    event_history e ON d.NE_ID = e.NE_ID AND d.CUSTOMER_ID = e.CUSTOMER_ID\nWHERE \n    e.EVENT_NAME = 'Device state'\n    AND e.EVENT_VALUE = 'down'\n    AND e.EVENT_STATUS_NAME = 'alarm'\n    AND e.EVENT_TIME <= DATE_SUB(NOW(), INTERVAL 3 MONTH)\n    AND d.IS_ACTIVE = 1\n    AND c.IS_ACTIVE = 1\n    AND d.IS_DELETED = 0\nGROUP BY \n    c.CUSTOMER_NAME, d.HOST_NAME\nHAVING \n    MAX(e.EVENT_TIME) <= DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+      "reference_sql": "SELECT \n    `t_bz_config_ci_ne_root`.`NE_ID`,\n    `t_bz_config_ci_ne_root`.`HOST_NAME`,\n    `t_bz_config_customer`.`CUSTOMER_NAME`\nFROM `t_bz_config_ci_ne_root`\nJOIN `t_bz_config_customer` ON `t_bz_config_ci_ne_root`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`\nJOIN `event_history` ON `t_bz_config_ci_ne_root`.`NE_ID` = `event_history`.`NE_ID`\nWHERE `event_history`.`EVENT_NAME` LIKE 'Device state%' \n    AND `event_history`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\nGROUP BY `t_bz_config_ci_ne_root`.`NE_ID`, `t_bz_config_customer`.`CUSTOMER_NAME`\nHAVING COUNT(DISTINCT `event_history`.`EVENT_ID`) > 0\nLIMIT 10;",
+      "tables_correct": true,
+      "missing_tables": []
+    },
+    {
+      "id": 3,
+      "question": "现在平台上有多少家客户",
+      "expected_tables": [
+        "t_bz_config_customer"
+      ],
+      "retrieved_tables": [
+        "t_bz_config_customer",
+        "customer",
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_authority_users",
+        "event_yjk_history",
+        "t_bz_incident_info",
+        "t_bz_config_work_policy_new",
+        "temp",
+        "customer_collector_v2",
+        "event_history",
+        "t_bz_config_ci_entity",
+        "t_bz_config_ci_circuit",
+        "t_bz_config_location",
+        "t_bz_config_group",
+        "customer_global_config",
+        "customer_model_rl"
+      ],
+      "generated_sql": "SELECT COUNT(*) AS customer_count\nFROM t_bz_config_customer\nWHERE IS_ACTIVE = 1;",
+      "reference_sql": "SELECT COUNT(`CUSTOMER_ID`) AS `customer_count`\nFROM t_bz_config_customer\nWHERE `IS_ACTIVE` = 1\nLIMIT 10;",
+      "tables_correct": true,
+      "missing_tables": []
+    },
+    {
+      "id": 4,
+      "question": "现在平台上有多少台设备",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "retrieved_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_topo_link",
+        "t_gn_weaknesses_attack",
+        "t_gn_vulnerability_clear_transmission",
+        "sdw_dp_device",
+        "ont_status",
+        "ne",
+        "hardware",
+        "t_bz_sys_dev_additional",
+        "ne_business_severity",
+        "collector",
+        "ne_collect_record",
+        "t_gn_all_net_device",
+        "uptime"
+      ],
+      "generated_sql": "SELECT COUNT(*) AS device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_DELETED = 0;",
+      "reference_sql": "SELECT COUNT(`CI_ID`) AS `device_count`\nFROM t_bz_config_ci_ne_root\nWHERE `IS_DELETED` = 0\nLIMIT 10;",
+      "tables_correct": true,
+      "missing_tables": []
+    },
+    {
+      "id": 5,
+      "question": "上个月上线的新设备有多少",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "retrieved_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_weaknesses_attack",
+        "t_gn_topo_link",
+        "t_gn_vulnerability_clear_transmission",
+        "sdw_dp_device",
+        "ont_status",
+        "t_gn_vulnerability_hole",
+        "ne",
+        "hardware",
+        "t_bz_sys_dev_additional",
+        "ne_business_severity",
+        "collector",
+        "ne_collect_record",
+        "uptime",
+        "t_gn_all_net_device"
+      ],
+      "generated_sql": "SELECT COUNT(*) AS new_device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_ONLINE = 1\n  AND IS_ACTIVE = 1\n  AND IS_DELETED = 0\n  AND ONLINE_CHANGE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND ONLINE_CHANGE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+      "reference_sql": "SELECT COUNT(`CI_ID`) AS `new_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `ONLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\nLIMIT 10;",
+      "tables_correct": true,
+      "missing_tables": []
+    },
+    {
+      "id": 6,
+      "question": "上个月下线的设备有多少",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "retrieved_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "ont_status",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_topo_link",
+        "t_gn_weaknesses_attack",
+        "t_gn_vulnerability_clear_transmission",
+        "sdw_dp_device",
+        "uptime",
+        "trap",
+        "hardware",
+        "t_bz_sys_dev_additional",
+        "ne_business_severity",
+        "collector",
+        "ne_collect_record",
+        "t_gn_all_net_device"
+      ],
+      "generated_sql": "SELECT COUNT(*) AS offline_device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_DELETED = 0\n  AND OFFLINE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND OFFLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+      "reference_sql": "SELECT COUNT(`CI_ID`) AS `offline_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `OFFLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n  AND `OFFLINE_TIME` < CURDATE()\nLIMIT 10;",
+      "tables_correct": true,
+      "missing_tables": []
+    },
+    {
+      "id": 7,
+      "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root",
+        "t_bz_config_customer"
+      ],
+      "retrieved_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_config_customer",
+        "t_bz_incident_info",
+        "event_yjk_history",
+        "ne_syslog_filter_script",
+        "syslog_filter_script",
+        "event_history",
+        "event_sdn",
+        "t_gn_botnet",
+        "event_backup",
+        "event_history_sdwan",
+        "ne_business_severity",
+        "report_new_dev",
+        "event_knowledge",
+        "t_dc_release_type",
+        "t_dc_incident_finish"
+      ],
+      "generated_sql": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE n.CUSTOMER_ID = (\n    SELECT CUSTOMER_ID \n    FROM t_bz_config_customer \n    WHERE CUSTOMER_NAME = '某客户名称' -- 需要替换为实际客户名称\n)\nAND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nAND e.ALARM_CLEAR_TIME IS NOT NULL\nAND e.EVENT_STATUS_NAME = 'alarm'\nAND e.EVENT_TYPE_NAME IS NOT NULL;",
+      "reference_sql": "SELECT\n  `t_bz_config_customer`.`CUSTOMER_NAME`,\n  `t_bz_config_ci_ne_root`.`HOST_NAME`,\n  `event_history`.`EVENT_NAME`,\n  `event_history`.`EVENT_TIME`\nFROM `event_history`\nJOIN `t_bz_config_ci_ne_root` ON `event_history`.`NE_ID` = `t_bz_config_ci_ne_root`.`NE_ID`\nJOIN `t_bz_config_customer` ON `event_history`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`\nWHERE `event_history`.`EVENT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\n  AND `event_history`.`EVENT_STATUS_NAME` = 'alarm'\nLIMIT 10;",
+      "tables_correct": true,
+      "missing_tables": []
+    }
+  ]
+}

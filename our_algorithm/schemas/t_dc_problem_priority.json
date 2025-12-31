@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_problem_priority"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_problem_priority表存储客户、设备及订单相关问题的优先级信息，用于分类和管理告警处理顺序。",
+  "columns": [
+    {
+      "name": "PRIORITY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "PRIORITY_NAME",
+      "type": "varchar(25)",
+      "description": "PRIORITY_NAME。常见值: P3, P1, P2"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_problem_priority表存储客户、设备及订单相关问题的优先级信息，用于分类和管理告警处理顺序。\n表名: t_dc_problem_priority\n其他列: PRIORITY_ID, PRIORITY_NAME"
+}

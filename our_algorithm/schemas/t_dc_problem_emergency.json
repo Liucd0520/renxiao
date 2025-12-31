@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_problem_emergency"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_problem_emergency表存储紧急问题信息，用于记录客户或设备告警事件，包含紧急ID和名称，便于快速响应和处理。",
+  "columns": [
+    {
+      "name": "EMERGENCY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "EMERGENCY_NAME",
+      "type": "varchar(25)",
+      "description": "EMERGENCY_NAME。常见值: 高, 低"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_problem_emergency表存储紧急问题信息，用于记录客户或设备告警事件，包含紧急ID和名称，便于快速响应和处理。\n表名: t_dc_problem_emergency\n其他列: EMERGENCY_ID, EMERGENCY_NAME"
+}

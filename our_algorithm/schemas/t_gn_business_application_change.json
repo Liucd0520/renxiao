@@ -1,0 +1,332 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_business_application_change"
+  },
+  "table_comment": null,
+  "llm_description": "t_gn_business_application_change表用于存储客户业务申请变更流程数据，包含订单单号、申请人信息、设备接入类型及状态，支持权限管理与流程跟踪。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "order_no",
+      "type": "varchar(50)",
+      "description": "单据单号"
+    },
+    {
+      "name": "proposer_id",
+      "type": "int(11)",
+      "description": "申请人id"
+    },
+    {
+      "name": "prodep_id",
+      "type": "int(11)",
+      "description": "项目/部门id"
+    },
+    {
+      "name": "status",
+      "type": "int(1)",
+      "description": "单据状态，1 保存，2 已提交，3 已审核，4 正在实施、5 实施完成、6 已完成"
+    },
+    {
+      "name": "apply_type",
+      "type": "int(1)",
+      "description": "业务申请，1 IP地址、2 设备（网络、安全）接入、3 链路调速、4 设备替换、5 现场服务、6 重要保障、7 运维管理系统接入"
+    },
+    {
+      "name": "apply_id",
+      "type": "int(11)",
+      "description": "业务单据id"
+    },
+    {
+      "name": "business_type",
+      "type": "int(1)",
+      "description": "业务类型，1 业务申请、2 业务变更"
+    },
+    {
+      "name": "proposer_phone",
+      "type": "varchar(50)",
+      "description": "申请人电话"
+    },
+    {
+      "name": "proposer_email",
+      "type": "varchar(50)",
+      "description": "申请人邮箱"
+    },
+    {
+      "name": "idnumber",
+      "type": "varchar(50)",
+      "description": "申请人身份证号"
+    },
+    {
+      "name": "ipaddress",
+      "type": "varchar(50)",
+      "description": "IP地址"
+    },
+    {
+      "name": "user_type",
+      "type": "int(1)",
+      "description": "用户类型，1 受限、2 一般"
+    },
+    {
+      "name": "service_life",
+      "type": "datetime",
+      "description": "使用期限"
+    },
+    {
+      "name": "distribution_port",
+      "type": "varchar(50)",
+      "description": "分配端口"
+    },
+    {
+      "name": "equipment_ip",
+      "type": "varchar(50)",
+      "description": "设备IP"
+    },
+    {
+      "name": "equipment_name",
+      "type": "varchar(50)",
+      "description": "设备名称。常见值: test"
+    },
+    {
+      "name": "equipment_type",
+      "type": "int(1)",
+      "description": "设备类型，1 独享、2 共享、3 虚拟"
+    },
+    {
+      "name": "equipment_model",
+      "type": "varchar(50)",
+      "description": "设备型号。常见值: AS-12"
+    },
+    {
+      "name": "access_type",
+      "type": "int(1)",
+      "description": "接入类型，1 ADSL、2 LAN、3 FTTH、4 PON等"
+    },
+    {
+      "name": "equipment_arg",
+      "type": "varchar(50)",
+      "description": "设备参数"
+    },
+    {
+      "name": "equipment_brand",
+      "type": "varchar(50)",
+      "description": "设备品牌"
+    },
+    {
+      "name": "equipment_unit",
+      "type": "int(1)",
+      "description": "设备单位，1 捆、2 套、3 个、4 条、5 点"
+    },
+    {
+      "name": "equipment_num",
+      "type": "int(5)",
+      "description": "设备数量"
+    },
+    {
+      "name": "link_site",
+      "type": "varchar(50)",
+      "description": "开通站点"
+    },
+    {
+      "name": "link_datetime",
+      "type": "datetime",
+      "description": "拟开通日期"
+    },
+    {
+      "name": "link_address",
+      "type": "varchar(50)",
+      "description": "开通地址"
+    },
+    {
+      "name": "link_reqtype",
+      "type": "int(1)",
+      "description": "链路申请类型，1 新增、2 变更、3 撤销、4 调速"
+    },
+    {
+      "name": "link_reqcause",
+      "type": "varchar(200)",
+      "description": "链路申请原因"
+    },
+    {
+      "name": "replace_link_ip",
+      "type": "varchar(50)",
+      "description": "替换设备IP"
+    },
+    {
+      "name": "replace_link_name",
+      "type": "varchar(50)",
+      "description": "替换设备名称"
+    },
+    {
+      "name": "replace_datetime",
+      "type": "datetime",
+      "description": "替换日期"
+    },
+    {
+      "name": "replace_num",
+      "type": "int(5)",
+      "description": "替换数量"
+    },
+    {
+      "name": "replace_cause",
+      "type": "varchar(200)",
+      "description": "替换原因"
+    },
+    {
+      "name": "replace_results",
+      "type": "varchar(50)",
+      "description": "检测结果"
+    },
+    {
+      "name": "serve_clients_id",
+      "type": "int(11)",
+      "description": "服务客户ID"
+    },
+    {
+      "name": "customer_phone",
+      "type": "varchar(20)",
+      "description": "客户电话"
+    },
+    {
+      "name": "customer_address",
+      "type": "varchar(200)",
+      "description": "客户地址"
+    },
+    {
+      "name": "serve_type",
+      "type": "int(1)",
+      "description": "服务类型，1 现场测试、2 安装调试、3 产品故障处理、4 技术交流、咨询、5 技术培训、6 其他"
+    },
+    {
+      "name": "serve_describe",
+      "type": "varchar(50)",
+      "description": "服务描述"
+    },
+    {
+      "name": "serve_startdate",
+      "type": "datetime",
+      "description": "服务开始日期"
+    },
+    {
+      "name": "serve_enddate",
+      "type": "datetime",
+      "description": "服务结束日期"
+    },
+    {
+      "name": "safeguard_way",
+      "type": "varchar(50)",
+      "description": "申请保障方式"
+    },
+    {
+      "name": "safeguard_sort",
+      "type": "varchar(50)",
+      "description": "保障类别"
+    },
+    {
+      "name": "safeguard_title",
+      "type": "varchar(50)",
+      "description": "保障标题"
+    },
+    {
+      "name": "safeguard_content",
+      "type": "varchar(200)",
+      "description": "保障内容"
+    },
+    {
+      "name": "safeguard_datetime",
+      "type": "datetime",
+      "description": "保障日期"
+    },
+    {
+      "name": "access_code",
+      "type": "varchar(200)",
+      "description": "接入编码"
+    },
+    {
+      "name": "access_name",
+      "type": "varchar(200)",
+      "description": "接入名称。常见值: 23, 系统设备, 大萨达, 1"
+    },
+    {
+      "name": "access_url",
+      "type": "varchar(500)",
+      "description": "接入URL"
+    },
+    {
+      "name": "access_user",
+      "type": "varchar(50)",
+      "description": "接入用户"
+    },
+    {
+      "name": "access_password",
+      "type": "varchar(50)",
+      "description": "接入密码"
+    },
+    {
+      "name": "access_event_description",
+      "type": "varchar(2000)",
+      "description": "事件描述"
+    },
+    {
+      "name": "access_conclusion",
+      "type": "varchar(2000)",
+      "description": "处理结论"
+    },
+    {
+      "name": "access_is_callback",
+      "type": "int(1)",
+      "description": "是否已回调，1 否、2 是"
+    },
+    {
+      "name": "attachment",
+      "type": "varchar(500)",
+      "description": "附件"
+    },
+    {
+      "name": "department_head_id",
+      "type": "int(11)",
+      "description": "部门负责人id"
+    },
+    {
+      "name": "each_leader_id",
+      "type": "int(11)",
+      "description": "分管领导id"
+    },
+    {
+      "name": "submit_datetime",
+      "type": "datetime",
+      "description": "提交时间"
+    },
+    {
+      "name": "update_id",
+      "type": "int(11)",
+      "description": "修改者id"
+    },
+    {
+      "name": "update_datetime",
+      "type": "datetime",
+      "description": "修改时间"
+    },
+    {
+      "name": "audit_id",
+      "type": "int(11)",
+      "description": "审核者id"
+    },
+    {
+      "name": "audit_datetime",
+      "type": "datetime",
+      "description": "审核时间"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 64,
+  "embedding_text": "t_gn_business_application_change表用于存储客户业务申请变更流程数据，包含订单单号、申请人信息、设备接入类型及状态，支持权限管理与流程跟踪。\n表名: t_gn_business_application_change\n列信息: id(id), order_no(单据单号), proposer_id(申请人id), prodep_id(项目/部门id), status(单据状态，1 保存，2 已提交，3 已审核，4 正在实施、5 实施完成、6 已完成), apply_type(业务申请，1 IP地址、2 设备（网络、安全）接入、3 链路调速、4 设备替换、5 现场服务、6 重要保障、7 运维管理系统接入), apply_id(业务单据id), business_type(业务类型，1 业务申请、2 业务变更), proposer_phone(申请人电话), proposer_email(申请人邮箱), idnumber(申请人身份证号), ipaddress(IP地址), user_type(用户类型，1 受限、2 一般), service_life(使用期限), distribution_port(分配端口)"
+}

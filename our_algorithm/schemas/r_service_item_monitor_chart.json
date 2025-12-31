@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "r_service_item_monitor_chart"
+  },
+  "table_comment": null,
+  "llm_description": "存储服务项目监控图表配置信息，关联设备类型与服务套餐，用于客户订单管理及告警数据可视化展示。",
+  "columns": [
+    {
+      "name": "CHART_TYPE",
+      "type": "varchar(255)",
+      "description": "CHART_TYPE。常见值: Interface Packets Statistic, JITTER Statistic, Interface Utilization Statistic, VPN Statistic, CPU Statistic, Memory Statistic, Udp Jitter, Ping Rtt, Class Car Utilization Statistic, Class Queue Statistic"
+    },
+    {
+      "name": "SERVICE_ITEM",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "NE_TYPE_ID",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "SERVICE_PACKAGE",
+      "type": "varchar(100)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储服务项目监控图表配置信息，关联设备类型与服务套餐，用于客户订单管理及告警数据可视化展示。\n表名: r_service_item_monitor_chart\n其他列: CHART_TYPE, SERVICE_ITEM, NE_TYPE_ID, SERVICE_PACKAGE"
+}

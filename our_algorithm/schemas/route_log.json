@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "route_log"
+  },
+  "table_comment": "路由日志表",
+  "llm_description": "路由日志表记录客户设备操作日志，包含操作类型、成功状态、时间及用户信息，用于权限审计和告警追踪。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "OPER_TYPE",
+      "type": "varchar(255)",
+      "description": "OPER_TYPE。常见值: 设备添加路由, 设备删除路由"
+    },
+    {
+      "name": "IS_SUCESSED",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "OPER_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "USER_ID",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "USER_NAME",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "路由日志表记录客户设备操作日志，包含操作类型、成功状态、时间及用户信息，用于权限审计和告警追踪。\n表名: route_log\n表注释: 路由日志表\n其他列: ID, CUSTOMER_ID, NE_ID, OPER_TYPE, IS_SUCESSED, OPER_TIME, USER_ID, USER_NAME"
+}

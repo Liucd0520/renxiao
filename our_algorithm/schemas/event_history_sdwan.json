@@ -1,0 +1,102 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_history_sdwan"
+  },
+  "table_comment": null,
+  "llm_description": "event_history_sdwan表记录SD-WAN告警历史，包含告警详情、严重程度、客户及设备信息，用于监控和分析客户设备运行状态。",
+  "columns": [
+    {
+      "name": "ALARM_ID",
+      "type": "decimal(30,0)",
+      "description": null
+    },
+    {
+      "name": "ALARM_NAME",
+      "type": "varchar(255)",
+      "description": "ALARM_NAME。常见值: [Alerting]underlay丢包告警(NGS49)"
+    },
+    {
+      "name": "ALARM_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "ALARM_MESSAGE",
+      "type": "varchar(1024)",
+      "description": null
+    },
+    {
+      "name": "SEVERITY_ID",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "SEVERITY_NAME",
+      "type": "varchar(255)",
+      "description": "SEVERITY_NAME。常见值: Major"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "ROOT_NE_NAME",
+      "type": "varchar(512)",
+      "description": "ROOT_NE_NAME。常见值: NGS49-SD68231A00041"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_NAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "IS_ACTION",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "ACTION_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "ACTION_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ACTION_USER_NAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "ACTION_NO",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "ALARM_REC_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "ALARM_CLEAR_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "PLATFORM",
+      "type": "varchar(50)",
+      "description": null
+    }
+  ],
+  "column_count": 18,
+  "embedding_text": "event_history_sdwan表记录SD-WAN告警历史，包含告警详情、严重程度、客户及设备信息，用于监控和分析客户设备运行状态。\n表名: event_history_sdwan\n其他列: ALARM_ID, ALARM_NAME, ALARM_TIME, ALARM_MESSAGE, SEVERITY_ID, SEVERITY_NAME, ROOT_NE_ID, ROOT_NE_NAME, CUSTOMER_ID, CUSTOMER_NAME, IS_ACTION, ACTION_TIME, ACTION_USER_ID, ACTION_USER_NAME, ACTION_NO"
+}

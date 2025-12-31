@@ -1,0 +1,157 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_yjk_history"
+  },
+  "table_comment": null,
+  "llm_description": "event_yjk_history表记录客户云监控告警历史，包含客户编号、名称、告警级别、内容、设备及集群信息，用于告警追踪与分析。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(32)",
+      "description": "ID"
+    },
+    {
+      "name": "customer_no",
+      "type": "varchar(32)",
+      "description": "客户编号"
+    },
+    {
+      "name": "customer_name",
+      "type": "varchar(255)",
+      "description": "客户名称。常见值: 测试客户1004, 测试客户1259, 测试客户1"
+    },
+    {
+      "name": "hash",
+      "type": "varchar(128)",
+      "description": "云监控告警hash(唯一)"
+    },
+    {
+      "name": "priority",
+      "type": "varchar(32)",
+      "description": "告警级别。常见值: warn, info"
+    },
+    {
+      "name": "name",
+      "type": "varchar(2048)",
+      "description": "告警名称"
+    },
+    {
+      "name": "content",
+      "type": "mediumtext",
+      "description": "告警内容"
+    },
+    {
+      "name": "remark",
+      "type": "varchar(2048)",
+      "description": "备注"
+    },
+    {
+      "name": "cluster",
+      "type": "varchar(255)",
+      "description": "集群"
+    },
+    {
+      "name": "device",
+      "type": "varchar(2048)",
+      "description": "设备信息"
+    },
+    {
+      "name": "prom_sql",
+      "type": "varchar(2048)",
+      "description": "promSql"
+    },
+    {
+      "name": "event_status",
+      "type": "varchar(255)",
+      "description": "事件状态"
+    },
+    {
+      "name": "event_tag",
+      "type": "varchar(255)",
+      "description": "事件标签"
+    },
+    {
+      "name": "trigger_time",
+      "type": "datetime",
+      "description": "触发时间"
+    },
+    {
+      "name": "trigger_value",
+      "type": "varchar(255)",
+      "description": "触发值"
+    },
+    {
+      "name": "duration_time",
+      "type": "bigint(32)",
+      "description": "持续时间(s)"
+    },
+    {
+      "name": "recover_time",
+      "type": "datetime",
+      "description": "恢复时间"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "deleted",
+      "type": "tinyint(1)",
+      "description": "是否删除 0、未删除 1、已删除"
+    },
+    {
+      "name": "action_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "action_user_id",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "action_user_name",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "action_no",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "is_ack",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "ack_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "ack_user_id",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ack_user_name",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "is_action",
+      "type": "decimal(2,0)",
+      "description": null
+    }
+  ],
+  "column_count": 29,
+  "embedding_text": "event_yjk_history表记录客户云监控告警历史，包含客户编号、名称、告警级别、内容、设备及集群信息，用于告警追踪与分析。\n表名: event_yjk_history\n列信息: id(ID), customer_no(客户编号), customer_name(客户名称), hash(云监控告警hash(唯一)), priority(告警级别), name(告警名称), content(告警内容), remark(备注), cluster(集群), device(设备信息), prom_sql(promSql), event_status(事件状态), event_tag(事件标签), trigger_time(触发时间), trigger_value(触发值)"
+}

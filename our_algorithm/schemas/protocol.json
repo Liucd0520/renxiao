@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "protocol"
+  },
+  "table_comment": null,
+  "llm_description": "协议表存储客户、设备、订单相关的协议类型及名称，用于权限管理和告警规则配置。",
+  "columns": [
+    {
+      "name": "PROTOCOL_ID",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "PROTOCOL_NAME",
+      "type": "varchar(128)",
+      "description": "PROTOCOL_NAME。常见值: Hardware Ipmi, TP-Link Manage, Db Jdbc, Apache jmx, Ruijie Manage, H3C Manage, Snmp V3, Icmp, Tomcat Rmi, Jboss Rmi"
+    },
+    {
+      "name": "PROTOCOL_TYPE",
+      "type": "varchar(64)",
+      "description": "PROTOCOL_TYPE。常见值: Api Access Profiles, SNMP, JDBC, WEBLOGIC_JMX, CLOUD_API_AUTH, JBOSS_RMI, TOMCAT_RMI, APACHE_JMX, IPMI, SSH"
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "协议表存储客户、设备、订单相关的协议类型及名称，用于权限管理和告警规则配置。\n表名: protocol\n其他列: PROTOCOL_ID, PROTOCOL_NAME, PROTOCOL_TYPE"
+}

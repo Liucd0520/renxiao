@@ -1,0 +1,92 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_ip_subnet_manage"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储IP子网分配信息，管理设备、用户及部门权限，记录IP状态与负责人联系方式。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(11,0)",
+      "description": "ip管理ID"
+    },
+    {
+      "name": "IP",
+      "type": "varchar(2555)",
+      "description": "IP地址"
+    },
+    {
+      "name": "MASK",
+      "type": "varchar(50)",
+      "description": "掩码"
+    },
+    {
+      "name": "MASKBIT",
+      "type": "varchar(100)",
+      "description": "掩码位"
+    },
+    {
+      "name": "SEGMENT_ID",
+      "type": "decimal(11,0)",
+      "description": "上级ID"
+    },
+    {
+      "name": "IP_STATUS",
+      "type": "varchar(50)",
+      "description": "IP状态"
+    },
+    {
+      "name": "DEPARTMENT",
+      "type": "varchar(100)",
+      "description": "所属部门"
+    },
+    {
+      "name": "MAC",
+      "type": "varchar(255)",
+      "description": "MAC"
+    },
+    {
+      "name": "PRINCIPAL",
+      "type": "varchar(50)",
+      "description": "负责人"
+    },
+    {
+      "name": "PRINCIPAL_PHONE",
+      "type": "varchar(50)",
+      "description": "负责人电话"
+    },
+    {
+      "name": "DESCRIPTION",
+      "type": "varchar(255)",
+      "description": "描述"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(11,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "MASTER",
+      "type": "varchar(255)",
+      "description": "归属"
+    },
+    {
+      "name": "DEVICE_TYPE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "START_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "END_TIME",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 16,
+  "embedding_text": "该表存储IP子网分配信息，管理设备、用户及部门权限，记录IP状态与负责人联系方式。\n表名: t_bz_ip_subnet_manage\n列信息: ID(ip管理ID), IP(IP地址), MASK(掩码), MASKBIT(掩码位), SEGMENT_ID(上级ID), IP_STATUS(IP状态), DEPARTMENT(所属部门), MAC(MAC), PRINCIPAL(负责人), PRINCIPAL_PHONE(负责人电话), DESCRIPTION(描述), CUSTOMER_ID(客户ID), MASTER(归属)\n其他列: DEVICE_TYPE, START_TIME"
+}

@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_service_package"
+  },
+  "table_comment": "网元绑定服务包表",
+  "llm_description": "网元绑定服务包表，存储客户设备与服务包的关联信息，记录创建时间及操作者，用于订单管理与权限分配。",
+  "columns": [
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(11,0)",
+      "description": "根网元ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "SERVICE_PACKAGE",
+      "type": "varchar(128)",
+      "description": "网元服务包"
+    },
+    {
+      "name": "CREATED_TIME",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(128)",
+      "description": "创建者"
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "网元绑定服务包表，存储客户设备与服务包的关联信息，记录创建时间及操作者，用于订单管理与权限分配。\n表名: ne_service_package\n表注释: 网元绑定服务包表\n列信息: NE_ID(网元ID), ROOT_NE_ID(根网元ID), CUSTOMER_ID(客户ID), SERVICE_PACKAGE(网元服务包), CREATED_TIME(创建时间), CREATED_BY(创建者)"
+}

@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_service_collect"
+  },
+  "table_comment": null,
+  "llm_description": "ne_service_collect表存储客户网元的访问与收集配置模板信息，记录配置触发及操作时间。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "主键"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(11,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "access_template_id",
+      "type": "bigint(20)",
+      "description": "访问配置模板ID"
+    },
+    {
+      "name": "collect_template_id",
+      "type": "bigint(20)",
+      "description": "收集配置模板ID"
+    },
+    {
+      "name": "trigger_time",
+      "type": "tinyint(4)",
+      "description": "触发时间"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间，默认为当前时间"
+    },
+    {
+      "name": "created_by",
+      "type": "decimal(11,0)",
+      "description": "创建人"
+    },
+    {
+      "name": "updated_time",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "updated_by",
+      "type": "decimal(11,0)",
+      "description": "更新人"
+    },
+    {
+      "name": "deleted",
+      "type": "tinyint(1)",
+      "description": null
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "ne_service_collect表存储客户网元的访问与收集配置模板信息，记录配置触发及操作时间。\n表名: ne_service_collect\n列信息: id(主键), ne_id(网元ID), customer_id(客户ID), access_template_id(访问配置模板ID), collect_template_id(收集配置模板ID), trigger_time(触发时间), created_time(创建时间，默认为当前时间), created_by(创建人), updated_time(更新时间), updated_by(更新人)\n其他列: deleted"
+}

@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_problem_approval"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_problem_approval表存储问题审批流程数据，记录用户提交、审批人处理及状态变更，用于管理告警、设备问题等审批业务，涉及权限控制与操作追溯。",
+  "columns": [
+    {
+      "name": "APPROVAL_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_TYPE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "PROBLEM_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SOURCE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "APPLY_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SUBMIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_STATUS",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_EXPLAIN",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_TIME",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "t_bz_problem_approval表存储问题审批流程数据，记录用户提交、审批人处理及状态变更，用于管理告警、设备问题等审批业务，涉及权限控制与操作追溯。\n表名: t_bz_problem_approval\n其他列: APPROVAL_ID, APPROVAL_TYPE, PROBLEM_ID, SOURCE_ID, APPLY_USER_ID, SUBMIT_TIME, APPROVAL_USER_ID, APPROVAL_STATUS, APPROVAL_EXPLAIN, APPROVAL_TIME"
+}

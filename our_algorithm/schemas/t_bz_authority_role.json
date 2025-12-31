@@ -1,0 +1,107 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_authority_role"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_authority_role表存储系统角色权限配置信息，包含角色创建者、创建时间、系统归属及对用户、用户组、客户、客户组等实体的创建权限控制。",
+  "columns": [
+    {
+      "name": "ROLE_ID",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "ROLE_NAME",
+      "type": "varchar(50)",
+      "description": "名称。常见值: 帐号管理, 监控板操作者, 账号维护, 问题管理, 监控仪表盘, 自动路由, 拓扑, 服务浏览者, 内部人员, 普通客户权限组"
+    },
+    {
+      "name": "ROLE_DESC",
+      "type": "varchar(255)",
+      "description": "描述"
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "SYSTEM_ID",
+      "type": "decimal(10,0)",
+      "description": "系统ID"
+    },
+    {
+      "name": "IS_CREATE_USER",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_CREATE_USERGROUP",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_CREATE_CUSTOMER",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_CREATE_CUSTG",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_AUTH_RELATION",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_CREATE_ROLE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_CREATE_ROLEGROUP",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_AUTH_CUSTOMER",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_AUTH_SYSTEM",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_CONFIG_MODULE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_CONFIG_MENU",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_CONFIG_DOCLEVEL",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "ROLE_TYPE",
+      "type": "decimal(1,0)",
+      "description": "角色类型"
+    }
+  ],
+  "column_count": 19,
+  "embedding_text": "t_bz_authority_role表存储系统角色权限配置信息，包含角色创建者、创建时间、系统归属及对用户、用户组、客户、客户组等实体的创建权限控制。\n表名: t_bz_authority_role\n列信息: ROLE_ID(ID), ROLE_NAME(名称), ROLE_DESC(描述), CREATE_TIME(创建时间), SYSTEM_ID(系统ID), ROLE_TYPE(角色类型)\n其他列: CREATE_USER_ID, IS_CREATE_USER, IS_CREATE_USERGROUP, IS_CREATE_CUSTOMER, IS_CREATE_CUSTG, IS_AUTH_RELATION, IS_CREATE_ROLE, IS_CREATE_ROLEGROUP, IS_AUTH_CUSTOMER"
+}

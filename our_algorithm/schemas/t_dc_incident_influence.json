@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_incident_influence"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_incident_influence表存储事件影响信息，记录告警事件对客户、设备、订单等业务对象的具体影响范围和关联数据。",
+  "columns": [
+    {
+      "name": "INFLUENCE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "INFLUENCE_NAME",
+      "type": "varchar(25)",
+      "description": "INFLUENCE_NAME。常见值: Unknown, Low, High, None, Medium"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_incident_influence表存储事件影响信息，记录告警事件对客户、设备、订单等业务对象的具体影响范围和关联数据。\n表名: t_dc_incident_influence\n其他列: INFLUENCE_ID, INFLUENCE_NAME"
+}

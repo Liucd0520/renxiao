@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_type"
+  },
+  "table_comment": null,
+  "llm_description": "event_type表存储事件类型ID和名称，用于分类管理客户、订单、告警、设备、用户及权限相关业务事件。",
+  "columns": [
+    {
+      "name": "EVENT_TYPE_ID",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "EVENT_TYPE_NAME",
+      "type": "varchar(255)",
+      "description": "EVENT_TYPE_NAME。常见值: Indicate event, Interface event, Link event, Ping event, System event, Threshold event, Trap event"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "event_type表存储事件类型ID和名称，用于分类管理客户、订单、告警、设备、用户及权限相关业务事件。\n表名: event_type\n其他列: EVENT_TYPE_ID, EVENT_TYPE_NAME"
+}

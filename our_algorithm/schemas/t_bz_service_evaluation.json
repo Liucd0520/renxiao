@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_service_evaluation"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_service_evaluation表存储客户对服务请求的评价数据，包含用户ID、服务编码、评价类型、内容及状态，用于管理订单评价和反馈。",
+  "columns": [
+    {
+      "name": "evaluation_id",
+      "type": "decimal(10,0)",
+      "description": "评价ID"
+    },
+    {
+      "name": "service_code",
+      "type": "varchar(255)",
+      "description": "服务编码"
+    },
+    {
+      "name": "user_id",
+      "type": "decimal(10,0)",
+      "description": "用户ID"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "evaluation_type",
+      "type": "int(1)",
+      "description": "评价类型，1 好评、2 中评 ,3好评"
+    },
+    {
+      "name": "evaluation_content",
+      "type": "mediumtext",
+      "description": "评价内容"
+    },
+    {
+      "name": "evaluation_status",
+      "type": "int(1)",
+      "description": "评论状态"
+    },
+    {
+      "name": "service_id",
+      "type": "decimal(10,0)",
+      "description": "服务请求ID"
+    },
+    {
+      "name": "create_time",
+      "type": "date",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "t_bz_service_evaluation表存储客户对服务请求的评价数据，包含用户ID、服务编码、评价类型、内容及状态，用于管理订单评价和反馈。\n表名: t_bz_service_evaluation\n列信息: evaluation_id(评价ID), service_code(服务编码), user_id(用户ID), customer_id(客户ID), evaluation_type(评价类型，1 好评、2 中评 ,3好评), evaluation_content(评价内容), evaluation_status(评论状态), service_id(服务请求ID), create_time(创建时间)"
+}

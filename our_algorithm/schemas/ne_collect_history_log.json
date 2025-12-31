@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_collect_history_log"
+  },
+  "table_comment": null,
+  "llm_description": "存储用户对设备执行任务的历史日志记录，包含日志内容、生成时间及创建时间。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "主键"
+    },
+    {
+      "name": "uid",
+      "type": "varchar(32)",
+      "description": null
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "history_id",
+      "type": "bigint(20)",
+      "description": "任务执行历史ID"
+    },
+    {
+      "name": "log",
+      "type": "text",
+      "description": "日志"
+    },
+    {
+      "name": "log_time",
+      "type": "datetime",
+      "description": "日志生成时间"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间，默认为当前时间"
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "存储用户对设备执行任务的历史日志记录，包含日志内容、生成时间及创建时间。\n表名: ne_collect_history_log\n列信息: id(主键), ne_id(网元ID), history_id(任务执行历史ID), log(日志), log_time(日志生成时间), created_time(创建时间，默认为当前时间)\n其他列: uid"
+}

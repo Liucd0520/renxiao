@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdw_dp_device_performance"
+  },
+  "table_comment": null,
+  "llm_description": "sdw_dp_device_performance表存储设备性能数据，记录设备状态、内存CPU利用率及采集时间，用于监控设备运行并触发告警。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "dev_id",
+      "type": "varchar(255)",
+      "description": "设备编号"
+    },
+    {
+      "name": "device_status",
+      "type": "varchar(255)",
+      "description": "设备状态(1:正常  0:异常)。常见值: 1, 0"
+    },
+    {
+      "name": "mem_lv",
+      "type": "varchar(255)",
+      "description": "内存利用率"
+    },
+    {
+      "name": "cpu_lv",
+      "type": "varchar(255)",
+      "description": "CPU利用率"
+    },
+    {
+      "name": "gather_time",
+      "type": "varchar(255)",
+      "description": "采集时间"
+    },
+    {
+      "name": "remark",
+      "type": "varchar(255)",
+      "description": "备注"
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "sdw_dp_device_performance表存储设备性能数据，记录设备状态、内存CPU利用率及采集时间，用于监控设备运行并触发告警。\n表名: sdw_dp_device_performance\n列信息: dev_id(设备编号), device_status(设备状态(1:正常  0:异常)), mem_lv(内存利用率), cpu_lv(CPU利用率), gather_time(采集时间), remark(备注)\n其他列: id"
+}

@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "shedlock"
+  },
+  "table_comment": null,
+  "llm_description": "shedlock表用于存储分布式锁信息，记录客户、订单、设备等资源的锁定状态及解锁时间，防止并发操作冲突。",
+  "columns": [
+    {
+      "name": "name",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "lock_until",
+      "type": "timestamp(3)",
+      "description": null
+    },
+    {
+      "name": "locked_at",
+      "type": "timestamp(3)",
+      "description": null
+    },
+    {
+      "name": "locked_by",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "shedlock表用于存储分布式锁信息，记录客户、订单、设备等资源的锁定状态及解锁时间，防止并发操作冲突。\n表名: shedlock\n其他列: name, lock_until, locked_at, locked_by"
+}

@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_department"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户部门配置信息，包含部门名称、描述、所属客户及用户权限组，记录启用状态与操作日志。",
+  "columns": [
+    {
+      "name": "DEPARTMENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "DEPARTMENT_NAME",
+      "type": "varchar(512)",
+      "description": "DEPARTMENT_NAME。常见值: 开发团队, Default, NETCARE, 默认, 开发团队1030, test, 产险, 业务单位, CLOUDCARE, 研发部"
+    },
+    {
+      "name": "DEPARTMENT_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "IS_ACTIVE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATED_BY",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "LAST_MODIFY_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "存储客户部门配置信息，包含部门名称、描述、所属客户及用户权限组，记录启用状态与操作日志。\n表名: t_bz_config_department\n其他列: DEPARTMENT_ID, DEPARTMENT_NAME, DEPARTMENT_DESC, CUSTOMER_ID, IS_ACTIVE, CREATE_TIME, UPDATED_BY, LAST_MODIFY_TIME, CREATED_BY, GROUP_ID"
+}

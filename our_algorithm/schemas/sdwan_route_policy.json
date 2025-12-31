@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdwan_route_policy"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户及设备的路由策略配置，用于管理网络流量控制规则。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(100)",
+      "description": null
+    },
+    {
+      "name": "policy_name",
+      "type": "varchar(255)",
+      "description": "policy_name。常见值: 测试1, 测试3, 测试4, 测试5, test2"
+    },
+    {
+      "name": "policy_desc",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "policy_inout",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "data",
+      "type": "varchar(10000)",
+      "description": null
+    },
+    {
+      "name": "type",
+      "type": "varchar(50)",
+      "description": null
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "存储客户及设备的路由策略配置，用于管理网络流量控制规则。\n表名: sdwan_route_policy\n其他列: id, policy_name, policy_desc, policy_inout, data, type"
+}

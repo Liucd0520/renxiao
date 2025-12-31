@@ -1,0 +1,72 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "hardware"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备硬件信息及层级关系，包含型号、序列号、版本等属性，用于设备管理、告警关联与权限控制。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(10)",
+      "description": null
+    },
+    {
+      "name": "root_ne_id",
+      "type": "bigint(10)",
+      "description": null
+    },
+    {
+      "name": "hardware_index",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "tree_level",
+      "type": "int(11)",
+      "description": "父ID"
+    },
+    {
+      "name": "hardware_name",
+      "type": "varchar(255)",
+      "description": "hardware_name。常见值: Container, Container Level2, Slot 6 - Temp: Outlet, Slot 6 - V: 1.5v, Fan 2/2, Fan 2/3, Slot 6 - Temp: CPU, Slot 6 - V: 1.0v CPU, module 0, Slot 6 - V: 12v"
+    },
+    {
+      "name": "description",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "model_name",
+      "type": "varchar(255)",
+      "description": "model_name。常见值: ISR4331/K9, PWR-4330-AC, ACS-4330-FANASSY, ISR4331-3x1GE, CISCO2911/K9, PWR-2911-AC, MSR900, MSR900 RPU Board, SIC-4GSW, ICG3000F"
+    },
+    {
+      "name": "serial_number",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "software_revision",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "hardware_revision",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "firmware_revision",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "manufacturer_name",
+      "type": "varchar(255)",
+      "description": "manufacturer_name。常见值: Cisco, Huawei, Cisco Systems Inc, H3C, RSR10-X-07, RedGiant Network"
+    }
+  ],
+  "column_count": 12,
+  "embedding_text": "存储设备硬件信息及层级关系，包含型号、序列号、版本等属性，用于设备管理、告警关联与权限控制。\n表名: hardware\n列信息: tree_level(父ID)\n其他列: id, root_ne_id, hardware_index, hardware_name, description, model_name, serial_number, software_revision, hardware_revision, firmware_revision, manufacturer_name"
+}

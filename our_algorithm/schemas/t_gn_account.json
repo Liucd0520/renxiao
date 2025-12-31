@@ -1,0 +1,117 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_account"
+  },
+  "table_comment": null,
+  "llm_description": "存储企业费用账目信息，包含费用类型、支付方式、状态及金额，用于财务对账和支付管理，涉及客户、设备、订单等业务场景。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "cost_month",
+      "type": "datetime",
+      "description": "费用月份"
+    },
+    {
+      "name": "cost_code",
+      "type": "varchar(100)",
+      "description": "费用编号"
+    },
+    {
+      "name": "deduction_owe",
+      "type": "int(1)",
+      "description": "抵扣欠费，1 是、2 否"
+    },
+    {
+      "name": "mode_payment",
+      "type": "int(1)",
+      "description": "支付方式，1 现金、2 转账、3 支票"
+    },
+    {
+      "name": "cost_name",
+      "type": "varchar(255)",
+      "description": "费用名称。常见值: 旅游, 出差, 111, 平台咨询, 测试, 旅游2, 旅游1, 餐补, 123"
+    },
+    {
+      "name": "cost_type",
+      "type": "int(2)",
+      "description": "费用类型，1 工资、2 折旧费、3 办公费、4 差旅费、5 运输费、6 保险费、7 租赁费、8 咨询费、9 诉讼费、10 其他"
+    },
+    {
+      "name": "cost_state",
+      "type": "int(1)",
+      "description": "费用状态，1 已付、2 待付、3 未付"
+    },
+    {
+      "name": "amount_payable",
+      "type": "decimal(20,10)",
+      "description": "应付金额(元)"
+    },
+    {
+      "name": "cost_balance",
+      "type": "decimal(20,10)",
+      "description": "费用余额(元)"
+    },
+    {
+      "name": "principal",
+      "type": "decimal(20,10)",
+      "description": "本金(元)"
+    },
+    {
+      "name": "penal_sum",
+      "type": "decimal(20,10)",
+      "description": "违约金(元)"
+    },
+    {
+      "name": "carry_penal_sum",
+      "type": "decimal(20,10)",
+      "description": "结转违约金(元)"
+    },
+    {
+      "name": "amount_adjustment",
+      "type": "decimal(20,10)",
+      "description": "调整金额(元)"
+    },
+    {
+      "name": "entry_clerk_id",
+      "type": "int(11)",
+      "description": "录入人ID"
+    },
+    {
+      "name": "entry_clerk_phone",
+      "type": "varchar(20)",
+      "description": "录入人电话"
+    },
+    {
+      "name": "voucher_num",
+      "type": "int(11)",
+      "description": "凭证号"
+    },
+    {
+      "name": "scan_piece",
+      "type": "varchar(500)",
+      "description": "扫描件"
+    },
+    {
+      "name": "settlement_start_date",
+      "type": "datetime",
+      "description": "结算起始日期"
+    },
+    {
+      "name": "settlement_end_date",
+      "type": "datetime",
+      "description": "结算截止日期"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 21,
+  "embedding_text": "存储企业费用账目信息，包含费用类型、支付方式、状态及金额，用于财务对账和支付管理，涉及客户、设备、订单等业务场景。\n表名: t_gn_account\n列信息: id(id), cost_month(费用月份), cost_code(费用编号), deduction_owe(抵扣欠费，1 是、2 否), mode_payment(支付方式，1 现金、2 转账、3 支票), cost_name(费用名称), cost_type(费用类型，1 工资、2 折旧费、3 办公费、4 差旅费、5 运输费、6 保险费、7 租赁费、8 咨询费、9 诉讼费、10 其他), cost_state(费用状态，1 已付、2 待付、3 未付), amount_payable(应付金额(元)), cost_balance(费用余额(元)), principal(本金(元)), penal_sum(违约金(元)), carry_penal_sum(结转违约金(元)), amount_adjustment(调整金额(元)), entry_clerk_id(录入人ID)"
+}

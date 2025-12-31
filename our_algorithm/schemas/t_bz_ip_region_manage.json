@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_ip_region_manage"
+  },
+  "table_comment": null,
+  "llm_description": "客户IP区域管理表，用于存储客户ID、区域名称及IP管理权限配置，支持客户权限分配与区域访问控制。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(11,0)",
+      "description": "ip管理ID"
+    },
+    {
+      "name": "REGION_NAME",
+      "type": "varchar(255)",
+      "description": "REGION_NAME。常见值: 杨浦区"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(11,0)",
+      "description": "客户ID"
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "客户IP区域管理表，用于存储客户ID、区域名称及IP管理权限配置，支持客户权限分配与区域访问控制。\n表名: t_bz_ip_region_manage\n列信息: ID(ip管理ID), CUSTOMER_ID(客户ID)\n其他列: REGION_NAME"
+}

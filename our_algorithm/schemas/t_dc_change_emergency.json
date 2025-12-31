@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_change_emergency"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_change_emergency表存储数据中心变更相关的紧急告警信息，用于记录设备或权限变更时的告警事件。",
+  "columns": [
+    {
+      "name": "EMERGENCY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "EMERGENCY_NAME",
+      "type": "varchar(25)",
+      "description": "EMERGENCY_NAME。常见值: 低, 高, 中"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_change_emergency表存储数据中心变更相关的紧急告警信息，用于记录设备或权限变更时的告警事件。\n表名: t_dc_change_emergency\n其他列: EMERGENCY_ID, EMERGENCY_NAME"
+}

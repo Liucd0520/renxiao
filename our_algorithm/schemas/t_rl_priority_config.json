@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_priority_config"
+  },
+  "table_comment": null,
+  "llm_description": "存储告警优先级配置，关联影响范围与紧急程度，用于管理设备告警处理顺序和权限分配。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": null
+    },
+    {
+      "name": "PRIORITY_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "INFLUENCE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "EMERGENCY_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储告警优先级配置，关联影响范围与紧急程度，用于管理设备告警处理顺序和权限分配。\n表名: t_rl_priority_config\n其他列: id, PRIORITY_ID, INFLUENCE_ID, EMERGENCY_ID"
+}

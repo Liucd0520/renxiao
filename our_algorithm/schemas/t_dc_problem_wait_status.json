@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_problem_wait_status"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_problem_wait_status表存储设备告警等待状态，用于管理告警处理流程及客户问题状态。",
+  "columns": [
+    {
+      "name": "WAIT_STATUS_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "WAIT_STATUS_NAME",
+      "type": "varchar(50)",
+      "description": "WAIT_STATUS_NAME。常见值: 等待提交人提供信息, 等待其他厂商/第三方处理, 等待RFC变更流程处理"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_problem_wait_status表存储设备告警等待状态，用于管理告警处理流程及客户问题状态。\n表名: t_dc_problem_wait_status\n其他列: WAIT_STATUS_ID, WAIT_STATUS_NAME"
+}

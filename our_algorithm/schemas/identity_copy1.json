@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "identity_copy1"
+  },
+  "table_comment": null,
+  "llm_description": "identity_copy1表存储网络设备类型标识及包含关系，用于权限配置和告警规则管理。",
+  "columns": [
+    {
+      "name": "OID",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "NE_TYPE_ID",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "NE_TYPE_NAME",
+      "type": "varchar(255)",
+      "description": "NE_TYPE_NAME。常见值: Cisco Device, Windows Server, Juniper Device, F5 Device, Network Device, ZTE Device, RuiJie Device, Map Device, HP Unix Server, Linux Server"
+    },
+    {
+      "name": "IS_INCLUDE",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "identity_copy1表存储网络设备类型标识及包含关系，用于权限配置和告警规则管理。\n表名: identity_copy1\n其他列: OID, NE_TYPE_ID, NE_TYPE_NAME, IS_INCLUDE"
+}

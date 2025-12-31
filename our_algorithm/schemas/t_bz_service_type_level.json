@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_service_type_level"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_service_type_level表存储服务请求类型层级结构，用于客户、设备、订单等分类管理及权限分配。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "int(11)",
+      "description": "服务请求类型ID"
+    },
+    {
+      "name": "TYPE_NAME",
+      "type": "varchar(255)",
+      "description": "类型名称。常见值: 安全威胁响应, 教育网网络-其他, 硬件故障, 软硬件测试协助, 软件故障, 专项服务, 外设故障, 正版化检查, 应用故障, 正版化部署"
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "int(11)",
+      "description": "上级ID"
+    },
+    {
+      "name": "FIRST_LEVEL_ID",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "SECOND_LEVEL_ID",
+      "type": "int(11)",
+      "description": null
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "t_bz_service_type_level表存储服务请求类型层级结构，用于客户、设备、订单等分类管理及权限分配。\n表名: t_bz_service_type_level\n列信息: ID(服务请求类型ID), TYPE_NAME(类型名称), PARENT_ID(上级ID)\n其他列: FIRST_LEVEL_ID, SECOND_LEVEL_ID"
+}

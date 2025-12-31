@@ -1,0 +1,72 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "trap_ne_policy"
+  },
+  "table_comment": "设备的trap下的配置策略",
+  "llm_description": "trap_ne_policy表存储设备Trap告警的配置策略，用于管理告警过滤规则及策略生效时间。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "策略ID"
+    },
+    {
+      "name": "ne_id",
+      "type": "int(11)",
+      "description": "设备ID"
+    },
+    {
+      "name": "trap_id",
+      "type": "int(11)",
+      "description": "trapID"
+    },
+    {
+      "name": "regex",
+      "type": "varchar(255)",
+      "description": "正则"
+    },
+    {
+      "name": "max_severity",
+      "type": "varchar(255)",
+      "description": "最大匹配告警等级。常见值: 0, 60"
+    },
+    {
+      "name": "disable_alert",
+      "type": "tinyint(1)",
+      "description": "无效告警"
+    },
+    {
+      "name": "severity",
+      "type": "varchar(255)",
+      "description": "严重等级。常见值: 60, 10"
+    },
+    {
+      "name": "start_time",
+      "type": "datetime",
+      "description": "开始时间"
+    },
+    {
+      "name": "end_time",
+      "type": "datetime",
+      "description": "过期时间"
+    },
+    {
+      "name": "expire_type",
+      "type": "varchar(255)",
+      "description": "过期类型。常见值: never, day, week"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "新增时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "修改时间"
+    }
+  ],
+  "column_count": 12,
+  "embedding_text": "trap_ne_policy表存储设备Trap告警的配置策略，用于管理告警过滤规则及策略生效时间。\n表名: trap_ne_policy\n表注释: 设备的trap下的配置策略\n列信息: id(策略ID), ne_id(设备ID), trap_id(trapID), regex(正则), max_severity(最大匹配告警等级), disable_alert(无效告警), severity(严重等级), start_time(开始时间), end_time(过期时间), expire_type(过期类型), create_time(新增时间), update_time(修改时间)"
+}

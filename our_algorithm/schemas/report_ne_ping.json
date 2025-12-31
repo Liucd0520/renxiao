@@ -1,0 +1,92 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_ne_ping"
+  },
+  "table_comment": null,
+  "llm_description": "report_ne_ping表存储网络设备Ping测试指标数据，包含延迟平均值、丢包率等关键性能参数，用于设备运行监控与告警分析。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REPORT_INST_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ITEMNAME",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "VALUE_DELAY_AVG",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_DELAY_SUM",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_DELAY_MIN",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_DELAY_MAX",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_DELAY_95TH",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_LOSS_AVG",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_LOSS_SUM",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_LOSS_MIN",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_LOSS_MAX",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_LOSS_95TH",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_LOSS_NUM",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_DELAY_NUM",
+      "type": "decimal(38,2)",
+      "description": null
+    }
+  ],
+  "column_count": 16,
+  "embedding_text": "report_ne_ping表存储网络设备Ping测试指标数据，包含延迟平均值、丢包率等关键性能参数，用于设备运行监控与告警分析。\n表名: report_ne_ping\n其他列: ID, REPORT_INST_ID, ITEMNAME, NE_ID, VALUE_DELAY_AVG, VALUE_DELAY_SUM, VALUE_DELAY_MIN, VALUE_DELAY_MAX, VALUE_DELAY_95TH, VALUE_LOSS_AVG, VALUE_LOSS_SUM, VALUE_LOSS_MIN, VALUE_LOSS_MAX, VALUE_LOSS_95TH, VALUE_LOSS_NUM"
+}

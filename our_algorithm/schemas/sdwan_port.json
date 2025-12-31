@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdwan_port"
+  },
+  "table_comment": null,
+  "llm_description": "存储SD-WAN端口配置数据，关联设备与客户，用于管理网络端口状态及告警信息。",
+  "columns": [
+    {
+      "name": "portId",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "deviceId",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "tenantId",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "data",
+      "type": "varchar(10000)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储SD-WAN端口配置数据，关联设备与客户，用于管理网络端口状态及告警信息。\n表名: sdwan_port\n其他列: portId, deviceId, tenantId, data"
+}

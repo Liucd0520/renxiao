@@ -1,0 +1,107 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_knowledge_info"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_knowledge_info表存储客户、设备、订单相关知识信息，用于用户权限管理、分类及状态跟踪。",
+  "columns": [
+    {
+      "name": "KNOWLEDGE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "KNOWLEDGE_NO",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "SOURCE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "KNOWLEDGE_STATUS",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "MANAGE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "KNOWLEDGE_LEVEL1_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "KNOWLEDGE_LEVEL2_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "KNOWLEDGE_LEVEL3_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "KNOWLEDGE_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "KNOWLEDGE_REASON",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "SLOVE_WAY",
+      "type": "varchar(1024)",
+      "description": null
+    },
+    {
+      "name": "CHANGE_WAY",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "PROBLEM_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PUBLISH_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "FAIL_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "IS_SEARCH",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "FLOW_STAGE",
+      "type": "decimal(2,0)",
+      "description": null
+    }
+  ],
+  "column_count": 19,
+  "embedding_text": "t_bz_knowledge_info表存储客户、设备、订单相关知识信息，用于用户权限管理、分类及状态跟踪。\n表名: t_bz_knowledge_info\n其他列: KNOWLEDGE_ID, KNOWLEDGE_NO, SOURCE_ID, KNOWLEDGE_STATUS, CREATE_TIME, CREATE_USER_ID, MANAGE_USER_ID, KNOWLEDGE_LEVEL1_TYPE, KNOWLEDGE_LEVEL2_TYPE, KNOWLEDGE_LEVEL3_TYPE, KNOWLEDGE_DESC, KNOWLEDGE_REASON, SLOVE_WAY, CHANGE_WAY, PROBLEM_ID"
+}

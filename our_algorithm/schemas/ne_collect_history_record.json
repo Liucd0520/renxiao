@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_collect_history_record"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备数据收集任务历史记录，包含任务ID、记录ID及创建时间，支持软删除，用于追踪告警和客户订单操作。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "主键"
+    },
+    {
+      "name": "history_id",
+      "type": "bigint(20)",
+      "description": "任务执行历史ID"
+    },
+    {
+      "name": "record_id",
+      "type": "bigint(20)",
+      "description": "记录ID"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间，默认为当前时间"
+    },
+    {
+      "name": "deleted",
+      "type": "tinyint(1)",
+      "description": null
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "存储设备数据收集任务历史记录，包含任务ID、记录ID及创建时间，支持软删除，用于追踪告警和客户订单操作。\n表名: ne_collect_history_record\n列信息: id(主键), history_id(任务执行历史ID), record_id(记录ID), created_time(创建时间，默认为当前时间)\n其他列: deleted"
+}

@@ -1,0 +1,87 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_template_access_config"
+  },
+  "table_comment": "设备访问配置模板",
+  "llm_description": "存储客户设备访问权限配置模板，包含用户名、密码及状态信息，用于管理设备访问控制和用户权限分配。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "设备访问配置模板的唯一标识ID"
+    },
+    {
+      "name": "name",
+      "type": "varchar(255)",
+      "description": "模板名称"
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "description": "模板描述"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(11,0)",
+      "description": "客户"
+    },
+    {
+      "name": "status",
+      "type": "tinyint(4)",
+      "description": "模板运行状态"
+    },
+    {
+      "name": "username",
+      "type": "varchar(100)",
+      "description": "设备访问用户名"
+    },
+    {
+      "name": "password",
+      "type": "varchar(100)",
+      "description": "设备访问密码"
+    },
+    {
+      "name": "enable_username",
+      "type": "varchar(100)",
+      "description": "设备访问的enable用户名"
+    },
+    {
+      "name": "enable_password",
+      "type": "varchar(100)",
+      "description": "设备访问的enable密码"
+    },
+    {
+      "name": "type",
+      "type": "varchar(10)",
+      "description": "类型"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间，默认为当前时间"
+    },
+    {
+      "name": "created_by",
+      "type": "decimal(11,0)",
+      "description": "创建人"
+    },
+    {
+      "name": "updated_time",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "updated_by",
+      "type": "decimal(11,0)",
+      "description": "更新人"
+    },
+    {
+      "name": "deleted",
+      "type": "tinyint(1)",
+      "description": null
+    }
+  ],
+  "column_count": 15,
+  "embedding_text": "存储客户设备访问权限配置模板，包含用户名、密码及状态信息，用于管理设备访问控制和用户权限分配。\n表名: ne_template_access_config\n表注释: 设备访问配置模板\n列信息: id(设备访问配置模板的唯一标识ID), name(模板名称), description(模板描述), customer_id(客户), status(模板运行状态), username(设备访问用户名), password(设备访问密码), enable_username(设备访问的enable用户名), enable_password(设备访问的enable密码), type(类型), created_time(创建时间，默认为当前时间), created_by(创建人), updated_time(更新时间), updated_by(更新人)\n其他列: deleted"
+}

@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "customer_cloud_monitor_key"
+  },
+  "table_comment": "密钥表",
+  "llm_description": "客户云监控密钥表，存储客户在阿里云/华为云的访问权限凭证，记录用户操作及密钥生命周期，支持软删除管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "ID"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "supplier",
+      "type": "varchar(32)",
+      "description": "供应商：阿里云yun_ali 华为云yun_huawei"
+    },
+    {
+      "name": "ak",
+      "type": "varchar(255)",
+      "description": "Access Key Id"
+    },
+    {
+      "name": "sk",
+      "type": "varchar(255)",
+      "description": "Secret Access Key"
+    },
+    {
+      "name": "operator",
+      "type": "bigint(20)",
+      "description": "录入用户"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "deleted",
+      "type": "char(1)",
+      "description": "是否删除"
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "客户云监控密钥表，存储客户在阿里云/华为云的访问权限凭证，记录用户操作及密钥生命周期，支持软删除管理。\n表名: customer_cloud_monitor_key\n表注释: 密钥表\n列信息: id(ID), customer_id(客户ID), supplier(供应商：阿里云yun_ali 华为云yun_huawei), ak(Access Key Id), sk(Secret Access Key), operator(录入用户), create_time(创建时间), update_time(更新时间), deleted(是否删除)"
+}

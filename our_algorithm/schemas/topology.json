@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "topology"
+  },
+  "table_comment": "拓扑-采集历史",
+  "llm_description": "拓扑采集任务历史记录，包含采集机ID、设备地址、任务状态及时间，用于设备监控与告警处理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(31)",
+      "description": "ID"
+    },
+    {
+      "name": "collector_id",
+      "type": "bigint(31)",
+      "description": "采集机ID"
+    },
+    {
+      "name": "uid",
+      "type": "varchar(255)",
+      "description": "UUID"
+    },
+    {
+      "name": "address",
+      "type": "varchar(255)",
+      "description": "目标地址"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "新增时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "修改时间"
+    },
+    {
+      "name": "collect_time",
+      "type": "datetime",
+      "description": "采集时间"
+    },
+    {
+      "name": "result",
+      "type": "tinyint(1)",
+      "description": "任务状态 0 待执行 1 执行成功 2 执行失败"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "拓扑采集任务历史记录，包含采集机ID、设备地址、任务状态及时间，用于设备监控与告警处理。\n表名: topology\n表注释: 拓扑-采集历史\n列信息: id(ID), collector_id(采集机ID), uid(UUID), address(目标地址), create_time(新增时间), update_time(修改时间), collect_time(采集时间), result(任务状态 0 待执行 1 执行成功 2 执行失败)"
+}

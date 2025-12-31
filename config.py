@@ -38,10 +38,10 @@ LLM_NAME = "qwen"  # 可选: "qwen", "zhipu", "deepseek"
 VERBOSE = True
 
 # ==== 本地 Qwen 配置 ====
-# 本地部署的 Qwen3-14B-awq 使用 OpenAI 兼容接口
-QWEN_API_KEY = "EMPTY"  # 本地部署通常不需要 API Key，可以设置为 EMPTY
-QWEN_MODEL = "Qwen3-14B-awq"  # 模型名称
-QWEN_BASE_URL = "http://172.31.24.112:33086/v1"  # 本地 API 地址
+# 本地部署的 Qwen2.5-Coder-32B-Instruct
+QWEN_API_KEY = "yfzx202510"
+QWEN_MODEL = "Qwen2.5-Coder-32B-Instruct"  # 32B 模型
+QWEN_BASE_URL = "http://172.31.24.112:33080/v1"  # 32B 模型 API 地址
 
 # 其他 API Keys（如果不使用可以保持默认）
 ZHIPU_API_KEY = "your_zhipu_api_key_here"

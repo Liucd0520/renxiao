@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_operations_staff"
+  },
+  "table_comment": null,
+  "llm_description": "存储运维人员排班信息，包含所属部门、联系方式及状态，用于告警处理和设备监控的值班管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "oam_staff_id",
+      "type": "int(11)",
+      "description": "运维人员ID"
+    },
+    {
+      "name": "department_id",
+      "type": "int(11)",
+      "description": "所属部门ID"
+    },
+    {
+      "name": "schedule_start_time",
+      "type": "time",
+      "description": "排班开始时间"
+    },
+    {
+      "name": "schedule_end_time",
+      "type": "time",
+      "description": "排班结束时间"
+    },
+    {
+      "name": "oam_staff_phone",
+      "type": "varchar(20)",
+      "description": "运维人员电话"
+    },
+    {
+      "name": "oam_staff_email",
+      "type": "varchar(20)",
+      "description": "运维人员邮箱"
+    },
+    {
+      "name": "current_state",
+      "type": "int(1)",
+      "description": "当前状态，1 空闲中、2 值班中"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "存储运维人员排班信息，包含所属部门、联系方式及状态，用于告警处理和设备监控的值班管理。\n表名: t_gn_operations_staff\n列信息: id(id), oam_staff_id(运维人员ID), department_id(所属部门ID), schedule_start_time(排班开始时间), schedule_end_time(排班结束时间), oam_staff_phone(运维人员电话), oam_staff_email(运维人员邮箱), current_state(当前状态，1 空闲中、2 值班中), create_datetime(创建时间)"
+}

@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_incorporate_config"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_incorporate_config表存储数据归并规则配置，包含规则ID、名称、轮询时间、类型（any/region/device）及激活状态，用于客户/设备/订单相关数据的整合与告警处理。",
+  "columns": [
+    {
+      "name": "INCORPORATE_ID",
+      "type": "decimal(10,0)",
+      "description": "归并规则id"
+    },
+    {
+      "name": "INCORPORATE_NAME",
+      "type": "varchar(255)",
+      "description": "归并规则名称。常见值: 测试3, 222, 名称, 名称(否定), 1111, 333"
+    },
+    {
+      "name": "INCORPORATE_LOCK_DURATION",
+      "type": "decimal(10,0)",
+      "description": "归并轮询时间（秒）"
+    },
+    {
+      "name": "SHARING_TYPE",
+      "type": "int(1)",
+      "description": "归并类型（1：any，2：region，3：device）"
+    },
+    {
+      "name": "IS_ACTIVE",
+      "type": "int(1)",
+      "description": "1:激活，2:关闭"
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "t_bz_incorporate_config表存储数据归并规则配置，包含规则ID、名称、轮询时间、类型（any/region/device）及激活状态，用于客户/设备/订单相关数据的整合与告警处理。\n表名: t_bz_incorporate_config\n列信息: INCORPORATE_ID(归并规则id), INCORPORATE_NAME(归并规则名称), INCORPORATE_LOCK_DURATION(归并轮询时间（秒）), SHARING_TYPE(归并类型（1：any，2：region，3：device）), IS_ACTIVE(1:激活，2:关闭), UPDATE_TIME(更新时间)"
+}

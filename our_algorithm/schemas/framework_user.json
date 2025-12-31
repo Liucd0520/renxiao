@@ -1,0 +1,72 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "framework_user"
+  },
+  "table_comment": null,
+  "llm_description": "framework_user表存储用户基本信息、权限状态及操作记录，用于用户管理与权限控制。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "int(10)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(128)",
+      "description": "姓名"
+    },
+    {
+      "name": "DESCRIPTION",
+      "type": "varchar(512)",
+      "description": "描述"
+    },
+    {
+      "name": "PASSWORD",
+      "type": "varchar(256)",
+      "description": "密码"
+    },
+    {
+      "name": "IS_ACTIVE",
+      "type": "int(1)",
+      "description": "是否激活"
+    },
+    {
+      "name": "CREATED_TIME",
+      "type": "timestamp",
+      "description": "创建时间"
+    },
+    {
+      "name": "UPDATED_TIME",
+      "type": "timestamp",
+      "description": "修改时间"
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATER",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "EDITOR",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "USEABLE",
+      "type": "bit(1)",
+      "description": null
+    }
+  ],
+  "column_count": 12,
+  "embedding_text": "framework_user表存储用户基本信息、权限状态及操作记录，用于用户管理与权限控制。\n表名: framework_user\n列信息: NAME(姓名), DESCRIPTION(描述), PASSWORD(密码), IS_ACTIVE(是否激活), CREATED_TIME(创建时间), UPDATED_TIME(修改时间)\n其他列: ID, CREATE_TIME, CREATER, EDITOR, UPDATE_TIME, USEABLE"
+}

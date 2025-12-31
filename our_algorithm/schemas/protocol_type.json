@@ -1,0 +1,17 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "protocol_type"
+  },
+  "table_comment": null,
+  "llm_description": "protocol_type表存储各类协议类型，用于客户、设备、订单、告警等业务场景的通信规则及权限配置。",
+  "columns": [
+    {
+      "name": "PROTOCOL_TYPE",
+      "type": "varchar(64)",
+      "description": "PROTOCOL_TYPE。常见值: Api Access Profiles, JBOSS_RMI, SSH, APACHE_JMX, IPMI, SNMP, ICMP, NGINX, HBASE_JMX, NETFLOW"
+    }
+  ],
+  "column_count": 1,
+  "embedding_text": "protocol_type表存储各类协议类型，用于客户、设备、订单、告警等业务场景的通信规则及权限配置。\n表名: protocol_type\n其他列: PROTOCOL_TYPE"
+}

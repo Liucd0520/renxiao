@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_report_monitor_menu"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储监控报告系统菜单信息，用于管理用户权限，包含设备、告警、客户、订单等模块的菜单项及状态排序。",
+  "columns": [
+    {
+      "name": "MENU_ID",
+      "type": "decimal(5,0)",
+      "description": "菜单ID"
+    },
+    {
+      "name": "MENU_NAME",
+      "type": "varchar(128)",
+      "description": "菜单名称。常见值: 发布报告, 按人员和工单类别统计, 从设备角度1, 变更类型统计, 按时间统计处理/现开/参与CASE数, 事件次数发生2+设备, 从工程师, 变更月统计图表, 超时处理CASE总数, 问题报告"
+    },
+    {
+      "name": "MENU_URL",
+      "type": "varchar(256)",
+      "description": "菜单地址"
+    },
+    {
+      "name": "MENU_ICON",
+      "type": "varchar(128)",
+      "description": "菜单图片"
+    },
+    {
+      "name": "PARENT_MENU_ID",
+      "type": "decimal(5,0)",
+      "description": "父菜单ID"
+    },
+    {
+      "name": "MENU_STATE",
+      "type": "varchar(128)",
+      "description": "菜单状态。常见值: closed"
+    },
+    {
+      "name": "SORT_ID",
+      "type": "varchar(128)",
+      "description": "分类ID"
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "该表存储监控报告系统菜单信息，用于管理用户权限，包含设备、告警、客户、订单等模块的菜单项及状态排序。\n表名: t_dc_report_monitor_menu\n列信息: MENU_ID(菜单ID), MENU_NAME(菜单名称), MENU_URL(菜单地址), MENU_ICON(菜单图片), PARENT_MENU_ID(父菜单ID), MENU_STATE(菜单状态), SORT_ID(分类ID)"
+}

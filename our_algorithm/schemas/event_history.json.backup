@@ -1,0 +1,198 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_history"
+  },
+  "table_comment": null,
+  "llm_description": "【告警/事件主表】存储所有设备告警和事件的历史记录，包括告警类型、事件类型、告警时间、恢复时间、告警级别等。这是查询告警、事件、故障历史的核心表。",
+  "columns": [
+    {
+      "name": "EVENT_ID",
+      "type": "decimal(30,0)",
+      "description": "事件ID"
+    },
+    {
+      "name": "EVENT_TYPE_ID",
+      "type": "varchar(255)",
+      "description": "事件类型ID"
+    },
+    {
+      "name": "EVENT_TYPE_NAME",
+      "type": "varchar(255)",
+      "description": "事件类型名称"
+    },
+    {
+      "name": "EVENT_NAME",
+      "type": "varchar(255)",
+      "description": "时间名称"
+    },
+    {
+      "name": "EVENT_VALUE",
+      "type": "varchar(255)",
+      "description": "事件值"
+    },
+    {
+      "name": "EVENT_STATUS",
+      "type": "decimal(2,0)",
+      "description": "事件状态"
+    },
+    {
+      "name": "EVENT_STATUS_NAME",
+      "type": "varchar(128)",
+      "description": "事件状态名称"
+    },
+    {
+      "name": "EVENT_TIME",
+      "type": "datetime",
+      "description": "事件发生时间"
+    },
+    {
+      "name": "EVENT_DESC",
+      "type": "varchar(512)",
+      "description": "事件描述"
+    },
+    {
+      "name": "GROUP_ID",
+      "type": "decimal(20,0)",
+      "description": "事件组ID"
+    },
+    {
+      "name": "CORRELATION_ID",
+      "type": "decimal(20,0)",
+      "description": "事件关联Id"
+    },
+    {
+      "name": "BUSINESS_ID",
+      "type": "varchar(64)",
+      "description": "业务ID"
+    },
+    {
+      "name": "BUSINESS_NAME",
+      "type": "varchar(255)",
+      "description": "业务名称"
+    },
+    {
+      "name": "SEVERITY_ID",
+      "type": "decimal(2,0)",
+      "description": "严重等级ID"
+    },
+    {
+      "name": "SEVERITY_NAME",
+      "type": "varchar(255)",
+      "description": "严重等级名称"
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(20,0)",
+      "description": "事件相关网元ID"
+    },
+    {
+      "name": "NE_NAME",
+      "type": "varchar(255)",
+      "description": "事件网元名称"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(20,0)",
+      "description": "根网元ID"
+    },
+    {
+      "name": "ROOT_NE_NAME",
+      "type": "varchar(512)",
+      "description": "根网元名称（设备名称）"
+    },
+    {
+      "name": "SYSTEM_ID",
+      "type": "decimal(5,0)",
+      "description": "系统ID"
+    },
+    {
+      "name": "SYSTEM_NAME",
+      "type": "varchar(255)",
+      "description": "系统名称"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(20,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "CUSTOMER_NAME",
+      "type": "varchar(255)",
+      "description": "客户名称"
+    },
+    {
+      "name": "ADDRESS",
+      "type": "varchar(20)",
+      "description": "设备IP"
+    },
+    {
+      "name": "ADDITIONAL",
+      "type": "varchar(512)",
+      "description": "额外"
+    },
+    {
+      "name": "SERVICE_PACKAGE",
+      "type": "varchar(255)",
+      "description": "服务包"
+    },
+    {
+      "name": "SERVICE_ITEM",
+      "type": "varchar(255)",
+      "description": "服务项"
+    },
+    {
+      "name": "IS_ACK",
+      "type": "decimal(2,0)",
+      "description": "是否响应"
+    },
+    {
+      "name": "ACK_TIME",
+      "type": "datetime",
+      "description": "响应时间"
+    },
+    {
+      "name": "ACK_USER_ID",
+      "type": "decimal(10,0)",
+      "description": "响应用户ID"
+    },
+    {
+      "name": "ACK_USER_NAME",
+      "type": "varchar(255)",
+      "description": "响应用户名称"
+    },
+    {
+      "name": "IS_ACTION",
+      "type": "decimal(2,0)",
+      "description": "是否开单"
+    },
+    {
+      "name": "ACTION_TIME",
+      "type": "datetime",
+      "description": "开单时间"
+    },
+    {
+      "name": "ACTION_USER_ID",
+      "type": "decimal(10,0)",
+      "description": "开单用户ID"
+    },
+    {
+      "name": "ACTION_USER_NAME",
+      "type": "varchar(255)",
+      "description": "开单用户名称"
+    },
+    {
+      "name": "ACTION_NO",
+      "type": "varchar(64)",
+      "description": "单号"
+    },
+    {
+      "name": "IS_LOCKED",
+      "type": "int(1)",
+      "description": "是否锁定"
+    }
+  ],
+  "column_count": 37,
+  "embedding_text": "【告警/事件主表】存储所有设备告警和事件的历史记录，包括告警类型、事件类型、告警时间、恢复时间、告警级别等。这是查询告警、事件、故障历史的核心表。\n表名: event_history\n列信息: EVENT_ID(事件ID), EVENT_TYPE_ID(事件类型ID), EVENT_TYPE_NAME(事件类型名称), EVENT_NAME(时间名称), EVENT_VALUE(事件值), EVENT_STATUS(事件状态), EVENT_STATUS_NAME(事件状态名称), EVENT_TIME(事件发生时间), EVENT_DESC(事件描述), GROUP_ID(事件组ID)",
+  "llm_description_v2": true
+}

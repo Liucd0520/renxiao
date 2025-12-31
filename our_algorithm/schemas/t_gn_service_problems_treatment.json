@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_service_problems_treatment"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户设备服务问题及处理方案，用于用户权限管理与问题跟踪。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "problem_title",
+      "type": "varchar(50)",
+      "description": "问题标题"
+    },
+    {
+      "name": "problem_content",
+      "type": "varchar(200)",
+      "description": "问题内容"
+    },
+    {
+      "name": "problem_sol",
+      "type": "varchar(200)",
+      "description": "问题处理办法"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "存储客户设备服务问题及处理方案，用于用户权限管理与问题跟踪。\n表名: t_gn_service_problems_treatment\n列信息: id(id), problem_title(问题标题), problem_content(问题内容), problem_sol(问题处理办法), create_datetime(创建时间)"
+}

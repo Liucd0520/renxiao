@@ -1,0 +1,388 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_ci_ne_root"
+  },
+  "table_comment": null,
+  "llm_description": "【设备主表/核心表】存储平台上所有设备的基础信息，包括设备ID、设备名称、设备类型、设备状态(上线/下线/down)、IP地址、客户归属等。查询设备数量、设备清单、设备状态时必用此表。",
+  "columns": [
+    {
+      "name": "CI_ID",
+      "type": "decimal(11,0)",
+      "description": "设备ID与NE_ID一样（从后端获取的值）"
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": "网元ID与NE表的ID一致"
+    },
+    {
+      "name": "LOCATION_ID",
+      "type": "decimal(10,0)",
+      "description": "场所ID(外键)"
+    },
+    {
+      "name": "REGION_ID",
+      "type": "decimal(10,0)",
+      "description": "区域ID"
+    },
+    {
+      "name": "DEPARTMENT_ID",
+      "type": "decimal(10,0)",
+      "description": "部门ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "NE_IP",
+      "type": "varchar(15)",
+      "description": "网元IP"
+    },
+    {
+      "name": "NE_MODEL",
+      "type": "varchar(255)",
+      "description": "根网元型号。常见值: 柜面网点, Servers, 锐捷, 自助银行, Cisco2851, 离行ATM, OTN, 上海肯德基有限公司, cisco1921, Cisco"
+    },
+    {
+      "name": "IS_ACTIVE",
+      "type": "decimal(1,0)",
+      "description": "是否激活 (1-激活 0- 非激活)"
+    },
+    {
+      "name": "IS_ONLINE",
+      "type": "decimal(1,0)",
+      "description": "是否在线 (1-在线 0-离线)"
+    },
+    {
+      "name": "IS_DISCOVERY",
+      "type": "decimal(1,0)",
+      "description": "是否被发现，默认为0"
+    },
+    {
+      "name": "DEVICE_TYPE_ID",
+      "type": "decimal(10,0)",
+      "description": "设备类型ID,手工选择"
+    },
+    {
+      "name": "VENDOR_ID",
+      "type": "decimal(10,0)",
+      "description": "供应商ID（外键，非必填）"
+    },
+    {
+      "name": "ACCOUNT",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "PASSWORD",
+      "type": "varchar(30)",
+      "description": null
+    },
+    {
+      "name": "SERIAL_NO_PACKETEER",
+      "type": "varchar(512)",
+      "description": "设备标识"
+    },
+    {
+      "name": "GROUP_NAME",
+      "type": "varchar(512)",
+      "description": "组名。常见值: 0, sdwan"
+    },
+    {
+      "name": "GROUP_ID",
+      "type": "varchar(512)",
+      "description": "组ID"
+    },
+    {
+      "name": "DC_IP",
+      "type": "varchar(512)",
+      "description": "数据中心IP"
+    },
+    {
+      "name": "POLICY_ID",
+      "type": "decimal(10,0)",
+      "description": "策略ID"
+    },
+    {
+      "name": "WORK_POLICY_ID",
+      "type": "decimal(10,0)",
+      "description": "工作策略ID"
+    },
+    {
+      "name": "ONLINE_CHANGE_TIME",
+      "type": "datetime",
+      "description": "上线变更时间"
+    },
+    {
+      "name": "REGION_ID1",
+      "type": "decimal(10,0)",
+      "description": "区域1"
+    },
+    {
+      "name": "REGION_ID2",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REGION_ID3",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REGION_ID4",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REGION_ID5",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ALIAS",
+      "type": "varchar(255)",
+      "description": "别名"
+    },
+    {
+      "name": "SERIAL_NUMBER",
+      "type": "varchar(255)",
+      "description": "序列号"
+    },
+    {
+      "name": "VERSION",
+      "type": "decimal(5,0)",
+      "description": "版本号"
+    },
+    {
+      "name": "STATUS",
+      "type": "decimal(5,0)",
+      "description": "状态"
+    },
+    {
+      "name": "AUDIT_STATUS_ID",
+      "type": "decimal(5,0)",
+      "description": "监控状态"
+    },
+    {
+      "name": "MONITOR_STATUS_ID",
+      "type": "decimal(5,0)",
+      "description": "审核时间"
+    },
+    {
+      "name": "AUDIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "OPERATE_SYSTEM",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "MEMORY",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "SHARED_MEMORY",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "ASSET_ID",
+      "type": "varchar(255)",
+      "description": "资产编号"
+    },
+    {
+      "name": "FLASH",
+      "type": "varchar(255)",
+      "description": "闪存"
+    },
+    {
+      "name": "HARD_DISK",
+      "type": "varchar(255)",
+      "description": "硬盘"
+    },
+    {
+      "name": "IMAGE",
+      "type": "varchar(255)",
+      "description": "图片地址"
+    },
+    {
+      "name": "NE_IMPORTANCE",
+      "type": "decimal(5,0)",
+      "description": "设备重要性 设备重要性, 1:Low, 2:Medium, 3:High,0:None, -1:Unknown"
+    },
+    {
+      "name": "HOST_NAME",
+      "type": "varchar(255)",
+      "description": "设备名称"
+    },
+    {
+      "name": "NE_DESC",
+      "type": "varchar(255)",
+      "description": "设备描述"
+    },
+    {
+      "name": "PORT",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "NE_SN",
+      "type": "varchar(512)",
+      "description": "设备序列号"
+    },
+    {
+      "name": "NE_CONFIG",
+      "type": "varchar(512)",
+      "description": "设备配置"
+    },
+    {
+      "name": "IOS_EDITION",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "OS_EDITION",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "OS_USAGE",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "ALARM_THRESHOLD",
+      "type": "varchar(512)",
+      "description": "告警阈值"
+    },
+    {
+      "name": "CONSTRACT_START",
+      "type": "varchar(50)",
+      "description": "合同开始时间"
+    },
+    {
+      "name": "CONSTRACT_END",
+      "type": "varchar(50)",
+      "description": "合同结束时间"
+    },
+    {
+      "name": "SIGNING_ADDR",
+      "type": "varchar(512)",
+      "description": "客户签约地"
+    },
+    {
+      "name": "WORK_START",
+      "type": "varchar(50)",
+      "description": "工作开始时间"
+    },
+    {
+      "name": "WORK_END",
+      "type": "varchar(50)",
+      "description": "工作结束时间"
+    },
+    {
+      "name": "IS_CONSIGNATION",
+      "type": "varchar(512)",
+      "description": "是否交付"
+    },
+    {
+      "name": "NE_STATUS",
+      "type": "varchar(64)",
+      "description": "状态"
+    },
+    {
+      "name": "SLA_ID",
+      "type": "decimal(10,0)",
+      "description": "SLA服务"
+    },
+    {
+      "name": "DESCRIPTION",
+      "type": "varchar(512)",
+      "description": "描述"
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "UPDATED_BY",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": "修改时间"
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ONLINE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "OFFLINE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "EXT_ID",
+      "type": "varchar(64)",
+      "description": "外部ID"
+    },
+    {
+      "name": "ALARM_TYPE",
+      "type": "varchar(512)",
+      "description": "告警分类。常见值: \"SJW_TEST_ALARMCLASSSIFICATION\", \"0528\", \"告警分类1\", \"安全\", \"0528\",\"0628\",\"0628-1\", \"测试告警分类\", \"0\", \"1014ceshi\", \"主流程告警分类\", \"0628-1\""
+    },
+    {
+      "name": "NE_GROUP",
+      "type": "varchar(512)",
+      "description": "设备分组"
+    },
+    {
+      "name": "LOGIN_AUTH",
+      "type": "varchar(255)",
+      "description": "登录认证"
+    },
+    {
+      "name": "CONFIRM_ALARM",
+      "type": "decimal(1,0)",
+      "description": "确认告警"
+    },
+    {
+      "name": "AUTO_EVENT",
+      "type": "decimal(1,0)",
+      "description": "自动事件"
+    }
+  ],
+  "column_count": 75,
+  "embedding_text": "【设备主表/核心表】存储平台上所有设备的基础信息，包括设备ID、设备名称、设备类型、设备状态(上线/下线/down)、IP地址、客户归属等。查询设备数量、设备清单、设备状态时必用此表。\n表名: t_bz_config_ci_ne_root\n列信息: CI_ID(设备ID与NE_ID一样（从后端获取的值）), NE_ID(网元ID与NE表的ID一致), LOCATION_ID(场所ID(外键)), REGION_ID(区域ID), DEPARTMENT_ID(部门ID), CUSTOMER_ID(客户ID), NE_IP(网元IP), NE_MODEL(根网元型号), IS_ACTIVE(是否激活 (1-激活 0- 非激活)), IS_ONLINE(是否在线 (1-在线 0-离线))",
+  "llm_description_v2": true
+}

@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_work_info"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_work_info表存储工单信息，包含工单类型、内容、提交时间及权限配置，用于客户、设备告警和订单处理的业务管理。",
+  "columns": [
+    {
+      "name": "WORK_INFO_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SUB_WORKINFO_USER",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "SUBMIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "WORK_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "WORK_CONTENT",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "LOOK_RIGHT",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "MODULE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "t_bz_work_info表存储工单信息，包含工单类型、内容、提交时间及权限配置，用于客户、设备告警和订单处理的业务管理。\n表名: t_bz_work_info\n其他列: WORK_INFO_ID, OBJECT_ID, SUB_WORKINFO_USER, SUBMIT_TIME, WORK_TYPE, WORK_CONTENT, LOOK_RIGHT, MODULE_ID"
+}

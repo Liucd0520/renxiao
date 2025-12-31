@@ -1,0 +1,117 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_ci_circuit"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户电路配置信息，包含客户ID、电路编码、类型、等级及供应商信息，用于设备资源管理与用户权限配置。",
+  "columns": [
+    {
+      "name": "CI_ID",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "CIRCUIT_NO",
+      "type": "varchar(2048)",
+      "description": "编码"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "CIRCUIT_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "CIRCUIT_LEVEL",
+      "type": "varchar(255)",
+      "description": "CIRCUIT_LEVEL。常见值: 167, 181, 169, 179, 162, 200, 170, 182, 172, 194"
+    },
+    {
+      "name": "CIRCUIT_TYPE",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PROVIDER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "CREATION_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATED_BY",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "LAST_MODIFY_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CIRCUIT_NUM_RATE",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "VERSION",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "AUDIT_STATUS_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "MONITOR_STATUS_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "AUDIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "SUPPORT_PHONE",
+      "type": "varchar(25)",
+      "description": null
+    },
+    {
+      "name": "PORT_NAME",
+      "type": "varchar(255)",
+      "description": "PORT_NAME。常见值: 端口, 111, 1, 2020, portName4, 22, 020, 088888, 测试, 1313"
+    },
+    {
+      "name": "PRODUCT",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 21,
+  "embedding_text": "存储客户电路配置信息，包含客户ID、电路编码、类型、等级及供应商信息，用于设备资源管理与用户权限配置。\n表名: t_bz_config_ci_circuit\n列信息: CI_ID(ID), CIRCUIT_NO(编码), CUSTOMER_ID(客户ID)\n其他列: CIRCUIT_DESC, CIRCUIT_LEVEL, CIRCUIT_TYPE, PROVIDER_ID, CREATED_BY, CREATION_TIME, UPDATED_BY, LAST_MODIFY_TIME, CIRCUIT_NUM_RATE, VERSION, IS_DELETED, STATUS"
+}

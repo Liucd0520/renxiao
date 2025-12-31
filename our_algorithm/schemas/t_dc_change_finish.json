@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_change_finish"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_change_finish表存储设备变更完成记录，用于跟踪客户订单及用户权限调整的最终状态。",
+  "columns": [
+    {
+      "name": "FINISH_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "FINISH_NAME",
+      "type": "varchar(25)",
+      "description": "FINISH_NAME。常见值: 未成功, 成功, 取消, 部分成功"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_change_finish表存储设备变更完成记录，用于跟踪客户订单及用户权限调整的最终状态。\n表名: t_dc_change_finish\n其他列: FINISH_ID, FINISH_NAME"
+}

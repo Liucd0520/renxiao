@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "service_item"
+  },
+  "table_comment": null,
+  "llm_description": "存储服务项配置信息，包括类型、单位、默认值及采集间隔，用于设备监控与告警管理。",
+  "columns": [
+    {
+      "name": "SERVICE_ITEM_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SERVICE_ITEM",
+      "type": "varchar(128)",
+      "description": "服务项"
+    },
+    {
+      "name": "DESCRIPTION",
+      "type": "varchar(512)",
+      "description": "服务项描述"
+    },
+    {
+      "name": "ITEM_TYPE",
+      "type": "varchar(64)",
+      "description": "服务项类型。常见值: static, threshold, status, statuc"
+    },
+    {
+      "name": "UNIT",
+      "type": "varchar(64)",
+      "description": "单位"
+    },
+    {
+      "name": "DEFAULT_VALUE",
+      "type": "varchar(256)",
+      "description": "默认值"
+    },
+    {
+      "name": "VALUE_SORT",
+      "type": "varchar(32)",
+      "description": "数值排序方式"
+    },
+    {
+      "name": "DEFAULT_POLL_INTERVAL",
+      "type": "decimal(10,0)",
+      "description": "默认采集间隔"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "存储服务项配置信息，包括类型、单位、默认值及采集间隔，用于设备监控与告警管理。\n表名: service_item\n列信息: SERVICE_ITEM(服务项), DESCRIPTION(服务项描述), ITEM_TYPE(服务项类型), UNIT(单位), DEFAULT_VALUE(默认值), VALUE_SORT(数值排序方式), DEFAULT_POLL_INTERVAL(默认采集间隔)\n其他列: SERVICE_ITEM_ID"
+}

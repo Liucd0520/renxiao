@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "collect_work_plan"
+  },
+  "table_comment": "采集设备数据的工作计划",
+  "llm_description": "collect_work_plan表存储设备数据采集计划，包含设备ID、服务包、采集项、执行时间及时区，用于客户订单数据采集与告警管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": null
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "root_ne_id",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "service_package",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "service_item",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "item_type",
+      "type": "varchar(255)",
+      "description": "item_type。常见值: static, threshold, status"
+    },
+    {
+      "name": "plan",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "time_zone",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "collect_work_plan表存储设备数据采集计划，包含设备ID、服务包、采集项、执行时间及时区，用于客户订单数据采集与告警管理。\n表名: collect_work_plan\n表注释: 采集设备数据的工作计划\n其他列: id, ne_id, root_ne_id, service_package, service_item, item_type, plan, time_zone"
+}

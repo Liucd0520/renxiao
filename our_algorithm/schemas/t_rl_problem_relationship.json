@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_problem_relationship"
+  },
+  "table_comment": null,
+  "llm_description": "存储问题与告警、设备、订单等业务对象的关联关系，用于管理关联状态及描述信息。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PROBLEM_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "MODULE_ID",
+      "type": "decimal(3,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "RELATIONSHIP_DESC",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "RELATIONSHIP_STATUS",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "存储问题与告警、设备、订单等业务对象的关联关系，用于管理关联状态及描述信息。\n表名: t_rl_problem_relationship\n其他列: RELATIONSHIP_ID, PROBLEM_ID, MODULE_ID, OBJECT_ID, RELATIONSHIP_DESC, RELATIONSHIP_STATUS"
+}

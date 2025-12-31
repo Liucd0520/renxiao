@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "framework_role"
+  },
+  "table_comment": null,
+  "llm_description": "存储系统角色信息，包含角色名称、描述、激活状态及操作记录，用于用户权限管理。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "int(10)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(128)",
+      "description": "角色名称"
+    },
+    {
+      "name": "DESCRIPTION",
+      "type": "varchar(512)",
+      "description": "描述"
+    },
+    {
+      "name": "IS_ACTIVE",
+      "type": "int(1)",
+      "description": "是否激活"
+    },
+    {
+      "name": "CREATED_TIME",
+      "type": "timestamp",
+      "description": "创建时间"
+    },
+    {
+      "name": "UPDATED_TIME",
+      "type": "timestamp",
+      "description": "修改时间"
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATER",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "EDITOR",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "USEABLE",
+      "type": "bit(1)",
+      "description": null
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "存储系统角色信息，包含角色名称、描述、激活状态及操作记录，用于用户权限管理。\n表名: framework_role\n列信息: NAME(角色名称), DESCRIPTION(描述), IS_ACTIVE(是否激活), CREATED_TIME(创建时间), UPDATED_TIME(修改时间)\n其他列: ID, CREATE_TIME, CREATER, EDITOR, UPDATE_TIME, USEABLE"
+}

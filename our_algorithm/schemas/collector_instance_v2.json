@@ -1,0 +1,77 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "collector_instance_v2"
+  },
+  "table_comment": "采集机实例表",
+  "llm_description": "存储采集机实例信息，包括设备IP、主从标识、运行状态及同步状态，用于客户设备监控与告警管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "decimal(10,0)",
+      "description": "id"
+    },
+    {
+      "name": "collector_id",
+      "type": "decimal(5,0)",
+      "description": "采集机id"
+    },
+    {
+      "name": "app_id",
+      "type": "varchar(50)",
+      "description": "appId"
+    },
+    {
+      "name": "ip",
+      "type": "varchar(50)",
+      "description": "ip"
+    },
+    {
+      "name": "master_slave_flag",
+      "type": "decimal(1,0)",
+      "description": "主从标识 0:master 1:slave"
+    },
+    {
+      "name": "run_status",
+      "type": "decimal(1,0)",
+      "description": "运行状态 0:未运行,1:运行"
+    },
+    {
+      "name": "sync_status",
+      "type": "decimal(1,0)",
+      "description": "同步状态 0:同步失败,1:同步成功"
+    },
+    {
+      "name": "start_time",
+      "type": "datetime",
+      "description": "启动时间"
+    },
+    {
+      "name": "validate_time",
+      "type": "datetime",
+      "description": "验证时间"
+    },
+    {
+      "name": "whether_online",
+      "type": "decimal(1,0)",
+      "description": "在线状态 0:下线,1:在线"
+    },
+    {
+      "name": "delete_flag",
+      "type": "decimal(1,0)",
+      "description": "删除状态 0:未删除,1:已删除"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 13,
+  "embedding_text": "存储采集机实例信息，包括设备IP、主从标识、运行状态及同步状态，用于客户设备监控与告警管理。\n表名: collector_instance_v2\n表注释: 采集机实例表\n列信息: id(id), collector_id(采集机id), app_id(appId), ip(ip), master_slave_flag(主从标识 0:master 1:slave), run_status(运行状态 0:未运行,1:运行), sync_status(同步状态 0:同步失败,1:同步成功), start_time(启动时间), validate_time(验证时间), whether_online(在线状态 0:下线,1:在线), delete_flag(删除状态 0:未删除,1:已删除), create_time(创建时间), update_time(更新时间)"
+}

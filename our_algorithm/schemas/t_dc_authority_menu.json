@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_authority_menu"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_authority_menu表存储系统菜单结构及权限配置，用于管理用户对客户、订单、告警、设备等模块的访问权限。",
+  "columns": [
+    {
+      "name": "MENU_ID",
+      "type": "decimal(15,0)",
+      "description": null
+    },
+    {
+      "name": "MENU_NAME",
+      "type": "varchar(50)",
+      "description": "MENU_NAME。常见值: 设备管理, SD-WAN设备管理, 协议简要管理, 用户管理, 联系人管理, 客户管理, 设备联系人, 平台事件搜索, 用户组管理, 电路流量"
+    },
+    {
+      "name": "MENU_PICTURE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "MENU_URL",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "PARENT_MENU_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CSS_ID",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CSS_NAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "OPEN_WAY",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "SORT_ID",
+      "type": "int(2)",
+      "description": null
+    },
+    {
+      "name": "IS_LEAF",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "t_dc_authority_menu表存储系统菜单结构及权限配置，用于管理用户对客户、订单、告警、设备等模块的访问权限。\n表名: t_dc_authority_menu\n其他列: MENU_ID, MENU_NAME, MENU_PICTURE, MENU_URL, PARENT_MENU_ID, CSS_ID, CSS_NAME, OPEN_WAY, SORT_ID, IS_LEAF, LEVEL"
+}

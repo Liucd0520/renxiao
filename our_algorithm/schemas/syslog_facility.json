@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "syslog_facility"
+  },
+  "table_comment": null,
+  "llm_description": "存储系统日志设施信息，记录设备、用户、权限等业务模块的告警日志级别名称及创建时间。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "facility_name",
+      "type": "varchar(255)",
+      "description": "级别名称。常见值: Uucp, ClockDaemon, Authpriv, Ftp, Ntp, LogAudit, LogAlert, Cron, Kernel, Local0"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "存储系统日志设施信息，记录设备、用户、权限等业务模块的告警日志级别名称及创建时间。\n表名: syslog_facility\n列信息: id(ID), facility_name(级别名称), create_datetime(创建时间)"
+}

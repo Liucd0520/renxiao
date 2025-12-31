@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "cc_cmdb_global_config"
+  },
+  "table_comment": null,
+  "llm_description": "cc_cmdb_global_config表存储全局配置信息，包含同步间隔、创建时间、创建人及删除状态，用于管理客户、设备和告警相关的系统参数。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(21)",
+      "description": "ID"
+    },
+    {
+      "name": "sync_interval",
+      "type": "int(255)",
+      "description": "同步间隔"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "created_by",
+      "type": "decimal(11,0)",
+      "description": "创建人"
+    },
+    {
+      "name": "deleted",
+      "type": "tinyint(1)",
+      "description": "是否删除 0 未删除 1 已删除"
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "cc_cmdb_global_config表存储全局配置信息，包含同步间隔、创建时间、创建人及删除状态，用于管理客户、设备和告警相关的系统参数。\n表名: cc_cmdb_global_config\n列信息: id(ID), sync_interval(同步间隔), created_time(创建时间), created_by(创建人), deleted(是否删除 0 未删除 1 已删除)"
+}

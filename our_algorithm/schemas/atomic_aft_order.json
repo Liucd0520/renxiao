@@ -1,0 +1,77 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "atomic_aft_order"
+  },
+  "table_comment": "售后工单",
+  "llm_description": "atomic_aft_order表存储客户售后工单信息，包含订单号、设备详情、处理人员及评分，用于跟踪工单处理进度与服务质量。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20) unsigned",
+      "description": null
+    },
+    {
+      "name": "circuit_no",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "create_oper",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "score",
+      "type": "bigint(20)",
+      "description": null
+    },
+    {
+      "name": "order_no",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "create_time",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "arch_time",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "bill_duration",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "create_cause",
+      "type": "varchar(2048)",
+      "description": null
+    },
+    {
+      "name": "bill_is_over",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "o_status",
+      "type": "tinyint(1)",
+      "description": null
+    },
+    {
+      "name": "cust_no",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 13,
+  "embedding_text": "atomic_aft_order表存储客户售后工单信息，包含订单号、设备详情、处理人员及评分，用于跟踪工单处理进度与服务质量。\n表名: atomic_aft_order\n表注释: 售后工单\n列信息: update_time(更新时间)\n其他列: id, circuit_no, create_oper, score, order_no, create_time, arch_time, bill_duration, create_cause, bill_is_over, o_status, cust_no"
+}

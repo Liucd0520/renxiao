@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_sys_email_record"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_sys_email_record表存储系统邮件发送记录，包含客户、联系人、邮件状态及时间策略，用于客户沟通、订单通知和告警提醒。",
+  "columns": [
+    {
+      "name": "EMAIL_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "EMAIL_FROM",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "EMAIL_TO",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "CONTACT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "EMAIL_TITLE",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "EMAIL_STATUS",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "EMAIL_TIME_POLICY",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "EMAIL_CONTENT",
+      "type": "text",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "t_bz_sys_email_record表存储系统邮件发送记录，包含客户、联系人、邮件状态及时间策略，用于客户沟通、订单通知和告警提醒。\n表名: t_bz_sys_email_record\n其他列: EMAIL_ID, EMAIL_FROM, EMAIL_TO, CONTACT_ID, EMAIL_TITLE, EMAIL_STATUS, EMAIL_TIME_POLICY, CREATE_TIME, EMAIL_CONTENT, CUSTOMER_ID"
+}

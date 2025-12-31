@@ -1,0 +1,102 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "trap_snmp"
+  },
+  "table_comment": "trap配置",
+  "llm_description": "trap_snmp表存储设备告警配置信息，包含事件OID、名称、值及状态，支持缓存控制和客户权限管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "oid",
+      "type": "varchar(255)",
+      "description": "事件oid"
+    },
+    {
+      "name": "profile_name",
+      "type": "varchar(255)",
+      "description": "配置名"
+    },
+    {
+      "name": "profile_desc",
+      "type": "varchar(255)",
+      "description": "配置名称"
+    },
+    {
+      "name": "event_name",
+      "type": "varchar(255)",
+      "description": "事件名称。常见值: BGP State Change, Link State, cisco EnvMonRedundantSupply Notification, Syslog History state change, Sdllc Addr State change, cc6kxbarSwBusStatus Change Notification, Circuit State change, ccmCallManager Failed, Ospf If state change, ccmGateway Failed"
+    },
+    {
+      "name": "event_value",
+      "type": "varchar(255)",
+      "description": "事件值"
+    },
+    {
+      "name": "event_desc",
+      "type": "varchar(255)",
+      "description": "事件描述"
+    },
+    {
+      "name": "event_status",
+      "type": "int(11)",
+      "description": "事件状态"
+    },
+    {
+      "name": "is_storm",
+      "type": "tinyint(1)",
+      "description": "是否缓存"
+    },
+    {
+      "name": "storm_interval",
+      "type": "int(11)",
+      "description": "缓存值间时间间隔"
+    },
+    {
+      "name": "up_counts",
+      "type": "int(11)",
+      "description": "上限出现次数"
+    },
+    {
+      "name": "down_counts",
+      "type": "int(11)",
+      "description": "下限出现次数"
+    },
+    {
+      "name": "max_counts",
+      "type": "int(11)",
+      "description": "最大出现次数"
+    },
+    {
+      "name": "driver",
+      "type": "varchar(255)",
+      "description": "映射驱动"
+    },
+    {
+      "name": "script_text",
+      "type": "text",
+      "description": "脚本"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "新增时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "修改时间"
+    },
+    {
+      "name": "active",
+      "type": "tinyint(1)",
+      "description": "是否启用 1启用 0不启用"
+    }
+  ],
+  "column_count": 18,
+  "embedding_text": "trap_snmp表存储设备告警配置信息，包含事件OID、名称、值及状态，支持缓存控制和客户权限管理。\n表名: trap_snmp\n表注释: trap配置\n列信息: id(id), oid(事件oid), profile_name(配置名), profile_desc(配置名称), event_name(事件名称), event_value(事件值), event_desc(事件描述), event_status(事件状态), is_storm(是否缓存), storm_interval(缓存值间时间间隔), up_counts(上限出现次数), down_counts(下限出现次数), max_counts(最大出现次数), driver(映射驱动), script_text(脚本)"
+}

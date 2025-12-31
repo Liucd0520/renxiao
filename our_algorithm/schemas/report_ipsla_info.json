@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_ipsla_info"
+  },
+  "table_comment": null,
+  "llm_description": "report_ipsla_info表存储设备IP SLA监控的统计信息，包括平均值、最大值等，用于性能分析和告警。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REPORT_INST_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ITEMNAME",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "AVG_VALUE",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "SUM_VALUE",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "MIN_VALUE",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "MAX_VALUE",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "NE_TYPE_ID",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "SERVICE_PACKAGE",
+      "type": "varchar(128)",
+      "description": null
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "report_ipsla_info表存储设备IP SLA监控的统计信息，包括平均值、最大值等，用于性能分析和告警。\n表名: report_ipsla_info\n其他列: ID, REPORT_INST_ID, NE_ID, ROOT_NE_ID, ITEMNAME, AVG_VALUE, SUM_VALUE, MIN_VALUE, MAX_VALUE, NE_TYPE_ID, SERVICE_PACKAGE"
+}

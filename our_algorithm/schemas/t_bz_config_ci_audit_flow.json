@@ -1,0 +1,112 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_ci_audit_flow"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_config_ci_audit_flow表存储客户配置审核流程任务信息，包含任务类型、状态、计划时间及操作记录，用于管理审核任务的配置与执行状态。",
+  "columns": [
+    {
+      "name": "AUDIT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CODE",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "TASK_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "JOB_STATUS",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "REGISTER_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "TASK_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "OPERATOR_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PLAN_START_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "PLAN_END_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "START_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "END_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "AUDIT_NAME",
+      "type": "varchar(50)",
+      "description": "AUDIT_NAME。常见值: 1234, test_7.3_1, 123, cmdb2020-6-4-1, tset3, 123423445, 12, 测试3, tset3_33, 测试1"
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "UPDATED_BY",
+      "type": "varchar(50)",
+      "description": null
+    }
+  ],
+  "column_count": 20,
+  "embedding_text": "t_bz_config_ci_audit_flow表存储客户配置审核流程任务信息，包含任务类型、状态、计划时间及操作记录，用于管理审核任务的配置与执行状态。\n表名: t_bz_config_ci_audit_flow\n其他列: AUDIT_ID, CUSTOMER_ID, CODE, TASK_TYPE, JOB_STATUS, REGISTER_TIME, TASK_DESC, OPERATOR_ID, PLAN_START_TIME, PLAN_END_TIME, START_TIME, END_TIME, CREATE_TIME, UPDATE_TIME, IS_DELETED"
+}

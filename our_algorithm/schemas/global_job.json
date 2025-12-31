@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "global_job"
+  },
+  "table_comment": null,
+  "llm_description": "global_job表存储定时采集任务配置信息，用于管理设备数据采集频率、客户订单处理及告警触发规则，包含任务分组、执行类名和描述等关键业务参数。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "decimal(10,0)",
+      "description": "采集频率ID"
+    },
+    {
+      "name": "collector_id",
+      "type": "decimal(10,0)",
+      "description": "采集机ID"
+    },
+    {
+      "name": "job_name",
+      "type": "varchar(255)",
+      "description": "作业名称。常见值: interface_perf_job, interface_status_job, ip_sla_job, qos_job, slow_icmp_ping_job, web_site_job, atomic_circuit_job, common_job, device_basic_perf_job, discovery_job"
+    },
+    {
+      "name": "job_group",
+      "type": "varchar(255)",
+      "description": "作业分组"
+    },
+    {
+      "name": "data_name",
+      "type": "varchar(255)",
+      "description": "数据名称。常见值: icmp_ping_data, interface_perf_data, interface_status_data, ip_sla_data, qos_data, web_site_data, atomic_circuit_data, common_data, device_basic_perf_data, discovery_data"
+    },
+    {
+      "name": "cron_exp",
+      "type": "varchar(255)",
+      "description": "频率时间"
+    },
+    {
+      "name": "job_class_name",
+      "type": "varchar(255)",
+      "description": "作业实体类名称。常见值: com.ideal.netcare.v6.dcs.service.scheduler.job.InterfacePerfJob, com.ideal.netcare.v6.dcs.service.scheduler.job.InterfaceStatusJob, com.ideal.netcare.v6.dcs.service.scheduler.job.IPSLAJob, com.ideal.netcare.v6.dcs.service.scheduler.job.QoSJob, com.ideal.netcare.v6.dcs.service.scheduler.job.SlowIcmpPingJob, com.ideal.netcare.v6.dcs.service.scheduler.job.WebSiteJob, com.ideal.netcare.v6.dcs.service.scheduler.job.AtomicCircuitJob, com.ideal.netcare.v6.dcs.service.scheduler.job.CommonJob, com.ideal.netcare.v6.dcs.service.scheduler.job.DeviceBasicPerfJob, com.ideal.netcare.v6.dcs.service.scheduler.job.DiscoveryJob"
+    },
+    {
+      "name": "job_desc",
+      "type": "varchar(255)",
+      "description": "作业描述"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "global_job表存储定时采集任务配置信息，用于管理设备数据采集频率、客户订单处理及告警触发规则，包含任务分组、执行类名和描述等关键业务参数。\n表名: global_job\n列信息: id(采集频率ID), collector_id(采集机ID), job_name(作业名称), job_group(作业分组), data_name(数据名称), cron_exp(频率时间), job_class_name(作业实体类名称), job_desc(作业描述), create_datetime(创建时间)"
+}

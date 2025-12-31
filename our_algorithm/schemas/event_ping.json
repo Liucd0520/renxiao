@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_ping"
+  },
+  "table_comment": null,
+  "llm_description": "event_ping表存储客户设备告警事件，记录告警时间、地址及关联设备信息，用于监控和故障排查。",
+  "columns": [
+    {
+      "name": "EVENT_ID",
+      "type": "decimal(30,0)",
+      "description": null
+    },
+    {
+      "name": "EVENT_VALUE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "EVENT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "ADDRESS",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "event_ping表存储客户设备告警事件，记录告警时间、地址及关联设备信息，用于监控和故障排查。\n表名: event_ping\n其他列: EVENT_ID, EVENT_VALUE, EVENT_TIME, ADDRESS, NE_ID, ROOT_NE_ID, CUSTOMER_ID"
+}

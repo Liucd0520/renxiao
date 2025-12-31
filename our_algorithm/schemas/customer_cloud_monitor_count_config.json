@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "customer_cloud_monitor_count_config"
+  },
+  "table_comment": "云平台统计配置表",
+  "llm_description": "客户云平台监控统计配置表，用于管理供应商（阿里云/华为云）服务项目统计规则，包含时间类型、HBase表名、单位等配置信息，记录客户监控数据的采集与分析参数。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "ID"
+    },
+    {
+      "name": "title",
+      "type": "varchar(255)",
+      "description": "标题"
+    },
+    {
+      "name": "supplier",
+      "type": "varchar(32)",
+      "description": "供应商 阿里云 yun_ali  华为云 yun_huawei"
+    },
+    {
+      "name": "service_item",
+      "type": "varchar(128)",
+      "description": "服务项目"
+    },
+    {
+      "name": "time_type",
+      "type": "varchar(32)",
+      "description": "时间类型：fift hour day week month。常见值: fift"
+    },
+    {
+      "name": "hbase_table_name",
+      "type": "varchar(255)",
+      "description": "hbase表名"
+    },
+    {
+      "name": "unit",
+      "type": "varchar(32)",
+      "description": "单位"
+    },
+    {
+      "name": "description",
+      "type": "varchar(255)",
+      "description": "简介"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "deleted",
+      "type": "char(1)",
+      "description": "是否删除"
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "客户云平台监控统计配置表，用于管理供应商（阿里云/华为云）服务项目统计规则，包含时间类型、HBase表名、单位等配置信息，记录客户监控数据的采集与分析参数。\n表名: customer_cloud_monitor_count_config\n表注释: 云平台统计配置表\n列信息: id(ID), title(标题), supplier(供应商 阿里云 yun_ali  华为云 yun_huawei), service_item(服务项目), time_type(时间类型：fift hour day week month), hbase_table_name(hbase表名), unit(单位), description(简介), create_time(创建时间), update_time(更新时间), deleted(是否删除)"
+}

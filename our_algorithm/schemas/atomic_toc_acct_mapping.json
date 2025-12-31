@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "atomic_toc_acct_mapping"
+  },
+  "table_comment": "原子能力-TOC大AD账号转小AD编号映射",
+  "llm_description": "存储原子能力TOC大AD账号与小AD编号的映射关系，用于用户权限管理及设备信息关联。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(21)",
+      "description": null
+    },
+    {
+      "name": "circuit_no",
+      "type": "varchar(128)",
+      "description": "链路编号"
+    },
+    {
+      "name": "ad_no",
+      "type": "varchar(128)",
+      "description": "小ad编号"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "存储原子能力TOC大AD账号与小AD编号的映射关系，用于用户权限管理及设备信息关联。\n表名: atomic_toc_acct_mapping\n表注释: 原子能力-TOC大AD账号转小AD编号映射\n列信息: circuit_no(链路编号), ad_no(小ad编号)\n其他列: id, create_time, update_time"
+}

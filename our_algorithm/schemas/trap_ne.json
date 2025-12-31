@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "trap_ne"
+  },
+  "table_comment": "设备trap开关",
+  "llm_description": "trap_ne表记录设备告警抑制开关状态，用于管理设备层面的告警接收控制。",
+  "columns": [
+    {
+      "name": "ne_id",
+      "type": "int(11)",
+      "description": "设备ID"
+    },
+    {
+      "name": "is_discard",
+      "type": "tinyint(1)",
+      "description": "设备层面trap是否抑制"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "新增时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "修改时间"
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "trap_ne表记录设备告警抑制开关状态，用于管理设备层面的告警接收控制。\n表名: trap_ne\n表注释: 设备trap开关\n列信息: ne_id(设备ID), is_discard(设备层面trap是否抑制), create_time(新增时间), update_time(修改时间)"
+}

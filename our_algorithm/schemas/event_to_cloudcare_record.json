@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_to_cloudcare_record"
+  },
+  "table_comment": null,
+  "llm_description": "event_to_cloudcare_record表记录设备告警事件同步到云护理系统的处理状态，包含事件ID范围、数据量、操作状态及重试次数，用于监控和管理数据传输任务。",
+  "columns": [
+    {
+      "name": "record_id",
+      "type": "varchar(64)",
+      "description": "主键ID"
+    },
+    {
+      "name": "min_event_id",
+      "type": "decimal(30,0)",
+      "description": "此次操作最小的eventID"
+    },
+    {
+      "name": "max_event_id",
+      "type": "decimal(30,0)",
+      "description": "此次操作最大的eventID"
+    },
+    {
+      "name": "num",
+      "type": "int(10)",
+      "description": "此次操作的数据量"
+    },
+    {
+      "name": "status",
+      "type": "varchar(10)",
+      "description": "状态：ready/success/fail/error"
+    },
+    {
+      "name": "retry_times",
+      "type": "int(11)",
+      "description": "重试次数"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "此条记录的创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "此条记录的更新时间"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "event_to_cloudcare_record表记录设备告警事件同步到云护理系统的处理状态，包含事件ID范围、数据量、操作状态及重试次数，用于监控和管理数据传输任务。\n表名: event_to_cloudcare_record\n列信息: record_id(主键ID), min_event_id(此次操作最小的eventID), max_event_id(此次操作最大的eventID), num(此次操作的数据量), status(状态：ready/success/fail/error), retry_times(重试次数), create_time(此条记录的创建时间), update_time(此条记录的更新时间)"
+}

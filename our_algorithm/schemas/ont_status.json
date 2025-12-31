@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ont_status"
+  },
+  "table_comment": null,
+  "llm_description": "ont_status表存储客户设备在线状态及基础信息，用于设备监控与管理，包含设备ID、MAC地址、IP等关键字段。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户id"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(11,0)",
+      "description": "网元id"
+    },
+    {
+      "name": "root_ne_id",
+      "type": "decimal(11,0)",
+      "description": "设备id"
+    },
+    {
+      "name": "ont_id",
+      "type": "varchar(10)",
+      "description": "设备接口序列"
+    },
+    {
+      "name": "mac",
+      "type": "varchar(50)",
+      "description": "设备mac地址"
+    },
+    {
+      "name": "status",
+      "type": "int(1)",
+      "description": "设备在线状态(1：在线，2：离线)"
+    },
+    {
+      "name": "description",
+      "type": "varchar(500)",
+      "description": "设备描述"
+    },
+    {
+      "name": "host_name",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "ip_address",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "ont_status表存储客户设备在线状态及基础信息，用于设备监控与管理，包含设备ID、MAC地址、IP等关键字段。\n表名: ont_status\n列信息: id(id), customer_id(客户id), ne_id(网元id), root_ne_id(设备id), ont_id(设备接口序列), mac(设备mac地址), status(设备在线状态(1：在线，2：离线)), description(设备描述)\n其他列: host_name, ip_address"
+}

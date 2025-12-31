@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_incident_wait"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_incident_wait表存储客户/设备告警事件的挂起记录，包含挂起原因、操作用户、时间周期及审批状态，用于订单处理中的超时监控与权限审批管理。",
+  "columns": [
+    {
+      "name": "WAIT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "WAIT_REASON",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "WAIT_OPERATE_USER",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "WAIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "INFO_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "WAIT_REMOVE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "FACT_REMOVE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "WAIT_PERIOD",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": "0表示挂起时间为8小时以内；1表示审批不通过；2表示挂起时间大于8小时"
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "t_bz_incident_wait表存储客户/设备告警事件的挂起记录，包含挂起原因、操作用户、时间周期及审批状态，用于订单处理中的超时监控与权限审批管理。\n表名: t_bz_incident_wait\n列信息: IS_DELETED(0表示挂起时间为8小时以内；1表示审批不通过；2表示挂起时间大于8小时)\n其他列: WAIT_ID, WAIT_REASON, WAIT_OPERATE_USER, WAIT_TIME, INFO_ID, WAIT_REMOVE_TIME, FACT_REMOVE_TIME, WAIT_PERIOD"
+}

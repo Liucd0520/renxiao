@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "user_message"
+  },
+  "table_comment": null,
+  "llm_description": "用户消息记录表，存储用户间单聊及群消息内容，包含发送人、接收人、群组、是否已读等信息，用于消息通知与沟通管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": null
+    },
+    {
+      "name": "senduser",
+      "type": "varchar(100)",
+      "description": "发送人"
+    },
+    {
+      "name": "receiveuser",
+      "type": "varchar(100)",
+      "description": "接收人"
+    },
+    {
+      "name": "groupid",
+      "type": "varchar(100)",
+      "description": "群ID"
+    },
+    {
+      "name": "isread",
+      "type": "int(11)",
+      "description": "是否已读 0 未读  1 已读"
+    },
+    {
+      "name": "type",
+      "type": "int(11)",
+      "description": "类型 0 单聊消息  1 群消息"
+    },
+    {
+      "name": "content",
+      "type": "text",
+      "description": "消息内容"
+    },
+    {
+      "name": "createuser",
+      "type": "bigint(20)",
+      "description": null
+    },
+    {
+      "name": "createdate",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "updatedate",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "用户消息记录表，存储用户间单聊及群消息内容，包含发送人、接收人、群组、是否已读等信息，用于消息通知与沟通管理。\n表名: user_message\n列信息: senduser(发送人), receiveuser(接收人), groupid(群ID), isread(是否已读 0 未读  1 已读), type(类型 0 单聊消息  1 群消息), content(消息内容)\n其他列: id, createuser, createdate, updatedate"
+}

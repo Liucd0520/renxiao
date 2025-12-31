@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_report_monitor_element"
+  },
+  "table_comment": null,
+  "llm_description": "存储监控报告元素数据，用于设备状态、客户行为、订单指标等业务监控及权限告警管理。",
+  "columns": [
+    {
+      "name": "ELEMENT_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "ELEMENT_NAME",
+      "type": "varchar(128)",
+      "description": "ELEMENT_NAME。常见值: 电路进方向流量的95峰值利用率, IPSLA数据展示, 流入方向, 事件等级, 网络设备SYSTEM-UPTIME统计, 事件原因统计, CPU使用率, 端口利用率详表, QoS数据展示, 电路出方向流量的95峰值利用率"
+    },
+    {
+      "name": "ELEMENT_VALUE",
+      "type": "varchar(128)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "存储监控报告元素数据，用于设备状态、客户行为、订单指标等业务监控及权限告警管理。\n表名: t_dc_report_monitor_element\n其他列: ELEMENT_ID, ELEMENT_NAME, ELEMENT_VALUE"
+}

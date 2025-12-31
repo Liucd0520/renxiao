@@ -1,0 +1,192 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_change_info"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户、设备、权限变更信息，包含风险等级、紧急程度、影响范围及优先级，用于变更管理与告警处理。",
+  "columns": [
+    {
+      "name": "CHANGE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CHANGE_NO",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "RISK_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL1_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL2_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL3_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "CHANGE_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "EMERGENCY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "INFLUENCE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "PRIORITY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "MODULE_ID",
+      "type": "decimal(3,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CONSTRACT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "CHANGE_SUMMARY",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CHANGE_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_TYPE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_RESULT",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "HOPE_START_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "SUBMIT_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "FINISH_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "FINISH_REASON",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "STATUS_REASON",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "FLOW_STAGE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "OBJECT_NO",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "HOPE_END_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "PLAN_START_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "PLAN_END_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "FACT_START_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "FACT_END_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "IS_REVIEW",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 36,
+  "embedding_text": "存储客户、设备、权限变更信息，包含风险等级、紧急程度、影响范围及优先级，用于变更管理与告警处理。\n表名: t_bz_change_info\n其他列: CHANGE_ID, CHANGE_NO, RISK_ID, LEVEL1_ID, LEVEL2_ID, LEVEL3_ID, CHANGE_TYPE, EMERGENCY_ID, INFLUENCE_ID, PRIORITY_ID, MODULE_ID, OBJECT_ID, CUSTOMER_ID, CONSTRACT_ID, STATUS_ID"
+}

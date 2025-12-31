@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_vendor"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_config_vendor表存储供应商基础信息，包含联系方式和描述，用于客户管理、订单处理及设备维护中的供应商配置与协作。",
+  "columns": [
+    {
+      "name": "VENDOR_ID",
+      "type": "decimal(10,0)",
+      "description": "供应商ID"
+    },
+    {
+      "name": "VENDOR_NAME",
+      "type": "varchar(255)",
+      "description": "供应商名称。常见值: cisco, 供应商测试7月17min, Router, h4, 01001, 厂商 001, 流程供应商1.1, Fluke, 供应商测试111, 121"
+    },
+    {
+      "name": "VENDOR_DESC",
+      "type": "varchar(512)",
+      "description": "供应商描述"
+    },
+    {
+      "name": "VENDOR_ADDR",
+      "type": "varchar(512)",
+      "description": "供应商地址"
+    },
+    {
+      "name": "VENDOR_PHONE",
+      "type": "varchar(30)",
+      "description": "供应商电话"
+    },
+    {
+      "name": "VENDOR_FAX",
+      "type": "varchar(30)",
+      "description": "供应商传真"
+    },
+    {
+      "name": "CONTACT",
+      "type": "varchar(255)",
+      "description": "联系人"
+    },
+    {
+      "name": "EMAIL",
+      "type": "varchar(255)",
+      "description": "邮箱"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "t_bz_config_vendor表存储供应商基础信息，包含联系方式和描述，用于客户管理、订单处理及设备维护中的供应商配置与协作。\n表名: t_bz_config_vendor\n列信息: VENDOR_ID(供应商ID), VENDOR_NAME(供应商名称), VENDOR_DESC(供应商描述), VENDOR_ADDR(供应商地址), VENDOR_PHONE(供应商电话), VENDOR_FAX(供应商传真), CONTACT(联系人), EMAIL(邮箱)"
+}

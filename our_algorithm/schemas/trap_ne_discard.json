@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "trap_ne_discard"
+  },
+  "table_comment": "设备的trap抑制操作记录",
+  "llm_description": "trap_ne_discard表存储设备告警抑制操作记录，包含设备ID、告警ID、抑制状态及操作时间，用于管理告警抑制策略。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "ne_id",
+      "type": "int(11)",
+      "description": "设备ID"
+    },
+    {
+      "name": "trap_id",
+      "type": "int(11)",
+      "description": "trapID"
+    },
+    {
+      "name": "is_discard",
+      "type": "tinyint(1)",
+      "description": "是否抑制"
+    },
+    {
+      "name": "ever_discard",
+      "type": "tinyint(1)",
+      "description": "是否永久抑制"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "新增时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "修改时间"
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "trap_ne_discard表存储设备告警抑制操作记录，包含设备ID、告警ID、抑制状态及操作时间，用于管理告警抑制策略。\n表名: trap_ne_discard\n表注释: 设备的trap抑制操作记录\n列信息: id(id), ne_id(设备ID), trap_id(trapID), is_discard(是否抑制), ever_discard(是否永久抑制), create_time(新增时间), update_time(修改时间)"
+}

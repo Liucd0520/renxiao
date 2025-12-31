@@ -1,0 +1,72 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "customer_collector_v2"
+  },
+  "table_comment": "客户与采集机关系表",
+  "llm_description": "客户与采集机关联信息表，用于管理客户采集设备配置、主备网关绑定及默认采集机标识。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "decimal(10,0)",
+      "description": "id"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户 id"
+    },
+    {
+      "name": "collector_id",
+      "type": "decimal(5,0)",
+      "description": "采集机 id"
+    },
+    {
+      "name": "customer_name",
+      "type": "varchar(100)",
+      "description": "客户。常见值: 788min客户, 德邦物流, 理想公司, 主流程客户, 007同步, demomm, 天翼云, Netcare, 0731上线客户zll, 小米科技有限责任公司"
+    },
+    {
+      "name": "name",
+      "type": "varchar(50)",
+      "description": "名称"
+    },
+    {
+      "name": "master_gateway",
+      "type": "varchar(50)",
+      "description": "主采集机网关"
+    },
+    {
+      "name": "master_gateway_ipv6",
+      "type": "varchar(50)",
+      "description": "主采集机网关ipv6"
+    },
+    {
+      "name": "slave_gateway",
+      "type": "varchar(50)",
+      "description": "备采集机网关"
+    },
+    {
+      "name": "slave_gateway_ipv6",
+      "type": "varchar(50)",
+      "description": "备采集机网关ipv6"
+    },
+    {
+      "name": "default_flag",
+      "type": "decimal(1,0)",
+      "description": "默认采集机机 0:非默认采集机器，1:默认采集机"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 12,
+  "embedding_text": "客户与采集机关联信息表，用于管理客户采集设备配置、主备网关绑定及默认采集机标识。\n表名: customer_collector_v2\n表注释: 客户与采集机关系表\n列信息: id(id), customer_id(客户 id), collector_id(采集机 id), customer_name(客户), name(名称), master_gateway(主采集机网关), master_gateway_ipv6(主采集机网关ipv6), slave_gateway(备采集机网关), slave_gateway_ipv6(备采集机网关ipv6), default_flag(默认采集机机 0:非默认采集机器，1:默认采集机), create_time(创建时间), update_time(更新时间)"
+}

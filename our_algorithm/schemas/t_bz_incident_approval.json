@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_incident_approval"
+  },
+  "table_comment": null,
+  "llm_description": "存储审批流程信息，包含审批类型、来源、申请人、审批人、状态及原因，用于管理客户、订单、设备告警等业务的权限审批。",
+  "columns": [
+    {
+      "name": "APPROVAL_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_TYPE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "INFO_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SOURCE_ID",
+      "type": "int(10)",
+      "description": null
+    },
+    {
+      "name": "APPLY_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_STATUS",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS_REASON",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "APPROVAL_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "SUBMIT_TIME",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "存储审批流程信息，包含审批类型、来源、申请人、审批人、状态及原因，用于管理客户、订单、设备告警等业务的权限审批。\n表名: t_bz_incident_approval\n其他列: APPROVAL_ID, APPROVAL_TYPE, INFO_ID, SOURCE_ID, APPLY_USER_ID, APPROVAL_USER_ID, APPROVAL_STATUS, STATUS_REASON, APPROVAL_TIME, SUBMIT_TIME"
+}

@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_property"
+  },
+  "table_comment": "网元属性表",
+  "llm_description": "网元属性表存储设备配置参数和运行状态信息，用于客户设备管理、告警规则匹配及权限校验。",
+  "columns": [
+    {
+      "name": "PROPERTY_NAME",
+      "type": "varchar(256)",
+      "description": "PROPERTY_NAME。常见值: Compacity, ifDescr, IfSpeed, MacAddress, index, Ethernet Duplex, Type, IPAddress, MaskAddress, Alias"
+    },
+    {
+      "name": "PROPERTY_VALUE",
+      "type": "varchar(1000)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "网元属性表存储设备配置参数和运行状态信息，用于客户设备管理、告警规则匹配及权限校验。\n表名: ne_property\n表注释: 网元属性表\n其他列: PROPERTY_NAME, PROPERTY_VALUE, NE_ID"
+}

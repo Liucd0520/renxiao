@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "nf_map"
+  },
+  "table_comment": null,
+  "llm_description": "nf_map表存储客户、设备、权限等业务实体的键值对映射关系，用于数据关联与快速查询。",
+  "columns": [
+    {
+      "name": "KEY",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "VAL",
+      "type": "varchar(128)",
+      "description": null
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "nf_map表存储客户、设备、权限等业务实体的键值对映射关系，用于数据关联与快速查询。\n表名: nf_map\n其他列: KEY, VAL"
+}

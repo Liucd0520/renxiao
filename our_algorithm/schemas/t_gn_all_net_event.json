@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_all_net_event"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户网络事件告警信息，记录告警数量及严重等级，用于客户告警监控与管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "运行情况id"
+    },
+    {
+      "name": "num",
+      "type": "int(11)",
+      "description": "告警数量"
+    },
+    {
+      "name": "severity_name",
+      "type": "varchar(255)",
+      "description": "等级。常见值: Critical, warning, monir, Major"
+    },
+    {
+      "name": "customer_id",
+      "type": "int(11)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储客户网络事件告警信息，记录告警数量及严重等级，用于客户告警监控与管理。\n表名: t_gn_all_net_event\n列信息: id(运行情况id), num(告警数量), severity_name(等级)\n其他列: customer_id"
+}

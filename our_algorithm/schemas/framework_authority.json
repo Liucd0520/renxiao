@@ -1,0 +1,82 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "framework_authority"
+  },
+  "table_comment": null,
+  "llm_description": "framework_authority表存储权限管理数据，用于维护用户权限类型、层级关系及访问路径，包含权限标题、描述、编码、创建时间等字段，支持权限分类与排序管理。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "int(10)",
+      "description": null
+    },
+    {
+      "name": "TITLE",
+      "type": "varchar(225)",
+      "description": "标题"
+    },
+    {
+      "name": "ENGLISH_TITLE",
+      "type": "varchar(255)",
+      "description": "英文标题"
+    },
+    {
+      "name": "DESCRIPTION",
+      "type": "varchar(512)",
+      "description": "描述"
+    },
+    {
+      "name": "AUTHORITY_TYPE",
+      "type": "int(3)",
+      "description": "类型"
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "int(10)",
+      "description": "父节点"
+    },
+    {
+      "name": "SORT_NUMBER",
+      "type": "int(8)",
+      "description": "排序"
+    },
+    {
+      "name": "URL",
+      "type": "varchar(1024)",
+      "description": "路径"
+    },
+    {
+      "name": "CODE",
+      "type": "varchar(64)",
+      "description": "CODE"
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATER",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "EDITOR",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "USEABLE",
+      "type": "bit(1)",
+      "description": null
+    }
+  ],
+  "column_count": 14,
+  "embedding_text": "framework_authority表存储权限管理数据，用于维护用户权限类型、层级关系及访问路径，包含权限标题、描述、编码、创建时间等字段，支持权限分类与排序管理。\n表名: framework_authority\n列信息: TITLE(标题), ENGLISH_TITLE(英文标题), DESCRIPTION(描述), AUTHORITY_TYPE(类型), PARENT_ID(父节点), SORT_NUMBER(排序), URL(路径), CODE(CODE)\n其他列: ID, CREATE_TIME, CREATER, EDITOR, UPDATE_TIME, USEABLE"
+}

@@ -1,0 +1,92 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "atomic_cutover_order"
+  },
+  "table_comment": "割接清单",
+  "llm_description": "存储客户割接订单信息，包含电路号、带宽、时间安排及设备地址，用于管理割接任务与权限控制。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20) unsigned",
+      "description": null
+    },
+    {
+      "name": "circuit_no",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "date_time",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "duration",
+      "type": "varchar(32)",
+      "description": null
+    },
+    {
+      "name": "band_width",
+      "type": "varchar(32)",
+      "description": null
+    },
+    {
+      "name": "a_addr",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "start_time",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "end_time",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "uuid",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "z_addr",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "crm_name",
+      "type": "varchar(255)",
+      "description": "crm_name。常见值: 上海肯德基有限公司, 上海晋势企业管理有限公司, 海昔川今（上海）贸易有限公司, 上海依翰网络科技有限公司"
+    },
+    {
+      "name": "customer_no",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "o_status",
+      "type": "tinyint(1)",
+      "description": null
+    },
+    {
+      "name": "cust_no",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 16,
+  "embedding_text": "存储客户割接订单信息，包含电路号、带宽、时间安排及设备地址，用于管理割接任务与权限控制。\n表名: atomic_cutover_order\n表注释: 割接清单\n列信息: create_time(创建时间), update_time(更新时间)\n其他列: id, circuit_no, date_time, duration, band_width, a_addr, start_time, end_time, uuid, z_addr, crm_name, customer_no, o_status"
+}
