@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_port_95_top"
+  },
+  "table_comment": null,
+  "llm_description": "report_port_95_top表存储客户设备端口95分位性能数据，记录订单相关网络节点在每日及工作日的流量指标和告警信息，用于生成业务分析报告。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REPORT_INST_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ITEMNAME",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "SPEED",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "DAY_OF_MONTH",
+      "type": "varchar(1000)",
+      "description": null
+    },
+    {
+      "name": "WORKING_DAY",
+      "type": "int(11)",
+      "description": null
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "report_port_95_top表存储客户设备端口95分位性能数据，记录订单相关网络节点在每日及工作日的流量指标和告警信息，用于生成业务分析报告。\n表名: report_port_95_top\n其他列: ID, REPORT_INST_ID, NE_ID, ROOT_NE_ID, ITEMNAME, SPEED, DAY_OF_MONTH, WORKING_DAY"
+}

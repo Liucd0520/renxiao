@@ -1,0 +1,142 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_monitor_chart_config"
+  },
+  "table_comment": null,
+  "llm_description": "表t_bz_monitor_chart_config存储客户/设备监控图表配置信息，包含指标类型、服务项目及订单相关数据的平均值/最大值参数，用于生成可视化报表和告警规则。",
+  "columns": [
+    {
+      "name": "RANK_ORDER",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "INDEX_TYPE",
+      "type": "varchar(128)",
+      "description": "INDEX_TYPE。常见值: Class Queue Statistic, Class Car Utilization Statistic, Packet Loss Percent, JITTER Statistic, Packet Loss, Host Resource, Interface Utilization Statistic, HTTP Statistic, Latency, Class Utilization Statistic"
+    },
+    {
+      "name": "SERVICE_ITEM",
+      "type": "varchar(256)",
+      "description": null
+    },
+    {
+      "name": "INDEX_TYPE_ARRAY_STR",
+      "type": "varchar(128)",
+      "description": "INDEX_TYPE_ARRAY_STR。常见值: valueAvg,valueMax, valueAvg, valueMax, rttMin,rttAvg,rttMax, fdwPacketsAvg,fdwPacketsMax,dropPacketsAvg,dropPacketsMax, valueMin,valueAvg,valueMax, valueInAvg,valueOutAvg,valueInMax,valueOutMax, positiveSDAvg,positiveSDMax,positiveDSAvg,positiveDSMax,negativeSDAvg,negativeSDMax,negativeDSAvg,negativeDSMax, valueInSum,valueOutSum, preBitrateMax,postBitrateMax"
+    },
+    {
+      "name": "TITLE",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "ITEM_NAME_AVG",
+      "type": "varchar(128)",
+      "description": "ITEM_NAME_AVG。常见值: Avg, Avg,Max, Min,Avg,Max, RTT, PacketLoss, Matched Packets Avg, Process Count Avg, Red Utilization Avg, WebVPN Avg, systemNumUsersAvg"
+    },
+    {
+      "name": "ITEM_NAME_IN_AVG",
+      "type": "varchar(128)",
+      "description": "ITEM_NAME_IN_AVG。常见值: In Utilization Avg, valueLossAvg, Errors Pkts In Avg, Ucast In Avg"
+    },
+    {
+      "name": "ITEM_NAME_OUT_AVG",
+      "type": "varchar(128)",
+      "description": "ITEM_NAME_OUT_AVG。常见值: Out Utilization Avg, Errors Pkts Out Avg, Ucast Out Avg"
+    },
+    {
+      "name": "ITEM_NAME_MAX",
+      "type": "varchar(128)",
+      "description": "ITEM_NAME_MAX。常见值: Max, systemProcessesMax, Nexus Memory Max, Matched Bytes Max, Red Packets Max, Memory Max, Enqueued Packets Max, Yellow Utilization Max, valueDelayMax, voltage Max"
+    },
+    {
+      "name": "ITEM_NAME_IN_MAX",
+      "type": "varchar(128)",
+      "description": "ITEM_NAME_IN_MAX。常见值: In Utilization Max, valueLossMax"
+    },
+    {
+      "name": "ITEM_NAME_OUT_MAX",
+      "type": "varchar(128)",
+      "description": "ITEM_NAME_OUT_MAX。常见值: Out Utilization Max"
+    },
+    {
+      "name": "Y_AXIS_MAX_VALUE",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "Y_AXIS_NAME",
+      "type": "varchar(128)",
+      "description": "Y_AXIS_NAME。常见值: %, ms, bps, Packet, Round Trip Time(ms), bytes, pps, Packets, Packets or Occassions, Package Loss(%)"
+    },
+    {
+      "name": "DECIMALS",
+      "type": "decimal(3,0)",
+      "description": null
+    },
+    {
+      "name": "HTML_ID_STR",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "ACCORDION_TITLE",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "Y_AXIS_MIN_VALUE",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NUM_DIV_LINES",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "LINE_THICKNESS",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "V_DIV_LINE_THICKNESS",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "V_DIV_LINE_ALPHA",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ANCHOR_RADIUS",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SHADOW_ALPHA",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ITEM_NAME_IN_SUM",
+      "type": "varchar(128)",
+      "description": "ITEM_NAME_IN_SUM。常见值: Utilization In Sum"
+    },
+    {
+      "name": "ITEM_NAME_OUT_SUM",
+      "type": "varchar(128)",
+      "description": "ITEM_NAME_OUT_SUM。常见值: Utilization Out Sum"
+    },
+    {
+      "name": "ITEM_NAME_SUM",
+      "type": "varchar(128)",
+      "description": null
+    }
+  ],
+  "column_count": 26,
+  "embedding_text": "表t_bz_monitor_chart_config存储客户/设备监控图表配置信息，包含指标类型、服务项目及订单相关数据的平均值/最大值参数，用于生成可视化报表和告警规则。\n表名: t_bz_monitor_chart_config\n其他列: RANK_ORDER, INDEX_TYPE, SERVICE_ITEM, INDEX_TYPE_ARRAY_STR, TITLE, ITEM_NAME_AVG, ITEM_NAME_IN_AVG, ITEM_NAME_OUT_AVG, ITEM_NAME_MAX, ITEM_NAME_IN_MAX, ITEM_NAME_OUT_MAX, Y_AXIS_MAX_VALUE, Y_AXIS_NAME, DECIMALS, HTML_ID_STR"
+}

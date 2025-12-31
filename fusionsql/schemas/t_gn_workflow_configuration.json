@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_workflow_configuration"
+  },
+  "table_comment": null,
+  "llm_description": "存储审批流程配置信息，包含流程类型、名称、说明及多级审批人ID，用于管理用户权限和业务申请等业务流程。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "flow_type",
+      "type": "varchar(10)",
+      "description": "流程类型，LC1_GG 公告信息、LC2_YWSQBG 业务申请及变更信息等。常见值: LC1_GG, LC2_YWSQBG"
+    },
+    {
+      "name": "flow_name",
+      "type": "varchar(50)",
+      "description": "流程名称。常见值: 业务申请及变更, 公告信息"
+    },
+    {
+      "name": "flow_explain",
+      "type": "varchar(200)",
+      "description": "流程说明"
+    },
+    {
+      "name": "one_approver_id",
+      "type": "int(11)",
+      "description": "审批人id，一级审批"
+    },
+    {
+      "name": "two_approver_id",
+      "type": "int(11)",
+      "description": "审批人id，二级审批"
+    },
+    {
+      "name": "three_approver_id",
+      "type": "int(11)",
+      "description": "审批人id，三级审批"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "存储审批流程配置信息，包含流程类型、名称、说明及多级审批人ID，用于管理用户权限和业务申请等业务流程。\n表名: t_gn_workflow_configuration\n列信息: id(id), flow_type(流程类型，LC1_GG 公告信息、LC2_YWSQBG 业务申请及变更信息等), flow_name(流程名称), flow_explain(流程说明), one_approver_id(审批人id，一级审批), two_approver_id(审批人id，二级审批), three_approver_id(审批人id，三级审批), create_datetime(创建时间)"
+}

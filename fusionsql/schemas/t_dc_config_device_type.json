@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_config_device_type"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_config_device_type表存储设备类型配置信息，包含设备名称、描述、头像及操作记录，用于设备分类管理与权限控制。",
+  "columns": [
+    {
+      "name": "TYPE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "TYPE_NAME",
+      "type": "varchar(50)",
+      "description": "TYPE_NAME。常见值: 服务器, 测试类型-2024年4月26日, donghan, 安全设备, test0417, 0306, Networking, wss, Router1, test0327"
+    },
+    {
+      "name": "DESCRIPTION",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "VERSION",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "device_head_portrait",
+      "type": "varchar(500)",
+      "description": "设备头像"
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "t_dc_config_device_type表存储设备类型配置信息，包含设备名称、描述、头像及操作记录，用于设备分类管理与权限控制。\n表名: t_dc_config_device_type\n列信息: device_head_portrait(设备头像)\n其他列: TYPE_ID, TYPE_NAME, DESCRIPTION, CREATE_TIME, UPDATE_TIME, CREATE_USER_ID, UPDATE_USER_ID, IS_DELETED, VERSION"
+}

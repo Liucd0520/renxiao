@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_authority_level"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_authority_level表存储权限等级配置信息，用于定义用户对客户、订单、设备等业务对象的操作权限及告警分级规则。",
+  "columns": [
+    {
+      "name": "LEVEL_ID",
+      "type": "decimal(5,0)",
+      "description": "等级ID"
+    },
+    {
+      "name": "LEVEL_NAME",
+      "type": "varchar(20)",
+      "description": "等级名称。常见值: P4, P8, P1, P5, P9, P2, P6, P3, P7"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_authority_level表存储权限等级配置信息，用于定义用户对客户、订单、设备等业务对象的操作权限及告警分级规则。\n表名: t_dc_authority_level\n列信息: LEVEL_ID(等级ID), LEVEL_NAME(等级名称)"
+}

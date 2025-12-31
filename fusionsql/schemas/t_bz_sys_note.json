@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_sys_note"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_sys_note表存储系统公告信息，记录用户操作、客户ID及公告类型（超级管理员/运营商/普通客户），用于客户权限管理及通知发布。",
+  "columns": [
+    {
+      "name": "NOTE_ID",
+      "type": "decimal(10,0)",
+      "description": "公告ID"
+    },
+    {
+      "name": "NOTE_CONTENT",
+      "type": "varchar(512)",
+      "description": "公告描述"
+    },
+    {
+      "name": "OPERATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": "操作用户ID"
+    },
+    {
+      "name": "OPERATE_NAME",
+      "type": "varchar(50)",
+      "description": "操作者名称。常见值: wuge, zhujj"
+    },
+    {
+      "name": "OPERATE_TIME",
+      "type": "datetime",
+      "description": "操作时间"
+    },
+    {
+      "name": "NOTE_TYPE",
+      "type": "decimal(1,0)",
+      "description": "公告类型(1超级管理员  2运营商  3 普通客户)"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "t_bz_sys_note表存储系统公告信息，记录用户操作、客户ID及公告类型（超级管理员/运营商/普通客户），用于客户权限管理及通知发布。\n表名: t_bz_sys_note\n列信息: NOTE_ID(公告ID), NOTE_CONTENT(公告描述), OPERATE_USER_ID(操作用户ID), OPERATE_NAME(操作者名称), OPERATE_TIME(操作时间), NOTE_TYPE(公告类型(1超级管理员  2运营商  3 普通客户)), CUSTOMER_ID(客户ID)"
+}

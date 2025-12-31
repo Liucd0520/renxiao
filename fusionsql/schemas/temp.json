@@ -1,0 +1,127 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "temp"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储用户账户信息，包含客户、联系人、权限状态及试用期管理，用于用户权限控制和客户关联数据管理。",
+  "columns": [
+    {
+      "name": "USERS_ID",
+      "type": "decimal(10,0)",
+      "description": "用户ID"
+    },
+    {
+      "name": "USERS_LOGIN_NAME",
+      "type": "varchar(255)",
+      "description": "用户登录名"
+    },
+    {
+      "name": "USERS_REAL_NAME",
+      "type": "varchar(512)",
+      "description": "用户真名"
+    },
+    {
+      "name": "PASSWORD",
+      "type": "varchar(64)",
+      "description": "用户密码"
+    },
+    {
+      "name": "IS_ACTIVE",
+      "type": "decimal(1,0)",
+      "description": "是否激活"
+    },
+    {
+      "name": "IS_TRYOUT",
+      "type": "decimal(1,0)",
+      "description": "是否试用"
+    },
+    {
+      "name": "EXPIRED_DATE",
+      "type": "datetime",
+      "description": "到期时间"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "CONTACT_ID",
+      "type": "decimal(10,0)",
+      "description": "联系人ID"
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(50)",
+      "description": "创建者"
+    },
+    {
+      "name": "CREATION_TIME",
+      "type": "datetime",
+      "description": "最后修改时间"
+    },
+    {
+      "name": "UPDATED_BY",
+      "type": "varchar(50)",
+      "description": "修改者"
+    },
+    {
+      "name": "LAST_MODIFY_TIME",
+      "type": "datetime",
+      "description": "最后修改时间"
+    },
+    {
+      "name": "IS_INTERNAL",
+      "type": "decimal(1,0)",
+      "description": "是否国际电话"
+    },
+    {
+      "name": "CUSTOMER_NO",
+      "type": "varchar(10)",
+      "description": "顾客(客户)编号"
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": "创建用户ID"
+    },
+    {
+      "name": "UPDATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "TIME_ZONE",
+      "type": "varchar(50)",
+      "description": "地区时间"
+    },
+    {
+      "name": "PAGE_DISPLAY_NUM",
+      "type": "decimal(10,0)",
+      "description": "显示页数"
+    },
+    {
+      "name": "IS_ADMIN",
+      "type": "decimal(1,0)",
+      "description": "是否管理员"
+    },
+    {
+      "name": "IS_MOBILE",
+      "type": "decimal(1,0)",
+      "description": "是否移动"
+    },
+    {
+      "name": "IS_CUST",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_CLSMGMT",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 23,
+  "embedding_text": "该表存储用户账户信息，包含客户、联系人、权限状态及试用期管理，用于用户权限控制和客户关联数据管理。\n表名: temp\n列信息: USERS_ID(用户ID), USERS_LOGIN_NAME(用户登录名), USERS_REAL_NAME(用户真名), PASSWORD(用户密码), IS_ACTIVE(是否激活), IS_TRYOUT(是否试用), EXPIRED_DATE(到期时间), CUSTOMER_ID(客户ID), CONTACT_ID(联系人ID), CREATED_BY(创建者), CREATION_TIME(最后修改时间), UPDATED_BY(修改者), LAST_MODIFY_TIME(最后修改时间), IS_INTERNAL(是否国际电话), CUSTOMER_NO(顾客(客户)编号)"
+}

@@ -1,0 +1,92 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_security_access"
+  },
+  "table_comment": null,
+  "llm_description": "t_gn_security_access表存储设备接入与退出的安全信息，包括设备型号、厂商、加密算法、时间及状态，用于权限管理和安全监控。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "device_name",
+      "type": "varchar(50)",
+      "description": "设备名称。常见值: 电信olt, 测试, dev-206, Cisco-A580, dev0818001, 电信通信, 123"
+    },
+    {
+      "name": "model",
+      "type": "varchar(50)",
+      "description": "型号"
+    },
+    {
+      "name": "manufacturer_id",
+      "type": "int(11)",
+      "description": "厂商ID"
+    },
+    {
+      "name": "production_date",
+      "type": "datetime",
+      "description": "出厂日期"
+    },
+    {
+      "name": "encryption_alg",
+      "type": "varchar(20)",
+      "description": "加密算法"
+    },
+    {
+      "name": "access_time",
+      "type": "datetime",
+      "description": "接入时间"
+    },
+    {
+      "name": "quit_time",
+      "type": "datetime",
+      "description": "退出时间"
+    },
+    {
+      "name": "secure_status",
+      "type": "int(1)",
+      "description": "状态 1 接入、2 退出"
+    },
+    {
+      "name": "purpose",
+      "type": "varchar(200)",
+      "description": "用途"
+    },
+    {
+      "name": "build_user_id",
+      "type": "int(11)",
+      "description": "使用单位ID"
+    },
+    {
+      "name": "location",
+      "type": "varchar(100)",
+      "description": "位置（机房）"
+    },
+    {
+      "name": "contacts_id",
+      "type": "int(11)",
+      "description": "联系人ID"
+    },
+    {
+      "name": "contacts_phone",
+      "type": "varchar(50)",
+      "description": "联系人电话"
+    },
+    {
+      "name": "contacts_email",
+      "type": "varchar(50)",
+      "description": "联系人邮箱"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 16,
+  "embedding_text": "t_gn_security_access表存储设备接入与退出的安全信息，包括设备型号、厂商、加密算法、时间及状态，用于权限管理和安全监控。\n表名: t_gn_security_access\n列信息: id(id), device_name(设备名称), model(型号), manufacturer_id(厂商ID), production_date(出厂日期), encryption_alg(加密算法), access_time(接入时间), quit_time(退出时间), secure_status(状态 1 接入、2 退出), purpose(用途), build_user_id(使用单位ID), location(位置（机房）), contacts_id(联系人ID), contacts_phone(联系人电话), contacts_email(联系人邮箱)"
+}

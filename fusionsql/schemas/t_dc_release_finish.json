@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_release_finish"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_release_finish表存储客户订单发布完成信息，记录设备发布类型及状态，用于管理发布流程和权限控制。",
+  "columns": [
+    {
+      "name": "FINISH_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "FINISH_TYPE",
+      "type": "varchar(50)",
+      "description": "FINISH_TYPE。常见值: 取消, 成功, 未成功, 部分成功"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_release_finish表存储客户订单发布完成信息，记录设备发布类型及状态，用于管理发布流程和权限控制。\n表名: t_dc_release_finish\n其他列: FINISH_ID, FINISH_TYPE"
+}

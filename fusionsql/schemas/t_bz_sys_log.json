@@ -1,0 +1,77 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_sys_log"
+  },
+  "table_comment": null,
+  "llm_description": "系统操作日志表，记录客户、设备、权限等业务对象的操作信息，用于审计和监控用户操作行为。",
+  "columns": [
+    {
+      "name": "LOG_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_NAME",
+      "type": "varchar(512)",
+      "description": "OBJECT_NAME。常见值: chenlj, zhujj, ciCircuit, configurationNeRoot, configurationLocation, configurationCiContact, configurationRegion, configurationContact, protocolInstance, wangff"
+    },
+    {
+      "name": "LOG_DESC",
+      "type": "varchar(1024)",
+      "description": null
+    },
+    {
+      "name": "OPERATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "OPERATE_NAME",
+      "type": "varchar(50)",
+      "description": "OPERATE_NAME。常见值: chenlj, 朱俊杰, zhujj, 陈丽娟, wangff, 吴舸, xuzhou, wuge, juan, libh"
+    },
+    {
+      "name": "OPERATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "OPERATE_TYPE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "OPERATE_RESULT",
+      "type": "varchar(25)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "IP",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "URL",
+      "type": "varchar(256)",
+      "description": null
+    },
+    {
+      "name": "MODULE_ID",
+      "type": "decimal(7,0)",
+      "description": null
+    }
+  ],
+  "column_count": 13,
+  "embedding_text": "系统操作日志表，记录客户、设备、权限等业务对象的操作信息，用于审计和监控用户操作行为。\n表名: t_bz_sys_log\n其他列: LOG_ID, OBJECT_ID, OBJECT_NAME, LOG_DESC, OPERATE_USER_ID, OPERATE_NAME, OPERATE_TIME, OPERATE_TYPE, OPERATE_RESULT, CUSTOMER_ID, IP, URL, MODULE_ID"
+}

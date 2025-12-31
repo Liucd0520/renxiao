@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_monitor_chart_sql"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_monitor_chart_sql表存储监控图表的SQL配置信息，用于生成客户、设备、订单等业务数据的可视化分析报告，关联HBase与业务表进行多维度数据索引管理。",
+  "columns": [
+    {
+      "name": "CHART_SQL_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "INDEX_TYPE",
+      "type": "varchar(128)",
+      "description": "INDEX_TYPE。常见值: Class Utilization Statistic, UDP Round Trip Time, Packet Loss, Storage Utilization Statistic, Firewall Connections, Packets, UDP Jitter Statistics, Udp Jitter, Process Count Statistic, HTTP Statistic"
+    },
+    {
+      "name": "TIME_TYPE",
+      "type": "varchar(128)",
+      "description": "TIME_TYPE。常见值: hour, fift, day, week, month, raw data"
+    },
+    {
+      "name": "TABLE_NAME",
+      "type": "varchar(300)",
+      "description": null
+    },
+    {
+      "name": "HBASE_TABLE_NAME",
+      "type": "varchar(300)",
+      "description": null
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "t_bz_monitor_chart_sql表存储监控图表的SQL配置信息，用于生成客户、设备、订单等业务数据的可视化分析报告，关联HBase与业务表进行多维度数据索引管理。\n表名: t_bz_monitor_chart_sql\n其他列: CHART_SQL_ID, INDEX_TYPE, TIME_TYPE, TABLE_NAME, HBASE_TABLE_NAME"
+}

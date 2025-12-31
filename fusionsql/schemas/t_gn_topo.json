@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_topo"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储客户网络拓扑图配置信息，用于管理设备连接展示，包含拓扑名称、描述、背景及颜色设置，支持端口名称显示控制。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "ID"
+    },
+    {
+      "name": "customer_id",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "topo_name",
+      "type": "varchar(50)",
+      "description": "拓扑图名称。常见值: 一级拓扑图, 拓扑图1, 213, Ceshi05, 研发环境网络设备, 研发环境网络拓扑, 123, 研发环境服务器, 12, 核心网拓扑"
+    },
+    {
+      "name": "topo_desc",
+      "type": "varchar(200)",
+      "description": "描述"
+    },
+    {
+      "name": "background",
+      "type": "varchar(255)",
+      "description": "背景"
+    },
+    {
+      "name": "link_colour",
+      "type": "varchar(255)",
+      "description": "连接颜色"
+    },
+    {
+      "name": "point_colour",
+      "type": "varchar(255)",
+      "description": "线路流动的点的颜色"
+    },
+    {
+      "name": "show_port_name",
+      "type": "varchar(255)",
+      "description": "是否显示连接端口名称。常见值: 1"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "该表存储客户网络拓扑图配置信息，用于管理设备连接展示，包含拓扑名称、描述、背景及颜色设置，支持端口名称显示控制。\n表名: t_gn_topo\n列信息: id(ID), topo_name(拓扑图名称), topo_desc(描述), background(背景), link_colour(连接颜色), point_colour(线路流动的点的颜色), show_port_name(是否显示连接端口名称)\n其他列: customer_id"
+}

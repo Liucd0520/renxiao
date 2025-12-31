@@ -1,0 +1,172 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_task_main"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_task_main表存储任务分配信息，关联客户、部门、用户组及用户，记录创建时间与状态，用于订单处理和告警管理。",
+  "columns": [
+    {
+      "name": "task_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "assign_customer_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "assign_department_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "assign_group_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "assign_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "assign_name",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "is_active",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "levele1_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "levele2_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "levele3_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "modified_by",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "modified_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "module_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "object_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "object_no",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "remark",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "pend_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "preference",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "process_seq",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "pstart_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "rend_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "rstart_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "status_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "status_reason",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "submitter",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "submitter_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "summary",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "task_name",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "task_no",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "task_type",
+      "type": "decimal(19,2)",
+      "description": null
+    }
+  ],
+  "column_count": 32,
+  "embedding_text": "t_bz_task_main表存储任务分配信息，关联客户、部门、用户组及用户，记录创建时间与状态，用于订单处理和告警管理。\n表名: t_bz_task_main\n其他列: task_id, assign_customer_id, assign_department_id, assign_group_id, assign_id, assign_name, create_time, customer_id, is_active, levele1_id, levele2_id, levele3_id, modified_by, modified_time, module_id"
+}

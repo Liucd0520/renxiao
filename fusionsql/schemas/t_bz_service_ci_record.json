@@ -1,0 +1,92 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_service_ci_record"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储客户配置项（CI）记录，包含设备信息、客户名称、联系人等，用于订单管理、告警关联及权限控制。",
+  "columns": [
+    {
+      "name": "RECORD_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_NAME",
+      "type": "varchar(255)",
+      "description": "CI_NAME。常见值: Ruijie-device, 测试, device 2020-6-4-1, clj-computer, device 2020-6-4-3, device2020-6-4-2, zjj-computer, zsy-computer, dev-206, 测试11"
+    },
+    {
+      "name": "CI_LINE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_IP",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CI_REGION_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_NAME",
+      "type": "varchar(255)",
+      "description": "CUSTOMER_NAME。常见值: 研发, 中国电信上海理想信息产业(集团)有限公司, 理想公司, 天翼云1, develop, 研发,., 肯德基, 天翼云"
+    },
+    {
+      "name": "CONTACT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CONTACT_NAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CONTACT_PHONE",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ADD",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "DESK_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_REGION_NAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CI_RESPONSE_PERIOD",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_UPDATE_PERIOD",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 16,
+  "embedding_text": "该表存储客户配置项（CI）记录，包含设备信息、客户名称、联系人等，用于订单管理、告警关联及权限控制。\n表名: t_bz_service_ci_record\n其他列: RECORD_ID, CI_ID, CI_NAME, CI_LINE_ID, CI_IP, CI_REGION_ID, CUSTOMER_ID, CUSTOMER_NAME, CONTACT_ID, CONTACT_NAME, CONTACT_PHONE, CUSTOMER_ADD, DESK_ID, CI_REGION_NAME, CI_RESPONSE_PERIOD"
+}

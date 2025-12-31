@@ -1,0 +1,112 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_service_desk"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户服务请求信息，包含设备、电路、请求类型及状态，用于工单管理与告警处理。",
+  "columns": [
+    {
+      "name": "DESK_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "DESK_NO",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "DESK_NAME",
+      "type": "varchar(50)",
+      "description": "DESK_NAME。常见值: 请求测试, test111, 测试, 123, test, 20240520-request, 111, 测试00000, Latency1 TOP10, 测试121238"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CIRCUIT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REQUEST_TYPE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "REQUEST_DESC",
+      "type": "varchar(2000)",
+      "description": null
+    },
+    {
+      "name": "DESK_STATUS",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "DESK_STATUS_INFO",
+      "type": "int(10)",
+      "description": null
+    },
+    {
+      "name": "FLOW_STAGE",
+      "type": "int(1)",
+      "description": null
+    },
+    {
+      "name": "CONTACT_MOBILE",
+      "type": "varchar(30)",
+      "description": null
+    },
+    {
+      "name": "CONTACT_EMAIL",
+      "type": "varchar(30)",
+      "description": null
+    },
+    {
+      "name": "SOURCE_TYPE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "MAINTAIN_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SUBMITTER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PROCESSING_LOG",
+      "type": "varchar(2000)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "END_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "commissioned_id",
+      "type": "decimal(10,0)",
+      "description": "委办单位ID"
+    }
+  ],
+  "column_count": 20,
+  "embedding_text": "存储客户服务请求信息，包含设备、电路、请求类型及状态，用于工单管理与告警处理。\n表名: t_bz_service_desk\n列信息: commissioned_id(委办单位ID)\n其他列: DESK_ID, DESK_NO, DESK_NAME, CUSTOMER_ID, CIRCUIT_ID, NE_ID, REQUEST_TYPE, REQUEST_DESC, DESK_STATUS, DESK_STATUS_INFO, FLOW_STAGE, CONTACT_MOBILE, CONTACT_EMAIL, SOURCE_TYPE"
+}

@@ -1,0 +1,107 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_scanning_probe"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储设备扫描策略信息，包含设备ID、用户、分支名、扫描方式、状态及创建时间，用于管理资产扫描任务和责任人。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "ip",
+      "type": "varchar(20)",
+      "description": "资产ip地址"
+    },
+    {
+      "name": "comment",
+      "type": "varchar(200)",
+      "description": "备注"
+    },
+    {
+      "name": "record_time",
+      "type": "int(11)",
+      "description": "策略创建时间，秒级时间戳"
+    },
+    {
+      "name": "status",
+      "type": "int(1)",
+      "description": "当前策略状态，0 正在使用、1 已删除"
+    },
+    {
+      "name": "user",
+      "type": "varchar(20)",
+      "description": "责任人"
+    },
+    {
+      "name": "find_type",
+      "type": "varchar(10)",
+      "description": "具体发现方式，“manual” | “auto”。常见值: auto"
+    },
+    {
+      "name": "host_name",
+      "type": "varchar(50)",
+      "description": "用户名"
+    },
+    {
+      "name": "dev_id",
+      "type": "varchar(100)",
+      "description": "设备id"
+    },
+    {
+      "name": "branch_name",
+      "type": "varchar(50)",
+      "description": "分支名。常见值: 杨浦业务网段(老)-10.216.0.0-16, 杨浦业务网段(新)-10.215.0.0-16, 内网IP范围, 科委灾备, 政务云, 5F, 4F, 区城运中心, 卫健委服务器, 11F"
+    },
+    {
+      "name": "branch_id",
+      "type": "varchar(20)",
+      "description": "分支id（ip视角）"
+    },
+    {
+      "name": "classify_id",
+      "type": "int(11)",
+      "description": "设备全类型id"
+    },
+    {
+      "name": "classify1_id",
+      "type": "int(11)",
+      "description": "设备类型id一级分类"
+    },
+    {
+      "name": "device_info",
+      "type": "varchar(500)",
+      "description": "设备信息"
+    },
+    {
+      "name": "source",
+      "type": "varchar(20)",
+      "description": "数据来源，默认为“SIP”"
+    },
+    {
+      "name": "apikey",
+      "type": "varchar(100)",
+      "description": "apikey，默认为空，无需关注"
+    },
+    {
+      "name": "device_id",
+      "type": "varchar(20)",
+      "description": "设备id"
+    },
+    {
+      "name": "device_version",
+      "type": "varchar(500)",
+      "description": "设备版本号"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 19,
+  "embedding_text": "该表存储设备扫描策略信息，包含设备ID、用户、分支名、扫描方式、状态及创建时间，用于管理资产扫描任务和责任人。\n表名: t_gn_scanning_probe\n列信息: id(id), ip(资产ip地址), comment(备注), record_time(策略创建时间，秒级时间戳), status(当前策略状态，0 正在使用、1 已删除), user(责任人), find_type(具体发现方式，“manual” | “auto”), host_name(用户名), dev_id(设备id), branch_name(分支名), branch_id(分支id（ip视角）), classify_id(设备全类型id), classify1_id(设备类型id一级分类), device_info(设备信息), source(数据来源，默认为“SIP”)"
+}

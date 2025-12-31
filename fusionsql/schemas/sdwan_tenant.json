@@ -1,0 +1,102 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdwan_tenant"
+  },
+  "table_comment": null,
+  "llm_description": "sdwan_tenant表存储SD-WAN租户客户信息，包含用户账户、权限限制及联系方式，用于管理客户资源分配与通知设置。",
+  "columns": [
+    {
+      "name": "tenantId",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "tenantName",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "tenantEmail",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "tenantPhone",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "tenantDescription",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "tenantAddress",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "limitAccountNum",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "userAccount",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "userEmail",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "sendInitEmailEnable",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "isEmailUnique",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "countryCode",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "userPassword",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "authorizeMSP",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "authenticationType",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "cosmcode",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "userPhone",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "phoneCountryCode",
+      "type": "varchar(50)",
+      "description": null
+    }
+  ],
+  "column_count": 18,
+  "embedding_text": "sdwan_tenant表存储SD-WAN租户客户信息，包含用户账户、权限限制及联系方式，用于管理客户资源分配与通知设置。\n表名: sdwan_tenant\n其他列: tenantId, tenantName, tenantEmail, tenantPhone, tenantDescription, tenantAddress, limitAccountNum, userAccount, userEmail, sendInitEmailEnable, isEmailUnique, countryCode, userPassword, authorizeMSP, authenticationType"
+}

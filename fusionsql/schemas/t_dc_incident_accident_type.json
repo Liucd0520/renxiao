@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_incident_accident_type"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备事故类型信息，用于告警分类及权限管理，支持层级结构管理。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(50)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "存储设备事故类型信息，用于告警分类及权限管理，支持层级结构管理。\n表名: t_dc_incident_accident_type\n其他列: ID, PARENT_ID, NAME"
+}

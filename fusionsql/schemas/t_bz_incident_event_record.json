@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_incident_event_record"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_incident_event_record表存储告警事件记录，包含告警ID、名称、值、类型、状态、时间及关联设备ID，用于监控和处理设备告警。",
+  "columns": [
+    {
+      "name": "RECORD_ID",
+      "type": "decimal(10,0)",
+      "description": "记录ID"
+    },
+    {
+      "name": "INCIDENT_NO",
+      "type": "varchar(20)",
+      "description": "事件编号"
+    },
+    {
+      "name": "EVENT_ID",
+      "type": "decimal(10,0)",
+      "description": "告警ID"
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "EVENT_NAME",
+      "type": "varchar(255)",
+      "description": "告警名称。常见值: IP SLA State, Device Syslog, Device state, CPU Utilization, Config harvest connect timeout, udpJitterResultsLostPacketRatioThreshold, HSRP State, Class Utilization, Memory Utilization, Snmp Collecting"
+    },
+    {
+      "name": "EVENT_VALUE",
+      "type": "varchar(255)",
+      "description": "告警值"
+    },
+    {
+      "name": "EVENT_TYPE_ID",
+      "type": "varchar(255)",
+      "description": "告警类型"
+    },
+    {
+      "name": "EVENT_STATUS",
+      "type": "decimal(1,0)",
+      "description": "告警状态"
+    },
+    {
+      "name": "EVENT_TIME",
+      "type": "datetime",
+      "description": "告警时间"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(10,0)",
+      "description": "根网元ID"
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "t_bz_incident_event_record表存储告警事件记录，包含告警ID、名称、值、类型、状态、时间及关联设备ID，用于监控和处理设备告警。\n表名: t_bz_incident_event_record\n列信息: RECORD_ID(记录ID), INCIDENT_NO(事件编号), EVENT_ID(告警ID), NE_ID(网元ID), EVENT_NAME(告警名称), EVENT_VALUE(告警值), EVENT_TYPE_ID(告警类型), EVENT_STATUS(告警状态), EVENT_TIME(告警时间), ROOT_NE_ID(根网元ID)"
+}

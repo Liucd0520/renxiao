@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_config_ci_relationship"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储客户、设备、权限等配置项间的关联关系，记录源目标对象的绑定类型及操作时间，用于管理业务实体间的配置依赖。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CODE",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "RELATIONSHIP_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "SOURCE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "DESTINATION_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "该表存储客户、设备、权限等配置项间的关联关系，记录源目标对象的绑定类型及操作时间，用于管理业务实体间的配置依赖。\n表名: t_rl_config_ci_relationship\n其他列: RELATIONSHIP_ID, CODE, PARENT_ID, RELATIONSHIP_TYPE, SOURCE_ID, DESTINATION_ID, CREATE_TIME, UPDATE_TIME, IS_DELETED"
+}

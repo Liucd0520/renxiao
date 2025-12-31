@@ -1,0 +1,72 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_sys_operator_record"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_sys_operator_record表用于记录系统操作日志，包含客户、用户、部门、权限等信息，用于追踪操作行为和权限变更。",
+  "columns": [
+    {
+      "name": "RECORD_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_NAME",
+      "type": "varchar(255)",
+      "description": "CUSTOMER_NAME。常见值: 中国电信上海理想信息产业(集团)有限公司, 上海理想NetCare, 网管专家"
+    },
+    {
+      "name": "DEPARTMENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "DEPARTMENT_NAME",
+      "type": "varchar(255)",
+      "description": "DEPARTMENT_NAME。常见值: 网管专家业务部, 网管专家业务�"
+    },
+    {
+      "name": "GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "GROUP_NAME",
+      "type": "varchar(255)",
+      "description": "GROUP_NAME。常见值: 研发部, 平台组, 变更主管组, 变更经理组, 服务台1线, 研发�"
+    },
+    {
+      "name": "OPERATOR_TYPE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "MODULE_ID",
+      "type": "decimal(3,0)",
+      "description": null
+    },
+    {
+      "name": "USERS_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "USERS_NAME",
+      "type": "varchar(512)",
+      "description": "USERS_NAME。常见值: 朱俊杰, 陈丽娟, 王唯琦, 陈凯, 金伟超, 单波波, 吴贇, 张文江, 周世阳, 吴舸"
+    }
+  ],
+  "column_count": 12,
+  "embedding_text": "t_bz_sys_operator_record表用于记录系统操作日志，包含客户、用户、部门、权限等信息，用于追踪操作行为和权限变更。\n表名: t_bz_sys_operator_record\n其他列: RECORD_ID, OBJECT_ID, CUSTOMER_ID, CUSTOMER_NAME, DEPARTMENT_ID, DEPARTMENT_NAME, GROUP_ID, GROUP_NAME, OPERATOR_TYPE, MODULE_ID, USERS_ID, USERS_NAME"
+}

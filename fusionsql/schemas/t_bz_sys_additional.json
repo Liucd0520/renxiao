@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_sys_additional"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储设备、订单、用户等附加信息，包含名称、路径、安全等级、提交时间，用于管理模块扩展数据及权限配置。",
+  "columns": [
+    {
+      "name": "ADDITIONAL_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "WORK_INFO_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ADDITIONAL_NAME",
+      "type": "varchar(255)",
+      "description": "ADDITIONAL_NAME。常见值: 英文翻译.txt, 001.jpg, 研发部门项目计划.xlsx, ttt.txt, 新建文本文档.txt, ceshi.txt, HP_LaserJet_P2035_P2035n_x64.rar, 审计接口说明.txt, 新建文本文档5.txt, V6正式环境研发人员排障参考.txt"
+    },
+    {
+      "name": "ADDITIONAL_SIZE",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "ADDITIONAL_PATH",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "SAFE_LEVEL",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "SUBMIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "ADDITIONAL_DESC",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "MODULE_ID",
+      "type": "decimal(3,0)",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_ID",
+      "type": "decimal(10,0)",
+      "description": "关联服务请求等流程ID"
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "该表存储设备、订单、用户等附加信息，包含名称、路径、安全等级、提交时间，用于管理模块扩展数据及权限配置。\n表名: t_bz_sys_additional\n列信息: OBJECT_ID(关联服务请求等流程ID)\n其他列: ADDITIONAL_ID, WORK_INFO_ID, ADDITIONAL_NAME, ADDITIONAL_SIZE, ADDITIONAL_PATH, SAFE_LEVEL, SUBMIT_TIME, ADDITIONAL_DESC, MODULE_ID, IS_DELETED"
+}

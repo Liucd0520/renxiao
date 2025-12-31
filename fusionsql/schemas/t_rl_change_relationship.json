@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_change_relationship"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储客户、订单、设备等对象间的变更关系，记录变更关联及状态，用于追踪业务变更影响。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CHANGE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "MODULE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_NO",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "RELATIONSHIP_DESC",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "RELATIONSHIP_STATUS",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "该表存储客户、订单、设备等对象间的变更关系，记录变更关联及状态，用于追踪业务变更影响。\n表名: t_rl_change_relationship\n其他列: RELATIONSHIP_ID, CHANGE_ID, MODULE_ID, OBJECT_ID, OBJECT_NO, RELATIONSHIP_DESC, RELATIONSHIP_STATUS"
+}

@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_authority_role_menu"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储角色与菜单的权限关联关系，用于管理用户对系统菜单的访问权限。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROLE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "MENU_ID",
+      "type": "decimal(15,0)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "该表存储角色与菜单的权限关联关系，用于管理用户对系统菜单的访问权限。\n表名: t_rl_authority_role_menu\n其他列: RELATIONSHIP_ID, ROLE_ID, MENU_ID"
+}

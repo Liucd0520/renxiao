@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_cust_reachability_ext"
+  },
+  "table_comment": "客户可达率（自定义报表）",
+  "llm_description": "存储客户设备可达率数据，用于自定义报表生成，包含客户ID、周/月统计值及模板信息，支持告警分析。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "bigint(32)",
+      "description": null
+    },
+    {
+      "name": "REPORT_INST_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REP_VALUE",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "REP_WEEK",
+      "type": "decimal(8,0)",
+      "description": null
+    },
+    {
+      "name": "REP_MONTH",
+      "type": "decimal(6,0)",
+      "description": null
+    },
+    {
+      "name": "TEMPLATE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SHOW_WEEK",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "SHOW_MONTH",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "REACH_VALUE",
+      "type": "decimal(10,2)",
+      "description": null
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "存储客户设备可达率数据，用于自定义报表生成，包含客户ID、周/月统计值及模板信息，支持告警分析。\n表名: report_cust_reachability_ext\n表注释: 客户可达率（自定义报表）\n其他列: ID, REPORT_INST_ID, CUSTOMER_ID, REP_VALUE, REP_WEEK, REP_MONTH, TEMPLATE_ID, SHOW_WEEK, SHOW_MONTH, REACH_VALUE"
+}

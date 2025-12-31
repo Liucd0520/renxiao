@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_all_net_security"
+  },
+  "table_comment": null,
+  "llm_description": "t_gn_all_net_security表存储客户网络安全态势数据，记录安全事件名称及数量，用于监控客户网络告警和安全状态统计。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "安全态势id"
+    },
+    {
+      "name": "security_name",
+      "type": "varchar(70)",
+      "description": "安全信息名称。常见值: Major, Warning, Minor, Critical"
+    },
+    {
+      "name": "security_num",
+      "type": "varchar(255)",
+      "description": "数量"
+    },
+    {
+      "name": "customer_id",
+      "type": "int(11)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "t_gn_all_net_security表存储客户网络安全态势数据，记录安全事件名称及数量，用于监控客户网络告警和安全状态统计。\n表名: t_gn_all_net_security\n列信息: id(安全态势id), security_name(安全信息名称), security_num(数量)\n其他列: customer_id"
+}

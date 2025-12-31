@@ -1,0 +1,92 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_sdn_alarm"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_sdn_alarm表存储设备告警信息，用于记录设备运行状态告警数据，包含告警类型、级别、发生时间、设备IP等关键字段，支持告警状态跟踪与处理。",
+  "columns": [
+    {
+      "name": "ALARM_ID",
+      "type": "int(10)",
+      "description": null
+    },
+    {
+      "name": "IS_CLEARED",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "ALARM_DESC",
+      "type": "varchar(4000)",
+      "description": null
+    },
+    {
+      "name": "DEVICE_IP",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "ALARM_TYPE",
+      "type": "varchar(255)",
+      "description": "ALARM_TYPE。常见值: communications-alarm, processing-error-alarm, quality-of-service-alarm, equipment-alarm, environmental-alarm, security-service-or-mechanism-violation-alarm"
+    },
+    {
+      "name": "ALARM_STATUS",
+      "type": "varchar(255)",
+      "description": "ALARM_STATUS。常见值: Alarm cleared."
+    },
+    {
+      "name": "LAST_CHANGED_TIME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "ALARM_VALUE",
+      "type": "varchar(4000)",
+      "description": null
+    },
+    {
+      "name": "OCCUR_TIME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "ALARM_LEVEL",
+      "type": "varchar(255)",
+      "description": "ALARM_LEVEL。常见值: minor, major, warning, critical"
+    },
+    {
+      "name": "ALARM_NAME",
+      "type": "varchar(255)",
+      "description": "ALARM_NAME。常见值: 当设备收到源IP和源MAC与接口的IP和MAC均相同的ARP报文时，触发该告警。, MAC地址冲突, 光模块局部功能失效, 光模块整体功能失效, 接收到的Pause帧在设定时间内高于设定告警个数时产生告警。, 1. NTP服务器配置错误。\n2. NTP服务器连接不上或者异常中断。\n3. NTP服务器崩溃。, SR Policy候选路径的状态变为down。, 丢弃的TCPIP攻击报文字节数超过设置的告警门限, 可用的VTY数目低于阈值。, 通用接口发送带宽利用率告警"
+    },
+    {
+      "name": "DEVICE_NAME",
+      "type": "varchar(255)",
+      "description": "DEVICE_NAME。常见值: PDJY-ZPDSXX_ZX-RT-NE8000M1C, PDJY-LGXX-RT-NE8000M1C, PDJY-SSSYXX_XFXQ-RT-NE8000M1C, PDJY-JPCDXX_THXQ-RT-NE8000M1C, PDJY-LCXX-RT-NE8000M1C, PDJY-JXYEY_ZB-RT-NE8000M1C, PDJY-QLZX_SNXQ-RT-NE8000M1C, PDJY-YXXX_XDXQ-RT-NE8000M1C, SH-SH-LGXXDL-SR-2.PDJY.CX600, PDJY-HLZX-RT-NE8000M1C"
+    },
+    {
+      "name": "OTHERI_INFO",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "PROBABLE_CAUSE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "NATIVE_PROBABLE_CAUSE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "NCE_ALARM_ID",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 16,
+  "embedding_text": "t_bz_sdn_alarm表存储设备告警信息，用于记录设备运行状态告警数据，包含告警类型、级别、发生时间、设备IP等关键字段，支持告警状态跟踪与处理。\n表名: t_bz_sdn_alarm\n其他列: ALARM_ID, IS_CLEARED, ALARM_DESC, DEVICE_IP, ALARM_TYPE, ALARM_STATUS, LAST_CHANGED_TIME, ALARM_VALUE, OCCUR_TIME, ALARM_LEVEL, ALARM_NAME, DEVICE_NAME, OTHERI_INFO, PROBABLE_CAUSE, NATIVE_PROBABLE_CAUSE"
+}

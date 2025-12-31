@@ -1,0 +1,77 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_website_host_vulnerabilities"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储客户主机漏洞信息，记录IP组名称、责任人、设备详情及告警数量，用于安全监控和漏洞管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "user",
+      "type": "varchar(50)",
+      "description": "责任人"
+    },
+    {
+      "name": "comment",
+      "type": "varchar(255)",
+      "description": "备注"
+    },
+    {
+      "name": "name",
+      "type": "varchar(50)",
+      "description": "IP组名称"
+    },
+    {
+      "name": "ip_range",
+      "type": "varchar(1000)",
+      "description": "IP范围简写"
+    },
+    {
+      "name": "count",
+      "type": "int(11)",
+      "description": "拉取数，表示当前实际拉取到的数量"
+    },
+    {
+      "name": "message",
+      "type": "varchar(100)",
+      "description": "提示信息"
+    },
+    {
+      "name": "device_info",
+      "type": "varchar(500)",
+      "description": "设备信息"
+    },
+    {
+      "name": "source",
+      "type": "varchar(20)",
+      "description": "数据来源，默认为“SIP”"
+    },
+    {
+      "name": "apikey",
+      "type": "varchar(100)",
+      "description": "apikey，默认为空，无需关注"
+    },
+    {
+      "name": "device_id",
+      "type": "varchar(20)",
+      "description": "设备id"
+    },
+    {
+      "name": "device_version",
+      "type": "varchar(500)",
+      "description": "设备版本号"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 13,
+  "embedding_text": "该表存储客户主机漏洞信息，记录IP组名称、责任人、设备详情及告警数量，用于安全监控和漏洞管理。\n表名: t_gn_website_host_vulnerabilities\n列信息: id(id), user(责任人), comment(备注), name(IP组名称), ip_range(IP范围简写), count(拉取数，表示当前实际拉取到的数量), message(提示信息), device_info(设备信息), source(数据来源，默认为“SIP”), apikey(apikey，默认为空，无需关注), device_id(设备id), device_version(设备版本号), create_datetime(创建时间)"
+}

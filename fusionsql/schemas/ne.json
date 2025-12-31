@@ -1,0 +1,137 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne"
+  },
+  "table_comment": "网元表",
+  "llm_description": "网元表存储客户设备信息，包含设备ID、名称、地址及层级关系，用于用户权限管理、告警关联及订单处理。",
+  "columns": [
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "NE_NAME",
+      "type": "varchar(512)",
+      "description": "网元名称。常见值: /, CPU, lo, Physical Memory-1, HostResource, /boot, Load-1, Load-5, Load-15, sendmail"
+    },
+    {
+      "name": "ALIAS",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "NE_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "DESCRIPTION",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "NE_ADDRESS",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "LAYER",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "NE_INDEX",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "NE_OID",
+      "type": "varchar(1024)",
+      "description": null
+    },
+    {
+      "name": "NE_STATUS",
+      "type": "varchar(64)",
+      "description": "NE_STATUS。常见值: UNKNOWN,UNKNOWN,up, UNKNOWN,UNKNOWN,UNKNOWN, up,up,UNKNOWN, up,UNKNOWN,UNKNOWN, UNKNOWN,up,UNKNOWN, up,down,UNKNOWN, UNKNOWN,down,UNKNOWN, UNKNOWN,up,up, UNKNOWN,down,up, down,UNKNOWN,UNKNOWN"
+    },
+    {
+      "name": "IS_ACTIVE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "VITAL_ATTR_NAME",
+      "type": "varchar(128)",
+      "description": "VITAL_ATTR_NAME。常见值: map, IfSpeed, Compacity, hwMemoryDevSize, 100M, LRAddress, SDAddress, AP, 40M, 20M"
+    },
+    {
+      "name": "VITAL_ATTR_VALUE",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "NE_IMPORTANCE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "NE_TYPE_ID",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_OWNER",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "CREATED_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATED_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "IS_IPV6CONNECTED",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "IS_IPV6SUPPORTED",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "NE_REMAKE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "discovery_last_time",
+      "type": "datetime",
+      "description": "最后一次属性发现时间"
+    }
+  ],
+  "column_count": 25,
+  "embedding_text": "网元表存储客户设备信息，包含设备ID、名称、地址及层级关系，用于用户权限管理、告警关联及订单处理。\n表名: ne\n表注释: 网元表\n列信息: NE_ID(网元ID), NE_NAME(网元名称), discovery_last_time(最后一次属性发现时间)\n其他列: ALIAS, NE_DESC, DESCRIPTION, NE_ADDRESS, PARENT_ID, ROOT_NE_ID, LAYER, NE_INDEX, NE_OID, NE_STATUS, IS_ACTIVE, VITAL_ATTR_NAME"
+}

@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_problem_finish"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_problem_finish表存储问题处理完成记录，包含完成ID和类型，用于跟踪客户、设备、告警及订单相关业务处理状态。",
+  "columns": [
+    {
+      "name": "FINISH_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "FINISH_TYPE",
+      "type": "varchar(50)",
+      "description": "FINISH_TYPE。常见值: 取消, 根本解决, 无法解决, 需变更解决, 变通方法"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_problem_finish表存储问题处理完成记录，包含完成ID和类型，用于跟踪客户、设备、告警及订单相关业务处理状态。\n表名: t_dc_problem_finish\n其他列: FINISH_ID, FINISH_TYPE"
+}

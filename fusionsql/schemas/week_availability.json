@@ -1,0 +1,102 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "week_availability"
+  },
+  "table_comment": "AVAILABILITY周统计表",
+  "llm_description": "week_availability表存储客户设备服务项的周统计数据，包含汇总值、平均值、极值及次数，用于监控业务指标和分析资源使用情况。",
+  "columns": [
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(11,0)",
+      "description": "根网元ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(11,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "SERVICE_ITEM",
+      "type": "varchar(128)",
+      "description": "服务项"
+    },
+    {
+      "name": "WEEK",
+      "type": "decimal(10,0)",
+      "description": "从1970年开始计时，到现在的第几周"
+    },
+    {
+      "name": "VALUE_SUM",
+      "type": "decimal(38,10)",
+      "description": "采集的原子数据汇总的和值"
+    },
+    {
+      "name": "VALUE_AVG",
+      "type": "decimal(38,10)",
+      "description": "采集的原子数据汇总的平均值"
+    },
+    {
+      "name": "VALUE_MIN",
+      "type": "decimal(38,10)",
+      "description": "采集的原子数据汇总的最小值"
+    },
+    {
+      "name": "VALUE_MAX",
+      "type": "decimal(38,10)",
+      "description": "采集的原子数据汇总的最大值"
+    },
+    {
+      "name": "NUM_COUNTS",
+      "type": "decimal(10,0)",
+      "description": "汇总次数"
+    },
+    {
+      "name": "TIME_COUNTS",
+      "type": "decimal(10,0)",
+      "description": "汇总的时间累积值"
+    },
+    {
+      "name": "HOUROFDAY",
+      "type": "decimal(2,0)",
+      "description": "一天的第几个小时"
+    },
+    {
+      "name": "DAYOFWEEK",
+      "type": "decimal(2,0)",
+      "description": "一周的第几天"
+    },
+    {
+      "name": "DAYOFMONTH",
+      "type": "decimal(2,0)",
+      "description": "一个月的第几天"
+    },
+    {
+      "name": "DAY",
+      "type": "decimal(8,0)",
+      "description": "从1970年开始计时，到现在的第几天"
+    },
+    {
+      "name": "MONTH",
+      "type": "decimal(6,0)",
+      "description": "从1970年开始计时，到现在的第几月"
+    },
+    {
+      "name": "COLLTIME",
+      "type": "datetime",
+      "description": "采集时间"
+    },
+    {
+      "name": "CALCTIME",
+      "type": "datetime",
+      "description": "汇总的计算时间"
+    }
+  ],
+  "column_count": 18,
+  "embedding_text": "week_availability表存储客户设备服务项的周统计数据，包含汇总值、平均值、极值及次数，用于监控业务指标和分析资源使用情况。\n表名: week_availability\n表注释: AVAILABILITY周统计表\n列信息: NE_ID(网元ID), ROOT_NE_ID(根网元ID), CUSTOMER_ID(客户ID), SERVICE_ITEM(服务项), WEEK(从1970年开始计时，到现在的第几周), VALUE_SUM(采集的原子数据汇总的和值), VALUE_AVG(采集的原子数据汇总的平均值), VALUE_MIN(采集的原子数据汇总的最小值), VALUE_MAX(采集的原子数据汇总的最大值), NUM_COUNTS(汇总次数), TIME_COUNTS(汇总的时间累积值), HOUROFDAY(一天的第几个小时), DAYOFWEEK(一周的第几天), DAYOFMONTH(一个月的第几天), DAY(从1970年开始计时，到现在的第几天)"
+}

@@ -1,0 +1,107 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_collect_connector"
+  },
+  "table_comment": null,
+  "llm_description": "ne_collect_connector表存储设备连接配置信息，包含SSH、Telnet、RDP等协议的启用状态、端口及连接状态，用于用户权限管理、告警监控等业务场景。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "主键"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "enable",
+      "type": "tinyint(1)",
+      "description": "是否启用连接功能"
+    },
+    {
+      "name": "ssh_enable",
+      "type": "tinyint(1)",
+      "description": "SSH是否启用"
+    },
+    {
+      "name": "ssh_port",
+      "type": "int(5)",
+      "description": "SSH Port"
+    },
+    {
+      "name": "ssh_status",
+      "type": "tinyint(1)",
+      "description": "SSH Port 状态"
+    },
+    {
+      "name": "telnet_enable",
+      "type": "tinyint(1)",
+      "description": "Telnet是否启用"
+    },
+    {
+      "name": "telnet_port",
+      "type": "int(5)",
+      "description": "Telnet Port"
+    },
+    {
+      "name": "telnet_status",
+      "type": "tinyint(1)",
+      "description": "Telnet Port 状态"
+    },
+    {
+      "name": "rdp_enable",
+      "type": "tinyint(1)",
+      "description": "RDP是否启用"
+    },
+    {
+      "name": "rdp_port",
+      "type": "int(5)",
+      "description": "RDP Port"
+    },
+    {
+      "name": "rdp_status",
+      "type": "tinyint(1)",
+      "description": "RDP Port 状态"
+    },
+    {
+      "name": "port_check",
+      "type": "tinyint(1)",
+      "description": "端口检测是否启用"
+    },
+    {
+      "name": "default_port",
+      "type": "tinyint(1)",
+      "description": "是否使用默认端口"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间，默认为当前时间"
+    },
+    {
+      "name": "created_by",
+      "type": "decimal(11,0)",
+      "description": "创建人"
+    },
+    {
+      "name": "updated_time",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "updated_by",
+      "type": "decimal(11,0)",
+      "description": "更新人"
+    },
+    {
+      "name": "deleted",
+      "type": "tinyint(1)",
+      "description": null
+    }
+  ],
+  "column_count": 19,
+  "embedding_text": "ne_collect_connector表存储设备连接配置信息，包含SSH、Telnet、RDP等协议的启用状态、端口及连接状态，用于用户权限管理、告警监控等业务场景。\n表名: ne_collect_connector\n列信息: id(主键), ne_id(网元ID), enable(是否启用连接功能), ssh_enable(SSH是否启用), ssh_port(SSH Port), ssh_status(SSH Port 状态), telnet_enable(Telnet是否启用), telnet_port(Telnet Port), telnet_status(Telnet Port 状态), rdp_enable(RDP是否启用), rdp_port(RDP Port), rdp_status(RDP Port 状态), port_check(端口检测是否启用), default_port(是否使用默认端口), created_time(创建时间，默认为当前时间)"
+}

@@ -1,0 +1,147 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_release_info"
+  },
+  "table_comment": "发布信息表",
+  "llm_description": "发布信息表存储客户、设备及订单的发布记录，包含变更ID、状态、流程实例等字段，用于管理发布流程及告警处理。",
+  "columns": [
+    {
+      "name": "RELEASE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "RELEASE_NO",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "CHANGE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "TYPE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "SCHEME",
+      "type": "varchar(200)",
+      "description": null
+    },
+    {
+      "name": "PROCESS_INSTANCE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "FLOW_STAGE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "IS_FLOW",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "FINISH_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "timestamp",
+      "description": null
+    },
+    {
+      "name": "BEGIN_TIME",
+      "type": "timestamp",
+      "description": null
+    },
+    {
+      "name": "END_TIME",
+      "type": "timestamp",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "RELEASE_TITLE",
+      "type": "varchar(200)",
+      "description": null
+    },
+    {
+      "name": "FINISH_TIME",
+      "type": "timestamp",
+      "description": null
+    },
+    {
+      "name": "RISK_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL1_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL2_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL3_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "EMERGENCY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "INFLUENCE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "PRIORITY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "CHANGE_NO",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "RSTART_TIME",
+      "type": "timestamp",
+      "description": null
+    },
+    {
+      "name": "REND_TIME",
+      "type": "timestamp",
+      "description": null
+    },
+    {
+      "name": "FINISH_REASON",
+      "type": "varchar(100)",
+      "description": null
+    }
+  ],
+  "column_count": 27,
+  "embedding_text": "发布信息表存储客户、设备及订单的发布记录，包含变更ID、状态、流程实例等字段，用于管理发布流程及告警处理。\n表名: t_bz_release_info\n表注释: 发布信息表\n其他列: RELEASE_ID, RELEASE_NO, CHANGE_ID, TYPE_ID, STATUS_ID, SCHEME, PROCESS_INSTANCE_ID, FLOW_STAGE, IS_FLOW, FINISH_ID, CREATE_TIME, BEGIN_TIME, END_TIME, CUSTOMER_ID, RELEASE_TITLE"
+}

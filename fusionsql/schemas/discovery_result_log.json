@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "discovery_result_log"
+  },
+  "table_comment": null,
+  "llm_description": "discovery_result_log表用于记录设备发现结果及告警信息，包含客户、订单相关数据变更日志，用于监控和分析业务状态。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": null
+    },
+    {
+      "name": "root_ne_id",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "table_name",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "oid",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "value",
+      "type": "text",
+      "description": null
+    },
+    {
+      "name": "timestamp",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "value_type",
+      "type": "varchar(50)",
+      "description": "value_type。常见值: 0, 1"
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "discovery_result_log表用于记录设备发现结果及告警信息，包含客户、订单相关数据变更日志，用于监控和分析业务状态。\n表名: discovery_result_log\n其他列: id, root_ne_id, table_name, oid, value, timestamp, value_type"
+}

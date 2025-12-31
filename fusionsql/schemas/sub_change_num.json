@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sub_change_num"
+  },
+  "table_comment": null,
+  "llm_description": "sub_change_num表存储设备在不同发现类型下的新增、删除、更新数量及新旧总数，用于客户变更监控和告警触发。",
+  "columns": [
+    {
+      "name": "ne_id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "discovery_type",
+      "type": "varchar(255)",
+      "description": "discovery_type。常见值: memory, cpu, port, disk, temperature, bgp, flash, policymap, classmap, ospf"
+    },
+    {
+      "name": "add_num",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "delete_num",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "update_num",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "new_num",
+      "type": "int(11)",
+      "description": "属性发现子网元的数量"
+    },
+    {
+      "name": "old_num",
+      "type": "int(11)",
+      "description": "原来子网元的数量"
+    },
+    {
+      "name": "data_time",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "sub_change_num表存储设备在不同发现类型下的新增、删除、更新数量及新旧总数，用于客户变更监控和告警触发。\n表名: sub_change_num\n列信息: new_num(属性发现子网元的数量), old_num(原来子网元的数量)\n其他列: ne_id, discovery_type, add_num, delete_num, update_num, data_time"
+}

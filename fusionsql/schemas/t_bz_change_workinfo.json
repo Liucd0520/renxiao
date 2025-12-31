@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_change_workinfo"
+  },
+  "table_comment": null,
+  "llm_description": "表t_bz_change_workinfo存储客户/订单变更工作信息，记录用户提交的工作内容、类型及权限配置。",
+  "columns": [
+    {
+      "name": "WORK_INFO_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CHANGE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SUB_WORKINFO_USER",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SUBMIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "WORK_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "WORK_CONTENT",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "LOOK_RIGTH",
+      "type": "varchar(1)",
+      "description": null
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "表t_bz_change_workinfo存储客户/订单变更工作信息，记录用户提交的工作内容、类型及权限配置。\n表名: t_bz_change_workinfo\n其他列: WORK_INFO_ID, CHANGE_ID, SUB_WORKINFO_USER, SUBMIT_TIME, WORK_TYPE, WORK_CONTENT, LOOK_RIGTH"
+}

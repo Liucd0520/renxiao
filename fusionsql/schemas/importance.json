@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "importance"
+  },
+  "table_comment": null,
+  "llm_description": "重要性表存储重要性编号及名称，用于客户、订单、告警等业务场景的优先级分类与管理。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(2,0)",
+      "description": "重要性编号"
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(255)",
+      "description": "重要性名称"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "重要性表存储重要性编号及名称，用于客户、订单、告警等业务场景的优先级分类与管理。\n表名: importance\n列信息: ID(重要性编号), NAME(重要性名称)"
+}

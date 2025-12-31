@@ -1,0 +1,97 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_location"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户地点配置信息，包含地址、电话、时区等，用于订单处理、设备管理及告警定位。",
+  "columns": [
+    {
+      "name": "location_id",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "location_name",
+      "type": "varchar(255)",
+      "description": "名称。常见值: 秀沿县支公司, 南京鸡鸣寺, Room 1007 Tower B, Changan Metropolis Center, No.88, Nanguan Zheng Street,Xian,Shanxi,CHINA, 上海秀沿路, 上海, shanghai, 秀沿县支公司2, 秀沿县支公司1, 秀沿县支公司3, usa"
+    },
+    {
+      "name": "location_desc",
+      "type": "varchar(512)",
+      "description": "描述"
+    },
+    {
+      "name": "location_addr",
+      "type": "varchar(512)",
+      "description": "地址"
+    },
+    {
+      "name": "location_phone",
+      "type": "varchar(255)",
+      "description": "电话"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "postcode",
+      "type": "varchar(255)",
+      "description": "邮政编码"
+    },
+    {
+      "name": "country",
+      "type": "varchar(255)",
+      "description": "所在国家"
+    },
+    {
+      "name": "city",
+      "type": "varchar(255)",
+      "description": "所在城市"
+    },
+    {
+      "name": "zone_id",
+      "type": "varchar(128)",
+      "description": "时区id"
+    },
+    {
+      "name": "region_id",
+      "type": "decimal(10,0)",
+      "description": "区域id"
+    },
+    {
+      "name": "created_by",
+      "type": "varchar(50)",
+      "description": "创建人"
+    },
+    {
+      "name": "update_by",
+      "type": "varchar(50)",
+      "description": "修改人"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "last_modify_time",
+      "type": "datetime",
+      "description": "修改时间"
+    },
+    {
+      "name": "is_active",
+      "type": "decimal(1,0)",
+      "description": "是否激活"
+    },
+    {
+      "name": "province",
+      "type": "varchar(255)",
+      "description": "省份"
+    }
+  ],
+  "column_count": 17,
+  "embedding_text": "存储客户地点配置信息，包含地址、电话、时区等，用于订单处理、设备管理及告警定位。\n表名: t_bz_config_location\n列信息: location_id(ID), location_name(名称), location_desc(描述), location_addr(地址), location_phone(电话), customer_id(客户ID), postcode(邮政编码), country(所在国家), city(所在城市), zone_id(时区id), region_id(区域id), created_by(创建人), update_by(修改人), create_time(创建时间), last_modify_time(修改时间)"
+}

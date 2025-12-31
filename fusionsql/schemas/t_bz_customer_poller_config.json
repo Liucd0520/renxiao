@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_customer_poller_config"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_customer_poller_config表存储客户设备轮询配置信息，用于告警归并、自动工单生成及SLA管理，关联客户、设备与服务规则。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(20,0)",
+      "description": "ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": "设备id"
+    },
+    {
+      "name": "INCORPORATE_ID",
+      "type": "decimal(10,0)",
+      "description": "归并规则id"
+    },
+    {
+      "name": "AUTO_CASE_ID",
+      "type": "decimal(10,0)",
+      "description": "自动case设定ID"
+    },
+    {
+      "name": "SLA_ID",
+      "type": "decimal(10,0)",
+      "description": "SLA管理ID"
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "t_bz_customer_poller_config表存储客户设备轮询配置信息，用于告警归并、自动工单生成及SLA管理，关联客户、设备与服务规则。\n表名: t_bz_customer_poller_config\n列信息: ID(ID), CUSTOMER_ID(客户ID), NE_ID(设备id), INCORPORATE_ID(归并规则id), AUTO_CASE_ID(自动case设定ID), SLA_ID(SLA管理ID)"
+}

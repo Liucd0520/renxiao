@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "framework_role_authority"
+  },
+  "table_comment": null,
+  "llm_description": "框架角色权限表，存储用户角色与权限的关联关系，用于权限分配和业务操作控制。",
+  "columns": [
+    {
+      "name": "ROLE_ID",
+      "type": "int(10)",
+      "description": null
+    },
+    {
+      "name": "AUTHORITY_ID",
+      "type": "int(10)",
+      "description": null
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "框架角色权限表，存储用户角色与权限的关联关系，用于权限分配和业务操作控制。\n表名: framework_role_authority\n其他列: ROLE_ID, AUTHORITY_ID"
+}

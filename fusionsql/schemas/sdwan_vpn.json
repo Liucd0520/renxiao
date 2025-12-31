@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdwan_vpn"
+  },
+  "table_comment": null,
+  "llm_description": "sdwan_vpn表存储客户在不同站点的SD-WAN VPN配置数据，用于管理设备通信和网络连接状态。",
+  "columns": [
+    {
+      "name": "vpnId",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "tenantId",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "siteId",
+      "type": "varchar(5000)",
+      "description": null
+    },
+    {
+      "name": "data",
+      "type": "varchar(15000)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "sdwan_vpn表存储客户在不同站点的SD-WAN VPN配置数据，用于管理设备通信和网络连接状态。\n表名: sdwan_vpn\n其他列: vpnId, tenantId, siteId, data"
+}

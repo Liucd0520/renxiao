@@ -1,0 +1,132 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_traffic_abnormality"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备流量异常告警信息，记录资产IP、操作系统类型、发现方式、开放服务及策略状态，用于监控网络异常事件并关联分支机构与责任人。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "asset_ip",
+      "type": "varchar(20)",
+      "description": "资产ip地址"
+    },
+    {
+      "name": "system",
+      "type": "varchar(10)",
+      "description": "具体操作系统类型，“windows” | “linux”"
+    },
+    {
+      "name": "find_type",
+      "type": "varchar(10)",
+      "description": "具体发现方式，“manual” | “auto”。常见值: auto"
+    },
+    {
+      "name": "open_server",
+      "type": "varchar(2000)",
+      "description": "开放的端口及服务"
+    },
+    {
+      "name": "status",
+      "type": "int(1)",
+      "description": "当前策略状态，0 正在使用、1 已删除"
+    },
+    {
+      "name": "record_time",
+      "type": "int(11)",
+      "description": "策略创建时间，秒级时间戳"
+    },
+    {
+      "name": "bra_id",
+      "type": "varchar(20)",
+      "description": "分支id"
+    },
+    {
+      "name": "name",
+      "type": "varchar(20)",
+      "description": "服务器名"
+    },
+    {
+      "name": "user",
+      "type": "varchar(20)",
+      "description": "服务器责任人"
+    },
+    {
+      "name": "comment",
+      "type": "varchar(200)",
+      "description": "备注"
+    },
+    {
+      "name": "dev_id",
+      "type": "varchar(100)",
+      "description": "设备id"
+    },
+    {
+      "name": "branch_name",
+      "type": "varchar(50)",
+      "description": "分支名。常见值: 杨浦业务网段(老)-10.216.0.0-16, 信创, 582_民政局养老服务发展中心、财务结算中心、婚姻（收养）登记中心、救助中心、区居家养老服务中心, 内网IP范围, 区城运中心, 424_五角场城管中心, 卫健委, 323_控江路街道办, 585_退役军人事务局, 428_城管执法局"
+    },
+    {
+      "name": "branch_id",
+      "type": "varchar(20)",
+      "description": "分支id（ip视角）"
+    },
+    {
+      "name": "classify_id",
+      "type": "int(11)",
+      "description": "设备全类型id"
+    },
+    {
+      "name": "classify1_id",
+      "type": "int(11)",
+      "description": "设备类型id一级分类"
+    },
+    {
+      "name": "count",
+      "type": "int(11)",
+      "description": "拉取数，表示当前实际拉取到的数量"
+    },
+    {
+      "name": "message",
+      "type": "varchar(100)",
+      "description": "提示信息"
+    },
+    {
+      "name": "device_info",
+      "type": "varchar(500)",
+      "description": "设备信息"
+    },
+    {
+      "name": "source",
+      "type": "varchar(20)",
+      "description": "数据来源，默认为“SIP”"
+    },
+    {
+      "name": "apikey",
+      "type": "varchar(100)",
+      "description": "apikey，默认为空，无需关注"
+    },
+    {
+      "name": "device_id",
+      "type": "varchar(20)",
+      "description": "设备id"
+    },
+    {
+      "name": "device_version",
+      "type": "varchar(500)",
+      "description": "设备版本号"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 24,
+  "embedding_text": "存储设备流量异常告警信息，记录资产IP、操作系统类型、发现方式、开放服务及策略状态，用于监控网络异常事件并关联分支机构与责任人。\n表名: t_gn_traffic_abnormality\n列信息: id(id), asset_ip(资产ip地址), system(具体操作系统类型，“windows” | “linux”), find_type(具体发现方式，“manual” | “auto”), open_server(开放的端口及服务), status(当前策略状态，0 正在使用、1 已删除), record_time(策略创建时间，秒级时间戳), bra_id(分支id), name(服务器名), user(服务器责任人), comment(备注), dev_id(设备id), branch_name(分支名), branch_id(分支id（ip视角）), classify_id(设备全类型id)"
+}

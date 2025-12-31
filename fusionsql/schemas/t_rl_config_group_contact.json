@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_config_group_contact"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储客户组与联系人的配置关系，用于管理告警通知的默认联系人，支持用户权限配置。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CONTACT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "IS_DEFAULT",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "该表存储客户组与联系人的配置关系，用于管理告警通知的默认联系人，支持用户权限配置。\n表名: t_rl_config_group_contact\n其他列: RELATIONSHIP_ID, GROUP_ID, CONTACT_ID, IS_DEFAULT"
+}

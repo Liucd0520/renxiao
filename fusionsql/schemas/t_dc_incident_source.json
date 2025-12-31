@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_incident_source"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_incident_source表存储告警事件来源信息，包含来源ID和名称，用于关联设备或系统告警数据。",
+  "columns": [
+    {
+      "name": "SOURCE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "SOURCE_NAME",
+      "type": "varchar(50)",
+      "description": "SOURCE_NAME。常见值: 电话, Web服务请求, 主动监控, 电子邮件"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_incident_source表存储告警事件来源信息，包含来源ID和名称，用于关联设备或系统告警数据。\n表名: t_dc_incident_source\n其他列: SOURCE_ID, SOURCE_NAME"
+}

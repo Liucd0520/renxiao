@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_clouds_type"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_clouds_type表存储云服务类型与网络设备类型映射关系，用于客户设备权限管理和告警规则配置。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "cloud_name",
+      "type": "varchar(100)",
+      "description": "cloud_name。常见值: 华为云, 天翼云, 阿里云"
+    },
+    {
+      "name": "ne_type_id",
+      "type": "varchar(100)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "t_dc_clouds_type表存储云服务类型与网络设备类型映射关系，用于客户设备权限管理和告警规则配置。\n表名: t_dc_clouds_type\n其他列: id, cloud_name, ne_type_id"
+}

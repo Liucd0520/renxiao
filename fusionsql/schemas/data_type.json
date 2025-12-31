@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "data_type"
+  },
+  "table_comment": null,
+  "llm_description": "data_type表存储客户、订单、设备等数据类型的分类及描述，用于业务数据的统一管理和分类。",
+  "columns": [
+    {
+      "name": "data_type_id",
+      "type": "decimal(10,0)",
+      "description": "data_type_id"
+    },
+    {
+      "name": "data_name",
+      "type": "varchar(128)",
+      "description": "data_name。常见值: interface_perf_data, ip_sla_data, common_data, web_site_data, device_basic_perf_data, icmp_ping_data, interface_status_data, qos_data, device_availability_data, atomic_circuit_data"
+    },
+    {
+      "name": "data_desc",
+      "type": "varchar(128)",
+      "description": "data_name"
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "data_type表存储客户、订单、设备等数据类型的分类及描述，用于业务数据的统一管理和分类。\n表名: data_type\n列信息: data_type_id(data_type_id), data_name(data_name), data_desc(data_name)"
+}

@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_service_group_view"
+  },
+  "table_comment": "VIEW",
+  "llm_description": "该视图存储客户订单对应的网元设备组信息，包含服务包、设备ID及权限关联。",
+  "columns": [
+    {
+      "name": "GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": "组ID"
+    },
+    {
+      "name": "SERVICE_PACKAGE",
+      "type": "varchar(128)",
+      "description": "网元服务包"
+    },
+    {
+      "name": "MANUAL_ID",
+      "type": "decimal(11,0)",
+      "description": "手工录入网元ID"
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(11,0)",
+      "description": "根网元ID"
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "该视图存储客户订单对应的网元设备组信息，包含服务包、设备ID及权限关联。\n表名: ne_service_group_view\n表注释: VIEW\n列信息: GROUP_ID(组ID), SERVICE_PACKAGE(网元服务包), MANUAL_ID(手工录入网元ID), NE_ID(网元ID), ROOT_NE_ID(根网元ID)"
+}

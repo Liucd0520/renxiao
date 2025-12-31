@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "r_template_customer"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户与模板的关联关系，用于权限配置及业务模板应用。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "TEMPLATE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "存储客户与模板的关联关系，用于权限配置及业务模板应用。\n表名: r_template_customer\n其他列: ID, CUSTOMER_ID, TEMPLATE_ID"
+}

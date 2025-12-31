@@ -1,0 +1,132 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdw_dp_site"
+  },
+  "table_comment": null,
+  "llm_description": "sdw_dp_site表存储客户、设备及用户权限相关的区域站点信息，用于管理区域划分与访问控制。",
+  "columns": [
+    {
+      "name": "area_id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "province_id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "sys_id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "region_id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "is_user_edit",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "ex_area_id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "cus",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "area_type_name",
+      "type": "varchar(255)",
+      "description": "area_type_name。常见值: 单网关, 双网关"
+    },
+    {
+      "name": "area_role_name",
+      "type": "varchar(255)",
+      "description": "area_role_name。常见值: 分支站点, POP, 一级总头, 二级总头"
+    },
+    {
+      "name": "area_name",
+      "type": "varchar(255)",
+      "description": "area_name。常见值: HABX南宁CPE, POP-CTY-CS02-POPToE01, 晶雷东大名路, JZJ-ZJHZBJQGKJ9008049, HABX南昌CPE, POP-CTY-CD03-POPToE01, HABX郑州CPE, HTJ-BJ-MTG9011517, YBSJ-JSNT-HAYBS9010350, NGS0281"
+    },
+    {
+      "name": "province_name",
+      "type": "varchar(255)",
+      "description": "province_name。常见值: 上海市, 北京市, 浙江省, 广东省, 江苏省, 山西省, 四川省, 湖北省, 广西壮族自治区, 山东省"
+    },
+    {
+      "name": "area_role",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "area_type",
+      "type": "varchar(255)",
+      "description": "area_type。常见值: single_getway, double_getway"
+    },
+    {
+      "name": "cus_name",
+      "type": "varchar(255)",
+      "description": "cus_name。常见值: 华住集团, 上海闪耀信息科技有限公司, 上海罗泾浦港企业发展有限公司, 农工商超市（集团）有限公司, 中国人民银行太原中心支行（国家外汇管理局山西省分局）, 天虹纺织（国际）, 中智上海经济技术合作有限公司, 华安财产保险股份有限公司, 百胜咨询（上海）有限公司, 统一超商（上海）便利有限公司"
+    },
+    {
+      "name": "phone",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "username",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "platform",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "add_time",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "address",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "area_descr",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "longitude_latitude",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "region_name",
+      "type": "varchar(255)",
+      "description": "region_name。常见值: 上海POP资源池, 杭州POP资源池, 广州POP资源池, 北京POP资源池, 深圳POP资源池, 兰州POP资源池, 西宁POP资源池, 武汉POP资源池, 成都POP资源池, 内蒙POP资源池"
+    },
+    {
+      "name": "sys_name",
+      "type": "varchar(255)",
+      "description": "sys_name。常见值: VMWARE, 缔安, 华为, versa, 深信服, 华夏创新, 典基, 其他, 理想, 缔安-新"
+    },
+    {
+      "name": "res_type_id",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 24,
+  "embedding_text": "sdw_dp_site表存储客户、设备及用户权限相关的区域站点信息，用于管理区域划分与访问控制。\n表名: sdw_dp_site\n其他列: area_id, province_id, sys_id, region_id, is_user_edit, ex_area_id, cus, area_type_name, area_role_name, area_name, province_name, area_role, area_type, cus_name, phone"
+}

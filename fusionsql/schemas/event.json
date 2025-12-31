@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户、订单、设备等业务事件信息，用于告警监控及权限管理。",
+  "columns": [
+    {
+      "name": "EVENT_ID",
+      "type": "decimal(30,0)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "EVENT_TYPE_ID",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "BUSINESS_ID",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "EVENT_NAME",
+      "type": "varchar(255)",
+      "description": "EVENT_NAME。常见值: Device Syslog, IP SLA State, Authentication Failure, Device state, Oper Status, Config harvest connect timeout, udpJitterResultsLostPacketRatioThreshold, Circuit state, Bgp peer state, CPU Utilization"
+    },
+    {
+      "name": "EVENT_VALUE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "EVENT_STATUS",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "EVENT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "GROUP_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "CORRELATION_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "存储客户、订单、设备等业务事件信息，用于告警监控及权限管理。\n表名: event\n其他列: EVENT_ID, NE_ID, EVENT_TYPE_ID, BUSINESS_ID, EVENT_NAME, EVENT_VALUE, EVENT_STATUS, EVENT_TIME, GROUP_ID, CORRELATION_ID"
+}

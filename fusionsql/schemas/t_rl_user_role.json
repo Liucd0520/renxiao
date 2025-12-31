@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_user_role"
+  },
+  "table_comment": null,
+  "llm_description": "t_rl_user_role表存储用户与角色的对应关系，用于管理用户权限分配及角色分组。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROLE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROLE_GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "t_rl_user_role表存储用户与角色的对应关系，用于管理用户权限分配及角色分组。\n表名: t_rl_user_role\n其他列: RELATIONSHIP_ID, USER_ID, ROLE_ID, ROLE_GROUP_ID"
+}

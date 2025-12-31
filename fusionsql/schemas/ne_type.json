@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_type"
+  },
+  "table_comment": null,
+  "llm_description": "ne_type表存储设备类型信息，用于设备分类管理及权限控制，包含类型ID、名称和父级ID，支持层级结构。",
+  "columns": [
+    {
+      "name": "NE_TYPE_ID",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "NE_TYPE_NAME",
+      "type": "varchar(255)",
+      "description": "NE_TYPE_NAME。常见值: Web VPN Sessions, H3C NQA Icmp Echo, Huawei Device, Memory_HW, Power_HW, Temperature, Device, Windows Server, H3C NQA Udp Echo, Huawei Firewall"
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "varchar(128)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "ne_type表存储设备类型信息，用于设备分类管理及权限控制，包含类型ID、名称和父级ID，支持层级结构。\n表名: ne_type\n其他列: NE_TYPE_ID, NE_TYPE_NAME, PARENT_ID"
+}

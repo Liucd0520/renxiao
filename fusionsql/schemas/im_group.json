@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "im_group"
+  },
+  "table_comment": null,
+  "llm_description": "存储用户群组信息，包含群组名称和头像，用于权限管理及设备客户分组。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(250)",
+      "description": null
+    },
+    {
+      "name": "AVATAR",
+      "type": "varchar(250)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "存储用户群组信息，包含群组名称和头像，用于权限管理及设备客户分组。\n表名: im_group\n其他列: ID, NAME, AVATAR"
+}

@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_condition"
+  },
+  "table_comment": null,
+  "llm_description": "event_condition表存储客户事件条件信息，用于告警规则配置，包含事件值、重要性、严重程度及自动确认状态，关联设备与根原因。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "EVENT_VALUE",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "IMPORTANCE_ID",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "IS_AUTO_ACK",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "ROOTNE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SEVERITY_ID",
+      "type": "decimal(2,0)",
+      "description": null
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "event_condition表存储客户事件条件信息，用于告警规则配置，包含事件值、重要性、严重程度及自动确认状态，关联设备与根原因。\n表名: event_condition\n其他列: ID, CUSTOMER_ID, EVENT_VALUE, IMPORTANCE_ID, IS_AUTO_ACK, ROOTNE_ID, SEVERITY_ID"
+}

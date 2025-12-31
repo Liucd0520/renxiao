@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_collect_record"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户设备采集记录，包含采集配置、内容、备注及创建时间，用于数据管理与分析。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "主键"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "collect_id",
+      "type": "bigint(20)",
+      "description": "采集配置ID"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(11,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "category",
+      "type": "varchar(255)",
+      "description": "标题"
+    },
+    {
+      "name": "title",
+      "type": "varchar(255)",
+      "description": "简介"
+    },
+    {
+      "name": "document",
+      "type": "longtext",
+      "description": "内容"
+    },
+    {
+      "name": "remark",
+      "type": "text",
+      "description": "备注"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间，默认为当前时间"
+    },
+    {
+      "name": "deleted",
+      "type": "tinyint(1)",
+      "description": null
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "存储客户设备采集记录，包含采集配置、内容、备注及创建时间，用于数据管理与分析。\n表名: ne_collect_record\n列信息: id(主键), ne_id(网元ID), collect_id(采集配置ID), customer_id(客户ID), category(标题), title(简介), document(内容), remark(备注), created_time(创建时间，默认为当前时间)\n其他列: deleted"
+}

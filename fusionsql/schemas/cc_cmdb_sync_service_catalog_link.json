@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "cc_cmdb_sync_service_catalog_link"
+  },
+  "table_comment": "CC服务目录-服务包关联表",
+  "llm_description": "该表存储客户服务目录与服务包的关联信息，用于订单处理、权限分配及设备管理中的服务映射。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(21)",
+      "description": "ID"
+    },
+    {
+      "name": "service_catalog_id",
+      "type": "bigint(31)",
+      "description": "服务目录ID"
+    },
+    {
+      "name": "service_package",
+      "type": "varchar(128)",
+      "description": "服务包"
+    },
+    {
+      "name": "desc",
+      "type": "varchar(512)",
+      "description": "简介"
+    },
+    {
+      "name": "business_id",
+      "type": "varchar(100)",
+      "description": "业务ID"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "该表存储客户服务目录与服务包的关联信息，用于订单处理、权限分配及设备管理中的服务映射。\n表名: cc_cmdb_sync_service_catalog_link\n表注释: CC服务目录-服务包关联表\n列信息: id(ID), service_catalog_id(服务目录ID), service_package(服务包), desc(简介), business_id(业务ID), created_time(创建时间)"
+}

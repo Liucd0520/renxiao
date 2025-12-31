@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "framework_user_role"
+  },
+  "table_comment": null,
+  "llm_description": "framework_user_role表存储用户与角色的对应关系，用于权限分配和管理。",
+  "columns": [
+    {
+      "name": "USER_ID",
+      "type": "int(10)",
+      "description": "用户ID"
+    },
+    {
+      "name": "ROLE_ID",
+      "type": "int(10)",
+      "description": "角色ID"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "framework_user_role表存储用户与角色的对应关系，用于权限分配和管理。\n表名: framework_user_role\n列信息: USER_ID(用户ID), ROLE_ID(角色ID)"
+}

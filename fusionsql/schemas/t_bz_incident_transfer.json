@@ -1,0 +1,72 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_incident_transfer"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_incident_transfer表存储告警事件转移记录，包含客户ID、处理人、接收人、转移时间、类型及状态，用于跟踪用户问题交接与处理流程。",
+  "columns": [
+    {
+      "name": "TRANSFER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "INCIDENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "DEAL_MAN",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "RECEIVE_MAN",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "DEAL_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "RECEIVE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "TRANSFER_TYPE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_SUCCESS",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "REJECT_REASON",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "RECEIVE_CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "RECEIVE_DEPARTMENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "RECEIVE_GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 12,
+  "embedding_text": "t_bz_incident_transfer表存储告警事件转移记录，包含客户ID、处理人、接收人、转移时间、类型及状态，用于跟踪用户问题交接与处理流程。\n表名: t_bz_incident_transfer\n其他列: TRANSFER_ID, INCIDENT_ID, DEAL_MAN, RECEIVE_MAN, DEAL_TIME, RECEIVE_TIME, TRANSFER_TYPE, IS_SUCCESS, REJECT_REASON, RECEIVE_CUSTOMER_ID, RECEIVE_DEPARTMENT_ID, RECEIVE_GROUP_ID"
+}

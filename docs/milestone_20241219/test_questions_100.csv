@@ -1,0 +1,524 @@
+id,question,sql,tables,difficulty
+1,统计当前平台上有多少家活跃客户,"SELECT COUNT(`CUSTOMER_ID`) AS `active_customer_count`
+FROM `t_bz_config_customer`
+WHERE `IS_ACTIVE` = 1 AND `IS_DELETED` = 0;",t_bz_config_customer,easy
+2,统计当前平台上有多少台在线（状态为'上线'）的设备,"SELECT COUNT(`CI_ID`) AS `online_device_count`
+FROM `t_bz_config_ci_ne_root`
+WHERE `NE_STATUS` = '上线' AND `IS_DELETED` = 0;",t_bz_config_ci_ne_root,easy
+3,查询近一周内发生的所有告警事件，并按告警严重程度（severity）分组统计数量,"SELECT `SEVERITY`, COUNT(`EVENT_ID`) AS `alarm_count`
+FROM `event_history`
+WHERE `ALARM_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+GROUP BY `SEVERITY`
+ORDER BY `alarm_count` DESC;",event_history,medium
+4,查询客户'ABC公司'名下所有设备的基本信息（设备ID、名称、IP地址、状态）,"SELECT n.`NE_ID`, n.`HOST_NAME`, n.`IP_ADDRESS`, n.`NE_STATUS`
+FROM `t_bz_config_ci_ne_root` n
+JOIN `t_bz_config_customer` c ON n.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+WHERE c.`CUSTOMER_NAME` = 'ABC公司' AND n.`IS_DELETED` = 0;","t_bz_config_ci_ne_root,t_bz_config_customer",medium
+5,列出上个月新增设备数量最多的前5个客户,"SELECT c.`CUSTOMER_NAME`, COUNT(n.`CI_ID`) AS `new_device_count`
+FROM `t_bz_config_ci_ne_root` n
+JOIN `t_bz_config_customer` c ON n.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+WHERE n.`ONLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+  AND n.`ONLINE_TIME` < CURDATE()
+  AND n.`IS_DELETED` = 0
+GROUP BY c.`CUSTOMER_ID`, c.`CUSTOMER_NAME`
+ORDER BY `new_device_count` DESC
+LIMIT 5;","t_bz_config_ci_ne_root,t_bz_config_customer",medium
+6,查询当前处于'挂起'状态的告警工单数量,"SELECT COUNT(`INCIDENT_ID`) AS `pending_incident_count`
+FROM `t_bz_incident_info`
+WHERE `INCIDENT_STATUS` = '挂起' AND `IS_DELETED` = 0;",t_bz_incident_info,easy
+7,统计每个客户配置的服务包（service package）数量，并列出数量大于3的客户,"SELECT c.`CUSTOMER_NAME`, COUNT(sp.`SERVICE_PACKAGE_ID`) AS `service_package_count`
+FROM `t_bz_config_customer` c
+LEFT JOIN `ne_service_package` sp ON c.`CUSTOMER_ID` = sp.`CUSTOMER_ID` AND sp.`IS_DELETED` = 0
+WHERE c.`IS_DELETED` = 0
+GROUP BY c.`CUSTOMER_ID`, c.`CUSTOMER_NAME`
+HAVING `service_package_count` > 3
+ORDER BY `service_package_count` DESC;","t_bz_config_customer,ne_service_package",medium
+8,查询过去24小时内，采集机（collector）健康状态为'异常'的设备列表,"SELECT `COLLECTOR_ID`, `COLLECTOR_IP`, `CPU_USAGE`, `MEMORY_USAGE`, `HEALTH_STATUS`, `UPDATE_TIME`
+FROM `collector_health`
+WHERE `HEALTH_STATUS` = '异常'
+  AND `UPDATE_TIME` >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+ORDER BY `UPDATE_TIME` DESC;",collector_health,medium
+9,查询设备'Router-01'在过去一个月内的所有Ping测试延迟（latency）数据，按天计算平均延迟,"SELECT DATE(`COLLECT_TIME`) AS `day`, AVG(`LATENCY_AVG`) AS `avg_latency`
+FROM `report_ne_ping`
+WHERE `NE_ID` = (SELECT `NE_ID` FROM `t_bz_config_ci_ne_root` WHERE `HOST_NAME` = 'Router-01' LIMIT 1)
+  AND `COLLECT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+GROUP BY DATE(`COLLECT_TIME`)
+ORDER BY `day` DESC;","report_ne_ping,t_bz_config_ci_ne_root",hard
+10,统计各设备类型（ne_type）下的设备数量，并按数量降序排列,"SELECT nt.`TYPE_NAME`, COUNT(n.`CI_ID`) AS `device_count`
+FROM `t_bz_config_ci_ne_root` n
+JOIN `ne_type` nt ON n.`NE_TYPE_ID` = nt.`TYPE_ID`
+WHERE n.`IS_DELETED` = 0
+GROUP BY nt.`TYPE_ID`, nt.`TYPE_NAME`
+ORDER BY `device_count` DESC;","t_bz_config_ci_ne_root,ne_type",medium
+11,查询最近一周内，端口流量使用率（95峰值）最高的前10个设备端口,"SELECT r.`HOST_NAME`, p.`PORT_NAME`, p.`PEAK_95_USAGE_RATE`, p.`COLLECT_TIME`
+FROM `report_port_info` p
+JOIN `t_bz_config_ci_ne_root` r ON p.`NE_ID` = r.`NE_ID`
+WHERE p.`COLLECT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+ORDER BY p.`PEAK_95_USAGE_RATE` DESC
+LIMIT 10;","report_port_info,t_bz_config_ci_ne_root",hard
+12,列出所有未配置任何联系人的客户,"SELECT c.`CUSTOMER_ID`, c.`CUSTOMER_NAME`
+FROM `t_bz_config_customer` c
+LEFT JOIN `t_rl_config_ci_contact` rcc ON c.`CUSTOMER_ID` = rcc.`CUSTOMER_ID`
+WHERE rcc.`CONTACT_ID` IS NULL
+  AND c.`IS_DELETED` = 0;","t_bz_config_customer,t_rl_config_ci_contact",medium
+13,统计上个月每个客户产生的告警事件总数,"SELECT c.`CUSTOMER_NAME`, COUNT(eh.`EVENT_ID`) AS `monthly_alarm_count`
+FROM `event_history` eh
+JOIN `t_bz_config_ci_ne_root` n ON eh.`NE_ID` = n.`NE_ID`
+JOIN `t_bz_config_customer` c ON n.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+WHERE eh.`ALARM_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+  AND eh.`ALARM_TIME` < CURDATE()
+GROUP BY c.`CUSTOMER_ID`, c.`CUSTOMER_NAME`
+ORDER BY `monthly_alarm_count` DESC;","event_history,t_bz_config_ci_ne_root,t_bz_config_customer",hard
+14,查询当前系统中所有'管理员'角色的用户数量,"SELECT COUNT(DISTINCT fu.`USER_ID`) AS `admin_user_count`
+FROM `framework_user` fu
+JOIN `framework_user_role` fur ON fu.`USER_ID` = fur.`USER_ID`
+JOIN `framework_role` fr ON fur.`ROLE_ID` = fr.`ROLE_ID`
+WHERE fr.`ROLE_NAME` = '管理员' AND fu.`IS_ACTIVE` = 1;","framework_user,framework_user_role,framework_role",medium
+15,查询设备'Switch-05'的维保信息（联系人、电话、维保起止时间）,"SELECT mi.`CONTACT_PERSON`, mi.`CONTACT_PHONE`, mi.`START_TIME`, mi.`END_TIME`
+FROM `maintenance_info` mi
+WHERE mi.`NE_ID` = (SELECT `NE_ID` FROM `t_bz_config_ci_ne_root` WHERE `HOST_NAME` = 'Switch-05' LIMIT 1);","maintenance_info,t_bz_config_ci_ne_root",medium
+16,统计过去一年中，每月新上线的设备数量,"SELECT DATE_FORMAT(`ONLINE_TIME`, '%Y-%m') AS `month`, COUNT(`CI_ID`) AS `new_device_count`
+FROM `t_bz_config_ci_ne_root`
+WHERE `ONLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+  AND `IS_DELETED` = 0
+GROUP BY DATE_FORMAT(`ONLINE_TIME`, '%Y-%m')
+ORDER BY `month` DESC;",t_bz_config_ci_ne_root,medium
+17,查询所有SD-WAN租户（tenant）的基本信息及其关联的站点（site）数量,"SELECT t.`TENANT_NAME`, t.`CONTACT_EMAIL`, COUNT(s.`SITE_ID`) AS `site_count`
+FROM `sdwan_tenant` t
+LEFT JOIN `sdwan_site` s ON t.`TENANT_ID` = s.`TENANT_ID` AND s.`IS_DELETED` = 0
+WHERE t.`IS_DELETED` = 0
+GROUP BY t.`TENANT_ID`, t.`TENANT_NAME`, t.`CONTACT_EMAIL`
+ORDER BY `site_count` DESC;","sdwan_tenant,sdwan_site",hard
+18,列出最近30天内，处理时长超过24小时的告警工单（从创建到关闭）,"SELECT `INCIDENT_ID`, `INCIDENT_TITLE`, `CREATE_TIME`, `CLOSE_TIME`, TIMESTAMPDIFF(HOUR, `CREATE_TIME`, `CLOSE_TIME`) AS `process_hours`
+FROM `t_bz_incident_info`
+WHERE `CLOSE_TIME` IS NOT NULL
+  AND `CREATE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+  AND TIMESTAMPDIFF(HOUR, `CREATE_TIME`, `CLOSE_TIME`) > 24
+ORDER BY `process_hours` DESC;",t_bz_incident_info,hard
+19,查询客户'XYZ科技'使用的所有云监控密钥（cloud monitor key）的供应商类型,"SELECT k.`KEY_NAME`, k.`CLOUD_TYPE`, k.`STATUS`, k.`CREATE_TIME`
+FROM `customer_cloud_monitor_key` k
+JOIN `t_bz_config_customer` c ON k.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+WHERE c.`CUSTOMER_NAME` = 'XYZ科技' AND k.`IS_DELETED` = 0;","customer_cloud_monitor_key,t_bz_config_customer",medium
+20,统计当前系统中，各严重等级（severity）的未确认告警数量,"SELECT `SEVERITY`, COUNT(`EVENT_ID`) AS `unacknowledged_alarm_count`
+FROM `event_history`
+WHERE `ACK_STATUS` = 0 AND `RECOVER_TIME` IS NULL
+GROUP BY `SEVERITY`
+ORDER BY FIELD(`SEVERITY`, '紧急', '重要', '次要', '警告');",event_history,medium
+21,查询所有采集机（collector_v2）的在线状态及最后心跳时间,"SELECT `COLLECTOR_ID`, `COLLECTOR_IP`, `ACTIVE_STATUS`, `HEARTBEAT_TIME`
+FROM `collector_v2`
+WHERE `IS_DELETED` = 0
+ORDER BY `HEARTBEAT_TIME` DESC;",collector_v2,easy
+22,找出本月内新增漏洞数量最多的前3个设备（按资产IP分组）,"SELECT v.`ASSET_IP`, COUNT(v.`VULNERABILITY_ID`) AS `new_vuln_count`
+FROM `t_gn_vulnerability_hole` v
+WHERE v.`FIRST_FOUND_TIME` >= DATE_FORMAT(CURDATE(), '%Y-%m-01')
+  AND v.`FIRST_FOUND_TIME` < DATE_ADD(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH)
+GROUP BY v.`ASSET_IP`
+ORDER BY `new_vuln_count` DESC
+LIMIT 3;",t_gn_vulnerability_hole,hard
+23,查询所有服务请求（service desk）中，状态为'处理中'且创建时间超过3天的记录,"SELECT `REQUEST_ID`, `REQUEST_TITLE`, `CUSTOMER_NAME`, `CREATE_TIME`, DATEDIFF(CURDATE(), `CREATE_TIME`) AS `days_pending`
+FROM `t_bz_service_desk`
+WHERE `REQUEST_STATUS` = '处理中'
+  AND DATEDIFF(CURDATE(), `CREATE_TIME`) > 3
+ORDER BY `CREATE_TIME` ASC;",t_bz_service_desk,medium
+24,统计每个区域（region）下的设备数量,"SELECT r.`REGION_NAME`, COUNT(n.`CI_ID`) AS `device_count`
+FROM `t_bz_config_region` r
+LEFT JOIN `t_bz_config_ci_ne_root_region_location_relation` rlr ON r.`REGION_ID` = rlr.`REGION_ID`
+LEFT JOIN `t_bz_config_ci_ne_root` n ON rlr.`NE_ID` = n.`NE_ID` AND n.`IS_DELETED` = 0
+WHERE r.`IS_DELETED` = 0
+GROUP BY r.`REGION_ID`, r.`REGION_NAME`
+ORDER BY `device_count` DESC;","t_bz_config_region,t_bz_config_ci_ne_root_region_location_relation,t_bz_config_ci_ne_root",hard
+25,查询上周所有设备服务项的周可用性（week_availability）平均值低于99.9%的设备,"SELECT w.`NE_ID`, r.`HOST_NAME`, AVG(w.`AVAILABILITY_AVG`) AS `avg_weekly_availability`
+FROM `week_availability` w
+JOIN `t_bz_config_ci_ne_root` r ON w.`NE_ID` = r.`NE_ID`
+WHERE w.`WEEK_START` = DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-%d'), INTERVAL WEEKDAY(CURDATE()) + 7 DAY)
+GROUP BY w.`NE_ID`, r.`HOST_NAME`
+HAVING `avg_weekly_availability` < 99.9
+ORDER BY `avg_weekly_availability` ASC;","week_availability,t_bz_config_ci_ne_root",hard
+26,统计当前平台上有多少家活跃客户,"SELECT COUNT(`CUSTOMER_ID`) AS `active_customer_count`
+FROM `t_bz_config_customer`
+WHERE `IS_ACTIVE` = 1 AND `IS_DELETED` = 0;",t_bz_config_customer,easy
+27,统计当前平台上有多少台在线（状态为'上线'）的设备,"SELECT COUNT(`CI_ID`) AS `online_device_count`
+FROM `t_bz_config_ci_ne_root`
+WHERE `NE_STATUS` = '上线' AND `IS_DELETED` = 0;",t_bz_config_ci_ne_root,easy
+28,查询近一周内（从今天往前推7天）产生的所有告警事件，并按告警严重程度（severity）分组统计数量,"SELECT `SEVERITY`, COUNT(`EVENT_ID`) AS `event_count`
+FROM `event_history`
+WHERE `ALARM_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+GROUP BY `SEVERITY`
+ORDER BY `event_count` DESC;",event_history,medium
+29,列出客户'ABC公司'（假设CUSTOMER_NAME='ABC公司'）名下所有设备的设备ID、设备名称和设备状态,"SELECT ne.`CI_ID` AS `device_id`, ne.`HOST_NAME` AS `device_name`, ne.`NE_STATUS` AS `device_status`
+FROM `t_bz_config_ci_ne_root` ne
+JOIN `t_bz_config_customer` cust ON ne.`CUSTOMER_ID` = cust.`CUSTOMER_ID`
+WHERE cust.`CUSTOMER_NAME` = 'ABC公司' AND ne.`IS_DELETED` = 0 AND cust.`IS_DELETED` = 0;","t_bz_config_ci_ne_root,t_bz_config_customer",easy
+30,查询上个月（相对于当前日期）新上线的设备数量,"SELECT COUNT(`CI_ID`) AS `new_device_count_last_month`
+FROM `t_bz_config_ci_ne_root`
+WHERE `ONLINE_TIME` >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')
+  AND `ONLINE_TIME` < DATE_FORMAT(CURDATE(), '%Y-%m-01')
+  AND `IS_DELETED` = 0;",t_bz_config_ci_ne_root,medium
+31,查询所有未确认（ACK_STATUS=0）且严重程度为'严重'（SEVERITY=4）的告警事件，列出告警ID、设备名称和告警时间,"SELECT eh.`EVENT_ID`, ne.`HOST_NAME`, eh.`ALARM_TIME`
+FROM `event_history` eh
+JOIN `t_bz_config_ci_ne_root` ne ON eh.`NE_ID` = ne.`CI_ID`
+WHERE eh.`ACK_STATUS` = 0 AND eh.`SEVERITY` = 4 AND ne.`IS_DELETED` = 0
+ORDER BY eh.`ALARM_TIME` DESC;","event_history,t_bz_config_ci_ne_root",medium
+32,统计每个客户拥有的设备数量，并按设备数量从高到低排序，显示前10名,"SELECT cust.`CUSTOMER_NAME`, COUNT(ne.`CI_ID`) AS `device_count`
+FROM `t_bz_config_customer` cust
+LEFT JOIN `t_bz_config_ci_ne_root` ne ON cust.`CUSTOMER_ID` = ne.`CUSTOMER_ID` AND ne.`IS_DELETED` = 0
+WHERE cust.`IS_DELETED` = 0
+GROUP BY cust.`CUSTOMER_ID`, cust.`CUSTOMER_NAME`
+ORDER BY `device_count` DESC
+LIMIT 10;","t_bz_config_customer,t_bz_config_ci_ne_root",medium
+33,查询过去24小时内，采集机（collector）健康状态为'异常'（HEALTH_STATUS=0）的采集机实例信息,"SELECT `INSTANCE_ID`, `COLLECTOR_IP`, `RUN_STATUS`, `HEALTH_STATUS`, `LAST_HEARTBEAT_TIME`
+FROM `collector_instance_v2`
+WHERE `HEALTH_STATUS` = 0
+  AND `LAST_HEARTBEAT_TIME` >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+ORDER BY `LAST_HEARTBEAT_TIME` DESC;",collector_instance_v2,medium
+34,查询所有'割接'类型的订单（ORDER_TYPE='割接'）中，状态为'进行中'（ORDER_STATUS='进行中'）的订单数量,"SELECT COUNT(`ORDER_ID`) AS `ongoing_cutover_order_count`
+FROM `atomic_cutover_order`
+WHERE `ORDER_TYPE` = '割接' AND `ORDER_STATUS` = '进行中' AND `IS_DELETED` = 0;",atomic_cutover_order,easy
+35,查询设备'Router-01'（假设HOST_NAME='Router-01'）在过去一个月内的所有端口性能数据（包括端口ID、进出口速率、采集时间）,"SELECT port.`PORT_ID`, port.`IN_RATE`, port.`OUT_RATE`, port.`COLLECT_TIME`
+FROM `sdw_dp_port_performance` port
+JOIN `sdw_dp_device` dev ON port.`DEVICE_ID` = dev.`DEVICE_ID`
+WHERE dev.`DEVICE_NAME` = 'Router-01'
+  AND port.`COLLECT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+ORDER BY port.`COLLECT_TIME` DESC;","sdw_dp_port_performance,sdw_dp_device",medium
+36,统计每个设备类型（NE_TYPE）下有多少台设备，并按设备数量降序排列,"SELECT nt.`TYPE_NAME`, COUNT(ne.`CI_ID`) AS `device_count`
+FROM `ne_type` nt
+LEFT JOIN `t_bz_config_ci_ne_root` ne ON nt.`TYPE_ID` = ne.`NE_TYPE` AND ne.`IS_DELETED` = 0
+WHERE nt.`IS_DELETED` = 0
+GROUP BY nt.`TYPE_ID`, nt.`TYPE_NAME`
+ORDER BY `device_count` DESC;","ne_type,t_bz_config_ci_ne_root",medium
+37,查询所有在'2024-01-01'之后创建且尚未删除的客户服务请求（工单），列出工单ID、客户名称和请求类型,"SELECT sd.`SERVICE_ID`, cust.`CUSTOMER_NAME`, sd.`REQUEST_TYPE`
+FROM `t_bz_service_desk` sd
+JOIN `t_bz_config_customer` cust ON sd.`CUSTOMER_ID` = cust.`CUSTOMER_ID`
+WHERE sd.`CREATE_TIME` > '2024-01-01' AND sd.`IS_DELETED` = 0 AND cust.`IS_DELETED` = 0
+ORDER BY sd.`CREATE_TIME` DESC;","t_bz_service_desk,t_bz_config_customer",medium
+38,查询当前系统中，CPU使用率超过80%的采集机（collector）的健康监控记录，显示采集机IP、CPU使用率和内存使用率,"SELECT ch.`COLLECTOR_IP`, ch.`CPU_USAGE`, ch.`MEMORY_USAGE`, ch.`COLLECT_TIME`
+FROM `collector_health` ch
+WHERE ch.`CPU_USAGE` > 80
+ORDER BY ch.`COLLECT_TIME` DESC;",collector_health,easy
+39,查询所有SD-WAN租户（客户）的信息，包括租户名称、联系人、联系电话和创建时间,"SELECT `TENANT_NAME`, `CONTACT_PERSON`, `CONTACT_PHONE`, `CREATE_TIME`
+FROM `sdwan_tenant`
+WHERE `IS_DELETED` = 0
+ORDER BY `CREATE_TIME` DESC;",sdwan_tenant,easy
+40,统计近30天内，每天产生的告警事件数量,"SELECT DATE(`ALARM_TIME`) AS `alarm_date`, COUNT(`EVENT_ID`) AS `daily_alarm_count`
+FROM `event_history`
+WHERE `ALARM_TIME` >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+GROUP BY DATE(`ALARM_TIME`)
+ORDER BY `alarm_date` DESC;",event_history,medium
+41,查询所有'售后'工单（ORDER_TYPE='售后'）中，客户评分（SCORE）低于3分的工单详情，包括订单号、客户ID和处理人员,"SELECT `ORDER_ID`, `CUSTOMER_ID`, `HANDLER`, `SCORE`, `CREATE_TIME`
+FROM `atomic_aft_order`
+WHERE `ORDER_TYPE` = '售后' AND `SCORE` < 3 AND `IS_DELETED` = 0
+ORDER BY `CREATE_TIME` DESC;",atomic_aft_order,easy
+42,查询设备'Switch-01'（假设HOST_NAME='Switch-01'）绑定了哪些服务包（SERVICE_PACKAGE），列出服务包名称和描述,"SELECT sp.`PACKAGE_NAME`, sp.`PACKAGE_DESC`
+FROM `ne_service_package` nsp
+JOIN `service_package` sp ON nsp.`SERVICE_PACKAGE_ID` = sp.`PACKAGE_ID`
+JOIN `t_bz_config_ci_ne_root` ne ON nsp.`NE_ID` = ne.`CI_ID`
+WHERE ne.`HOST_NAME` = 'Switch-01' AND nsp.`IS_DELETED` = 0 AND sp.`IS_DELETED` = 0;","ne_service_package,service_package,t_bz_config_ci_ne_root",hard
+43,查询所有状态为'挂起'（WAIT_STATUS='挂起'）的告警事件挂起记录，列出关联的事件ID、挂起原因和操作用户,"SELECT `INCIDENT_ID`, `WAIT_REASON`, `OPERATOR_USER`, `CREATE_TIME`
+FROM `t_bz_incident_wait`
+WHERE `WAIT_STATUS` = '挂起' AND `IS_DELETED` = 0
+ORDER BY `CREATE_TIME` DESC;",t_bz_incident_wait,medium
+44,统计每个区域（REGION）下有多少个客户,"SELECT reg.`REGION_NAME`, COUNT(cust.`CUSTOMER_ID`) AS `customer_count`
+FROM `t_bz_config_region` reg
+LEFT JOIN `t_bz_config_customer` cust ON reg.`REGION_ID` = cust.`REGION_ID` AND cust.`IS_DELETED` = 0
+WHERE reg.`IS_DELETED` = 0
+GROUP BY reg.`REGION_ID`, reg.`REGION_NAME`
+ORDER BY `customer_count` DESC;","t_bz_config_region,t_bz_config_customer",medium
+45,查询过去一周内，系统操作日志（t_bz_sys_log）中'删除'操作（OPERATION_TYPE='DELETE'）的记录，列出操作用户、操作对象和操作时间,"SELECT `OPERATOR_USER`, `OPERATION_OBJECT`, `OPERATION_TIME`, `OPERATION_DETAIL`
+FROM `t_bz_sys_log`
+WHERE `OPERATION_TYPE` = 'DELETE' AND `OPERATION_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+ORDER BY `OPERATION_TIME` DESC;",t_bz_sys_log,medium
+46,查询所有'高'优先级（PRIORITY_NAME='高'）的变更请求（CHANGE_INFO），列出变更标题、申请人和申请时间,"SELECT `CHANGE_TITLE`, `APPLICANT_USER`, `APPLY_TIME`
+FROM `t_bz_change_info`
+WHERE `PRIORITY_ID` = (SELECT `PRIORITY_ID` FROM `t_dc_change_priority` WHERE `PRIORITY_NAME` = '高' LIMIT 1) AND `IS_DELETED` = 0
+ORDER BY `APPLY_TIME` DESC;","t_bz_change_info,t_dc_change_priority",hard
+47,查询设备'Firewall-01'（假设HOST_NAME='Firewall-01'）的维保信息，包括维保联系人、电话和维保截止日期,"SELECT `CONTACT_PERSON`, `CONTACT_PHONE`, `MAINTENANCE_END_TIME`
+FROM `maintenance_info` mi
+JOIN `t_bz_config_ci_ne_root` ne ON mi.`NE_ID` = ne.`CI_ID`
+WHERE ne.`HOST_NAME` = 'Firewall-01' AND mi.`IS_DELETED` = 0 AND ne.`IS_DELETED` = 0;","maintenance_info,t_bz_config_ci_ne_root",medium
+48,统计每个服务包（SERVICE_PACKAGE）被多少台设备绑定,"SELECT sp.`PACKAGE_NAME`, COUNT(nsp.`NE_ID`) AS `bound_device_count`
+FROM `service_package` sp
+LEFT JOIN `ne_service_package` nsp ON sp.`PACKAGE_ID` = nsp.`SERVICE_PACKAGE_ID` AND nsp.`IS_DELETED` = 0
+WHERE sp.`IS_DELETED` = 0
+GROUP BY sp.`PACKAGE_ID`, sp.`PACKAGE_NAME`
+ORDER BY `bound_device_count` DESC;","service_package,ne_service_package",medium
+49,查询所有未处理的（STATUS='未处理'）且来源为'监控系统'（SOURCE='监控系统'）的问题工单（PROBLEM_INFO）,"SELECT `PROBLEM_ID`, `PROBLEM_TITLE`, `REPORT_USER`, `REPORT_TIME`
+FROM `t_bz_problem_info`
+WHERE `STATUS` = '未处理' AND `SOURCE` = '监控系统' AND `IS_DELETED` = 0
+ORDER BY `REPORT_TIME` DESC;",t_bz_problem_info,easy
+50,查询用户'admin'（假设USER_NAME='admin'）所拥有的所有角色（ROLE）信息,"SELECT r.`ROLE_NAME`, r.`ROLE_DESC`
+FROM `framework_user_role` ur
+JOIN `framework_role` r ON ur.`ROLE_ID` = r.`ROLE_ID`
+JOIN `framework_user` u ON ur.`USER_ID` = u.`USER_ID`
+WHERE u.`USER_NAME` = 'admin' AND r.`IS_ACTIVE` = 1 AND u.`IS_DELETED` = 0;","framework_user_role,framework_role,framework_user",medium
+51,统计当前平台上有多少家活跃客户,"SELECT COUNT(`CUSTOMER_ID`) AS `active_customer_count`
+FROM `t_bz_config_customer`
+WHERE `IS_ACTIVE` = 1 AND `IS_DELETED` = 0;",t_bz_config_customer,easy
+52,统计当前平台上有多少台在线状态为'上线'的设备,"SELECT COUNT(`CI_ID`) AS `online_device_count`
+FROM `t_bz_config_ci_ne_root`
+WHERE `NE_STATUS` = '上线' AND `IS_DELETED` = 0;",t_bz_config_ci_ne_root,easy
+53,查询近一周内产生的所有告警事件，并按严重等级降序排列,"SELECT `EVENT_ID`, `EVENT_NAME`, `SEVERITY`, `OCCUR_TIME`, `NE_ID`
+FROM `event_history`
+WHERE `OCCUR_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+ORDER BY `SEVERITY` DESC;",event_history,easy
+54,列出客户'ABC公司'名下所有设备的ID、名称和IP地址,"SELECT n.`CI_ID`, n.`HOST_NAME`, n.`IP_ADDRESS`
+FROM `t_bz_config_ci_ne_root` n
+JOIN `t_bz_config_customer` c ON n.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+WHERE c.`CUSTOMER_NAME` = 'ABC公司' AND n.`IS_DELETED` = 0;","t_bz_config_ci_ne_root,t_bz_config_customer",easy
+55,统计上个月每个客户产生的告警事件数量，并按数量降序排列,"SELECT c.`CUSTOMER_NAME`, COUNT(e.`EVENT_ID`) AS `alarm_count`
+FROM `event_history` e
+JOIN `t_bz_config_ci_ne_root` n ON e.`NE_ID` = n.`CI_ID`
+JOIN `t_bz_config_customer` c ON n.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+WHERE e.`OCCUR_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+  AND e.`OCCUR_TIME` < CURDATE()
+GROUP BY c.`CUSTOMER_ID`, c.`CUSTOMER_NAME`
+ORDER BY `alarm_count` DESC;","event_history,t_bz_config_ci_ne_root,t_bz_config_customer",medium
+56,查询设备ID为'NE_1001'在过去24小时内的所有性能数据（CPU、内存利用率）,"SELECT `DEVICE_ID`, `CPU_USAGE`, `MEMORY_USAGE`, `COLLECT_TIME`
+FROM `sdw_dp_device_performance`
+WHERE `DEVICE_ID` = 'NE_1001'
+  AND `COLLECT_TIME` >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+ORDER BY `COLLECT_TIME` DESC;",sdw_dp_device_performance,easy
+57,找出当前处于'挂起'状态的工单，并列出其工单ID、客户名称和创建时间,"SELECT w.`WORK_ID`, c.`CUSTOMER_NAME`, w.`CREATE_TIME`
+FROM `t_bz_work_info` w
+JOIN `t_bz_config_customer` c ON w.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+WHERE w.`WORK_STATUS` = '挂起'
+  AND w.`IS_DELETED` = 0;","t_bz_work_info,t_bz_config_customer",medium
+58,统计每个设备类型（如路由器、交换机）在当前平台上的数量,"SELECT nt.`TYPE_NAME`, COUNT(n.`CI_ID`) AS `device_count`
+FROM `t_bz_config_ci_ne_root` n
+JOIN `ne_type` nt ON n.`NE_TYPE_ID` = nt.`TYPE_ID`
+WHERE n.`IS_DELETED` = 0
+GROUP BY nt.`TYPE_ID`, nt.`TYPE_NAME`
+ORDER BY `device_count` DESC;","t_bz_config_ci_ne_root,ne_type",medium
+59,查询最近一个月内，可用性低于99.9%的客户设备服务项,"SELECT `CUSTOMER_ID`, `NE_ID`, `SERVICE_ITEM_ID`, `AVAILABILITY_RATE`, `STAT_DATE`
+FROM `month_availability`
+WHERE `AVAILABILITY_RATE` < 99.9
+  AND `STAT_DATE` >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')
+ORDER BY `AVAILABILITY_RATE` ASC;",month_availability,medium
+60,列出所有采集机状态为'异常'的设备，并关联其负责的客户名称,"SELECT c.`COLLECTOR_ID`, c.`STATUS`, c.`IP_ADDRESS`, cust.`CUSTOMER_NAME`
+FROM `collector_v2` c
+JOIN `customer_collector_v2` cc ON c.`COLLECTOR_ID` = cc.`COLLECTOR_ID`
+JOIN `t_bz_config_customer` cust ON cc.`CUSTOMER_ID` = cust.`CUSTOMER_ID`
+WHERE c.`STATUS` = '异常'
+  AND c.`IS_DELETED` = 0;","collector_v2,customer_collector_v2,t_bz_config_customer",medium
+61,统计上周每天产生的告警事件总数,"SELECT DATE(`OCCUR_TIME`) AS `alarm_date`, COUNT(`EVENT_ID`) AS `daily_alarm_count`
+FROM `event_history`
+WHERE YEARWEEK(`OCCUR_TIME`, 1) = YEARWEEK(DATE_SUB(CURDATE(), INTERVAL 1 WEEK), 1)
+GROUP BY DATE(`OCCUR_TIME`)
+ORDER BY `alarm_date`;",event_history,medium
+62,查询客户'XYZ科技'的云监控密钥（Access Key）信息（不显示完整Secret Key）,"SELECT c.`CUSTOMER_NAME`, k.`CLOUD_TYPE`, k.`ACCESS_KEY`, k.`STATUS`, k.`CREATE_TIME`
+FROM `customer_cloud_monitor_key` k
+JOIN `t_bz_config_customer` c ON k.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+WHERE c.`CUSTOMER_NAME` = 'XYZ科技'
+  AND k.`IS_DELETED` = 0;","customer_cloud_monitor_key,t_bz_config_customer",easy
+63,找出过去3个月内没有任何心跳记录的采集机,"SELECT c.`COLLECTOR_ID`, c.`IP_ADDRESS`, c.`LAST_HEARTBEAT_TIME`
+FROM `collector_v2` c
+WHERE c.`LAST_HEARTBEAT_TIME` < DATE_SUB(NOW(), INTERVAL 3 MONTH)
+   OR c.`LAST_HEARTBEAT_TIME` IS NULL
+  AND c.`IS_DELETED` = 0;",collector_v2,medium
+64,按区域统计设备数量，并列出区域名称及其上级区域,"SELECT r.`REGION_NAME`, pr.`REGION_NAME` AS `PARENT_REGION`, COUNT(n.`CI_ID`) AS `device_count`
+FROM `t_bz_config_ci_ne_root` n
+JOIN `t_bz_config_region` r ON n.`REGION_ID` = r.`REGION_ID`
+LEFT JOIN `t_bz_config_region` pr ON r.`PARENT_ID` = pr.`REGION_ID`
+WHERE n.`IS_DELETED` = 0
+GROUP BY r.`REGION_ID`, r.`REGION_NAME`, pr.`REGION_NAME`
+ORDER BY `device_count` DESC;","t_bz_config_ci_ne_root,t_bz_config_region",medium
+65,查询所有'严重'级别的未确认告警，并关联设备名称和客户联系人,"SELECT e.`EVENT_ID`, e.`EVENT_NAME`, n.`HOST_NAME`, c.`CUSTOMER_NAME`, ct.`CONTACT_NAME`, ct.`PHONE`
+FROM `event_history` e
+JOIN `t_bz_config_ci_ne_root` n ON e.`NE_ID` = n.`CI_ID`
+JOIN `t_bz_config_customer` c ON n.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+LEFT JOIN `t_bz_config_contact` ct ON c.`CUSTOMER_ID` = ct.`CUSTOMER_ID` AND ct.`IS_PRIMARY` = 1
+WHERE e.`SEVERITY` = '严重'
+  AND e.`ACK_STATUS` = 0
+  AND e.`RECOVER_TIME` IS NULL
+ORDER BY e.`OCCUR_TIME` DESC;","event_history,t_bz_config_ci_ne_root,t_bz_config_customer,t_bz_config_contact",hard
+66,统计每个服务套餐（Service Package）被多少设备所绑定,"SELECT sp.`PACKAGE_NAME`, COUNT(nsp.`NE_ID`) AS `bound_device_count`
+FROM `service_package` sp
+LEFT JOIN `ne_service_package` nsp ON sp.`PACKAGE_ID` = nsp.`PACKAGE_ID`
+WHERE sp.`IS_DELETED` = 0
+GROUP BY sp.`PACKAGE_ID`, sp.`PACKAGE_NAME`
+ORDER BY `bound_device_count` DESC;","service_package,ne_service_package",medium
+67,列出最近一周内流量使用率（95峰值）超过80%的端口TOP 10,"SELECT `DEVICE_ID`, `PORT_ID`, `PEAK_USAGE_95`, `STAT_DATE`
+FROM `report_port_info`
+WHERE `PEAK_USAGE_95` > 80
+  AND `STAT_DATE` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+ORDER BY `PEAK_USAGE_95` DESC
+LIMIT 10;",report_port_info,medium
+68,查询用户'admin'所拥有的所有角色及权限,"SELECT u.`USER_NAME`, r.`ROLE_NAME`, a.`AUTHORITY_TITLE`, a.`AUTHORITY_DESC`
+FROM `framework_user` u
+JOIN `framework_user_role` ur ON u.`USER_ID` = ur.`USER_ID`
+JOIN `framework_role` r ON ur.`ROLE_ID` = r.`ROLE_ID`
+JOIN `framework_role_authority` ra ON r.`ROLE_ID` = ra.`ROLE_ID`
+JOIN `framework_authority` a ON ra.`AUTHORITY_ID` = a.`AUTHORITY_ID`
+WHERE u.`USER_NAME` = 'admin'
+  AND u.`IS_ACTIVE` = 1;","framework_user,framework_user_role,framework_role,framework_role_authority,framework_authority",hard
+69,找出SLA等级为'金牌'且状态为'活跃'的所有SD-WAN隧道,"SELECT `TUNNEL_ID`, `LOCAL_DEVICE_ID`, `REMOTE_DEVICE_ID`, `SLA_LEVEL`, `STATUS`
+FROM `sdw_dp_tunnel_basic`
+WHERE `SLA_LEVEL` = '金牌'
+  AND `STATUS` = '活跃'
+  AND `IS_DELETED` = 0;",sdw_dp_tunnel_basic,easy
+70,统计本月每个客户新开通的电路数量,"SELECT c.`CUSTOMER_NAME`, COUNT(circuit.`CIRCUIT_ID`) AS `new_circuit_count`
+FROM `t_bz_yun_circuit` circuit
+JOIN `t_bz_config_customer` c ON circuit.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+WHERE circuit.`CREATE_TIME` >= DATE_FORMAT(CURDATE(), '%Y-%m-01')
+  AND circuit.`IS_DELETED` = 0
+GROUP BY c.`CUSTOMER_ID`, c.`CUSTOMER_NAME`
+ORDER BY `new_circuit_count` DESC;","t_bz_yun_circuit,t_bz_config_customer",medium
+71,查询所有'待审批'的变更请求，并列出申请人及申请时间,"SELECT ci.`CHANGE_ID`, ci.`CHANGE_TITLE`, u.`USER_NAME` AS `APPLICANT`, ci.`APPLY_TIME`
+FROM `t_bz_change_info` ci
+JOIN `framework_user` u ON ci.`APPLY_USER_ID` = u.`USER_ID`
+WHERE ci.`CHANGE_STATUS` = '待审批'
+  AND ci.`IS_DELETED` = 0
+ORDER BY ci.`APPLY_TIME` DESC;","t_bz_change_info,framework_user",medium
+72,找出平均响应时间最长的5个网络设备（基于Ping测试报告）,"SELECT `NE_ID`, AVG(`AVG_DELAY`) AS `avg_response_time`, COUNT(*) AS `test_count`
+FROM `report_ne_ping`
+WHERE `STAT_DATE` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+GROUP BY `NE_ID`
+HAVING `test_count` > 10
+ORDER BY `avg_response_time` DESC
+LIMIT 5;",report_ne_ping,medium
+73,统计系统中不同来源（手动、自动、接口）的告警事件数量占比,"SELECT `EVENT_SOURCE`, COUNT(`EVENT_ID`) AS `source_count`,
+       ROUND(COUNT(`EVENT_ID`) * 100.0 / (SELECT COUNT(*) FROM `event_history` WHERE `OCCUR_TIME` >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)), 2) AS `percentage`
+FROM `event_history`
+WHERE `OCCUR_TIME` >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)
+GROUP BY `EVENT_SOURCE`
+ORDER BY `source_count` DESC;",event_history,hard
+74,查询所有维保期在3个月内即将到期的设备，并通知对应客户联系人,"SELECT n.`HOST_NAME`, n.`IP_ADDRESS`, m.`END_TIME`, c.`CUSTOMER_NAME`, ct.`CONTACT_NAME`, ct.`EMAIL`
+FROM `maintenance_info` m
+JOIN `t_bz_config_ci_ne_root` n ON m.`NE_ID` = n.`CI_ID`
+JOIN `t_bz_config_customer` c ON n.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+LEFT JOIN `t_bz_config_contact` ct ON c.`CUSTOMER_ID` = ct.`CUSTOMER_ID` AND ct.`IS_PRIMARY` = 1
+WHERE m.`END_TIME` BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 3 MONTH)
+  AND m.`IS_DELETED` = 0
+ORDER BY m.`END_TIME` ASC;","maintenance_info,t_bz_config_ci_ne_root,t_bz_config_customer,t_bz_config_contact",hard
+75,列出最近24小时内CPU使用率持续超过90%的设备，并关联其所属客户,"SELECT d.`DEVICE_ID`, n.`HOST_NAME`, c.`CUSTOMER_NAME`, MAX(p.`CPU_USAGE`) AS `max_cpu_usage`, COUNT(*) AS `high_cpu_samples`
+FROM `sdw_dp_device_performance` p
+JOIN `t_bz_config_ci_ne_root` n ON p.`DEVICE_ID` = n.`CI_ID`
+JOIN `t_bz_config_customer` c ON n.`CUSTOMER_ID` = c.`CUSTOMER_ID`
+WHERE p.`COLLECT_TIME` >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+  AND p.`CPU_USAGE` > 90
+GROUP BY d.`DEVICE_ID`, n.`HOST_NAME`, c.`CUSTOMER_NAME`
+HAVING `high_cpu_samples` >= 12
+ORDER BY `max_cpu_usage` DESC;","sdw_dp_device_performance,t_bz_config_ci_ne_root,t_bz_config_customer",hard
+76,统计平台上当前活跃的客户数量,"SELECT COUNT(`CUSTOMER_ID`) AS `active_customer_count`
+FROM `t_bz_config_customer`
+WHERE `IS_ACTIVE` = 1;",t_bz_config_customer,easy
+77,列出过去一周内状态为'Down'的所有设备及其IP地址,"SELECT `NE_ID`, `HOST_NAME`, `IP_ADDRESS`, `STATUS`
+FROM `t_bz_config_ci_ne_root`
+WHERE `STATUS` = 'Down' 
+AND `UPDATE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY);",t_bz_config_ci_ne_root,easy
+78,查询客户'ABC公司'名下所有设备的总数,"SELECT COUNT(tn.`CI_ID`) AS `device_count`
+FROM `t_bz_config_ci_ne_root` tn
+JOIN `t_bz_config_customer` tc ON tn.`CUSTOMER_ID` = tc.`CUSTOMER_ID`
+WHERE tc.`CUSTOMER_NAME` = 'ABC公司';","t_bz_config_ci_ne_root,t_bz_config_customer",easy
+79,统计上个月发生的所有告警事件，并按严重等级（severity）分组统计数量,"SELECT eh.`SEVERITY`, COUNT(eh.`EVENT_ID`) AS `alarm_count`
+FROM `event_history` eh
+WHERE eh.`ALARM_TIME` >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')
+AND eh.`ALARM_TIME` < DATE_FORMAT(CURDATE(), '%Y-%m-01')
+GROUP BY eh.`SEVERITY`
+ORDER BY `alarm_count` DESC;",event_history,medium
+80,找出过去24小时内CPU使用率持续超过80%的采集机（collector）,"SELECT cv.`COLLECTOR_ID`, cv.`IP_ADDRESS`, ch.`CPU_USAGE`, ch.`CREATE_TIME`
+FROM `collector_health` ch
+JOIN `collector_v2` cv ON ch.`COLLECTOR_ID` = cv.`COLLECTOR_ID`
+WHERE ch.`CPU_USAGE` > 80 
+AND ch.`CREATE_TIME` >= DATE_SUB(NOW(), INTERVAL 1 DAY)
+ORDER BY ch.`CREATE_TIME` DESC;","collector_health,collector_v2",medium
+81,查询本月新上线的SD-WAN设备数量,"SELECT COUNT(`DEVICE_ID`) AS `new_sdwan_device_count`
+FROM `sdwan_device`
+WHERE `CREATE_TIME` >= DATE_FORMAT(CURDATE(), '%Y-%m-01');",sdwan_device,easy
+82,列出所有未关闭（状态不是'Closed'）的告警工单（incident），并显示其创建时间和当前处理人,"SELECT `INCIDENT_ID`, `TITLE`, `STATUS`, `CREATE_TIME`, `ASSIGNED_TO`
+FROM `t_bz_incident_info`
+WHERE `STATUS` != 'Closed'
+ORDER BY `CREATE_TIME` DESC;",t_bz_incident_info,easy
+83,统计每个客户拥有的设备类型（ne_type）分布，列出客户名和设备类型及数量,"SELECT tc.`CUSTOMER_NAME`, nt.`TYPE_NAME`, COUNT(tn.`CI_ID`) AS `device_count`
+FROM `t_bz_config_ci_ne_root` tn
+JOIN `t_bz_config_customer` tc ON tn.`CUSTOMER_ID` = tc.`CUSTOMER_ID`
+JOIN `ne_type` nt ON tn.`NE_TYPE_ID` = nt.`TYPE_ID`
+GROUP BY tc.`CUSTOMER_ID`, nt.`TYPE_ID`
+ORDER BY tc.`CUSTOMER_NAME`, `device_count` DESC;","t_bz_config_ci_ne_root,t_bz_config_customer,ne_type",hard
+84,查询过去一周内，丢包率（packet_loss）最高的前10条设备隧道（tunnel）性能记录,"SELECT `TUNNEL_ID`, `LOCAL_DEVICE_ID`, `REMOTE_DEVICE_ID`, `PACKET_LOSS`, `CREATE_TIME`
+FROM `sdw_dp_tunnel_performance`
+WHERE `CREATE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+ORDER BY `PACKET_LOSS` DESC
+LIMIT 10;",sdw_dp_tunnel_performance,medium
+85,找出最近一个月内没有任何心跳（heartbeat）记录的采集机,"SELECT cv.`COLLECTOR_ID`, cv.`IP_ADDRESS`, cv.`STATUS`
+FROM `collector_v2` cv
+LEFT JOIN `heartbeat` hb ON cv.`COLLECTOR_ID` = hb.`COLLECTOR_ID` 
+AND hb.`CREATE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+WHERE hb.`HEARTBEAT_ID` IS NULL
+AND cv.`IS_ACTIVE` = 1;","collector_v2,heartbeat",medium
+86,统计每个区域（region）内设备的总数，并按设备数量降序排列,"SELECT tr.`REGION_NAME`, COUNT(tn.`CI_ID`) AS `device_count`
+FROM `t_bz_config_ci_ne_root` tn
+JOIN `t_bz_config_region` tr ON tn.`REGION_ID` = tr.`REGION_ID`
+WHERE tn.`IS_DELETED` = 0
+GROUP BY tr.`REGION_ID`
+ORDER BY `device_count` DESC;","t_bz_config_ci_ne_root,t_bz_config_region",medium
+87,查询所有服务包（service_package）及其绑定的服务项（service_item）数量,"SELECT sp.`PACKAGE_NAME`, COUNT(si.`ITEM_ID`) AS `item_count`
+FROM `service_package` sp
+LEFT JOIN `service_item` si ON sp.`PACKAGE_ID` = si.`PACKAGE_ID`
+GROUP BY sp.`PACKAGE_ID`
+ORDER BY `item_count` DESC;","service_package,service_item",easy
+88,列出过去24小时内产生的所有系统操作日志（sys_log），包括操作者和操作内容,"SELECT `LOG_ID`, `USER_NAME`, `OPERATION`, `MODULE`, `CREATE_TIME`
+FROM `t_bz_sys_log`
+WHERE `CREATE_TIME` >= DATE_SUB(NOW(), INTERVAL 1 DAY)
+ORDER BY `CREATE_TIME` DESC;",t_bz_sys_log,easy
+89,找出平均延迟（avg_latency）高于100ms且丢包率大于1%的所有Ping测试报告记录,"SELECT `REPORT_ID`, `NE_ID`, `AVG_LATENCY`, `PACKET_LOSS`
+FROM `report_ne_ping`
+WHERE `AVG_LATENCY` > 100 
+AND `PACKET_LOSS` > 1
+ORDER BY `AVG_LATENCY` DESC;",report_ne_ping,medium
+90,统计每个用户角色（framework_role）下关联的用户数量,"SELECT fr.`ROLE_NAME`, COUNT(fur.`USER_ID`) AS `user_count`
+FROM `framework_role` fr
+LEFT JOIN `framework_user_role` fur ON fr.`ROLE_ID` = fur.`ROLE_ID`
+WHERE fr.`IS_ACTIVE` = 1
+GROUP BY fr.`ROLE_ID`
+ORDER BY `user_count` DESC;","framework_role,framework_user_role",easy
+91,查询本月所有客户对服务请求（service_desk）的平均评价分数,"SELECT AVG(`SCORE`) AS `avg_score`
+FROM `t_bz_service_evaluation`
+WHERE `CREATE_TIME` >= DATE_FORMAT(CURDATE(), '%Y-%m-01');",t_bz_service_evaluation,easy
+92,列出所有IP地址段（ip_segment）及其所属的客户和负责人,"SELECT `SEGMENT_NAME`, `START_IP`, `END_IP`, `CUSTOMER_NAME`, `OWNER`
+FROM `t_bz_ip_segment_manage` tim
+JOIN `t_bz_config_customer` tcc ON tim.`CUSTOMER_ID` = tcc.`CUSTOMER_ID`
+ORDER BY `CUSTOMER_NAME`;","t_bz_ip_segment_manage,t_bz_config_customer",medium
+93,找出上周新增漏洞数量最多的前5个客户,"SELECT tc.`CUSTOMER_NAME`, COUNT(tgv.`VULNERABILITY_ID`) AS `new_vuln_count`
+FROM `t_gn_vulnerability_hole` tgv
+JOIN `t_bz_config_customer` tc ON tgv.`CUSTOMER_ID` = tc.`CUSTOMER_ID`
+WHERE tgv.`FIRST_FOUND_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)
+GROUP BY tc.`CUSTOMER_ID`
+ORDER BY `new_vuln_count` DESC
+LIMIT 5;","t_gn_vulnerability_hole,t_bz_config_customer",hard
+94,查询所有处于'挂起'（Wait）状态的变更请求（change_info）及其申请人,"SELECT `CHANGE_ID`, `TITLE`, `APPLICANT`, `CREATE_TIME`, `PRIORITY`
+FROM `t_bz_change_info`
+WHERE `STATUS` = 'Wait'
+ORDER BY `CREATE_TIME` DESC;",t_bz_change_info,easy
+95,统计每个设备型号（hardware）在网运行的设备数量,"SELECT h.`MODEL`, COUNT(n.`CI_ID`) AS `online_count`
+FROM `hardware` h
+JOIN `t_bz_config_ci_ne_root` n ON h.`HARDWARE_ID` = n.`HARDWARE_ID`
+WHERE n.`STATUS` = 'Online'
+GROUP BY h.`MODEL`
+ORDER BY `online_count` DESC;","hardware,t_bz_config_ci_ne_root",medium
+96,列出所有带宽使用率（utilization）超过95%的端口，并显示其所属设备和客户,"SELECT rpi.`PORT_ID`, tn.`HOST_NAME`, tc.`CUSTOMER_NAME`, rpi.`UTILIZATION`
+FROM `report_port_info` rpi
+JOIN `t_bz_config_ci_ne_root` tn ON rpi.`NE_ID` = tn.`NE_ID`
+JOIN `t_bz_config_customer` tc ON tn.`CUSTOMER_ID` = tc.`CUSTOMER_ID`
+WHERE rpi.`UTILIZATION` > 95
+ORDER BY rpi.`UTILIZATION` DESC;","report_port_info,t_bz_config_ci_ne_root,t_bz_config_customer",hard
+97,查询过去一个月内，同步失败次数最多的前3个CMDB同步任务,"SELECT `SYNC_TASK`, COUNT(`RECORD_ID`) AS `fail_count`
+FROM `cc_cmdb_sync_history_record`
+WHERE `SYNC_RESULT` = 'FAILED' 
+AND `CREATE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+GROUP BY `SYNC_TASK`
+ORDER BY `fail_count` DESC
+LIMIT 3;",cc_cmdb_sync_history_record,medium
+98,找出所有未配置任何监控图表（monitor_chart）的服务项（service_item）,"SELECT si.`ITEM_NAME`, si.`ITEM_TYPE`
+FROM `service_item` si
+LEFT JOIN `t_bz_monitor_chart_config` tmcc ON si.`ITEM_ID` = tmcc.`ITEM_ID`
+WHERE tmcc.`CONFIG_ID` IS NULL;","service_item,t_bz_monitor_chart_config",medium
+99,统计今天每个小时产生的告警事件数量,"SELECT HOUR(`ALARM_TIME`) AS `hour_of_day`, COUNT(`EVENT_ID`) AS `alarm_count`
+FROM `event_history`
+WHERE DATE(`ALARM_TIME`) = CURDATE()
+GROUP BY HOUR(`ALARM_TIME`)
+ORDER BY `hour_of_day`;",event_history,medium
+100,查询所有云平台（阿里云/华为云）监控密钥（cloud_monitor_key）即将在30天内过期的客户,"SELECT tcc.`CUSTOMER_NAME`, ccmk.`CLOUD_TYPE`, ccmk.`EXPIRE_TIME`
+FROM `customer_cloud_monitor_key` ccmk
+JOIN `t_bz_config_customer` tcc ON ccmk.`CUSTOMER_ID` = tcc.`CUSTOMER_ID`
+WHERE ccmk.`EXPIRE_TIME` BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)
+AND ccmk.`IS_DELETED` = 0;","customer_cloud_monitor_key,t_bz_config_customer",hard

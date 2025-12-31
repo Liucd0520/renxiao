@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_all_net_workorder"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户各时间段工单数量及完成状态，用于订单统计与客户管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "year_order",
+      "type": "int(11)",
+      "description": "年工单"
+    },
+    {
+      "name": "month_order",
+      "type": "int(11)",
+      "description": "月工单"
+    },
+    {
+      "name": "day_order",
+      "type": "int(11)",
+      "description": "日工单"
+    },
+    {
+      "name": "processed_order",
+      "type": "int(11)",
+      "description": "已完成日工单"
+    },
+    {
+      "name": "customer_id",
+      "type": "int(11)",
+      "description": null
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "存储客户各时间段工单数量及完成状态，用于订单统计与客户管理。\n表名: t_gn_all_net_workorder\n列信息: year_order(年工单), month_order(月工单), day_order(日工单), processed_order(已完成日工单)\n其他列: id, customer_id"
+}

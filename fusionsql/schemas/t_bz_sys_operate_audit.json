@@ -1,0 +1,72 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_sys_operate_audit"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_sys_operate_audit表存储系统操作审计记录，用于追踪客户、设备、权限等数据的变更操作，记录操作用户及结果。",
+  "columns": [
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "CUSTOMER_NAME",
+      "type": "varchar(255)",
+      "description": "客户名称。常见值: 中国电信上海理想信息产业(集团)有限公司, 理想公司, 上海理想, 德邦物流, Netcare, 主流程, 路威酩轩香水化妆品(上海)有限公司, 0206同步, 0731上线客户zll, 788min客户"
+    },
+    {
+      "name": "DATA_TYPE",
+      "type": "varchar(50)",
+      "description": "数据类型（菜单、角色、设备、线路、服务包、协议等）。常见值: 登录, 设备管理, 设备分配服务包, 令牌登录, 场所, 联系人, 用户管理, 监控统计配置, 区域, 退出"
+    },
+    {
+      "name": "DATA_NAME",
+      "type": "varchar(2048)",
+      "description": "DATA_NAME。常见值: 登录, 令牌登录, 退出, 服务目录, 0415CISCO设备, demo3, 查看联系人详情, ideal, poller1, CiscoAAA"
+    },
+    {
+      "name": "OLD_VALUE",
+      "type": "mediumtext",
+      "description": null
+    },
+    {
+      "name": "NEW_VALUE",
+      "type": "mediumtext",
+      "description": null
+    },
+    {
+      "name": "OPERATE_TYPE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "OPERATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": "操作用户ID"
+    },
+    {
+      "name": "OPERATE_USER_NAME",
+      "type": "varchar(50)",
+      "description": "操作用户名称"
+    },
+    {
+      "name": "OPERATE_RESULT",
+      "type": "varchar(25)",
+      "description": "操作结果(成功,失败)"
+    },
+    {
+      "name": "OPERATE_TIME",
+      "type": "datetime",
+      "description": "操作日期"
+    },
+    {
+      "name": "OPERATE_ADDRESS",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 12,
+  "embedding_text": "t_bz_sys_operate_audit表存储系统操作审计记录，用于追踪客户、设备、权限等数据的变更操作，记录操作用户及结果。\n表名: t_bz_sys_operate_audit\n列信息: CUSTOMER_ID(客户ID), CUSTOMER_NAME(客户名称), DATA_TYPE(数据类型（菜单、角色、设备、线路、服务包、协议等）), OPERATE_USER_ID(操作用户ID), OPERATE_USER_NAME(操作用户名称), OPERATE_RESULT(操作结果(成功,失败)), OPERATE_TIME(操作日期)\n其他列: DATA_NAME, OLD_VALUE, NEW_VALUE, OPERATE_TYPE, OPERATE_ADDRESS"
+}

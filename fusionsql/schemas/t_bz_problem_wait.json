@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_problem_wait"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户问题待处理工单信息，记录告警原因、责任人、处理时间及状态，用于设备故障跟踪和用户权限管理。",
+  "columns": [
+    {
+      "name": "WAIT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PROBLEM_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "WAIT_REASON",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "WAIT_PERSON",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "WAIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "WAIT_REMOVE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "FACT_REMOVE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "WAIT_STATUS_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "存储客户问题待处理工单信息，记录告警原因、责任人、处理时间及状态，用于设备故障跟踪和用户权限管理。\n表名: t_bz_problem_wait\n其他列: WAIT_ID, PROBLEM_ID, WAIT_REASON, WAIT_PERSON, WAIT_TIME, WAIT_REMOVE_TIME, FACT_REMOVE_TIME, WAIT_STATUS_ID, IS_DELETED"
+}

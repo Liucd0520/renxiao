@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_collect_history"
+  },
+  "table_comment": null,
+  "llm_description": "记录客户网元采集任务历史，包含采集配置ID、任务状态（成功/失败/执行中）、错误信息及操作时间，用于追踪设备数据采集过程及异常处理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "主键"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "collect_id",
+      "type": "bigint(20)",
+      "description": "采集配置ID"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(11,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "result",
+      "type": "tinyint(1)",
+      "description": "任务状态 0:待执行 1:成功 2:失败 3:执行中"
+    },
+    {
+      "name": "error_msg",
+      "type": "text",
+      "description": null
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间，默认为当前时间"
+    },
+    {
+      "name": "deleted",
+      "type": "tinyint(1)",
+      "description": null
+    },
+    {
+      "name": "uid",
+      "type": "varchar(32)",
+      "description": null
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "记录客户网元采集任务历史，包含采集配置ID、任务状态（成功/失败/执行中）、错误信息及操作时间，用于追踪设备数据采集过程及异常处理。\n表名: ne_collect_history\n列信息: id(主键), ne_id(网元ID), collect_id(采集配置ID), customer_id(客户ID), result(任务状态 0:待执行 1:成功 2:失败 3:执行中), created_time(创建时间，默认为当前时间)\n其他列: error_msg, deleted, uid"
+}

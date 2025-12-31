@@ -1,0 +1,92 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdwan_ipsubnets"
+  },
+  "table_comment": null,
+  "llm_description": "sdwan_ipsubnets表存储客户设备IP子网配置信息，包含认证模式、加密参数及定时器设置，用于网络权限管理与告警监控。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "name",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "areaId",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "areaType",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "authMode",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "cryptographicSuit",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "keyss",
+      "type": "int(100)",
+      "description": null
+    },
+    {
+      "name": "cryptographicPwd",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "helloTimer",
+      "type": "int(100)",
+      "description": null
+    },
+    {
+      "name": "timerPoll",
+      "type": "int(100)",
+      "description": null
+    },
+    {
+      "name": "timerRetransmit",
+      "type": "int(100)",
+      "description": null
+    },
+    {
+      "name": "timerDead",
+      "type": "int(100)",
+      "description": null
+    },
+    {
+      "name": "mtuEnable",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "networkType",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "cost",
+      "type": "int(100)",
+      "description": null
+    },
+    {
+      "name": "drPriority",
+      "type": "int(100)",
+      "description": null
+    }
+  ],
+  "column_count": 16,
+  "embedding_text": "sdwan_ipsubnets表存储客户设备IP子网配置信息，包含认证模式、加密参数及定时器设置，用于网络权限管理与告警监控。\n表名: sdwan_ipsubnets\n其他列: id, name, areaId, areaType, authMode, cryptographicSuit, keyss, cryptographicPwd, helloTimer, timerPoll, timerRetransmit, timerDead, mtuEnable, networkType, cost"
+}

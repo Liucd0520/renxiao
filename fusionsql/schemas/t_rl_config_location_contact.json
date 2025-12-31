@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_config_location_contact"
+  },
+  "table_comment": null,
+  "llm_description": "场所与联系人配置表，用于管理客户场所对应的联系人信息，支持订单处理和设备告警通知。",
+  "columns": [
+    {
+      "name": "relationship_id",
+      "type": "decimal(10,0)",
+      "description": "关系ID"
+    },
+    {
+      "name": "location_id",
+      "type": "decimal(10,0)",
+      "description": "场所编号"
+    },
+    {
+      "name": "contact_id",
+      "type": "decimal(10,0)",
+      "description": "联系人编号"
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "场所与联系人配置表，用于管理客户场所对应的联系人信息，支持订单处理和设备告警通知。\n表名: t_rl_config_location_contact\n列信息: relationship_id(关系ID), location_id(场所编号), contact_id(联系人编号)"
+}

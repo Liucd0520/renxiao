@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_auto_case_policy"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_auto_case_policy表存储自动化测试用例策略信息，包含用例编号、名称、执行时间、删除状态及更新时间，用于管理设备监控与告警处理的规则配置。",
+  "columns": [
+    {
+      "name": "AUTO_ID",
+      "type": "decimal(10,0)",
+      "description": "自动case编号"
+    },
+    {
+      "name": "AUTO_CASE_NAME",
+      "type": "varchar(255)",
+      "description": "自动case名称。常见值: 1, 测试, 测试2, 123, 测试4, 测试6, 测试5, 2, cc"
+    },
+    {
+      "name": "WORK_POLICY",
+      "type": "varchar(3600)",
+      "description": "自动case执行时间"
+    },
+    {
+      "name": "DEL_FLAG",
+      "type": "int(1)",
+      "description": "1:正常，2：删除"
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "t_bz_auto_case_policy表存储自动化测试用例策略信息，包含用例编号、名称、执行时间、删除状态及更新时间，用于管理设备监控与告警处理的规则配置。\n表名: t_bz_auto_case_policy\n列信息: AUTO_ID(自动case编号), AUTO_CASE_NAME(自动case名称), WORK_POLICY(自动case执行时间), DEL_FLAG(1:正常，2：删除), UPDATE_TIME(更新时间)"
+}

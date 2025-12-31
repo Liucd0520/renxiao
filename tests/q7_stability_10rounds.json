@@ -1,0 +1,92 @@
+[
+  {
+    "round": 1,
+    "bad_columns": [
+      "ALARM_CLEAR_TIME",
+      "CLEAR_TIME"
+    ],
+    "has_all_tables": true,
+    "sql_snippet": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOI"
+  },
+  {
+    "round": 2,
+    "bad_columns": [
+      "ALARM_CLEAR_TIME",
+      "CLEAR_TIME"
+    ],
+    "has_all_tables": true,
+    "sql_snippet": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOI"
+  },
+  {
+    "round": 3,
+    "bad_columns": [
+      "ALARM_CLEAR_TIME",
+      "CLEAR_TIME"
+    ],
+    "has_all_tables": true,
+    "sql_snippet": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOI"
+  },
+  {
+    "round": 4,
+    "bad_columns": [
+      "ALARM_CLEAR_TIME",
+      "CLEAR_TIME"
+    ],
+    "has_all_tables": true,
+    "sql_snippet": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOI"
+  },
+  {
+    "round": 5,
+    "bad_columns": [
+      "ALARM_CLEAR_TIME",
+      "CLEAR_TIME"
+    ],
+    "has_all_tables": true,
+    "sql_snippet": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOI"
+  },
+  {
+    "round": 6,
+    "bad_columns": [
+      "ALARM_CLEAR_TIME",
+      "CLEAR_TIME"
+    ],
+    "has_all_tables": true,
+    "sql_snippet": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOI"
+  },
+  {
+    "round": 7,
+    "bad_columns": [
+      "ALARM_CLEAR_TIME",
+      "CLEAR_TIME"
+    ],
+    "has_all_tables": true,
+    "sql_snippet": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOI"
+  },
+  {
+    "round": 8,
+    "bad_columns": [
+      "ALARM_CLEAR_TIME",
+      "CLEAR_TIME"
+    ],
+    "has_all_tables": true,
+    "sql_snippet": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOI"
+  },
+  {
+    "round": 9,
+    "bad_columns": [
+      "ALARM_CLEAR_TIME",
+      "CLEAR_TIME"
+    ],
+    "has_all_tables": true,
+    "sql_snippet": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOI"
+  },
+  {
+    "round": 10,
+    "bad_columns": [
+      "ALARM_CLEAR_TIME",
+      "CLEAR_TIME"
+    ],
+    "has_all_tables": true,
+    "sql_snippet": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOI"
+  }
+]

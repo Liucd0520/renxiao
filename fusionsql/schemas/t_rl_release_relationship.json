@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_release_relationship"
+  },
+  "table_comment": null,
+  "llm_description": "存储模块与设备、客户、订单等对象的关联关系，用于发布管理中的配置依赖及状态跟踪。",
+  "columns": [
+    {
+      "name": "relationship_id",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "module_id",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "object_id",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "object_no",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "relationship_desc",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "relationship_status",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "release_id",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "存储模块与设备、客户、订单等对象的关联关系，用于发布管理中的配置依赖及状态跟踪。\n表名: t_rl_release_relationship\n其他列: relationship_id, module_id, object_id, object_no, relationship_desc, relationship_status, release_id"
+}

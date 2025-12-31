@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "customer_global_config"
+  },
+  "table_comment": null,
+  "llm_description": "客户全局配置表，存储客户设备属性发现时间及配置创建、更新时间，用于客户设备管理与配置变更追踪。",
+  "columns": [
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "DISCOVER_TIME",
+      "type": "decimal(5,0)",
+      "description": "设备属性发现时间"
+    },
+    {
+      "name": "CREATED_TIME",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "UPDATED_TIME",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "客户全局配置表，存储客户设备属性发现时间及配置创建、更新时间，用于客户设备管理与配置变更追踪。\n表名: customer_global_config\n列信息: CUSTOMER_ID(客户ID), DISCOVER_TIME(设备属性发现时间), CREATED_TIME(创建时间), UPDATED_TIME(更新时间)"
+}

@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_incident_response"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_incident_response表存储事件响应记录，包含告警响应时间、设备维护周期及计划更新时间，用于追踪客户问题处理进度与服务时效管理。",
+  "columns": [
+    {
+      "name": "INCIDENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "RESPONSE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATE_PERIOD",
+      "type": "int(2)",
+      "description": null
+    },
+    {
+      "name": "RESPONSE_PERIOD",
+      "type": "int(2)",
+      "description": null
+    },
+    {
+      "name": "PLAN_UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "t_bz_incident_response表存储事件响应记录，包含告警响应时间、设备维护周期及计划更新时间，用于追踪客户问题处理进度与服务时效管理。\n表名: t_bz_incident_response\n其他列: INCIDENT_ID, RESPONSE_TIME, UPDATE_PERIOD, RESPONSE_PERIOD, PLAN_UPDATE_TIME"
+}

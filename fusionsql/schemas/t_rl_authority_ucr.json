@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_authority_ucr"
+  },
+  "table_comment": null,
+  "llm_description": "存储用户、客户与角色分组的权限关联，用于权限分配及管理。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "USERS_GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROLE_GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储用户、客户与角色分组的权限关联，用于权限分配及管理。\n表名: t_rl_authority_ucr\n其他列: RELATIONSHIP_ID, USERS_GROUP_ID, CUSTOMER_GROUP_ID, ROLE_GROUP_ID"
+}

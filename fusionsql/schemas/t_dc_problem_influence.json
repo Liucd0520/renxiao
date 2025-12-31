@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_problem_influence"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_problem_influence表存储问题影响数据，记录客户、设备或订单受告警影响的关联关系，用于权限管理和业务分析。",
+  "columns": [
+    {
+      "name": "INFLUENCE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "INFLUENCE_NAME",
+      "type": "varchar(25)",
+      "description": "INFLUENCE_NAME。常见值: Critical, Major, Minor"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_problem_influence表存储问题影响数据，记录客户、设备或订单受告警影响的关联关系，用于权限管理和业务分析。\n表名: t_dc_problem_influence\n其他列: INFLUENCE_ID, INFLUENCE_NAME"
+}

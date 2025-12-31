@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "collector_monitor"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备监控配置信息，包含默认阈值、用户设定阈值及告警等级持续时间，用于触发告警并管理权限覆盖规则。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "ID"
+    },
+    {
+      "name": "monitor_name",
+      "type": "varchar(50)",
+      "description": "监控项名。常见值: totalMemory, serviceCpu, activeThread, totalCpu, runningThread, serviceMemory, diskFree"
+    },
+    {
+      "name": "deft_value",
+      "type": "varchar(50)",
+      "description": "默认阈值"
+    },
+    {
+      "name": "deft_level",
+      "type": "varchar(50)",
+      "description": "默认阈值等级。常见值: Warning|Minor|Major"
+    },
+    {
+      "name": "deft_duration",
+      "type": "int(11)",
+      "description": "默认持续时间"
+    },
+    {
+      "name": "set_value",
+      "type": "varchar(50)",
+      "description": "设定阈值"
+    },
+    {
+      "name": "set_level",
+      "type": "varchar(50)",
+      "description": "设定阈值等级。常见值: Warning|Minor|Major"
+    },
+    {
+      "name": "set_duration",
+      "type": "int(11)",
+      "description": "手动设置持续时间"
+    },
+    {
+      "name": "cover",
+      "type": "tinyint(1)",
+      "description": "阈值和等级是否覆盖"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "存储设备监控配置信息，包含默认阈值、用户设定阈值及告警等级持续时间，用于触发告警并管理权限覆盖规则。\n表名: collector_monitor\n列信息: id(ID), monitor_name(监控项名), deft_value(默认阈值), deft_level(默认阈值等级), deft_duration(默认持续时间), set_value(设定阈值), set_level(设定阈值等级), set_duration(手动设置持续时间), cover(阈值和等级是否覆盖), create_time(创建时间), update_time(更新时间)"
+}

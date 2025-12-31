@@ -1,0 +1,77 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_template_collect_config"
+  },
+  "table_comment": null,
+  "llm_description": "ne_template_collect_config表存储客户数据收集模板配置信息，包含告警级别、脚本及超时参数，用于监控管理与用户权限控制。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "主键"
+    },
+    {
+      "name": "name",
+      "type": "varchar(255)",
+      "description": "名称"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(11,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "description",
+      "type": "varchar(512)",
+      "description": "描述"
+    },
+    {
+      "name": "status",
+      "type": "tinyint(1)",
+      "description": "状态"
+    },
+    {
+      "name": "script",
+      "type": "text",
+      "description": "脚本"
+    },
+    {
+      "name": "alert_level",
+      "type": "varchar(50)",
+      "description": "告警级别。常见值: 10, 30, 50, 40"
+    },
+    {
+      "name": "default_timeout",
+      "type": "int(11)",
+      "description": "默认超时时间"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "created_by",
+      "type": "decimal(11,0)",
+      "description": "创建人"
+    },
+    {
+      "name": "updated_time",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "updated_by",
+      "type": "decimal(11,0)",
+      "description": "更新人"
+    },
+    {
+      "name": "deleted",
+      "type": "tinyint(1)",
+      "description": "是否删除"
+    }
+  ],
+  "column_count": 13,
+  "embedding_text": "ne_template_collect_config表存储客户数据收集模板配置信息，包含告警级别、脚本及超时参数，用于监控管理与用户权限控制。\n表名: ne_template_collect_config\n列信息: id(主键), name(名称), customer_id(客户ID), description(描述), status(状态), script(脚本), alert_level(告警级别), default_timeout(默认超时时间), created_time(创建时间), created_by(创建人), updated_time(更新时间), updated_by(更新人), deleted(是否删除)"
+}

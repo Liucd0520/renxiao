@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_release_approval"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储发布审批流程信息，记录审批状态、时间、类型及用户操作，用于管理版本发布权限和审批过程。",
+  "columns": [
+    {
+      "name": "approval_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "approval_message",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "approval_status",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "approval_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "approval_type",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "approval_user_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "flow_desc",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "release_id",
+      "type": "decimal(19,2)",
+      "description": null
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "该表存储发布审批流程信息，记录审批状态、时间、类型及用户操作，用于管理版本发布权限和审批过程。\n表名: t_bz_release_approval\n其他列: approval_id, approval_message, approval_status, approval_time, approval_type, approval_user_id, create_time, flow_desc, release_id"
+}

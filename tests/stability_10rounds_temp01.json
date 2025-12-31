@@ -1,0 +1,421 @@
+{
+  "temperature": 0.1,
+  "rounds": [
+    {
+      "round": 1,
+      "correct": 7,
+      "results": [
+        {
+          "id": 1,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 2,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 3,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 4,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 5,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 6,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 7,
+          "correct": true,
+          "missing": []
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "correct": 6,
+      "results": [
+        {
+          "id": 1,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 2,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 3,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 4,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 5,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 6,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 7,
+          "correct": false,
+          "missing": [
+            "t_bz_config_ci_ne_root"
+          ]
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "correct": 7,
+      "results": [
+        {
+          "id": 1,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 2,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 3,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 4,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 5,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 6,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 7,
+          "correct": true,
+          "missing": []
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "correct": 6,
+      "results": [
+        {
+          "id": 1,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 2,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 3,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 4,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 5,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 6,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 7,
+          "correct": false,
+          "missing": [
+            "t_bz_config_ci_ne_root"
+          ]
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "correct": 7,
+      "results": [
+        {
+          "id": 1,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 2,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 3,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 4,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 5,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 6,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 7,
+          "correct": true,
+          "missing": []
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "correct": 6,
+      "results": [
+        {
+          "id": 1,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 2,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 3,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 4,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 5,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 6,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 7,
+          "correct": false,
+          "missing": [
+            "t_bz_config_ci_ne_root"
+          ]
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "correct": 7,
+      "results": [
+        {
+          "id": 1,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 2,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 3,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 4,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 5,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 6,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 7,
+          "correct": true,
+          "missing": []
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "correct": 7,
+      "results": [
+        {
+          "id": 1,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 2,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 3,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 4,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 5,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 6,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 7,
+          "correct": true,
+          "missing": []
+        }
+      ]
+    },
+    {
+      "round": 9,
+      "correct": 7,
+      "results": [
+        {
+          "id": 1,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 2,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 3,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 4,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 5,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 6,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 7,
+          "correct": true,
+          "missing": []
+        }
+      ]
+    },
+    {
+      "round": 10,
+      "correct": 7,
+      "results": [
+        {
+          "id": 1,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 2,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 3,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 4,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 5,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 6,
+          "correct": true,
+          "missing": []
+        },
+        {
+          "id": 7,
+          "correct": true,
+          "missing": []
+        }
+      ]
+    }
+  ]
+}

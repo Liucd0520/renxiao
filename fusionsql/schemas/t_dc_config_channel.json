@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_config_channel"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_config_channel表存储渠道配置信息，用于管理客户、设备及订单相关的通信通道和权限设置。",
+  "columns": [
+    {
+      "name": "CHANNEL_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CHANNEL_NAME",
+      "type": "varchar(50)",
+      "description": "CHANNEL_NAME。常见值: 其它, 美洲, 集团, 合作方, 香港, 上海, 欧洲, 外省市"
+    },
+    {
+      "name": "CREATED_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "t_dc_config_channel表存储渠道配置信息，用于管理客户、设备及订单相关的通信通道和权限设置。\n表名: t_dc_config_channel\n其他列: CHANNEL_ID, CHANNEL_NAME, CREATED_TIME, UPDATE_TIME, IS_DELETED"
+}

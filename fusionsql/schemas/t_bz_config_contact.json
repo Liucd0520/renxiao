@@ -1,0 +1,147 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_contact"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户联系人信息，包含联系方式、职位及备注，用于客户管理、订单处理及设备告警通知。",
+  "columns": [
+    {
+      "name": "contact_id",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "contact_no",
+      "type": "varchar(255)",
+      "description": "联系人编码"
+    },
+    {
+      "name": "contact_name",
+      "type": "varchar(512)",
+      "description": "联系人名称。常见值: zhangshanlisi, 李金星, hezg, 黄静, 邱晔, 张三李四, 李沐凡, 朱倍炯, 测试, test"
+    },
+    {
+      "name": "contact_phone",
+      "type": "varchar(512)",
+      "description": "联系人电话号码"
+    },
+    {
+      "name": "contact_mobile",
+      "type": "varchar(512)",
+      "description": "原移动电话，先短信电话"
+    },
+    {
+      "name": "contact_cell_phone",
+      "type": "varchar(512)",
+      "description": "移动电话"
+    },
+    {
+      "name": "contact_email",
+      "type": "varchar(512)",
+      "description": "联系人电子邮件"
+    },
+    {
+      "name": "contact_note",
+      "type": "varchar(512)",
+      "description": "联系人备注"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "contact_position",
+      "type": "varchar(128)",
+      "description": "联系人职位"
+    },
+    {
+      "name": "created_by",
+      "type": "varchar(50)",
+      "description": "创建人"
+    },
+    {
+      "name": "updated_by",
+      "type": "varchar(50)",
+      "description": "修改人"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "last_modify_time",
+      "type": "datetime",
+      "description": "修改时间"
+    },
+    {
+      "name": "is_active",
+      "type": "decimal(1,0)",
+      "description": "是否激活"
+    },
+    {
+      "name": "phone_policy",
+      "type": "decimal(10,0)",
+      "description": "打电话时间策略"
+    },
+    {
+      "name": "mobile_policy",
+      "type": "decimal(10,0)",
+      "description": "打移动电话时间策略"
+    },
+    {
+      "name": "sms_policy",
+      "type": "decimal(10,0)",
+      "description": "移动电话短信策略"
+    },
+    {
+      "name": "email_policy",
+      "type": "decimal(10,0)",
+      "description": "电子邮件策略策略"
+    },
+    {
+      "name": "is_receive_email",
+      "type": "decimal(1,0)",
+      "description": "是否邮件接收1接收0否"
+    },
+    {
+      "name": "is_receive_sms",
+      "type": "decimal(1,0)",
+      "description": "是否短信接收1接收0否"
+    },
+    {
+      "name": "is_receive_mobile",
+      "type": "decimal(1,0)",
+      "description": "是否添加电话"
+    },
+    {
+      "name": "is_international_mobile",
+      "type": "decimal(1,0)",
+      "description": "是否国际移动电话1是0否"
+    },
+    {
+      "name": "send_interval",
+      "type": "decimal(10,0)",
+      "description": "发送间隔"
+    },
+    {
+      "name": "zone_id",
+      "type": "varchar(128)",
+      "description": "时区id"
+    },
+    {
+      "name": "language",
+      "type": "varchar(32)",
+      "description": "语言"
+    },
+    {
+      "name": "is_vip",
+      "type": "decimal(1,0)",
+      "description": "是否vip"
+    }
+  ],
+  "column_count": 27,
+  "embedding_text": "存储客户联系人信息，包含联系方式、职位及备注，用于客户管理、订单处理及设备告警通知。\n表名: t_bz_config_contact\n列信息: contact_id(ID), contact_no(联系人编码), contact_name(联系人名称), contact_phone(联系人电话号码), contact_mobile(原移动电话，先短信电话), contact_cell_phone(移动电话), contact_email(联系人电子邮件), contact_note(联系人备注), customer_id(客户ID), contact_position(联系人职位), created_by(创建人), updated_by(修改人), create_time(创建时间), last_modify_time(修改时间), is_active(是否激活)"
+}

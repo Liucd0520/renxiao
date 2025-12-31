@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sequence"
+  },
+  "table_comment": null,
+  "llm_description": "sequence表存储客户、订单、设备等业务实体的自增序列信息，用于生成唯一ID。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "bigint(21)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "CURRENT_VALUE",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "INCREMENT",
+      "type": "int(11)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "sequence表存储客户、订单、设备等业务实体的自增序列信息，用于生成唯一ID。\n表名: sequence\n其他列: ID, NAME, CURRENT_VALUE, INCREMENT"
+}

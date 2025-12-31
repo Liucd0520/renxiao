@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "customer_svr_pkg_limit"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储客户服务套餐的使用限制及实时数量，用于监控用户资源使用情况并触发告警，防止超额占用权限或设备资源。",
+  "columns": [
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SERVICE_PACKAGE",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "LIMIT_MAX",
+      "type": "decimal(8,0)",
+      "description": null
+    },
+    {
+      "name": "CURRENT_NUM",
+      "type": "decimal(8,0)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "该表存储客户服务套餐的使用限制及实时数量，用于监控用户资源使用情况并触发告警，防止超额占用权限或设备资源。\n表名: customer_svr_pkg_limit\n其他列: CUSTOMER_ID, SERVICE_PACKAGE, LIMIT_MAX, CURRENT_NUM"
+}

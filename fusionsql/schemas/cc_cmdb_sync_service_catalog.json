@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "cc_cmdb_sync_service_catalog"
+  },
+  "table_comment": "CC服务目录关联表",
+  "llm_description": "cc_cmdb_sync_service_catalog表存储服务目录与设备资源的关联信息，用于客户权限配置及资源同步。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(21)",
+      "description": "ID"
+    },
+    {
+      "name": "service_catalog_id",
+      "type": "bigint(31)",
+      "description": "服务目录ID"
+    },
+    {
+      "name": "ne_id",
+      "type": "bigint(31)",
+      "description": "NE_ID"
+    },
+    {
+      "name": "resource_id",
+      "type": "bigint(31)",
+      "description": "CC设备ID"
+    },
+    {
+      "name": "name",
+      "type": "varchar(512)",
+      "description": "名称"
+    },
+    {
+      "name": "desc",
+      "type": "varchar(512)",
+      "description": "简介"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "cc_cmdb_sync_service_catalog表存储服务目录与设备资源的关联信息，用于客户权限配置及资源同步。\n表名: cc_cmdb_sync_service_catalog\n表注释: CC服务目录关联表\n列信息: id(ID), service_catalog_id(服务目录ID), ne_id(NE_ID), resource_id(CC设备ID), name(名称), desc(简介), created_time(创建时间)"
+}

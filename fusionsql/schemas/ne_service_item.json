@@ -1,0 +1,157 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_service_item"
+  },
+  "table_comment": "网元绑定服务项表",
+  "llm_description": "网元绑定服务项表存储客户设备与服务项、服务包的关联信息，用于服务配置、权限管理及告警处理。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(11,0)",
+      "description": "ID"
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "MANUAL_ID",
+      "type": "decimal(11,0)",
+      "description": "手工录入网元ID"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(11,0)",
+      "description": "根网元ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "SERVICE_ITEM",
+      "type": "varchar(64)",
+      "description": "网元服务项"
+    },
+    {
+      "name": "GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": "组ID"
+    },
+    {
+      "name": "SERVICE_PACKAGE",
+      "type": "varchar(128)",
+      "description": "网元服务包"
+    },
+    {
+      "name": "ITEM_TYPE",
+      "type": "varchar(64)",
+      "description": "服务项类型。常见值: static, status, threshold"
+    },
+    {
+      "name": "UNIT",
+      "type": "varchar(64)",
+      "description": "单位"
+    },
+    {
+      "name": "VALUE",
+      "type": "varchar(256)",
+      "description": "服务项数值指标"
+    },
+    {
+      "name": "DEF_DURATION",
+      "type": "decimal(5,0)",
+      "description": "默认持续时间分钟"
+    },
+    {
+      "name": "SET_VALUE",
+      "type": "varchar(256)",
+      "description": "手动设置服务项数值指标"
+    },
+    {
+      "name": "SET_ALARM_LEVEL",
+      "type": "varchar(256)",
+      "description": "手动设置服务项数值指标等级。常见值: Warning|Minor|Major, Major|Minor|Major, Minor|Major|Critical, Critical|Minor|Major, Minor|Warning|Major"
+    },
+    {
+      "name": "SET_DURATION",
+      "type": "decimal(5,0)",
+      "description": "手动设置持续时间分钟"
+    },
+    {
+      "name": "VALUE_COVER",
+      "type": "tinyint(1)",
+      "description": "手动开启服务项覆盖"
+    },
+    {
+      "name": "MONITOR_TIME",
+      "type": "decimal(5,0)",
+      "description": "智能监控时间分钟"
+    },
+    {
+      "name": "IS_MONITOR",
+      "type": "tinyint(1)",
+      "description": "手动开启智能监控"
+    },
+    {
+      "name": "VALUE_SORT",
+      "type": "varchar(32)",
+      "description": "服务项数值指标排序方式\r\n            asc: 升序\r\n            desc:降序\r\n            "
+    },
+    {
+      "name": "POLL_INTERVAL",
+      "type": "double(10,0)",
+      "description": "采集时间间隔\r\n            单位：ms"
+    },
+    {
+      "name": "BUSINESS_ID",
+      "type": "varchar(64)",
+      "description": "业务类型ID"
+    },
+    {
+      "name": "SEVERITY",
+      "type": "decimal(3,0)",
+      "description": "告警级别"
+    },
+    {
+      "name": "CREATED_TIME",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(50)",
+      "description": "创建者"
+    },
+    {
+      "name": "UPDATED_TIME",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "UPDATED_BY",
+      "type": "varchar(50)",
+      "description": "更新者"
+    },
+    {
+      "name": "WORK_PLAN",
+      "type": "varchar(1024)",
+      "description": "工作计划"
+    },
+    {
+      "name": "TIME_ZONE",
+      "type": "varchar(255)",
+      "description": "时区"
+    },
+    {
+      "name": "STATE_NAME",
+      "type": "varchar(32)",
+      "description": "实时状态值。常见值: Unknown, Up, Normal, Down, ok, false, Level3, established, readWrite, active"
+    }
+  ],
+  "column_count": 29,
+  "embedding_text": "网元绑定服务项表存储客户设备与服务项、服务包的关联信息，用于服务配置、权限管理及告警处理。\n表名: ne_service_item\n表注释: 网元绑定服务项表\n列信息: ID(ID), NE_ID(网元ID), MANUAL_ID(手工录入网元ID), ROOT_NE_ID(根网元ID), CUSTOMER_ID(客户ID), SERVICE_ITEM(网元服务项), GROUP_ID(组ID), SERVICE_PACKAGE(网元服务包), ITEM_TYPE(服务项类型), UNIT(单位), VALUE(服务项数值指标), DEF_DURATION(默认持续时间分钟), SET_VALUE(手动设置服务项数值指标), SET_ALARM_LEVEL(手动设置服务项数值指标等级), SET_DURATION(手动设置持续时间分钟)"
+}

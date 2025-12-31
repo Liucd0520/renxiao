@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdw_dp_port_performance"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户设备端口流量性能数据，包含进出口速率、状态及协商信息，用于网络监控和异常告警。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "port_id",
+      "type": "varchar(255)",
+      "description": "端口ID"
+    },
+    {
+      "name": "gather_time",
+      "type": "varchar(255)",
+      "description": "流量采集时间"
+    },
+    {
+      "name": "in_rate",
+      "type": "varchar(255)",
+      "description": "进口流量(bps)"
+    },
+    {
+      "name": "out_rate",
+      "type": "varchar(255)",
+      "description": "出口流量(bps)"
+    },
+    {
+      "name": "dev_esn",
+      "type": "varchar(255)",
+      "description": "设备ID"
+    },
+    {
+      "name": "port_state",
+      "type": "varchar(255)",
+      "description": "设备状态(1: up   0: down)。常见值: 1, 0"
+    },
+    {
+      "name": "customer_id",
+      "type": "varchar(255)",
+      "description": "客户ID"
+    },
+    {
+      "name": "negotiation_status",
+      "type": "varchar(255)",
+      "description": "协商状态(full: 全双工)。常见值: Full, Half"
+    },
+    {
+      "name": "negotiation_rate",
+      "type": "varchar(255)",
+      "description": "协商速率(M)"
+    },
+    {
+      "name": "signal_strength_4g",
+      "type": "varchar(255)",
+      "description": "4G信号强度"
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "存储客户设备端口流量性能数据，包含进出口速率、状态及协商信息，用于网络监控和异常告警。\n表名: sdw_dp_port_performance\n列信息: port_id(端口ID), gather_time(流量采集时间), in_rate(进口流量(bps)), out_rate(出口流量(bps)), dev_esn(设备ID), port_state(设备状态(1: up   0: down)), customer_id(客户ID), negotiation_status(协商状态(full: 全双工)), negotiation_rate(协商速率(M)), signal_strength_4g(4G信号强度)\n其他列: id"
+}

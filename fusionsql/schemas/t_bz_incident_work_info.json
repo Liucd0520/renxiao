@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_incident_work_info"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户工单处理信息，包含工单类型、内容、用户提交及权限分配，用于跟踪订单与设备告警处理流程。",
+  "columns": [
+    {
+      "name": "WORK_INFO_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "INFO_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SUB_WORKINFO_USER",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SUBMIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "WORK_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "WORK_CONTENT",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "LOOK_RIGHT",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "存储客户工单处理信息，包含工单类型、内容、用户提交及权限分配，用于跟踪订单与设备告警处理流程。\n表名: t_bz_incident_work_info\n其他列: WORK_INFO_ID, INFO_ID, SUB_WORKINFO_USER, SUBMIT_TIME, WORK_TYPE, WORK_CONTENT, LOOK_RIGHT, UPDATE_TIME"
+}

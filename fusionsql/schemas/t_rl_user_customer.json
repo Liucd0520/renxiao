@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_user_customer"
+  },
+  "table_comment": null,
+  "llm_description": "t_rl_user_customer表存储用户与客户的关联关系，用于权限分配及业务数据管理。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": "关系ID"
+    },
+    {
+      "name": "USER_ID",
+      "type": "decimal(10,0)",
+      "description": "用户ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "t_rl_user_customer表存储用户与客户的关联关系，用于权限分配及业务数据管理。\n表名: t_rl_user_customer\n列信息: RELATIONSHIP_ID(关系ID), USER_ID(用户ID), CUSTOMER_ID(客户ID)"
+}

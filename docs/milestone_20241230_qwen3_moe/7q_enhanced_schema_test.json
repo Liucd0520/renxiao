@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+    "correct_sql": "SELECT \n    `event_type_name`, \n    COUNT(`event_id`) AS `alarm_count`\nFROM \n    event_history\nJOIN \n    t_bz_config_ci_ne_root ON event_history.ne_id = t_bz_config_ci_ne_root.ne_id\nWHERE \n    t_bz_config_ci_ne_root.host_name LIKE '%ciscoA%' \n    AND event_time >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n    AND event_time < CURDATE()\nGROUP BY \n    `event_type_name`\nORDER BY \n    `alarm_count` DESC\nLIMIT 10;",
+    "sql_32b": "SELECT EVENT_TYPE_NAME, COUNT(*) AS alarm_count\nFROM event_history\nWHERE NE_NAME = 'ciscoA' AND EVENT_TIME >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND EVENT_STATUS_NAME = 'alarm'\nGROUP BY EVENT_TYPE_NAME;",
+    "sql_moe": "SELECT \n    eh.EVENT_TYPE_NAME AS alarm_type,\n    COUNT(*) AS alarm_count\nFROM \n    event_history eh\nWHERE \n    eh.ROOT_NE_NAME = 'ciscoA'\n    AND eh.EVENT_TIME >= DATE_SUB(DATE_SUB(CURDATE(), INTERVAL DAY(CURDATE()) - 1 DAY), INTERVAL 1 MONTH)\n    AND eh.EVENT_TIME < DATE_SUB(CURDATE(), INTERVAL DAY(CURDATE()) - 1 DAY)\n    AND eh.EVENT_STATUS_NAME = 'alarm'\nGROUP BY \n    eh.EVENT_TYPE_NAME\nORDER BY \n    alarm_count DESC;"
+  },
+  {
+    "id": 2,
+    "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+    "correct_sql": "select a.* from (\nSELECT \n    `t_bz_config_ci_ne_root`.`NE_ID`,\n    `t_bz_config_ci_ne_root`.`HOST_NAME`,\n    `t_bz_config_customer`.`CUSTOMER_NAME`\nFROM \n    `t_bz_config_ci_ne_root`\nJOIN \n    `t_bz_config_customer` ON `t_bz_config_ci_ne_root`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`\nJOIN \n    `event_history` ON `t_bz_config_ci_ne_root`.`NE_ID` = `event_history`.`NE_ID`\nWHERE \n    `event_history`.`EVENT_NAME` LIKE 'Device state%' \n    AND `event_history`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\nGROUP BY \n    `t_bz_config_ci_ne_root`.`NE_ID`, `t_bz_config_customer`.`CUSTOMER_NAME`\nHAVING \n    COUNT(DISTINCT `event_history`.`EVENT_ID`) > 0\n) a where `a`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) and `a`.`EVENT_STATUS_NAME` = 'alarm'\nLIMIT 10;",
+    "sql_32b": "SELECT eh.ROOT_NE_NAME AS device_name, eh.CUSTOMER_NAME AS customer_name\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ROOT_NE_ID = ne.NE_ID\nWHERE eh.EVENT_NAME = 'Device state'\n  AND eh.EVENT_VALUE = 'down'\n  AND eh.EVENT_TIME <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\n  AND ne.STATUS = 'down'\nGROUP BY eh.ROOT_NE_NAME, eh.CUSTOMER_NAME;",
+    "sql_moe": "SELECT DISTINCT e.ROOT_NE_NAME AS device_name, c.CUSTOMER_NAME\nFROM event_history e\nJOIN t_bz_config_ci_ne_root r ON e.NE_ID = r.NE_ID\nJOIN t_bz_config_customer c ON e.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE e.EVENT_NAME = 'Device state'\n  AND e.EVENT_VALUE = 'down'\n  AND e.EVENT_STATUS_NAME = 'alarm'\n  AND e.EVENT_TIME < DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\n  AND r.STATUS = 3  -- 假设状态为3表示down，根据实际值调整\n  AND r.IS_DELETED = 0;"
+  },
+  {
+    "id": 3,
+    "question": "现在平台上有多少家客户",
+    "correct_sql": "SELECT COUNT(`CUSTOMER_ID`) AS `customer_count`\nFROM t_bz_config_customer\nWHERE `IS_ACTIVE` = 1\nLIMIT 10;",
+    "sql_32b": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer;",
+    "sql_moe": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count\nFROM t_bz_config_customer\nWHERE IS_ACTIVE = 1;"
+  },
+  {
+    "id": 4,
+    "question": "现在平台上有多少台设备",
+    "correct_sql": "SELECT COUNT(`CI_ID`) AS `device_count`\nFROM t_bz_config_ci_ne_root\nWHERE `IS_DELETED` = 0\nLIMIT 10;",
+    "sql_32b": "SELECT COUNT(*) FROM t_bz_config_ci_ne_root;",
+    "sql_moe": "SELECT COUNT(*) AS device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_DELETED = 0 AND IS_ACTIVE = 1;"
+  },
+  {
+    "id": 5,
+    "question": "上个月上线的新设备有多少",
+    "correct_sql": "SELECT COUNT(`CI_ID`) AS `new_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `ONLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\nAND YEAR(`ONLINE_TIME`) = 2025\nLIMIT 10;",
+    "sql_32b": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE ONLINE_TIME >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);",
+    "sql_moe": "SELECT COUNT(*) AS new_device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_ACTIVE = 1\n  AND IS_ONLINE = 1\n  AND ONLINE_TIME >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND ONLINE_TIME < DATE_FORMAT(CURDATE(), '%Y-%m-01');"
+  },
+  {
+    "id": 6,
+    "question": "上个月下线的设备有多少",
+    "correct_sql": "SELECT COUNT(`CI_ID`) AS `offline_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `OFFLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n  AND `OFFLINE_TIME` < CURDATE()\nLIMIT 10;",
+    "sql_32b": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE NE_STATUS = '下线' \nAND OFFLINE_TIME >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) \nAND OFFLINE_TIME < CURDATE();",
+    "sql_moe": "SELECT COUNT(*) AS offline_device_count\nFROM t_bz_config_ci_ne_root\nWHERE OFFLINE_TIME >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01 00:00:00')\n  AND OFFLINE_TIME < DATE_FORMAT(CURDATE(), '%Y-%m-01 00:00:00')\n  AND IS_DELETED = 0;"
+  },
+  {
+    "id": 7,
+    "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+    "correct_sql": "SELECT\n `t_bz_config_customer`.`CUSTOMER_NAME`,\n `t_bz_config_ci_ne_root`.`HOST_NAME`,\n `event_history`.`EVENT_NAME`,\n `event_history`.`EVENT_TIME`\nFROM\n `event_history`\nJOIN `t_bz_config_ci_ne_root` ON `event_history`.`NE_ID` = `t_bz_config_ci_ne_root`.`NE_ID`\nJOIN `t_bz_config_customer` ON `event_history`.`CUSTOMER_ID` = `t_bz_config_customer`.ID\nWHERE\n `event_history`.`EVENT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\nAND `event_history`.`EVENT_STATUS_NAME` = 'alarm'\nAND `t_bz_config_customer`.`CUSTOMER_NAME` = 'xxx'\nLIMIT 10;\n",
+    "sql_32b": "SELECT eh.EVENT_TYPE_NAME, eh.EVENT_NAME, eh.EVENT_TIME, eh.ACTION_TIME\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ROOT_NE_ID = ne.NE_ID\nJOIN t_bz_config_customer c ON ne.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = '指定客户名称' AND eh.EVENT_TIME >= NOW() - INTERVAL 7 DAY AND eh.EVENT_STATUS_NAME = 'alarm';",
+    "sql_moe": "SELECT DISTINCT \n    eh.EVENT_TYPE_NAME AS alarm_type,\n    eh.EVENT_TIME AS alarm_time,\n    eh.EVENT_RECOVERY_TIME AS recovery_time\nFROM \n    event_history eh\nWHERE \n    eh.CUSTOMER_ID = ? \n    AND eh.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    AND eh.EVENT_STATUS_NAME = 'alarm'\nORDER BY \n    eh.EVENT_TIME DESC;"
+  }
+]

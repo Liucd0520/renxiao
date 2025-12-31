@@ -1,0 +1,92 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_incident_ci_record"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_incident_ci_record表存储客户配置项告警记录，包含客户、联系人、设备信息及处理状态，用于事件关联与管理。",
+  "columns": [
+    {
+      "name": "RECORD_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_NAME",
+      "type": "varchar(255)",
+      "description": "CI_NAME。常见值: clj-computer, zjj-computer, zsy-computer, dev-206, Cisco-1, wangweiqi, device 2020-6-4-3, cz-device, device2020-6-4-2, 测试"
+    },
+    {
+      "name": "CI_LINE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_IP",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CI_REGION_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_NAME",
+      "type": "varchar(255)",
+      "description": "CUSTOMER_NAME。常见值: 研发, 理想公司, develop, 研发,., 研发,，, 中国电信上海理想信息产业(集团)有限公司, test, 上海迪翰信息技术有限公司, 上海励杰网络数据科技有限公司, 网管专家"
+    },
+    {
+      "name": "CONTACT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CONTACT_NAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CONTACT_PHONE",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ADD",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "INCIDENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_REGION_NAME",
+      "type": "varchar(255)",
+      "description": "CI_REGION_NAME。常见值: 上海, shanghai, location 2020-6-3-1 update, 武康路, 北京, 电信园区, 333, 海南, 上海市徐汇区斜土路街道大木桥路**号B*层****肯德基, 田林东路"
+    },
+    {
+      "name": "CI_RESPONSE_PERIOD",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_UPDATE_PERIOD",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 16,
+  "embedding_text": "t_bz_incident_ci_record表存储客户配置项告警记录，包含客户、联系人、设备信息及处理状态，用于事件关联与管理。\n表名: t_bz_incident_ci_record\n其他列: RECORD_ID, CI_ID, CI_NAME, CI_LINE_ID, CI_IP, CI_REGION_ID, CUSTOMER_ID, CUSTOMER_NAME, CONTACT_ID, CONTACT_NAME, CONTACT_PHONE, CUSTOMER_ADD, INCIDENT_ID, CI_REGION_NAME, CI_RESPONSE_PERIOD"
+}

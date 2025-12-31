@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_sys_audit"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_sys_audit表存储客户、订单、设备等对象的审计日志，记录用户操作、权限变更及告警处理信息，用于系统操作追踪与安全监控。",
+  "columns": [
+    {
+      "name": "AUDIT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "AUDIT_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "OPERATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "OPERATE_NAME",
+      "type": "varchar(50)",
+      "description": "OPERATE_NAME。常见值: 朱俊杰, 陈丽娟, AUTO, 王唯琦, 吴舸, 单波波, 朱熙贤, 陈凯, 金伟超, 张文江"
+    },
+    {
+      "name": "OPERATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "STATUS_NAME",
+      "type": "varchar(50)",
+      "description": "STATUS_NAME。常见值: 处理中, 新建, 新建工作信息, 交班, 等待审批, 接班, 诊断完成, 已分派, 保存, 解决"
+    },
+    {
+      "name": "MODULE_ID",
+      "type": "decimal(3,0)",
+      "description": null
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "t_bz_sys_audit表存储客户、订单、设备等对象的审计日志，记录用户操作、权限变更及告警处理信息，用于系统操作追踪与安全监控。\n表名: t_bz_sys_audit\n其他列: AUDIT_ID, OBJECT_ID, AUDIT_DESC, OPERATE_USER_ID, OPERATE_NAME, OPERATE_TIME, STATUS_NAME, MODULE_ID"
+}

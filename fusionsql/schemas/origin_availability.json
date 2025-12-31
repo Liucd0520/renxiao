@@ -1,0 +1,77 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "origin_availability"
+  },
+  "table_comment": "AVAILABILITY分钟统计表",
+  "llm_description": "origin_availability表存储客户设备服务项的分钟级可用性状态，用于监控设备运行、生成告警及分析服务可靠性。",
+  "columns": [
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": "网元ID"
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(11,0)",
+      "description": "根网元ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(11,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "SERVICE_ITEM",
+      "type": "varchar(128)",
+      "description": "服务项"
+    },
+    {
+      "name": "MINUTE",
+      "type": "decimal(10,0)",
+      "description": "从1900年开始计时，到现在的第几分钟"
+    },
+    {
+      "name": "HOUROFDAY",
+      "type": "decimal(2,0)",
+      "description": "一天的第几个小时"
+    },
+    {
+      "name": "VALUE",
+      "type": "decimal(10,0) unsigned",
+      "description": "开关状态"
+    },
+    {
+      "name": "DAYOFWEEK",
+      "type": "decimal(2,0)",
+      "description": "一周的第几天"
+    },
+    {
+      "name": "DAYOFMONTH",
+      "type": "decimal(2,0)",
+      "description": "一个月的第几天"
+    },
+    {
+      "name": "DAY",
+      "type": "decimal(8,0)",
+      "description": "从1970年开始计时，到现在的第几天"
+    },
+    {
+      "name": "WEEK",
+      "type": "decimal(8,0)",
+      "description": "从1970年开始计时，到现在的第几周"
+    },
+    {
+      "name": "MONTH",
+      "type": "decimal(6,0)",
+      "description": "从1970年开始计时，到现在的第几月"
+    },
+    {
+      "name": "COLLTIME",
+      "type": "datetime",
+      "description": "采集时间"
+    }
+  ],
+  "column_count": 13,
+  "embedding_text": "origin_availability表存储客户设备服务项的分钟级可用性状态，用于监控设备运行、生成告警及分析服务可靠性。\n表名: origin_availability\n表注释: AVAILABILITY分钟统计表\n列信息: NE_ID(网元ID), ROOT_NE_ID(根网元ID), CUSTOMER_ID(客户ID), SERVICE_ITEM(服务项), MINUTE(从1900年开始计时，到现在的第几分钟), HOUROFDAY(一天的第几个小时), VALUE(开关状态), DAYOFWEEK(一周的第几天), DAYOFMONTH(一个月的第几天), DAY(从1970年开始计时，到现在的第几天), WEEK(从1970年开始计时，到现在的第几周), MONTH(从1970年开始计时，到现在的第几月), COLLTIME(采集时间)"
+}

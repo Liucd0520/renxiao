@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_problem_status"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_problem_status表存储客户问题、设备告警、订单处理等状态信息，用于管理业务流程状态变更及跟踪。",
+  "columns": [
+    {
+      "name": "STATUS_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS_NAME",
+      "type": "varchar(50)",
+      "description": "STATUS_NAME。常见值: 挂起, 新建, 关闭, 处理中, 已解决, 分派"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_problem_status表存储客户问题、设备告警、订单处理等状态信息，用于管理业务流程状态变更及跟踪。\n表名: t_dc_problem_status\n其他列: STATUS_ID, STATUS_NAME"
+}

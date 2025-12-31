@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_ci_ne_root_region_location_relation"
+  },
+  "table_comment": "采集机配置表",
+  "llm_description": "采集机配置表存储客户设备与区域、场所的关联关系，用于管理设备监控及告警配置。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户id"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(10,0)",
+      "description": "设备id"
+    },
+    {
+      "name": "location_id",
+      "type": "decimal(10,0)",
+      "description": "场所id"
+    },
+    {
+      "name": "region_id",
+      "type": "decimal(10,0)",
+      "description": "区域id"
+    },
+    {
+      "name": "collector_id",
+      "type": "decimal(10,0)",
+      "description": "采集机id"
+    },
+    {
+      "name": "type",
+      "type": "varchar(10)",
+      "description": "类型 "
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "采集机配置表存储客户设备与区域、场所的关联关系，用于管理设备监控及告警配置。\n表名: t_bz_config_ci_ne_root_region_location_relation\n表注释: 采集机配置表\n列信息: id(ID), customer_id(客户id), ne_id(设备id), location_id(场所id), region_id(区域id), collector_id(采集机id), type(类型 )"
+}

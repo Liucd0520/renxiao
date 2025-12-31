@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_cust_reachability"
+  },
+  "table_comment": null,
+  "llm_description": "report_cust_reachability表存储客户覆盖分析数据，记录客户可达性指标、报告周期及模板配置，用于生成客户维度的周期性业务报告和告警监控。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REP_VALUE",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "REP_WEEK",
+      "type": "decimal(8,0)",
+      "description": null
+    },
+    {
+      "name": "REP_MONTH",
+      "type": "decimal(6,0)",
+      "description": null
+    },
+    {
+      "name": "TEMPLATE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SHOW_WEEK",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "SHOW_MONTH",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "REACH_VALUE",
+      "type": "decimal(10,2)",
+      "description": null
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "report_cust_reachability表存储客户覆盖分析数据，记录客户可达性指标、报告周期及模板配置，用于生成客户维度的周期性业务报告和告警监控。\n表名: report_cust_reachability\n其他列: ID, CUSTOMER_ID, REP_VALUE, REP_WEEK, REP_MONTH, TEMPLATE_ID, SHOW_WEEK, SHOW_MONTH, REACH_VALUE"
+}

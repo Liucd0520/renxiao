@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_release_status"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_release_status表存储客户、设备及用户相关发布的状态信息，用于管理发布流程中的状态变更。",
+  "columns": [
+    {
+      "name": "STATUS_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS_NAME",
+      "type": "varchar(50)",
+      "description": "STATUS_NAME。常见值: 验收, 测试, 撤销, 部署, 新建, 关闭, 方案审批"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_release_status表存储客户、设备及用户相关发布的状态信息，用于管理发布流程中的状态变更。\n表名: t_dc_release_status\n其他列: STATUS_ID, STATUS_NAME"
+}

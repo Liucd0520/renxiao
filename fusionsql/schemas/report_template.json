@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_template"
+  },
+  "table_comment": null,
+  "llm_description": "report_template表存储客户、设备、订单等业务实体的周期性报告模板，支持按周/月生成，包含时间范围及速度类型参数，用于用户权限管理下的告警与数据分析。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "IS_MONTH",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_WEEK",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "START_WORKTIME",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "END_WORKTIME",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "IS_ALL_WEEK",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "START_WEEKDATE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "END_WEEKDATE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "SPEED_TYPE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "IS_WORKDAY",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "report_template表存储客户、设备、订单等业务实体的周期性报告模板，支持按周/月生成，包含时间范围及速度类型参数，用于用户权限管理下的告警与数据分析。\n表名: report_template\n其他列: ID, NAME, IS_MONTH, IS_WEEK, START_WORKTIME, END_WORKTIME, IS_ALL_WEEK, START_WEEKDATE, END_WEEKDATE, SPEED_TYPE, IS_WORKDAY"
+}

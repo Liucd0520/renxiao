@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_incident_status"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_incident_status表存储告警事件状态信息，用于设备告警处理流程跟踪及用户权限状态管理。",
+  "columns": [
+    {
+      "name": "STATUS_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS_NAME",
+      "type": "varchar(50)",
+      "description": "STATUS_NAME。常见值: 关闭, 挂起, 新建, 已解决, 处理中, 已完成, 重分派"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_incident_status表存储告警事件状态信息，用于设备告警处理流程跟踪及用户权限状态管理。\n表名: t_dc_incident_status\n其他列: STATUS_ID, STATUS_NAME"
+}

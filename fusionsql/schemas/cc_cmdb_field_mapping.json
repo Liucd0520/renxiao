@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "cc_cmdb_field_mapping"
+  },
+  "table_comment": null,
+  "llm_description": "cc_cmdb_field_mapping表存储客户、设备、用户等实体字段的映射关系，用于订单、告警、权限系统的数据同步与关联。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(31)",
+      "description": "ID"
+    },
+    {
+      "name": "tb_name",
+      "type": "varchar(255)",
+      "description": "表名。常见值: resource, location, region, serviceNumber, tenant, contact, protocolSummary, supportNote, vendor, user"
+    },
+    {
+      "name": "fd_name",
+      "type": "varchar(255)",
+      "description": "字段名。常见值: id, DEVICE, LINE"
+    },
+    {
+      "name": "fd_src",
+      "type": "varchar(255)",
+      "description": "字段源值"
+    },
+    {
+      "name": "fd_dst",
+      "type": "varchar(255)",
+      "description": "字段映射值"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间，默认为当前时间"
+    },
+    {
+      "name": "updated_time",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "cc_cmdb_field_mapping表存储客户、设备、用户等实体字段的映射关系，用于订单、告警、权限系统的数据同步与关联。\n表名: cc_cmdb_field_mapping\n列信息: id(ID), tb_name(表名), fd_name(字段名), fd_src(字段源值), fd_dst(字段映射值), created_time(创建时间，默认为当前时间), updated_time(更新时间)"
+}

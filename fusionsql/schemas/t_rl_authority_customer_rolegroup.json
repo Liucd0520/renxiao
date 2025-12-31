@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_authority_customer_rolegroup"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储客户与角色组的权限关联关系，用于分配用户对设备、订单等资源的访问权限。",
+  "columns": [
+    {
+      "name": "RELATIONSHIP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROLE_GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "该表存储客户与角色组的权限关联关系，用于分配用户对设备、订单等资源的访问权限。\n表名: t_rl_authority_customer_rolegroup\n其他列: RELATIONSHIP_ID, CUSTOMER_ID, ROLE_GROUP_ID"
+}

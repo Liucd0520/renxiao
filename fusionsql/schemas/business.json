@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "business"
+  },
+  "table_comment": null,
+  "llm_description": "business表存储业务类型信息，包含业务类型ID、名称及简写，用于客户、订单、设备等业务模块的分类与权限管理。",
+  "columns": [
+    {
+      "name": "BUSINESS_ID",
+      "type": "varchar(64)",
+      "description": "业务类型ID"
+    },
+    {
+      "name": "BUSINESS_NAME",
+      "type": "varchar(255)",
+      "description": "业务类型名称。常见值: Application, Basic, Network, Security, Server"
+    },
+    {
+      "name": "BUSINESS_ABB",
+      "type": "varchar(255)",
+      "description": "类型简写"
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "business表存储业务类型信息，包含业务类型ID、名称及简写，用于客户、订单、设备等业务模块的分类与权限管理。\n表名: business\n列信息: BUSINESS_ID(业务类型ID), BUSINESS_NAME(业务类型名称), BUSINESS_ABB(类型简写)"
+}

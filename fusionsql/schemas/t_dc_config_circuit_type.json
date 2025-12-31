@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_config_circuit_type"
+  },
+  "table_comment": null,
+  "llm_description": "存储电路类型配置信息，用于设备管理、客户订单分类及权限控制，包含创建/更新记录和版本管理。",
+  "columns": [
+    {
+      "name": "TYPE_ID",
+      "type": "decimal(10,0)",
+      "description": "类型ID"
+    },
+    {
+      "name": "TYPE_NAME",
+      "type": "varchar(50)",
+      "description": "类型名称。常见值: IP B/W, 测试, N/A, test0000, MPLS, OTN, Cisco, IPLC, testNumber, 213123"
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": "创建用户ID"
+    },
+    {
+      "name": "UPDATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": "更新用户ID"
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": "是否删除"
+    },
+    {
+      "name": "VERSION",
+      "type": "decimal(5,0)",
+      "description": "版本"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "存储电路类型配置信息，用于设备管理、客户订单分类及权限控制，包含创建/更新记录和版本管理。\n表名: t_dc_config_circuit_type\n列信息: TYPE_ID(类型ID), TYPE_NAME(类型名称), CREATE_TIME(创建时间), UPDATE_TIME(更新时间), CREATE_USER_ID(创建用户ID), UPDATE_USER_ID(更新用户ID), IS_DELETED(是否删除), VERSION(版本)"
+}

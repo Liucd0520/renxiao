@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_all_net_line"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储各区域客户网络链路的进、出流量数据，用于客户网络使用情况监控和分析。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "region_name",
+      "type": "varchar(255)",
+      "description": "区域。常见值: 核心汇聚层, 接入层, 出口层, 离线, 浦东新区, asia-china, 上海, 呼兰路"
+    },
+    {
+      "name": "line_num",
+      "type": "int(11)",
+      "description": "链路条数"
+    },
+    {
+      "name": "in_flow",
+      "type": "varchar(255)",
+      "description": "总进流量"
+    },
+    {
+      "name": "out_flow",
+      "type": "varchar(255)",
+      "description": "总出流量"
+    },
+    {
+      "name": "customer_id",
+      "type": "int(11)",
+      "description": null
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "该表存储各区域客户网络链路的进、出流量数据，用于客户网络使用情况监控和分析。\n表名: t_gn_all_net_line\n列信息: id(id), region_name(区域), line_num(链路条数), in_flow(总进流量), out_flow(总出流量)\n其他列: customer_id"
+}

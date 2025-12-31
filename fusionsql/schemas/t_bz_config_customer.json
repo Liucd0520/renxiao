@@ -1,0 +1,228 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_customer"
+  },
+  "table_comment": null,
+  "llm_description": "【客户主表】存储平台上所有客户的基础信息，包括客户ID、客户名称、客户描述、联系方式等。查询客户数量、客户信息时必用此表。",
+  "columns": [
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SP_PARENT_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "CUSTOMER_NAME",
+      "type": "varchar(255)",
+      "description": "父ID。常见值: 测试, ngg-319009, 测试客户, 侯宁, test0226, 0117test10, 南京研发中心, 审计日志测试, 测试过滤, 路威酩轩香水化妆品(上海)有限公司"
+    },
+    {
+      "name": "CUSTOMER_DESC",
+      "type": "varchar(512)",
+      "description": "客户名称"
+    },
+    {
+      "name": "CUSTOMER_NO",
+      "type": "varchar(10)",
+      "description": "客户描述"
+    },
+    {
+      "name": "CUSTOMER_ABB",
+      "type": "varchar(255)",
+      "description": "客户名称缩写"
+    },
+    {
+      "name": "COLLECTOR_ID",
+      "type": "decimal(3,0)",
+      "description": "采集机ID"
+    },
+    {
+      "name": "CUSTOMER_LOGO",
+      "type": "varchar(512)",
+      "description": "客户LOGO"
+    },
+    {
+      "name": "CUSTOMER_ADD",
+      "type": "varchar(512)",
+      "description": "客户地址"
+    },
+    {
+      "name": "CUSTOMER_PHONE",
+      "type": "varchar(20)",
+      "description": "客户电话号码"
+    },
+    {
+      "name": "CUSTOMER_EMAIL",
+      "type": "varchar(50)",
+      "description": "客户电子邮箱"
+    },
+    {
+      "name": "CUSTOMER_POSTCODE",
+      "type": "varchar(50)",
+      "description": "客户邮政号码"
+    },
+    {
+      "name": "CUSTOMER_FAX",
+      "type": "varchar(20)",
+      "description": "客户传真"
+    },
+    {
+      "name": "NEXT_HOP_ADDRESS_A",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "NEXT_HOP_ADDRESS_B",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "NEXT_ROUTE",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_TYPE",
+      "type": "varchar(255)",
+      "description": "客户类型。常见值: NETCARE, DICT, 企业数通网管, IT外包, sdwan"
+    },
+    {
+      "name": "FILE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "LANGUAGE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "INDUSTRY",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "SIGNING_ADDR2",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "PROPERTY",
+      "type": "varchar(255)",
+      "description": "性质"
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(50)",
+      "description": "创建人"
+    },
+    {
+      "name": "UPDATED_BY",
+      "type": "varchar(50)",
+      "description": "修改人"
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "LAST_MODIFY_TIME",
+      "type": "datetime",
+      "description": "修改时间"
+    },
+    {
+      "name": "IS_ACTIVE",
+      "type": "decimal(1,0)",
+      "description": "是否激活"
+    },
+    {
+      "name": "SERVICE_ENGINER",
+      "type": "varchar(50)",
+      "description": "服务工程师"
+    },
+    {
+      "name": "CHANNEL_ID",
+      "type": "decimal(10,0)",
+      "description": "客户渠道"
+    },
+    {
+      "name": "WHETHER_COUNTRY",
+      "type": "decimal(1,0)",
+      "description": "是否境内外客户1是境外0否"
+    },
+    {
+      "name": "SUBORD_PLATFORM",
+      "type": "varchar(50)",
+      "description": "所属平台"
+    },
+    {
+      "name": "REPEAT_SPACE_PERIOD",
+      "type": "varchar(20)",
+      "description": "时间间隔(重复间隔)"
+    },
+    {
+      "name": "CHINESE_OR_ENGLISH",
+      "type": "decimal(1,0)",
+      "description": "中英文客户标识"
+    },
+    {
+      "name": "WHETHER_GENERAL",
+      "type": "decimal(1,0)",
+      "description": "0运营商 1普通客户 2具有运营商特征但不是运营商的普通客户"
+    },
+    {
+      "name": "SP_ID",
+      "type": "decimal(12,0)",
+      "description": "默认运营商ID"
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NEXT_HOP_ADDRESS_V6A",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "NEXT_HOP_ADDRESS_V6B",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "SIGNING_ADDR",
+      "type": "decimal(2,0)",
+      "description": "签约地址"
+    },
+    {
+      "name": "IS_TRIAL",
+      "type": "decimal(2,0)",
+      "description": "是否试用客户"
+    },
+    {
+      "name": "PLATFORM_VERSION",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL",
+      "type": "decimal(10,0)",
+      "description": "客户级别"
+    }
+  ],
+  "column_count": 43,
+  "embedding_text": "【客户主表】存储平台上所有客户的基础信息，包括客户ID、客户名称、客户描述、联系方式等。查询客户数量、客户信息时必用此表。\n表名: t_bz_config_customer\n列信息: CUSTOMER_ID(CUSTOMER_ID), SP_PARENT_ID(客户ID), CUSTOMER_NAME(父ID), CUSTOMER_DESC(客户名称), CUSTOMER_NO(客户描述), CUSTOMER_ABB(客户名称缩写), COLLECTOR_ID(采集机ID), CUSTOMER_LOGO(客户LOGO), CUSTOMER_ADD(客户地址), CUSTOMER_PHONE(客户电话号码)",
+  "llm_description_v2": true
+}

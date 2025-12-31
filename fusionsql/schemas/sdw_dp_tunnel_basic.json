@@ -1,0 +1,162 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdw_dp_tunnel_basic"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备隧道基础信息，包含本端/对端设备ID、平台编号及用户编辑权限，用于管理网络链路配置和系统关联数据。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "link_stat_name",
+      "type": "varchar(255)",
+      "description": "link_stat_name。常见值: 正常"
+    },
+    {
+      "name": "link_layer_name",
+      "type": "varchar(255)",
+      "description": "link_layer_name。常见值: 省市链路"
+    },
+    {
+      "name": "a_dev_id",
+      "type": "varchar(255)",
+      "description": "本端设备编号"
+    },
+    {
+      "name": "a_port_id",
+      "type": "varchar(255)",
+      "description": "本端端口ID"
+    },
+    {
+      "name": "is_user_edit",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "link_id",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "sys_id",
+      "type": "varchar(255)",
+      "description": "平台编号"
+    },
+    {
+      "name": "sys_name",
+      "type": "varchar(255)",
+      "description": "平台名称。常见值: 缔安"
+    },
+    {
+      "name": "z_dev_id",
+      "type": "varchar(255)",
+      "description": "对端设备编号"
+    },
+    {
+      "name": "z_port_id",
+      "type": "varchar(255)",
+      "description": "对端端口ID"
+    },
+    {
+      "name": "link_name",
+      "type": "varchar(255)",
+      "description": "SDWAN隧道编号。常见值: LNR0BB819070001_LNR0BB819070001, SD68112A00178-001, SD68112A00455-002, SD1000020004-004, SD68231A00372-003, SD68231A00307-004, SD68231A00282-001, SD68231A00347-002, SD68231A00276-002, SD68231A00306-002"
+    },
+    {
+      "name": "link_alias",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "link_layer",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "link_stat",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "link_bandwidth",
+      "type": "varchar(255)",
+      "description": "隧道带宽（M）"
+    },
+    {
+      "name": "a_dev_name",
+      "type": "varchar(255)",
+      "description": "本端设备名称。常见值: 农工商总头备线-SD68231A00057, 农工商-SD68112A00205, 农工商-SD1000023004, 农工商-SD68231A00285, 农工商-SD68231A00360, 农工商-SD68231A00494, 农工商-SD68231A00359, 农工商-SD68231A00317, 农工商-SD68091A00016, 农工商-SD68231A00329"
+    },
+    {
+      "name": "a_devport_name",
+      "type": "varchar(255)",
+      "description": "本端端口名称。常见值: usb0/ppp0/wwan0, ens0, enp8s0f0, enp0s21u1i3, usb/ppp0/wwan0, wan, eth1, wan1, lan1, WAN0"
+    },
+    {
+      "name": "a_port_alias",
+      "type": "varchar(255)",
+      "description": "本端端口别称"
+    },
+    {
+      "name": "a_port_ip",
+      "type": "varchar(255)",
+      "description": "本端端口IP"
+    },
+    {
+      "name": "z_dev_name",
+      "type": "varchar(255)",
+      "description": "对端设备名称。常见值: 农工商总头主线-SD68231A00053, 农工商总头备线-SD68231A00057"
+    },
+    {
+      "name": "z_devport_name",
+      "type": "varchar(255)",
+      "description": "对端端口名称。常见值: enp2s0, enp3s0"
+    },
+    {
+      "name": "z_port_alias",
+      "type": "varchar(255)",
+      "description": "对端端口别称"
+    },
+    {
+      "name": "z_port_ip",
+      "type": "varchar(255)",
+      "description": "对端端口IP"
+    },
+    {
+      "name": "link_role",
+      "type": "varchar(255)",
+      "description": "隧道角色"
+    },
+    {
+      "name": "z_dev_role",
+      "type": "varchar(255)",
+      "description": "对端设备角色"
+    },
+    {
+      "name": "z_port_role",
+      "type": "varchar(255)",
+      "description": "对端端口角色"
+    },
+    {
+      "name": "z_tenant_role",
+      "type": "varchar(255)",
+      "description": "对端站点角色"
+    },
+    {
+      "name": "ex_link_id",
+      "type": "varchar(255)",
+      "description": "隧道ID"
+    },
+    {
+      "name": "res_type_id",
+      "type": "varchar(255)",
+      "description": null
+    }
+  ],
+  "column_count": 30,
+  "embedding_text": "存储设备隧道基础信息，包含本端/对端设备ID、平台编号及用户编辑权限，用于管理网络链路配置和系统关联数据。\n表名: sdw_dp_tunnel_basic\n列信息: a_dev_id(本端设备编号), a_port_id(本端端口ID), sys_id(平台编号), sys_name(平台名称), z_dev_id(对端设备编号), z_port_id(对端端口ID), link_name(SDWAN隧道编号), link_bandwidth(隧道带宽（M）), a_dev_name(本端设备名称), a_devport_name(本端端口名称), a_port_alias(本端端口别称), a_port_ip(本端端口IP), z_dev_name(对端设备名称), z_devport_name(对端端口名称), z_port_alias(对端端口别称)"
+}

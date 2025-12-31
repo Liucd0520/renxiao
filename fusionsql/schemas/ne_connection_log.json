@@ -1,0 +1,97 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_connection_log"
+  },
+  "table_comment": "连接记录表",
+  "llm_description": "连接记录表用于存储用户与客户设备的连接信息，包含协议类型、服务器地址、权限凭证等，用于追踪访问行为及审计连接记录。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "主键"
+    },
+    {
+      "name": "user_id",
+      "type": "decimal(11,0)",
+      "description": "用户ID"
+    },
+    {
+      "name": "custom_id",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "connect_id",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "protocol",
+      "type": "varchar(32)",
+      "description": " 协议"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "ne_address",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "guac_server",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "token_id",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "record_name",
+      "type": "varchar(255)",
+      "description": "record_name。常见值: 20230517_1_1134_123, 20240820_1155_1603d144-b4c5-4a7e-9063-01e79807954a, 20240820_1155_2b95ec38-2ade-4e3a-8452-25ba423fbcd1, 20240226_1_1155_dqjBPSsaUiae9zRV6DOsxkDlqSUDEPNz, 20240820_1155_f57f33f9-180c-49bd-a684-b9deb83a1cc3, 20240820_1155_285e7e45-41f1-49bf-aa9c-745e861f4de7, 20240820_1155_3292e5d2-4f32-486d-9ae6-3805168013ef, 20240820_1155_31b13b8c-2125-44e4-9c93-90c6ff506d8f, 20250903_1298_b790f96a-5b28-4784-9daa-2ab1363aeb88, 20230517_1_1155_124"
+    },
+    {
+      "name": "log_dir",
+      "type": "varchar(512)",
+      "description": "日志目录"
+    },
+    {
+      "name": "script",
+      "type": "mediumtext",
+      "description": "脚本"
+    },
+    {
+      "name": "start_time",
+      "type": "datetime",
+      "description": "开始时间"
+    },
+    {
+      "name": "end_time",
+      "type": "datetime",
+      "description": "结束时间"
+    },
+    {
+      "name": "status",
+      "type": "tinyint(4)",
+      "description": "状态"
+    },
+    {
+      "name": "err_msg",
+      "type": "longtext",
+      "description": "错误信息"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 17,
+  "embedding_text": "连接记录表用于存储用户与客户设备的连接信息，包含协议类型、服务器地址、权限凭证等，用于追踪访问行为及审计连接记录。\n表名: ne_connection_log\n表注释: 连接记录表\n列信息: id(主键), user_id(用户ID), protocol( 协议), log_dir(日志目录), script(脚本), start_time(开始时间), end_time(结束时间), status(状态), err_msg(错误信息), create_time(创建时间)\n其他列: custom_id, connect_id, ne_id, ne_address, guac_server"
+}

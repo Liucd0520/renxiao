@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_policy"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_config_policy表存储客户配置策略信息，包含策略名称、描述及时间范围，用于管理告警规则或权限设置。",
+  "columns": [
+    {
+      "name": "policy_id",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "policy_name",
+      "type": "varchar(255)",
+      "description": "名称。常见值: 7*24, 5*24, 7*24小时监控, 1, 省级机构, default, 5*8, test, test7*24, 8:30-17:50"
+    },
+    {
+      "name": "policy_desc",
+      "type": "varchar(512)",
+      "description": "描述"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "week_begin",
+      "type": "decimal(2,0)",
+      "description": "周开始"
+    },
+    {
+      "name": "week_end",
+      "type": "decimal(2,0)",
+      "description": "周结束"
+    },
+    {
+      "name": "hour_begin",
+      "type": "decimal(2,0)",
+      "description": "小时开始"
+    },
+    {
+      "name": "hour_end",
+      "type": "decimal(2,0)",
+      "description": "小时结束"
+    },
+    {
+      "name": "minute_begin",
+      "type": "decimal(2,0)",
+      "description": "分开始"
+    },
+    {
+      "name": "minute_end",
+      "type": "decimal(2,0)",
+      "description": "分结束"
+    },
+    {
+      "name": "work_policy",
+      "type": "varchar(3600)",
+      "description": null
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "t_bz_config_policy表存储客户配置策略信息，包含策略名称、描述及时间范围，用于管理告警规则或权限设置。\n表名: t_bz_config_policy\n列信息: policy_name(名称), policy_desc(描述), customer_id(客户ID), week_begin(周开始), week_end(周结束), hour_begin(小时开始), hour_end(小时结束), minute_begin(分开始), minute_end(分结束)\n其他列: policy_id, work_policy"
+}

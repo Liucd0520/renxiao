@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_config_circuit_level"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户/设备电路配置层级信息，用于订单处理中的权限分级与告警规则管理。",
+  "columns": [
+    {
+      "name": "LEVEL_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL_NAME",
+      "type": "varchar(255)",
+      "description": "LEVEL_NAME。常见值: BEI/CT-Khartoum/CTEUR NP006, 123, BEI/CT-Khartoum/CTEUR NP007, 胡浩816等级1, level 133, 胡浩816-2, AB, 93测试, 93等级, 2314124"
+    },
+    {
+      "name": "LEVEL_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储客户/设备电路配置层级信息，用于订单处理中的权限分级与告警规则管理。\n表名: t_dc_config_circuit_level\n其他列: LEVEL_ID, LEVEL_NAME, LEVEL_DESC, ID"
+}

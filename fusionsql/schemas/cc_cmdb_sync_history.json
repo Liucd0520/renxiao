@@ -1,0 +1,82 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "cc_cmdb_sync_history"
+  },
+  "table_comment": null,
+  "llm_description": "记录CMDB同步历史，包含客户、区域、地点等业务对象的同步状态及统计结果，用于监控同步任务执行情况和错误分析。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(21)",
+      "description": "ID"
+    },
+    {
+      "name": "sync_time",
+      "type": "datetime",
+      "description": "同步时间"
+    },
+    {
+      "name": "result",
+      "type": "tinyint(2)",
+      "description": "同步结果 0 失败 1 成功 2 部分成功"
+    },
+    {
+      "name": "error_msg",
+      "type": "varchar(2048)",
+      "description": "错误信息"
+    },
+    {
+      "name": "region_num",
+      "type": "bigint(255)",
+      "description": "区域总数"
+    },
+    {
+      "name": "region_success_num",
+      "type": "bigint(255)",
+      "description": "区域同步成功数"
+    },
+    {
+      "name": "location_num",
+      "type": "bigint(255)",
+      "description": "地点总数"
+    },
+    {
+      "name": "location_success_num",
+      "type": "bigint(255)",
+      "description": "地点同步成功数"
+    },
+    {
+      "name": "tenant_num",
+      "type": "bigint(255)",
+      "description": "客户总数"
+    },
+    {
+      "name": "tenant_success_num",
+      "type": "bigint(255)",
+      "description": "客户同步成功数"
+    },
+    {
+      "name": "resource_num",
+      "type": "bigint(255)",
+      "description": "设备总数"
+    },
+    {
+      "name": "resource_success_num",
+      "type": "bigint(255)",
+      "description": "设备同步成功数"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "created_by",
+      "type": "decimal(11,0)",
+      "description": "创建人"
+    }
+  ],
+  "column_count": 14,
+  "embedding_text": "记录CMDB同步历史，包含客户、区域、地点等业务对象的同步状态及统计结果，用于监控同步任务执行情况和错误分析。\n表名: cc_cmdb_sync_history\n列信息: id(ID), sync_time(同步时间), result(同步结果 0 失败 1 成功 2 部分成功), error_msg(错误信息), region_num(区域总数), region_success_num(区域同步成功数), location_num(地点总数), location_success_num(地点同步成功数), tenant_num(客户总数), tenant_success_num(客户同步成功数), resource_num(设备总数), resource_success_num(设备同步成功数), created_time(创建时间), created_by(创建人)"
+}

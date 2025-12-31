@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "collector_health"
+  },
+  "table_comment": null,
+  "llm_description": "采集机设备健康监控表，记录CPU、内存、线程及磁盘使用数据，用于客户资源告警和订单采集性能保障。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "ID"
+    },
+    {
+      "name": "collector_id",
+      "type": "decimal(10,0)",
+      "description": "采集机ID"
+    },
+    {
+      "name": "app_id",
+      "type": "varchar(50)",
+      "description": "采集机app_id"
+    },
+    {
+      "name": "total_cpu_usage",
+      "type": "decimal(10,2)",
+      "description": "总cpu利用率"
+    },
+    {
+      "name": "service_cpu_usage",
+      "type": "decimal(10,2)",
+      "description": "采集机cpu利用率"
+    },
+    {
+      "name": "total_mer_usage",
+      "type": "decimal(10,2)",
+      "description": "总内存利用率"
+    },
+    {
+      "name": "service_mer_usage",
+      "type": "decimal(10,2)",
+      "description": "采集机内存利用率"
+    },
+    {
+      "name": "active_thread_num",
+      "type": "decimal(10,0)",
+      "description": "活动线程数"
+    },
+    {
+      "name": "running_thread_num",
+      "type": "decimal(10,0)",
+      "description": "运行线程数"
+    },
+    {
+      "name": "disk_free",
+      "type": "decimal(10,2)",
+      "description": "磁盘剩余空间"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "采集机设备健康监控表，记录CPU、内存、线程及磁盘使用数据，用于客户资源告警和订单采集性能保障。\n表名: collector_health\n列信息: id(ID), collector_id(采集机ID), app_id(采集机app_id), total_cpu_usage(总cpu利用率), service_cpu_usage(采集机cpu利用率), total_mer_usage(总内存利用率), service_mer_usage(采集机内存利用率), active_thread_num(活动线程数), running_thread_num(运行线程数), disk_free(磁盘剩余空间), create_time(创建时间)"
+}

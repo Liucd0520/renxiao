@@ -1,0 +1,82 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_yun_notice"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_yun_notice表存储云平台公告信息，包含公告状态、类型（告警/保障/站内）、发布者及时间，用于管理用户权限下的公告发布流程。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "order_no",
+      "type": "varchar(50)",
+      "description": "单据单号"
+    },
+    {
+      "name": "sender_id",
+      "type": "int(11)",
+      "description": "发布者id"
+    },
+    {
+      "name": "status",
+      "type": "int(1)",
+      "description": "公告状态，1 保存，2 已提交，3 已审核，4 已发布"
+    },
+    {
+      "name": "notice_type",
+      "type": "int(1)",
+      "description": "公告类型，1 站内，2 告警，3 保障"
+    },
+    {
+      "name": "title",
+      "type": "varchar(50)",
+      "description": "公告主题"
+    },
+    {
+      "name": "content",
+      "type": "varchar(200)",
+      "description": "公告内容"
+    },
+    {
+      "name": "submit_datetime",
+      "type": "datetime",
+      "description": "提交时间"
+    },
+    {
+      "name": "update_id",
+      "type": "int(11)",
+      "description": "修改者id"
+    },
+    {
+      "name": "update_datetime",
+      "type": "datetime",
+      "description": "修改时间"
+    },
+    {
+      "name": "audit_id",
+      "type": "int(11)",
+      "description": "审核者id"
+    },
+    {
+      "name": "audit_datetime",
+      "type": "datetime",
+      "description": "审核时间"
+    },
+    {
+      "name": "release_datetime",
+      "type": "datetime",
+      "description": "预计发布时间"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 14,
+  "embedding_text": "t_bz_yun_notice表存储云平台公告信息，包含公告状态、类型（告警/保障/站内）、发布者及时间，用于管理用户权限下的公告发布流程。\n表名: t_bz_yun_notice\n列信息: id(id), order_no(单据单号), sender_id(发布者id), status(公告状态，1 保存，2 已提交，3 已审核，4 已发布), notice_type(公告类型，1 站内，2 告警，3 保障), title(公告主题), content(公告内容), submit_datetime(提交时间), update_id(修改者id), update_datetime(修改时间), audit_id(审核者id), audit_datetime(审核时间), release_datetime(预计发布时间), create_datetime(创建时间)"
+}

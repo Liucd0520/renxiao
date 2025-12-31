@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "cc_cmdb_sync_modify_record"
+  },
+  "table_comment": null,
+  "llm_description": "记录CMDB与外部系统同步时客户、设备、用户等数据的修改操作，包含操作类型、时间及变更字段，用于数据变更追踪与一致性校验。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(21)",
+      "description": "ID"
+    },
+    {
+      "name": "type",
+      "type": "varchar(16)",
+      "description": "PUSH/FETCH"
+    },
+    {
+      "name": "sync_time",
+      "type": "datetime",
+      "description": "同步时间"
+    },
+    {
+      "name": "data_type",
+      "type": "varchar(100)",
+      "description": "data_type。常见值: T_BZ_CONFIG_CI_NE_ROOT, t_bz_config_location, T_BZ_CONFIG_CUSTOMER, T_BZ_CONFIG_REGION, t_bz_config_contact, T_BZ_CONFIG_VENDOR,  T_BZ_CONFIG_CI_CIRCUIT, T_RL_USER_ROLE, T_BZ_CONFIG_CIRCUIT_PROVIDER, T_DC_CONFIG_DEVICE_TYPE"
+    },
+    {
+      "name": "op_type",
+      "type": "varchar(100)",
+      "description": "op_type。常见值: update, create, delete"
+    },
+    {
+      "name": "source_type",
+      "type": "varchar(100)",
+      "description": "source_type。常见值: OTHERS, CALL_BACK, IMPORT"
+    },
+    {
+      "name": "data",
+      "type": "mediumtext",
+      "description": "数据"
+    },
+    {
+      "name": "new_data",
+      "type": "mediumtext",
+      "description": "新数据"
+    },
+    {
+      "name": "fields",
+      "type": "text",
+      "description": "修改字段"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "记录CMDB与外部系统同步时客户、设备、用户等数据的修改操作，包含操作类型、时间及变更字段，用于数据变更追踪与一致性校验。\n表名: cc_cmdb_sync_modify_record\n列信息: id(ID), type(PUSH/FETCH), sync_time(同步时间), data(数据), new_data(新数据), fields(修改字段), created_time(创建时间)\n其他列: data_type, op_type, source_type"
+}

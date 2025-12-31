@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_all_net_useradio"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户网络线路的无线电参数及编号信息，用于设备权限配置与管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "customer_id",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "line_radio",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "line_num",
+      "type": "int(11)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储客户网络线路的无线电参数及编号信息，用于设备权限配置与管理。\n表名: t_gn_all_net_useradio\n列信息: id(id)\n其他列: customer_id, line_radio, line_num"
+}

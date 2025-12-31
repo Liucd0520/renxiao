@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_sys_sms_record"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户短信交互记录，包含发送状态、时间策略及内容，用于客户通知、设备告警、订单提醒等业务场景。",
+  "columns": [
+    {
+      "name": "SMS_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SMS_FROM",
+      "type": "varchar(25)",
+      "description": null
+    },
+    {
+      "name": "SMS_TO",
+      "type": "varchar(25)",
+      "description": null
+    },
+    {
+      "name": "CONTACT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SMS_STATUS",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "SMS_TIME_POLICY",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SMS_CONTENT",
+      "type": "text",
+      "description": null
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "存储客户短信交互记录，包含发送状态、时间策略及内容，用于客户通知、设备告警、订单提醒等业务场景。\n表名: t_bz_sys_sms_record\n其他列: SMS_ID, SMS_FROM, SMS_TO, CONTACT_ID, SMS_STATUS, SMS_TIME_POLICY, CREATE_TIME, CUSTOMER_ID, SMS_CONTENT"
+}

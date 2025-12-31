@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "topology_trace"
+  },
+  "table_comment": "拓扑-TRACE记录",
+  "llm_description": "拓扑-TRACE记录表存储设备跟踪信息，包含采集机ID、记录ID、设备ID、序号及时间，用于拓扑状态监控与历史追溯。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(31)",
+      "description": "ID"
+    },
+    {
+      "name": "collector_id",
+      "type": "bigint(31)",
+      "description": "采集机ID"
+    },
+    {
+      "name": "tid",
+      "type": "int(31)",
+      "description": "记录ID"
+    },
+    {
+      "name": "pid",
+      "type": "decimal(11,0)",
+      "description": "NE_ID"
+    },
+    {
+      "name": "sort",
+      "type": "tinyint(2)",
+      "description": "序号"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "新增时间"
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "拓扑-TRACE记录表存储设备跟踪信息，包含采集机ID、记录ID、设备ID、序号及时间，用于拓扑状态监控与历史追溯。\n表名: topology_trace\n表注释: 拓扑-TRACE记录\n列信息: id(ID), collector_id(采集机ID), tid(记录ID), pid(NE_ID), sort(序号), create_time(新增时间)"
+}

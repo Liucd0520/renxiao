@@ -1,0 +1,112 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_topo_link"
+  },
+  "table_comment": null,
+  "llm_description": "表t_gn_topo_link存储设备间拓扑连接关系，记录源设备、目标设备及流量信息，用于监控设备通信状态和生成告警。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "ID"
+    },
+    {
+      "name": "topo_id",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "src_device_id",
+      "type": "int(11)",
+      "description": "源设备id"
+    },
+    {
+      "name": "des_device_id",
+      "type": "int(11)",
+      "description": "目标设备id"
+    },
+    {
+      "name": "flow_device_id",
+      "type": "int(11)",
+      "description": "显示设备流量"
+    },
+    {
+      "name": "src_device_name",
+      "type": "varchar(255)",
+      "description": "src_device_name。常见值: H3CB, dev-206, dev-213, Huawei1, Ruijie-1, Cisco-1, H3C01"
+    },
+    {
+      "name": "src_device_type",
+      "type": "varchar(50)",
+      "description": "src_device_type。常见值: Router, Unix/Linux Server, Huawei 3com Device, Server"
+    },
+    {
+      "name": "src_device_ip",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "des_device_name",
+      "type": "varchar(255)",
+      "description": "des_device_name。常见值: HuaweiC, dev-206, H3CB, dev-207, H3C01, dev-213, Huawei2, Ruijie-2, Cisco-2, Huawei1"
+    },
+    {
+      "name": "des_device_type",
+      "type": "varchar(50)",
+      "description": "des_device_type。常见值: Router, Server, Unix/Linux Server, Huawei Device"
+    },
+    {
+      "name": "des_device_ip",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "topo_device_id",
+      "type": "varchar(255)",
+      "description": "攥取拓扑图设备id"
+    },
+    {
+      "name": "customer_id",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "src_device_port",
+      "type": "varchar(255)",
+      "description": "源端口ID"
+    },
+    {
+      "name": "des_device_port",
+      "type": "varchar(255)",
+      "description": "目标端口ID"
+    },
+    {
+      "name": "src_device_port_name",
+      "type": "varchar(255)",
+      "description": "src_device_port_name。常见值: ens32, GigabitEthernet0/0, Encrypt11/0, lo, WAN Miniport (SSTP), GigabitEthernet0/0.19, Cellular0/0, GigabitEthernet0/0/0, GigabitEthernet 1/2, GigabitEthernet0/2"
+    },
+    {
+      "name": "des_device_port_name",
+      "type": "varchar(255)",
+      "description": "des_device_port_name。常见值: Cellular0/0, ens32, GigabitEthernet0/0/2, GigabitEthernet0/0/0, GigabitEthernet0/0, GigabitEthernet0/1, lo, Cellular0/0/0, Aux0, ens192"
+    },
+    {
+      "name": "flow_device_name",
+      "type": "varchar(255)",
+      "description": "flow_device_name。常见值: HuaweiC, dev-206, dev-207, H3C01, H3CB, dev-213, Huawei2, Ruijie-2, Cisco-2, Huawei1"
+    },
+    {
+      "name": "flow_port_name",
+      "type": "varchar(255)",
+      "description": "flow_port_name。常见值: Cellular0/0, ens32, GigabitEthernet0/0/2, GigabitEthernet0/0/0, GigabitEthernet0/0, lo, GigabitEthernet0/1, Cellular0/0/0, ens192, WAN Miniport (IP)"
+    },
+    {
+      "name": "flow_port_id",
+      "type": "int(11)",
+      "description": "流量设备ID"
+    }
+  ],
+  "column_count": 20,
+  "embedding_text": "表t_gn_topo_link存储设备间拓扑连接关系，记录源设备、目标设备及流量信息，用于监控设备通信状态和生成告警。\n表名: t_gn_topo_link\n列信息: id(ID), src_device_id(源设备id), des_device_id(目标设备id), flow_device_id(显示设备流量), topo_device_id(攥取拓扑图设备id), src_device_port(源端口ID), des_device_port(目标端口ID), flow_port_id(流量设备ID)\n其他列: topo_id, src_device_name, src_device_type, src_device_ip, des_device_name, des_device_type, des_device_ip"
+}

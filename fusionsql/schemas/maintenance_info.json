@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "maintenance_info"
+  },
+  "table_comment": null,
+  "llm_description": "maintenance_info表存储设备维保信息，包含维保联系人、电话、时间范围及设备ID，用于客户设备维护管理与服务记录。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "contacts",
+      "type": "varchar(255)",
+      "description": "维保联系人"
+    },
+    {
+      "name": "phone",
+      "type": "varchar(255)",
+      "description": "维保电话"
+    },
+    {
+      "name": "start_time",
+      "type": "datetime",
+      "description": "维保开始时间"
+    },
+    {
+      "name": "end_time",
+      "type": "datetime",
+      "description": "维保结束时间"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(10,0)",
+      "description": "设备id"
+    },
+    {
+      "name": "ne_time",
+      "type": "datetime",
+      "description": "设备出厂日期"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "maintenance_info表存储设备维保信息，包含维保联系人、电话、时间范围及设备ID，用于客户设备维护管理与服务记录。\n表名: maintenance_info\n列信息: contacts(维保联系人), phone(维保电话), start_time(维保开始时间), end_time(维保结束时间), ne_id(设备id), ne_time(设备出厂日期)\n其他列: id, create_time"
+}

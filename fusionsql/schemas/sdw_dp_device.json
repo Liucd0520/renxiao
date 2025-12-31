@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdw_dp_device"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备基础信息及客户关联数据，用于设备管理、告警处理与权限控制。",
+  "columns": [
+    {
+      "name": "dev_id",
+      "type": "varchar(255)",
+      "description": "设备编号"
+    },
+    {
+      "name": "dev_name",
+      "type": "varchar(255)",
+      "description": "设备名称。常见值: 农工商-SD68091A00070, 农工商-SD68231A00364, 农工商-SD68231A00348, 农工商-SD1000023004, 农工商-SD68112A00081, 农工商-SD68231A00285, 农工商-SD1000008064, 农工商-SD68231A00502, 农工商-SD68112A00252, 农工商-SD68231A00119"
+    },
+    {
+      "name": "dev_ip",
+      "type": "varchar(255)",
+      "description": "设备IP"
+    },
+    {
+      "name": "dev_type",
+      "type": "varchar(255)",
+      "description": "设备类型。常见值: CPE"
+    },
+    {
+      "name": "dev_model",
+      "type": "varchar(255)",
+      "description": "设备型号。常见值: VXC1010-L, VXC1010, VXC310, VXC1010-B, VXC1010-A, A2, VXC3000, VXC310-B, VXC1010-C"
+    },
+    {
+      "name": "tenant_id",
+      "type": "varchar(255)",
+      "description": "站点"
+    },
+    {
+      "name": "customer_id",
+      "type": "varchar(255)",
+      "description": "客户ID"
+    },
+    {
+      "name": "platform",
+      "type": "varchar(255)",
+      "description": "平台编号"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "存储设备基础信息及客户关联数据，用于设备管理、告警处理与权限控制。\n表名: sdw_dp_device\n列信息: dev_id(设备编号), dev_name(设备名称), dev_ip(设备IP), dev_type(设备类型), dev_model(设备型号), tenant_id(站点), customer_id(客户ID), platform(平台编号)"
+}

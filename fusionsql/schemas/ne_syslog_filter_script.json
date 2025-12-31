@@ -1,0 +1,147 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "ne_syslog_filter_script"
+  },
+  "table_comment": null,
+  "llm_description": "ne_syslog_filter_script表存储日志过滤脚本配置，用于根据设备、用户、权限等条件筛选告警信息，支持与/或逻辑关联。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "script_name",
+      "type": "varchar(255)",
+      "description": "脚本名称。常见值: H3C, 测试0065, 测试211, 1, 名称, H3C01, Ruijie-1"
+    },
+    {
+      "name": "script_desc",
+      "type": "varchar(255)",
+      "description": "脚本描述"
+    },
+    {
+      "name": "is_activation",
+      "type": "decimal(1,0)",
+      "description": "是否激活，1 激活、2 不激活"
+    },
+    {
+      "name": "is_contains_one",
+      "type": "decimal(1,0)",
+      "description": "是否包含1，1 包含、2 不包含"
+    },
+    {
+      "name": "message_one",
+      "type": "varchar(255)",
+      "description": "日志信息1"
+    },
+    {
+      "name": "association_type",
+      "type": "decimal(1,0)",
+      "description": "关联类型，1 与、2 或"
+    },
+    {
+      "name": "is_contains_two",
+      "type": "decimal(1,0)",
+      "description": "是否包含2，1 包含、2 不包含"
+    },
+    {
+      "name": "message_two",
+      "type": "varchar(255)",
+      "description": "日志信息2"
+    },
+    {
+      "name": "severity",
+      "type": "varchar(255)",
+      "description": "日志等级。常见值: Emergency,Alert,Critical,Error,Warning,Notice,Informational,Debug, Emergency, Notice,Informational,Debug, Emergency,Alert"
+    },
+    {
+      "name": "facility",
+      "type": "varchar(255)",
+      "description": "日志级别"
+    },
+    {
+      "name": "start_time",
+      "type": "datetime",
+      "description": "开始时间"
+    },
+    {
+      "name": "end_time",
+      "type": "datetime",
+      "description": "结束时间"
+    },
+    {
+      "name": "is_contains_one_a",
+      "type": "decimal(1,0)",
+      "description": "是否包含1，1 包含、2 不包含 告警"
+    },
+    {
+      "name": "message_one_a",
+      "type": "varchar(255)",
+      "description": "日志信息1 告警"
+    },
+    {
+      "name": "association_type_a",
+      "type": "decimal(1,0)",
+      "description": "关联类型，1 与、2 或 告警"
+    },
+    {
+      "name": "is_contains_two_a",
+      "type": "decimal(1,0)",
+      "description": "是否包含2，1 包含、2 不包含 告警"
+    },
+    {
+      "name": "message_two_a",
+      "type": "varchar(255)",
+      "description": "日志信息2 告警"
+    },
+    {
+      "name": "severity_a",
+      "type": "varchar(255)",
+      "description": "日志等级 告警。常见值: Emergency,Alert,Critical,Error,Warning,Notice,Informational,Debug, Emergency, Emergency,Alert,Critical,Informational,Debug, Emergency,Alert, Emergency,Alert,Critical"
+    },
+    {
+      "name": "alarm_level_a",
+      "type": "varchar(255)",
+      "description": "告警级别 告警。常见值: Major,Major,Minor,Warning,Warning,Informational,Informational,Informational, Major, Critical,Major,Minor,Warning,Warning,Informational,Informational,Informational, Major,Major,Major, Major,Major,Minor,Informational,Informational, Major,Major,Major,Major,Major,Major,Major,Major, Warning, Informational,Major, Critical,Major,Major,Major,Major,Normal,Warning,Major"
+    },
+    {
+      "name": "facility_a",
+      "type": "varchar(255)",
+      "description": "日志级别 告警"
+    },
+    {
+      "name": "start_time_a",
+      "type": "datetime",
+      "description": "开始时间 告警"
+    },
+    {
+      "name": "end_time_a",
+      "type": "datetime",
+      "description": "结束时间 告警"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(10,0)",
+      "description": "设备ID"
+    },
+    {
+      "name": "customer_id",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "template_id",
+      "type": "decimal(10,0)",
+      "description": "模板ID"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 27,
+  "embedding_text": "ne_syslog_filter_script表存储日志过滤脚本配置，用于根据设备、用户、权限等条件筛选告警信息，支持与/或逻辑关联。\n表名: ne_syslog_filter_script\n列信息: id(ID), script_name(脚本名称), script_desc(脚本描述), is_activation(是否激活，1 激活、2 不激活), is_contains_one(是否包含1，1 包含、2 不包含), message_one(日志信息1), association_type(关联类型，1 与、2 或), is_contains_two(是否包含2，1 包含、2 不包含), message_two(日志信息2), severity(日志等级), facility(日志级别), start_time(开始时间), end_time(结束时间), is_contains_one_a(是否包含1，1 包含、2 不包含 告警), message_one_a(日志信息1 告警)"
+}

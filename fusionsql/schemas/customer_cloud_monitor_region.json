@@ -1,0 +1,57 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "customer_cloud_monitor_region"
+  },
+  "table_comment": "ECS区域资源表",
+  "llm_description": "customer_cloud_monitor_region表存储客户在阿里云/华为云的ECS区域资源配置信息，用于监控告警和设备管理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "ID"
+    },
+    {
+      "name": "supplier",
+      "type": "varchar(32)",
+      "description": "供应商 阿里云 yun_ali  华为云 yun_huawei"
+    },
+    {
+      "name": "product_type",
+      "type": "varchar(32)",
+      "description": "产品类型 默认ECS。常见值: ECS"
+    },
+    {
+      "name": "region",
+      "type": "varchar(255)",
+      "description": "区域"
+    },
+    {
+      "name": "region_id",
+      "type": "varchar(255)",
+      "description": "区域ID"
+    },
+    {
+      "name": "description",
+      "type": "mediumtext",
+      "description": "简介"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "deleted",
+      "type": "char(1)",
+      "description": "是否删除"
+    }
+  ],
+  "column_count": 9,
+  "embedding_text": "customer_cloud_monitor_region表存储客户在阿里云/华为云的ECS区域资源配置信息，用于监控告警和设备管理。\n表名: customer_cloud_monitor_region\n表注释: ECS区域资源表\n列信息: id(ID), supplier(供应商 阿里云 yun_ali  华为云 yun_huawei), product_type(产品类型 默认ECS), region(区域), region_id(区域ID), description(简介), create_time(创建时间), update_time(更新时间), deleted(是否删除)"
+}

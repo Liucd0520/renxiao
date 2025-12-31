@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_new_dev"
+  },
+  "table_comment": null,
+  "llm_description": "report_new_dev表存储客户设备告警的周月统计信息，包含告警类型、数量、状态及报告时间，用于监控和分析告警数据。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REP_WEEK",
+      "type": "decimal(8,0)",
+      "description": null
+    },
+    {
+      "name": "REP_MONTH",
+      "type": "decimal(6,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "TYPE",
+      "type": "varchar(32)",
+      "description": null
+    },
+    {
+      "name": "NUM",
+      "type": "decimal(8,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "REPORT_TIME",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "report_new_dev表存储客户设备告警的周月统计信息，包含告警类型、数量、状态及报告时间，用于监控和分析告警数据。\n表名: report_new_dev\n其他列: ID, REP_WEEK, REP_MONTH, CUSTOMER_ID, TYPE, NUM, STATUS, REPORT_TIME"
+}

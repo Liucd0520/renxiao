@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_problem_category"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_problem_category表存储告警问题分类及层级关系，用于客户问题归类与设备故障管理。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(50)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "t_dc_problem_category表存储告警问题分类及层级关系，用于客户问题归类与设备故障管理。\n表名: t_dc_problem_category\n其他列: ID, PARENT_ID, NAME"
+}

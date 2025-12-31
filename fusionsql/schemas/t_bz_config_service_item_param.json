@@ -1,0 +1,72 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_service_item_param"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_config_service_item_param表存储服务项配置参数信息，包含参数名称、值、类型及用户操作记录，用于设备管理与权限配置。",
+  "columns": [
+    {
+      "name": "PARAMS_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SERVICEITEM_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SERVICE_ITEM",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "NE_NAME",
+      "type": "varchar(512)",
+      "description": "NE_NAME。常见值: Latency1 TOP10, ne, 12"
+    },
+    {
+      "name": "NE_VALUE",
+      "type": "varchar(256)",
+      "description": null
+    },
+    {
+      "name": "P_TYPE",
+      "type": "varchar(50)",
+      "description": "P_TYPE。常见值: threshold, status, static"
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_USER_NAME",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "MODIFY_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "MODIFY_USER_NAME",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "LAST_MODIFY_TIME",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 12,
+  "embedding_text": "t_bz_config_service_item_param表存储服务项配置参数信息，包含参数名称、值、类型及用户操作记录，用于设备管理与权限配置。\n表名: t_bz_config_service_item_param\n其他列: PARAMS_ID, SERVICEITEM_ID, SERVICE_ITEM, NE_NAME, NE_VALUE, P_TYPE, CREATE_USER_ID, CREATE_USER_NAME, CREATE_TIME, MODIFY_USER_ID, MODIFY_USER_NAME, LAST_MODIFY_TIME"
+}

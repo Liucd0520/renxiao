@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "topology_trace_point"
+  },
+  "table_comment": "拓扑-TRACE记录",
+  "llm_description": "存储设备拓扑TRACE记录，包含SNMP采集状态、回包地址及延迟信息，用于监控设备通信质量并触发告警。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(31)",
+      "description": "ID"
+    },
+    {
+      "name": "collector_id",
+      "type": "bigint(31)",
+      "description": "采集机ID"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(11,0)",
+      "description": "NE_ID"
+    },
+    {
+      "name": "reply",
+      "type": "tinyint(1)",
+      "description": "是否有回包"
+    },
+    {
+      "name": "address",
+      "type": "varchar(255)",
+      "description": "回包地址"
+    },
+    {
+      "name": "delay",
+      "type": "varchar(32)",
+      "description": "延迟"
+    },
+    {
+      "name": "snmp_state",
+      "type": "tinyint(1)",
+      "description": "SNMP采集结果 0 未采集 1 采集成功 2 采集失败"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "新增时间"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "存储设备拓扑TRACE记录，包含SNMP采集状态、回包地址及延迟信息，用于监控设备通信质量并触发告警。\n表名: topology_trace_point\n表注释: 拓扑-TRACE记录\n列信息: id(ID), collector_id(采集机ID), ne_id(NE_ID), reply(是否有回包), address(回包地址), delay(延迟), snmp_state(SNMP采集结果 0 未采集 1 采集成功 2 采集失败), create_time(新增时间)"
+}

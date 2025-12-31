@@ -1,0 +1,2812 @@
+[
+  {
+    "question": "平台上一共有多少个客户？",
+    "sql": "SELECT COUNT(*) AS customer_count FROM t_bz_config_customer;",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有设备类型及其对应的类型ID。",
+    "sql": "SELECT type_id, type_name FROM ne_type;",
+    "tables": [
+      "ne_type"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下路由器这种类型的设备总共有多少台？",
+    "sql": "SELECT COUNT(*) AS router_count FROM t_bz_config_ci_ne_root WHERE ne_type = '路由器';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "客户ABC公司名下总共有多少台设备？",
+    "sql": "SELECT COUNT(*) AS device_count FROM t_bz_config_ci_ne_root WHERE customer_name = 'ABC公司';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有状态为down的设备名称。",
+    "sql": "SELECT ne_name FROM t_bz_config_ci_ne_root WHERE ne_state = 'down';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询一下设备BJ-SW-01的IP地址和当前状态。",
+    "sql": "SELECT ne_ip, ne_state FROM t_bz_config_ci_ne_root WHERE ne_name = 'BJ-SW-01';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计上周一共产生了多少条告警？",
+    "sql": "SELECT COUNT(*) AS alert_count FROM event_history WHERE event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有告警级别为严重的告警事件ID和发生时间。",
+    "sql": "SELECT event_id, event_time FROM event_history WHERE severity = '严重';",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询客户XYZ集团的所有联系人姓名和电话。",
+    "sql": "SELECT contact_name, phone FROM t_bz_config_contact WHERE customer_name = 'XYZ集团';",
+    "tables": [
+      "t_bz_config_contact"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下华东区域总共有多少个客户？",
+    "sql": "SELECT COUNT(DISTINCT customer_name) AS customer_count FROM t_bz_config_customer WHERE region = '华东';",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有采集机的名称和它们当前的激活状态。",
+    "sql": "SELECT collector_name, is_active FROM collector_v2;",
+    "tables": [
+      "collector_v2"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询设备SH-FW-01绑定了哪些服务包？",
+    "sql": "SELECT service_package_name FROM ne_service_package WHERE ne_id = (SELECT ne_id FROM t_bz_config_ci_ne_root WHERE ne_name = 'SH-FW-01');",
+    "tables": [
+      "ne_service_package",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下昨天产生的告警，按告警级别分别有多少条？",
+    "sql": "SELECT severity, COUNT(*) AS count FROM event_history WHERE event_time >= DATE_SUB(CURDATE(), INTERVAL 1 DAY) GROUP BY severity;",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有设备状态不是active的设备名称和它们所属的客户。",
+    "sql": "SELECT ne_name, customer_name FROM t_bz_config_ci_ne_root WHERE ne_state != 'active';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询一下交换机这种类型的设备，在平台上总共有多少种不同的型号？",
+    "sql": "SELECT COUNT(DISTINCT ne_model) AS model_variety FROM t_bz_config_ci_ne_root WHERE ne_type = '交换机';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出华北区域所有客户的名称。",
+    "sql": "SELECT customer_name FROM t_bz_config_customer WHERE region = '华北';",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下设备GZ-Router-02在过去一个月里触发了多少次告警？",
+    "sql": "SELECT COUNT(*) AS alert_count FROM event_history WHERE ne_name = 'GZ-Router-02' AND event_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询所有告警类型为连通性丢失的告警记录。",
+    "sql": "SELECT * FROM event_history WHERE event_type = '连通性丢失';",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有IP地址以10.10开头的设备。",
+    "sql": "SELECT ne_name, ne_ip FROM t_bz_config_ci_ne_root WHERE ne_ip LIKE '10.10.%';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下平台上一共有多少台防火墙设备？",
+    "sql": "SELECT COUNT(*) AS firewall_count FROM t_bz_config_ci_ne_root WHERE ne_type = '防火墙';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询客户DEF科技的设备，按照设备状态active， down， maintenance分别统计数量。",
+    "sql": "SELECT ne_state, COUNT(*) AS count FROM t_bz_config_ci_ne_root WHERE customer_name = 'DEF科技' GROUP BY ne_state;",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出最近一周内状态变为down的设备名称和变化时间。",
+    "sql": "SELECT ne_name, state_change_time FROM t_bz_config_ci_ne_root WHERE ne_state = 'down' AND state_change_time >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下所有采集机中，状态为健康的有多少台？",
+    "sql": "SELECT COUNT(*) AS healthy_collector_count FROM collector_v2 WHERE health_status = '健康';",
+    "tables": [
+      "collector_v2"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询一下核心交换机这个设备类型在ne_type表里的type_id是多少？",
+    "sql": "SELECT type_id FROM ne_type WHERE type_name = '核心交换机';",
+    "tables": [
+      "ne_type"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出告警表`event_history`中，所有不同的告警类型。",
+    "sql": "SELECT DISTINCT event_type FROM event_history;",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "平台上一共有多少个客户？",
+    "sql": "SELECT COUNT(*) AS customer_count FROM t_bz_config_customer;",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有状态为active的设备名称和IP地址。",
+    "sql": "SELECT name, ip FROM t_bz_config_ci_ne_root WHERE state = 'active';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下Router类型的设备总共有多少台？",
+    "sql": "SELECT COUNT(*) AS router_count FROM t_bz_config_ci_ne_root WHERE ne_type = 'Router';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "客户ABC公司名下有多少台设备？",
+    "sql": "SELECT COUNT(*) AS device_count FROM t_bz_config_ci_ne_root WHERE customer_name = 'ABC公司';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询一下设备BJ-Switch-01的详细信息，包括IP、状态和所属客户。",
+    "sql": "SELECT name, ip, state, customer_name FROM t_bz_config_ci_ne_root WHERE name = 'BJ-Switch-01';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有告警级别为Critical的告警事件。",
+    "sql": "SELECT * FROM event_history WHERE severity = 'Critical';",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计上周一共产生了多少条告警？",
+    "sql": "SELECT COUNT(*) AS alert_count FROM event_history WHERE event_time >= '2023-10-23' AND event_time < '2023-10-30';",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有采集机状态为online的采集机名称。",
+    "sql": "SELECT name FROM collector_v2 WHERE status = 'online';",
+    "tables": [
+      "collector_v2"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询一下设备类型表里有多少种不同的设备类型？",
+    "sql": "SELECT COUNT(DISTINCT type_name) AS type_count FROM ne_type;",
+    "tables": [
+      "ne_type"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "客户XYZ科技的联系人是谁？电话是多少？",
+    "sql": "SELECT contact_person, phone FROM t_bz_config_contact WHERE customer_name = 'XYZ科技';",
+    "tables": [
+      "t_bz_config_contact"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有IP地址以192.168.1.开头的设备。",
+    "sql": "SELECT name, ip FROM t_bz_config_ci_ne_root WHERE ip LIKE '192.168.1.%';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下昨天告警事件按级别的数量分布。",
+    "sql": "SELECT severity, COUNT(*) AS count FROM event_history WHERE DATE(event_time) = '2023-10-30' GROUP BY severity;",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询一下服务包Gold_Package关联了多少台设备？",
+    "sql": "SELECT COUNT(*) AS device_count FROM ne_service_package WHERE package_name = 'Gold_Package';",
+    "tables": [
+      "ne_service_package"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有区域为华北的客户名称。",
+    "sql": "SELECT customer_name FROM t_bz_config_customer WHERE region = '华北';",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "设备SH-Firewall-01最近一次告警是什么时候？告警内容是什么？",
+    "sql": "SELECT event_time, event_detail FROM event_history WHERE ne_name = 'SH-Firewall-01' ORDER BY event_time DESC LIMIT 1;",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下平台上状态为down的设备有多少台？",
+    "sql": "SELECT COUNT(*) AS down_count FROM t_bz_config_ci_ne_root WHERE state = 'down';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有告警类型为CPU_OVERLOAD的事件ID和发生时间。",
+    "sql": "SELECT event_id, event_time FROM event_history WHERE event_type = 'CPU_OVERLOAD';",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询一下采集机Collector-Node-02的健康状态是什么？",
+    "sql": "SELECT health_status FROM collector_v2 WHERE name = 'Collector-Node-02';",
+    "tables": [
+      "collector_v2"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下每个客户拥有的设备数量，按数量从多到少排序。",
+    "sql": "SELECT customer_name, COUNT(*) AS device_count FROM t_bz_config_ci_ne_root GROUP BY customer_name ORDER BY device_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有在2023年10月份创建的设备。",
+    "sql": "SELECT name, create_time FROM t_bz_config_ci_ne_root WHERE create_time >= '2023-10-01' AND create_time < '2023-11-01';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询一下告警事件表里有多少条已经恢复的告警？",
+    "sql": "SELECT COUNT(*) AS recovered_count FROM event_history WHERE recovery_time IS NOT NULL;",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出设备类型表中，父类型ID为1的所有子类型名称。",
+    "sql": "SELECT type_name FROM ne_type WHERE parent_id = 1;",
+    "tables": [
+      "ne_type"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下近24小时内产生的告警总数。",
+    "sql": "SELECT COUNT(*) AS alert_count FROM event_history WHERE event_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR);",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有客户名称中包含银行二字的客户。",
+    "sql": "SELECT customer_name FROM t_bz_config_customer WHERE customer_name LIKE '%银行%';",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询一下区域表里有哪些区域？",
+    "sql": "SELECT DISTINCT region_name FROM t_bz_config_region;",
+    "tables": [
+      "t_bz_config_region"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "平台上一共有多少个客户？",
+    "sql": "SELECT COUNT(*) AS customer_count FROM t_bz_config_customer;",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有设备类型及其对应的数量。",
+    "sql": "SELECT type_name, COUNT(*) AS count FROM ne_type GROUP BY type_name;",
+    "tables": [
+      "ne_type"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下ABC公司这个客户名下有多少台设备。",
+    "sql": "SELECT COUNT(*) AS device_count FROM t_bz_config_ci_ne_root WHERE customer_name = 'ABC公司';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询设备ciscoA的IP地址和当前状态。",
+    "sql": "SELECT ip_address, state FROM t_bz_config_ci_ne_root WHERE name = 'ciscoA';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有状态为down的设备名称。",
+    "sql": "SELECT name FROM t_bz_config_ci_ne_root WHERE state = 'down';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计上周产生的所有告警数量。",
+    "sql": "SELECT COUNT(*) AS alarm_count FROM event_history WHERE event_time >= '2024-05-20 00:00:00' AND event_time <= '2024-05-26 23:59:59';",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询XYZ集团这个客户的所有联系人姓名和电话。",
+    "sql": "SELECT contact_name, phone FROM t_bz_config_contact WHERE customer_name = 'XYZ集团';",
+    "tables": [
+      "t_bz_config_contact"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有采集机的名称和它们的激活状态。",
+    "sql": "SELECT name, active_status FROM collector_v2;",
+    "tables": [
+      "collector_v2"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计平台上一共有多少个区域。",
+    "sql": "SELECT COUNT(*) AS region_count FROM t_bz_config_region;",
+    "tables": [
+      "t_bz_config_region"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询Router类型的设备一共有多少台。",
+    "sql": "SELECT COUNT(*) AS router_count FROM t_bz_config_ci_ne_root WHERE ne_type = 'Router';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出华东区域下的所有设备名称。",
+    "sql": "SELECT name FROM t_bz_config_ci_ne_root WHERE region = '华东';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计Server这个服务包被绑定到了多少台设备上。",
+    "sql": "SELECT COUNT(DISTINCT ne_id) AS binding_count FROM ne_service_package WHERE service_package_name = 'Server';",
+    "tables": [
+      "ne_service_package"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询昨天产生的所有告警的级别，并统计每个级别有多少条。",
+    "sql": "SELECT severity, COUNT(*) AS count FROM event_history WHERE DATE(event_time) = '2024-05-27' GROUP BY severity;",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有客户名称，按创建时间倒序排列。",
+    "sql": "SELECT customer_name FROM t_bz_config_customer ORDER BY create_time DESC;",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询设备firewall-01属于哪个客户。",
+    "sql": "SELECT customer_name FROM t_bz_config_ci_ne_root WHERE name = 'firewall-01';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计近一个月告警级别为严重的告警数量。",
+    "sql": "SELECT COUNT(*) AS critical_count FROM event_history WHERE severity = '严重' AND event_time >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有状态为active的采集机ID和名称。",
+    "sql": "SELECT id, name FROM collector_v2 WHERE active_status = 'active';",
+    "tables": [
+      "collector_v2"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询Switch类型的设备，列出前10台的设备名和IP。",
+    "sql": "SELECT name, ip_address FROM t_bz_config_ci_ne_root WHERE ne_type = 'Switch' LIMIT 10;",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计北京这个区域里，设备状态为up的数量。",
+    "sql": "SELECT COUNT(*) AS up_count FROM t_bz_config_ci_ne_root WHERE region = '北京' AND state = 'up';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出李四这个联系人负责的所有客户名称。",
+    "sql": "SELECT DISTINCT customer_name FROM t_bz_config_contact WHERE contact_name = '李四';",
+    "tables": [
+      "t_bz_config_contact"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询今天新产生的告警事件，按事件类型分组统计数量。",
+    "sql": "SELECT event_type, COUNT(*) AS count FROM event_history WHERE DATE(event_time) = CURDATE() GROUP BY event_type;",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有设备类型名称。",
+    "sql": "SELECT DISTINCT type_name FROM ne_type;",
+    "tables": [
+      "ne_type"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计Backup这个服务包绑定的设备数量。",
+    "sql": "SELECT COUNT(*) AS device_count FROM ne_service_package WHERE service_package_name = 'Backup';",
+    "tables": [
+      "ne_service_package"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "查询客户DEF科技的注册时间。",
+    "sql": "SELECT create_time FROM t_bz_config_customer WHERE customer_name = 'DEF科技';",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出最近一周内状态变为down的设备名称和变化时间。",
+    "sql": "SELECT name, state_update_time FROM t_bz_config_ci_ne_root WHERE state = 'down' AND state_update_time >= DATE_SUB(CURDATE(), INTERVAL 7 DAY);",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "平台上一共有多少个客户？",
+    "sql": "SELECT COUNT(*) AS total_customers FROM t_bz_config_customer;",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有设备类型及其对应的数量。",
+    "sql": "SELECT type_name, COUNT(*) AS count FROM ne_type GROUP BY type_name;",
+    "tables": [
+      "ne_type"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "客户ABC公司名下有多少台设备？",
+    "sql": "SELECT COUNT(*) AS device_count FROM t_bz_config_ci_ne_root WHERE customer_name = 'ABC公司';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下所有设备中，状态为active的有多少台？",
+    "sql": "SELECT COUNT(*) AS active_count FROM t_bz_config_ci_ne_root WHERE state = 'active';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有区域名称。",
+    "sql": "SELECT DISTINCT region_name FROM t_bz_config_region;",
+    "tables": [
+      "t_bz_config_region"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "上周一共产生了多少条告警？",
+    "sql": "SELECT COUNT(*) AS alarm_count FROM event_history WHERE event_time >= DATE_SUB(CURDATE(), INTERVAL 7 DAY);",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "设备Router-01的IP地址是什么？",
+    "sql": "SELECT ip_address FROM t_bz_config_ci_ne_root WHERE ne_name = 'Router-01';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有状态为down的设备名称。",
+    "sql": "SELECT ne_name FROM t_bz_config_ci_ne_root WHERE state = 'down';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "上个月告警级别为critical的告警有多少条？",
+    "sql": "SELECT COUNT(*) AS critical_count FROM event_history WHERE severity = 'critical' AND event_time >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "客户XYZ集团的联系人是谁？",
+    "sql": "SELECT contact_name FROM t_bz_config_contact WHERE customer_name = 'XYZ集团';",
+    "tables": [
+      "t_bz_config_contact"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有采集机的名称和IP地址。",
+    "sql": "SELECT collector_name, ip_address FROM collector_v2;",
+    "tables": [
+      "collector_v2"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下平台上有多少种不同的服务包？",
+    "sql": "SELECT COUNT(DISTINCT package_name) AS package_type_count FROM ne_service_package;",
+    "tables": [
+      "ne_service_package"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "最近一周内，告警类型为link_down的事件发生了多少次？",
+    "sql": "SELECT COUNT(*) AS link_down_count FROM event_history WHERE event_type = 'link_down' AND event_time >= DATE_SUB(CURDATE(), INTERVAL 7 DAY);",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "设备Switch-05属于哪个客户？",
+    "sql": "SELECT customer_name FROM t_bz_config_ci_ne_root WHERE ne_name = 'Switch-05';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有告警级别，并统计每个级别有多少条历史记录。",
+    "sql": "SELECT severity, COUNT(*) AS count FROM event_history GROUP BY severity;",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "客户测试客户A的设备都分布在哪些区域？",
+    "sql": "SELECT DISTINCT region FROM t_bz_config_ci_ne_root WHERE customer_name = '测试客户A';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "昨天产生的所有告警，按设备名称列出来。",
+    "sql": "SELECT DISTINCT ne_name FROM event_history WHERE DATE(event_time) = DATE_SUB(CURDATE(), INTERVAL 1 DAY);",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下所有设备中，型号为Cisco-3850的有多少台？",
+    "sql": "SELECT COUNT(*) AS model_count FROM t_bz_config_ci_ne_root WHERE model = 'Cisco-3850';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有激活状态为true的采集机。",
+    "sql": "SELECT collector_name FROM collector_v2 WHERE is_active = 1;",
+    "tables": [
+      "collector_v2"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "最近一个月，告警来源是collector_v2的事件有多少条？",
+    "sql": "SELECT COUNT(*) AS collector_alarm_count FROM event_history WHERE source = 'collector_v2' AND event_time >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "设备Firewall-01绑定了哪些服务包？",
+    "sql": "SELECT package_name FROM ne_service_package WHERE ne_id = (SELECT id FROM t_bz_config_ci_ne_root WHERE ne_name = 'Firewall-01');",
+    "tables": [
+      "ne_service_package",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "列出所有客户名称。",
+    "sql": "SELECT DISTINCT customer_name FROM t_bz_config_customer;",
+    "tables": [
+      "t_bz_config_customer"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "今天有没有产生新的告警？有多少条？",
+    "sql": "SELECT COUNT(*) AS today_alarm_count FROM event_history WHERE DATE(event_time) = CURDATE();",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "设备AP-10的序列号是多少？",
+    "sql": "SELECT serial_number FROM t_bz_config_ci_ne_root WHERE ne_name = 'AP-10';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "统计一下华东区域有多少台设备？",
+    "sql": "SELECT COUNT(*) AS device_count FROM t_bz_config_ci_ne_root WHERE region = '华东';",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "客户ABC公司最近一个月内，哪些设备产生的告警次数最多？请给出设备名称和告警次数的排名。",
+    "sql": "SELECT n.ne_name AS device_name, COUNT(eh.id) AS alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.id JOIN t_bz_config_customer c ON n.customer_id = c.id WHERE c.customer_name = 'ABC公司' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY n.id, n.ne_name ORDER BY alarm_count DESC",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计上个月每个设备类型下，处于active状态的设备各有多少台？",
+    "sql": "SELECT nt.type_name, COUNT(n.id) AS active_count FROM t_bz_config_ci_ne_root n JOIN ne_type nt ON n.ne_type_id = nt.id WHERE n.ne_state = 'active' AND n.update_time >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH) GROUP BY nt.id, nt.type_name",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询客户XYZ集团名下，所有设备按照所在区域分组，列出每个区域的设备数量、设备名称和IP地址。",
+    "sql": "SELECT r.region_name, COUNT(n.id) AS device_count, GROUP_CONCAT(CONCAT(n.ne_name, ' (', n.ip_address, ')') SEPARATOR '; ') AS device_list FROM t_bz_config_ci_ne_root n JOIN t_bz_config_region r ON n.region_id = r.id JOIN t_bz_config_customer c ON n.customer_id = c.id WHERE c.customer_name = 'XYZ集团' GROUP BY r.id, r.region_name",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_region",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出最近一周内，告警级别为Critical且持续时间超过2小时的告警事件，需要包含设备名称、客户名称和告警开始时间。",
+    "sql": "SELECT n.ne_name, c.customer_name, eh.start_time, TIMESTAMPDIFF(HOUR, eh.start_time, eh.end_time) AS duration_hours FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.id JOIN t_bz_config_customer c ON n.customer_id = c.id WHERE eh.severity = 'Critical' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 WEEK) AND eh.end_time IS NOT NULL AND TIMESTAMPDIFF(HOUR, eh.start_time, eh.end_time) > 2",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计平台上有多少个客户，以及每个客户名下的设备总数。",
+    "sql": "SELECT c.customer_name, COUNT(n.id) AS active_device_count FROM t_bz_config_customer c LEFT JOIN t_bz_config_ci_ne_root n ON c.id = n.customer_id AND n.ne_state = 'active' GROUP BY c.id, c.customer_name ORDER BY active_device_count DESC",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询设备BJ-Router-01在过去一年里，每个月产生的告警数量分别是多少？按月份和告警级别统计。",
+    "sql": "SELECT DATE_FORMAT(eh.start_time, '%Y-%m') AS month, eh.severity, COUNT(eh.id) AS alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.id WHERE n.ne_name = 'BJ-Router-01' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(eh.start_time, '%Y-%m'), eh.severity ORDER BY month DESC, eh.severity",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出所有绑定服务包白金套餐的设备，列出设备名称、所属客户以及设备类型。",
+    "sql": "SELECT n.ne_name, c.customer_name, nt.type_name FROM t_bz_config_ci_ne_root n JOIN ne_service_package nsp ON n.id = nsp.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.id JOIN ne_type nt ON n.ne_type_id = nt.id WHERE nsp.service_package_name = '白金套餐'",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_service_package",
+      "t_bz_config_customer",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计上周每天产生的告警总数，并按告警级别进行细分。",
+    "sql": "SELECT DATE(eh.start_time) AS alarm_date, eh.severity, COUNT(eh.id) AS count FROM event_history eh WHERE YEARWEEK(eh.start_time, 1) = YEARWEEK(DATE_SUB(NOW(), INTERVAL 1 WEEK), 1) GROUP BY DATE(eh.start_time), eh.severity ORDER BY alarm_date, FIELD(eh.severity, 'Critical', 'Major', 'Minor', 'Warning')",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询客户DEF科技的设备中，状态为down超过24小时仍未恢复的设备清单，包含设备名称和状态开始时间。",
+    "sql": "SELECT n.ne_name, n.ne_state, n.state_update_time FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.id WHERE c.customer_name = 'DEF科技' AND n.ne_state = 'down' AND n.state_update_time <= DATE_SUB(NOW(), INTERVAL 24 HOUR)",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出最近一个月内，由采集机collector-beijing-01负责采集的所有设备产生的告警，按设备名称和告警类型分组统计次数。",
+    "sql": "SELECT n.ne_name, eh.event_type, COUNT(eh.id) AS count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.id JOIN collector_v2 cv ON n.collector_id = cv.id WHERE cv.collector_name = 'collector-beijing-01' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY n.ne_name, eh.event_type ORDER BY count DESC",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "collector_v2"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计每个区域下，不同设备类型的设备数量各有多少？",
+    "sql": "SELECT r.region_name, nt.type_name, COUNT(n.id) AS device_count FROM t_bz_config_ci_ne_root n JOIN t_bz_config_region r ON n.region_id = r.id JOIN ne_type nt ON n.ne_type_id = nt.id GROUP BY r.region_name, nt.type_name ORDER BY r.region_name, device_count DESC",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_region",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询某客户GHI银行在过去一个季度里，告警数量排名前3的设备是哪些？给出设备名称和告警总数。",
+    "sql": "SELECT n.ne_name, COUNT(eh.id) AS total_alarms FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.id JOIN t_bz_config_customer c ON n.customer_id = c.id WHERE c.customer_name = 'GHI银行' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH) GROUP BY n.id, n.ne_name ORDER BY total_alarms DESC LIMIT 3",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出所有设备状态不是active也不是unknown的设备，并列出其对应的客户名称和最后状态更新时间。",
+    "sql": "SELECT n.ne_name, n.ne_state, c.customer_name, n.state_update_time FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.id WHERE n.ne_state NOT IN ('active', 'unknown') ORDER BY n.state_update_time DESC",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计最近30天内，每个客户产生的Major级别以上的告警数量，并按数量降序排列。",
+    "sql": "SELECT c.customer_name, COUNT(eh.id) AS major_critical_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.id JOIN t_bz_config_customer c ON n.customer_id = c.id WHERE eh.severity IN ('Critical', 'Major') AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY c.id, c.customer_name ORDER BY major_critical_count DESC",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询设备SZ-Switch-05的历史告警记录，按告警类型统计次数，并只显示次数大于5的告警类型。",
+    "sql": "SELECT eh.event_type, COUNT(eh.id) AS count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.id WHERE n.ne_name = 'SZ-Switch-05' GROUP BY eh.event_type HAVING count > 5 ORDER BY count DESC",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出平台上所有客户及其主要联系人的姓名和电话，同时统计该客户下在线的设备数量。",
+    "sql": "SELECT c.customer_name, ct.contact_name, ct.phone, COUNT(CASE WHEN n.ne_state = 'active' THEN 1 END) AS online_devices FROM t_bz_config_customer c LEFT JOIN t_bz_config_contact ct ON c.id = ct.customer_id AND ct.is_primary = 1 LEFT JOIN t_bz_config_ci_ne_root n ON c.id = n.customer_id GROUP BY c.id, c.customer_name, ct.contact_name, ct.phone",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_contact",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计上周工作日早上9点到下午6点之间，全平台产生的告警总数，并按小时维度展示分布。",
+    "sql": "SELECT HOUR(eh.start_time) AS hour_of_day, COUNT(eh.id) AS alarm_count FROM event_history eh WHERE YEARWEEK(eh.start_time, 1) = YEARWEEK(DATE_SUB(NOW(), INTERVAL 1 WEEK), 1) AND DAYOFWEEK(eh.start_time) BETWEEN 2 AND 6 AND HOUR(eh.start_time) BETWEEN 9 AND 17 GROUP BY HOUR(eh.start_time) ORDER BY hour_of_day",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询客户JKL制造在华东区域的所有设备，列出设备名称、IP、设备类型以及其绑定的服务包名称。",
+    "sql": "SELECT n.ne_name, n.ip_address, nt.type_name, nsp.service_package_name FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.id JOIN t_bz_config_region r ON n.region_id = r.id JOIN ne_type nt ON n.ne_type_id = nt.id LEFT JOIN ne_service_package nsp ON n.id = nsp.ne_id WHERE c.customer_name = 'JKL制造' AND r.region_name LIKE '%华东%'",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region",
+      "ne_type",
+      "ne_service_package"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出最近3个月内从未产生过任何告警的设备，列出其设备名称、所属客户和设备类型。",
+    "sql": "SELECT n.ne_name, c.customer_name, nt.type_name FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.id JOIN ne_type nt ON n.ne_type_id = nt.id WHERE n.id NOT IN (SELECT DISTINCT ne_id FROM event_history WHERE start_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH))",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "ne_type",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计每个采集机当前负责监控的设备数量，以及这些设备中处于down状态的数量。",
+    "sql": "SELECT cv.collector_name, COUNT(n.id) AS total_devices, COUNT(CASE WHEN n.ne_state = 'down' THEN 1 END) AS down_devices FROM collector_v2 cv LEFT JOIN t_bz_config_ci_ne_root n ON cv.id = n.collector_id GROUP BY cv.id, cv.collector_name ORDER BY total_devices DESC",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询某设备HK-Firewall-02上个月的所有告警详情，包括告警时间、告警类型、告警级别和告警描述。",
+    "sql": "SELECT eh.start_time, eh.event_type, eh.severity, eh.description FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.id WHERE n.ne_name = 'HK-Firewall-02' AND eh.start_time >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH) AND eh.start_time < DATE_FORMAT(NOW(), '%Y-%m-01') ORDER BY eh.start_time DESC",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出所有客户，并显示他们最近一次产生告警的时间。",
+    "sql": "SELECT c.customer_name, MAX(eh.start_time) AS last_alarm_time FROM t_bz_config_customer c LEFT JOIN t_bz_config_ci_ne_root n ON c.id = n.customer_id LEFT JOIN event_history eh ON n.id = eh.ne_id GROUP BY c.id, c.customer_name ORDER BY last_alarm_time DESC",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计最近一周内，不同设备类型产生的Critical级别告警的数量。",
+    "sql": "SELECT nt.type_name, COUNT(eh.id) AS critical_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.id JOIN ne_type nt ON n.ne_type_id = nt.id WHERE eh.severity = 'Critical' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY nt.id, nt.type_name ORDER BY critical_count DESC",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询客户MNO证券名下，设备状态的分布情况，即每种状态各有多少台设备。",
+    "sql": "SELECT n.ne_state, COUNT(n.id) AS state_count FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.id WHERE c.customer_name = 'MNO证券' GROUP BY n.ne_state ORDER BY state_count DESC",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出告警历史中，那些告警已经恢复但恢复耗时超过4小时的事件，列出设备名、客户名和告警持续时间。",
+    "sql": "SELECT n.ne_name, c.customer_name, eh.start_time, eh.end_time, TIMESTAMPDIFF(HOUR, eh.start_time, eh.end_time) AS duration_hours FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.id JOIN t_bz_config_customer c ON n.customer_id = c.id WHERE eh.end_time IS NOT NULL AND TIMESTAMPDIFF(HOUR, eh.start_time, eh.end_time) > 4 ORDER BY duration_hours DESC",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "客户ABC公司最近一个月内，有哪些设备产生了告警？请列出设备名称、IP地址和告警总数。",
+    "sql": "SELECT n.ne_name AS device_name, n.ip_address, COUNT(eh.event_id) AS alarm_count\nFROM t_bz_config_ci_ne_root n\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nJOIN event_history eh ON n.ne_id = eh.ne_id\nWHERE c.customer_name = 'ABC公司'\n  AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)\nGROUP BY n.ne_id, n.ne_name, n.ip_address\nHAVING alarm_count > 0\nORDER BY alarm_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计上个月每个设备类型产生的告警数量，并按告警数量降序排列。",
+    "sql": "SELECT nt.type_name AS device_type, COUNT(eh.event_id) AS alarm_count\nFROM ne_type nt\nJOIN t_bz_config_ci_ne_root n ON nt.type_id = n.ne_type_id\nJOIN event_history eh ON n.ne_id = eh.ne_id\nWHERE eh.event_time >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND eh.event_time < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY nt.type_id, nt.type_name\nORDER BY alarm_count DESC;",
+    "tables": [
+      "ne_type",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询华东区域所有状态为Down的设备，并关联显示其所属客户名称和联系人电话。",
+    "sql": "SELECT n.ne_name AS device_name, n.ip_address, c.customer_name, ct.phone AS contact_phone\nFROM t_bz_config_ci_ne_root n\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nJOIN t_bz_config_region r ON n.region_id = r.region_id\nLEFT JOIN t_bz_config_contact ct ON c.customer_id = ct.customer_id AND ct.is_primary = 1\nWHERE r.region_name = '华东'\n  AND n.ne_state = 'Down';",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region",
+      "t_bz_config_contact"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出近一周告警级别为严重且尚未恢复的告警详情，包括设备名、客户名和告警发生时间。",
+    "sql": "SELECT n.ne_name AS device_name, c.customer_name, eh.event_time, eh.event_summary\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nWHERE eh.event_level = '严重'\n  AND eh.recovery_time IS NULL\n  AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nORDER BY eh.event_time DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计每个客户下，设备状态为Active和Down的数量分别是多少。",
+    "sql": "SELECT c.customer_name,\n       SUM(CASE WHEN n.ne_state = 'Active' THEN 1 ELSE 0 END) AS active_count,\n       SUM(CASE WHEN n.ne_state = 'Down' THEN 1 ELSE 0 END) AS down_count\nFROM t_bz_config_customer c\nLEFT JOIN t_bz_config_ci_ne_root n ON c.customer_id = n.customer_id\nGROUP BY c.customer_id, c.customer_name\nORDER BY c.customer_name;",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询设备BJ-Router-01最近一年内，每个月产生的告警数量趋势。",
+    "sql": "SELECT DATE_FORMAT(event_time, '%Y-%m') AS month,\n       COUNT(event_id) AS alarm_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\nWHERE n.ne_name = 'BJ-Router-01'\n  AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR)\nGROUP BY DATE_FORMAT(event_time, '%Y-%m')\nORDER BY month;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出平台上告警持续时间最长的前10条记录，显示设备名、客户名和持续时间。",
+    "sql": "SELECT n.ne_name AS device_name, c.customer_name,\n       TIMESTAMPDIFF(HOUR, eh.event_time, eh.recovery_time) AS duration_hours,\n       eh.event_summary\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nWHERE eh.recovery_time IS NOT NULL\nORDER BY duration_hours DESC\nLIMIT 10;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计上周每天产生的不同级别告警的数量。",
+    "sql": "SELECT DATE(event_time) AS day,\n       event_level,\n       COUNT(event_id) AS alarm_count\nFROM event_history\nWHERE YEARWEEK(event_time, 1) = YEARWEEK(DATE_SUB(NOW(), INTERVAL 1 WEEK), 1)\nGROUP BY DATE(event_time), event_level\nORDER BY day, FIELD(event_level, '严重', '重要', '警告');",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询客户XYZ科技下，所有绑定了金牌服务套餐的设备清单及其IP地址。",
+    "sql": "SELECT n.ne_name AS device_name, n.ip_address\nFROM t_bz_config_ci_ne_root n\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nJOIN ne_service_package nsp ON n.ne_id = nsp.ne_id\nWHERE c.customer_name = 'XYZ科技'\n  AND nsp.service_package_name = '金牌服务';",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "ne_service_package"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出最近3个月内没有任何告警产生的设备，并显示其所属客户和最后上线时间。",
+    "sql": "SELECT n.ne_name AS device_name, c.customer_name, n.last_online_time\nFROM t_bz_config_ci_ne_root n\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nLEFT JOIN event_history eh ON n.ne_id = eh.ne_id AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH)\nWHERE eh.event_id IS NULL\n  AND n.ne_state = 'Active';",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计每个区域内，设备状态为Down的数量，并关联显示负责该区域的采集机名称。",
+    "sql": "SELECT r.region_name, COUNT(n.ne_id) AS down_device_count, cv2.collector_name\nFROM t_bz_config_region r\nLEFT JOIN t_bz_config_ci_ne_root n ON r.region_id = n.region_id AND n.ne_state = 'Down'\nLEFT JOIN collector_v2 cv2 ON r.collector_id = cv2.collector_id\nGROUP BY r.region_id, r.region_name, cv2.collector_name\nORDER BY down_device_count DESC;",
+    "tables": [
+      "t_bz_config_region",
+      "t_bz_config_ci_ne_root",
+      "collector_v2"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询某客户DEF集团在最近一个季度内，各级别告警的占比情况。",
+    "sql": "SELECT eh.event_level,\n       COUNT(eh.event_id) AS count,\n       ROUND(COUNT(eh.event_id) * 100.0 / SUM(COUNT(eh.event_id)) OVER (), 2) AS percentage\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nWHERE c.customer_name = 'DEF集团'\n  AND eh.event_time >= '2024-04-01'\n  AND eh.event_time < '2024-07-01'\nGROUP BY eh.event_level\nORDER BY FIELD(eh.event_level, '严重', '重要', '警告');",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出近一个月内告警次数最多的前5台设备，并显示其所属客户和告警次数。",
+    "sql": "SELECT n.ne_name AS device_name, c.customer_name, COUNT(eh.event_id) AS alarm_count\nFROM t_bz_config_ci_ne_root n\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nJOIN event_history eh ON n.ne_id = eh.ne_id\nWHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)\nGROUP BY n.ne_id, n.ne_name, c.customer_name\nORDER BY alarm_count DESC\nLIMIT 5;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询设备SH-Switch-05的所有历史告警，并按告警类型进行分类统计。",
+    "sql": "SELECT eh.event_type, COUNT(eh.event_id) AS alarm_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\nWHERE n.ne_name = 'SH-Switch-05'\nGROUP BY eh.event_type\nORDER BY alarm_count DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计平台上所有路由器类型的设备，按照其软件版本进行分组，并统计每个版本的设备数量。",
+    "sql": "SELECT n.software_version, COUNT(n.ne_id) AS device_count\nFROM t_bz_config_ci_ne_root n\nJOIN ne_type nt ON n.ne_type_id = nt.type_id\nWHERE nt.type_name LIKE '%路由器%'\nGROUP BY n.software_version\nHAVING n.software_version IS NOT NULL\nORDER BY device_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出客户GHI银行下，所有IP地址以10.20.开头的设备，并显示其当前状态和最后采集时间。",
+    "sql": "SELECT n.ne_name AS device_name, n.ip_address, n.ne_state, n.last_collect_time\nFROM t_bz_config_ci_ne_root n\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nWHERE c.customer_name = 'GHI银行'\n  AND n.ip_address LIKE '10.20.%';",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询最近一周内，由采集机Collector-Beijing-01负责采集的设备所产生的告警总数。",
+    "sql": "SELECT COUNT(eh.event_id) AS total_alarms\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\nJOIN collector_v2 cv2 ON n.collector_id = cv2.collector_id\nWHERE cv2.collector_name = 'Collector-Beijing-01'\n  AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "collector_v2"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计每个设备类型的平均告警响应时间，只统计已确认的告警。",
+    "sql": "SELECT nt.type_name AS device_type,\n       AVG(TIMESTAMPDIFF(MINUTE, eh.event_time, eh.ack_time)) AS avg_response_minutes\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\nJOIN ne_type nt ON n.ne_type_id = nt.type_id\nWHERE eh.ack_time IS NOT NULL\nGROUP BY nt.type_id, nt.type_name\nHAVING avg_response_minutes IS NOT NULL\nORDER BY avg_response_minutes DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出上个月工作日上午9点到下午6点之间，产生过告警的所有设备及其客户。",
+    "sql": "SELECT DISTINCT n.ne_name AS device_name, c.customer_name\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nWHERE eh.event_time >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND eh.event_time < DATE_FORMAT(NOW(), '%Y-%m-01')\n  AND DAYOFWEEK(eh.event_time) BETWEEN 2 AND 6\n  AND TIME(eh.event_time) BETWEEN '09:00:00' AND '18:00:00';",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询状态为Down超过48小时的设备，并关联其服务包信息，看是否在服务期内。",
+    "sql": "SELECT n.ne_name AS device_name, n.ip_address, c.customer_name,\n       nsp.service_package_name, nsp.start_time, nsp.end_time\nFROM t_bz_config_ci_ne_root n\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nLEFT JOIN ne_service_package nsp ON n.ne_id = nsp.ne_id\nWHERE n.ne_state = 'Down'\n  AND n.last_online_time <= DATE_SUB(NOW(), INTERVAL 48 HOUR);",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "ne_service_package"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计最近30天内，每个客户产生的性能类告警的数量排名。",
+    "sql": "SELECT c.customer_name, COUNT(eh.event_id) AS performance_alarm_count\nFROM t_bz_config_customer c\nLEFT JOIN t_bz_config_ci_ne_root n ON c.customer_id = n.customer_id\nLEFT JOIN event_history eh ON n.ne_id = eh.ne_id AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 30 DAY) AND eh.event_type LIKE '%performance%'\nGROUP BY c.customer_id, c.customer_name\nORDER BY performance_alarm_count DESC\nLIMIT 15;",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出所有采集机状态不是健康的采集机，并显示其负责的区域和关联的客户数量。",
+    "sql": "SELECT cv2.collector_name, r.region_name, COUNT(DISTINCT c.customer_id) AS customer_count\nFROM collector_v2 cv2\nLEFT JOIN t_bz_config_region r ON cv2.collector_id = r.collector_id\nLEFT JOIN t_bz_config_customer c ON r.region_id = c.region_id\nWHERE cv2.health_status != '健康'\nGROUP BY cv2.collector_id, cv2.collector_name, r.region_name;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_region",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询设备GZ-Firewall-02最近一年的告警历史，并标记出哪些告警是在其绑定的高级防护服务包生效期间发生的。",
+    "sql": "SELECT eh.event_time, eh.event_level, eh.event_summary,\n       CASE WHEN eh.event_time BETWEEN nsp.start_time AND nsp.end_time THEN '是' ELSE '否' END AS during_service\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\nLEFT JOIN ne_service_package nsp ON n.ne_id = nsp.ne_id AND nsp.service_package_name = '高级防护'\nWHERE n.ne_name = 'GZ-Firewall-02'\n  AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR)\nORDER BY eh.event_time DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_service_package"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计平台上不同厂商的设备数量分布。",
+    "sql": "SELECT\n  CASE\n    WHEN n.ne_name LIKE '%Cisco%' OR n.model LIKE '%Cisco%' THEN 'Cisco'\n    WHEN n.ne_name LIKE '%Huawei%' OR n.model LIKE '%Huawei%' THEN 'Huawei'\n    WHEN n.ne_name LIKE '%H3C%' OR n.model LIKE '%H3C%' THEN 'H3C'\n    ELSE 'Other'\n  END AS vendor,\n  COUNT(n.ne_id) AS device_count\nFROM t_bz_config_ci_ne_root n\nGROUP BY vendor\nORDER BY device_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出最近3天内产生过告警，且其所属客户的主要联系人电话为空的设备清单。",
+    "sql": "SELECT DISTINCT n.ne_name AS device_name, n.ip_address, c.customer_name\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\nJOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nLEFT JOIN t_bz_config_contact ct ON c.customer_id = ct.customer_id AND ct.is_primary = 1\nWHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 3 DAY)\n  AND ct.phone IS NULL;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_contact"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "客户ABC公司最近一个月内，哪些设备产生的告警次数最多？请给出设备名称和告警次数的排名。",
+    "sql": "SELECT n.ne_name AS device_name, COUNT(eh.event_id) AS alarm_count FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id JOIN event_history eh ON n.ne_id = eh.ne_id WHERE c.customer_name = 'ABC公司' AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY n.ne_id, n.ne_name ORDER BY alarm_count DESC",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计上个月全平台所有设备，按设备类型分组，看看每种类型的设备各有多少台处于激活状态。",
+    "sql": "SELECT nt.type_name, COUNT(DISTINCT n.ne_id) AS active_device_count FROM t_bz_config_ci_ne_root n JOIN ne_type nt ON n.ne_type_id = nt.type_id WHERE n.activation_state = 'active' AND n.update_time >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH) GROUP BY nt.type_id, nt.type_name",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询客户XYZ科技名下，所有状态为down超过一周的设备清单，需要包含设备名称、IP地址和状态变更时间。",
+    "sql": "SELECT n.ne_name, n.ip_address, n.state_change_time FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE c.customer_name = 'XYZ科技' AND n.device_state = 'down' AND n.state_change_time <= DATE_SUB(NOW(), INTERVAL 7 DAY)",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "最近一周，华北区域产生的所有告警，按告警级别分别统计一下数量。",
+    "sql": "SELECT eh.severity, COUNT(*) AS alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_region r ON n.region_id = r.region_id WHERE r.region_name = '华北' AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY eh.severity",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_region"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出平台上所有客户，以及他们名下分别有多少台设备，按设备数量从多到少排序。",
+    "sql": "SELECT c.customer_name, COUNT(n.ne_id) AS device_count FROM t_bz_config_customer c LEFT JOIN t_bz_config_ci_ne_root n ON c.customer_id = n.customer_id GROUP BY c.customer_id, c.customer_name ORDER BY device_count DESC",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "设备Router-Core-01在过去一年里，每个月各发生了多少次告警？按月统计出来。",
+    "sql": "SELECT DATE_FORMAT(eh.event_time, '%Y-%m') AS month, COUNT(*) AS alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id WHERE n.ne_name = 'Router-Core-01' AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(eh.event_time, '%Y-%m') ORDER BY month",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询一下，哪些设备关联的服务包是白金套餐，并且设备状态是active的？列出设备名和客户名。",
+    "sql": "SELECT n.ne_name, c.customer_name FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id JOIN ne_service_package sp ON n.ne_id = sp.ne_id WHERE sp.package_name = '白金套餐' AND n.activation_state = 'active'",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "ne_service_package"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计最近一个月，每个采集机负责监控的设备数量，并列出采集机名称和设备数量。",
+    "sql": "SELECT cv.collector_name, COUNT(DISTINCT n.ne_id) AS monitored_device_count FROM collector_v2 cv JOIN t_bz_config_ci_ne_root n ON cv.collector_id = n.collector_id WHERE n.update_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY cv.collector_id, cv.collector_name",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "客户DEF集团的设备，按照不同的区域分组，统计每个区域有多少台设备，并列出设备详情。",
+    "sql": "SELECT r.region_name, n.ne_name, n.ip_address, n.device_state FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id JOIN t_bz_config_region r ON n.region_id = r.region_id WHERE c.customer_name = 'DEF集团' ORDER BY r.region_name, n.ne_name",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出上周所有级别为严重的告警，并且这些告警还没有被确认，列出告警ID、设备名和发生时间。",
+    "sql": "SELECT eh.event_id, n.ne_name, eh.event_time FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id WHERE eh.severity = '严重' AND eh.acknowledged = 0 AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询设备Switch-Access-05的历史告警，按告警类型进行分类统计。",
+    "sql": "SELECT eh.event_type, COUNT(*) AS count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id WHERE n.ne_name = 'Switch-Access-05' GROUP BY eh.event_type ORDER BY count DESC",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出所有客户及其主要联系人的姓名和电话，需要关联客户表和联系人表。",
+    "sql": "SELECT c.customer_name, ct.contact_name, ct.phone FROM t_bz_config_customer c JOIN t_bz_config_contact ct ON c.customer_id = ct.customer_id WHERE ct.is_primary = 1",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_contact"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "最近三个月，平台上新增了多少台设备？按设备类型统计新增数量。",
+    "sql": "SELECT nt.type_name, COUNT(*) AS new_device_count FROM t_bz_config_ci_ne_root n JOIN ne_type nt ON n.ne_type_id = nt.type_id WHERE n.create_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH) GROUP BY nt.type_id, nt.type_name",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出告警持续时间最长的TOP 10条记录，需要显示告警ID、设备名、告警开始时间和持续时间。",
+    "sql": "SELECT eh.event_id, n.ne_name, eh.event_time AS start_time, TIMESTAMPDIFF(MINUTE, eh.event_time, COALESCE(eh.recovery_time, NOW())) AS duration_minutes FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id WHERE eh.recovery_time IS NOT NULL OR eh.event_time IS NOT NULL ORDER BY duration_minutes DESC LIMIT 10",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计某客户GHI银行在工作日上午9点到下午6点之间产生的告警总数。",
+    "sql": "SELECT COUNT(*) AS work_hour_alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE c.customer_name = 'GHI银行' AND DAYOFWEEK(eh.event_time) BETWEEN 2 AND 6 AND TIME(eh.event_time) BETWEEN '09:00:00' AND '18:00:00'",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询所有状态为active，但是所属采集机状态为offline的设备，列出设备名和采集机名。",
+    "sql": "SELECT n.ne_name, cv.collector_name FROM t_bz_config_ci_ne_root n JOIN collector_v2 cv ON n.collector_id = cv.collector_id WHERE n.activation_state = 'active' AND cv.health_state = 'offline'",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "collector_v2"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "按区域统计，最近一周内，每个区域产生的重要级别以上的告警数量。",
+    "sql": "SELECT r.region_name, COUNT(eh.event_id) AS high_severity_alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_region r ON n.region_id = r.region_id WHERE eh.severity IN ('严重', '重要') AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY r.region_id, r.region_name",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_region"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出客户JKL教育名下所有设备的不同状态的数量统计。",
+    "sql": "SELECT n.device_state, COUNT(*) AS state_count FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE c.customer_name = 'JKL教育' GROUP BY n.device_state",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查找近一个月告警次数超过10次的所有设备，并给出具体告警次数。",
+    "sql": "SELECT n.ne_name, COUNT(eh.event_id) AS alarm_count FROM t_bz_config_ci_ne_root n JOIN event_history eh ON n.ne_id = eh.ne_id WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY n.ne_id, n.ne_name HAVING alarm_count > 10 ORDER BY alarm_count DESC",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询某个设备Firewall-Edge-02的详细配置信息，以及它所属的客户和区域信息。",
+    "sql": "SELECT n.*, c.customer_name, r.region_name FROM t_bz_config_ci_ne_root n LEFT JOIN t_bz_config_customer c ON n.customer_id = c.customer_id LEFT JOIN t_bz_config_region r ON n.region_id = r.region_id WHERE n.ne_name = 'Firewall-Edge-02'",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计上周每天产生的告警总数，按日期排序。",
+    "sql": "SELECT DATE(eh.event_time) AS alarm_date, COUNT(*) AS daily_alarm_count FROM event_history eh WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY DATE(eh.event_time) ORDER BY alarm_date",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出那些设备状态为down，但是最近24小时内没有产生任何新告警的设备，可能是静默故障。",
+    "sql": "SELECT n.ne_name, n.ip_address, n.state_change_time FROM t_bz_config_ci_ne_root n WHERE n.device_state = 'down' AND n.ne_id NOT IN ( SELECT DISTINCT eh.ne_id FROM event_history eh WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 1 DAY) )",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询客户MNO医疗的告警处理情况，列出超过48小时还未被确认的告警清单。",
+    "sql": "SELECT eh.event_id, n.ne_name, eh.event_time, eh.event_type FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE c.customer_name = 'MNO医疗' AND eh.acknowledged = 0 AND eh.event_time <= DATE_SUB(NOW(), INTERVAL 48 HOUR)",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "按设备类型统计，看看哪种类型的设备平均告警数量最高。",
+    "sql": "SELECT nt.type_name, COUNT(eh.event_id) / COUNT(DISTINCT n.ne_id) AS avg_alarm_per_device FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN ne_type nt ON n.ne_type_id = nt.type_id WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH) GROUP BY nt.type_id, nt.type_name ORDER BY avg_alarm_per_device DESC",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出所有采集机及其负责的客户数量，按客户数量排序。",
+    "sql": "SELECT cv.collector_name, COUNT(DISTINCT c.customer_id) AS customer_count FROM collector_v2 cv JOIN t_bz_config_ci_ne_root n ON cv.collector_id = n.collector_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id GROUP BY cv.collector_id, cv.collector_name ORDER BY customer_count DESC",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "客户ABC公司最近一个月内，有哪些设备产生了告警？请列出设备名称、IP地址和告警总次数。",
+    "sql": "SELECT n.device_name, n.ip_address, COUNT(eh.event_id) as alarm_count FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id JOIN event_history eh ON n.ne_id = eh.ne_id WHERE c.customer_name = 'ABC公司' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY n.device_name, n.ip_address HAVING alarm_count > 0 ORDER BY alarm_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计上个月全平台告警级别为严重和紧急的告警数量，并按设备类型进行分组。",
+    "sql": "SELECT nt.type_name, COUNT(eh.event_id) as severe_alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN ne_type nt ON n.ne_type_id = nt.ne_type_id WHERE eh.severity IN ('严重', '紧急') AND eh.start_time >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH) AND eh.start_time < DATE_FORMAT(NOW(), '%Y-%m-01') GROUP BY nt.type_name ORDER BY severe_alarm_count DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出所有状态为down超过7天但还未恢复的设备，并关联其所属客户名称和区域信息。",
+    "sql": "SELECT n.device_name, n.ip_address, c.customer_name, r.region_name, n.state, n.last_state_change FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id JOIN t_bz_config_region r ON n.region_id = r.region_id WHERE n.state = 'down' AND n.last_state_change <= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询客户XYZ科技名下，每个设备类型各有多少台设备，并列出设备类型名称和数量。",
+    "sql": "SELECT nt.type_name, COUNT(n.ne_id) as device_count FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id JOIN ne_type nt ON n.ne_type_id = nt.ne_type_id WHERE c.customer_name = 'XYZ科技' GROUP BY nt.type_name ORDER BY device_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "近一周内，哪些采集机负责的设备产生的告警总数最多？给出采集机名称和告警数量的TOP 5排名。",
+    "sql": "SELECT cv2.collector_name, COUNT(eh.event_id) as alarm_count FROM collector_v2 cv2 JOIN t_bz_config_ci_ne_root n ON cv2.collector_id = n.collector_id JOIN event_history eh ON n.ne_id = eh.ne_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY cv2.collector_name ORDER BY alarm_count DESC LIMIT 5;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计最近一年每个季度，客户DEF集团产生的各级别告警的数量。",
+    "sql": "SELECT QUARTER(eh.start_time) as quarter, eh.severity, COUNT(eh.event_id) as alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE c.customer_name = 'DEF集团' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY QUARTER(eh.start_time), eh.severity ORDER BY quarter, FIELD(eh.severity, '紧急', '严重', '主要', '次要', '警告');",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询设备router-core-01在过去三个月内，绑定过哪些服务包？列出服务包名称和绑定时间。",
+    "sql": "SELECT nsp.package_name, nsp.create_time FROM ne_service_package nsp JOIN t_bz_config_ci_ne_root n ON nsp.ne_id = n.ne_id WHERE n.device_name = 'router-core-01' AND nsp.create_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH) ORDER BY nsp.create_time DESC;",
+    "tables": [
+      "ne_service_package",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出最近一个月内，告警平均持续时间最长的TOP 10设备，并显示设备名和客户名。",
+    "sql": "SELECT n.device_name, c.customer_name, AVG(TIMESTAMPDIFF(SECOND, eh.start_time, eh.end_time)) as avg_duration_seconds FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND eh.end_time IS NOT NULL GROUP BY n.device_name, c.customer_name ORDER BY avg_duration_seconds DESC LIMIT 10;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计华北区域所有客户在上一周的工作日产生的告警总数。",
+    "sql": "SELECT c.customer_name, COUNT(eh.event_id) as weekday_alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id JOIN t_bz_config_region r ON n.region_id = r.region_id WHERE r.region_code = 'north_china' AND eh.start_time >= DATE_SUB(DATE(NOW()), INTERVAL WEEKDAY(DATE(NOW())) + 7 DAY) AND eh.start_time < DATE_SUB(DATE(NOW()), INTERVAL WEEKDAY(DATE(NOW())) DAY) AND DAYOFWEEK(eh.start_time) BETWEEN 2 AND 6 GROUP BY c.customer_name ORDER BY weekday_alarm_count DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出平台上所有防火墙类型的设备，并显示其当前状态、管理IP和所属客户的服务级别联系人姓名。",
+    "sql": "SELECT n.device_name, n.ip_address, n.state, c.customer_name, ct.contact_name, ct.phone FROM t_bz_config_ci_ne_root n JOIN ne_type nt ON n.ne_type_id = nt.ne_type_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id LEFT JOIN t_bz_config_contact ct ON c.customer_id = ct.customer_id AND ct.is_primary = 1 WHERE nt.type_name LIKE '%防火墙%';",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "t_bz_config_customer",
+      "t_bz_config_contact"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询客户GHI银行名下，哪些设备在最近一周内没有产生任何告警？列出这些安静的设备名称和IP。",
+    "sql": "SELECT n.device_name, n.ip_address FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE c.customer_name = 'GHI银行' AND n.ne_id NOT IN ( SELECT DISTINCT eh.ne_id FROM event_history eh WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) );",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计每个区域内，设备状态为active的设备数量，并列出区域名称和活跃设备数，按数量降序排列。",
+    "sql": "SELECT r.region_name, COUNT(n.ne_id) as active_device_count FROM t_bz_config_ci_ne_root n JOIN t_bz_config_region r ON n.region_id = r.region_id WHERE n.state = 'active' GROUP BY r.region_name ORDER BY active_device_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_region"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出上个月告警次数环比增长最多的前3个客户。显示客户名、上个月告警数、上上个月告警数和增长量。",
+    "sql": "WITH current_month AS ( SELECT c.customer_id, c.customer_name, COUNT(eh.event_id) as current_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE eh.start_time >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH) AND eh.start_time < DATE_FORMAT(NOW(), '%Y-%m-01') GROUP BY c.customer_id, c.customer_name ), last_month AS ( SELECT c.customer_id, COUNT(eh.event_id) as last_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE eh.start_time >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 2 MONTH) AND eh.start_time < DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH) GROUP BY c.customer_id ) SELECT cm.customer_name, cm.current_count, COALESCE(lm.last_count, 0) as last_count, (cm.current_count - COALESCE(lm.last_count, 0)) as increase FROM current_month cm LEFT JOIN last_month lm ON cm.customer_id = lm.customer_id ORDER BY increase DESC LIMIT 3;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询设备switch-access-05的历史告警，按告警类型统计最近90天内的发生次数，并列出类型名称。",
+    "sql": "SELECT et.type_name, COUNT(eh.event_id) as count FROM event_history eh JOIN event_type et ON eh.event_type_id = et.event_type_id JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id WHERE n.device_name = 'switch-access-05' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 90 DAY) GROUP BY et.type_name ORDER BY count DESC;",
+    "tables": [
+      "event_history",
+      "event_type",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出所有采集机状态不是active的采集机，以及它们所负责的、当前状态为down的设备清单。",
+    "sql": "SELECT cv2.collector_name, cv2.status as collector_status, n.device_name, n.ip_address, n.state as device_state FROM collector_v2 cv2 JOIN t_bz_config_ci_ne_root n ON cv2.collector_id = n.collector_id WHERE cv2.status != 'active' AND n.state = 'down';",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计最近半年内，每个客户产生的网络连通性相关告警的数量，并列出客户名和告警数。",
+    "sql": "SELECT c.customer_name, COUNT(eh.event_id) as connectivity_alarm_count FROM event_history eh JOIN event_type et ON eh.event_type_id = et.event_type_id JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE (et.type_name LIKE '%连通性%' OR et.type_name LIKE '%ping%') AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 6 MONTH) GROUP BY c.customer_name ORDER BY connectivity_alarm_count DESC;",
+    "tables": [
+      "event_history",
+      "event_type",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询某客户JKL制造的设备，按照不同场所分别统计设备数量，并列出场所名和设备清单。",
+    "sql": "SELECT n.location, COUNT(n.ne_id) as device_count, GROUP_CONCAT(CONCAT(n.device_name, ' (', n.ip_address, ')') SEPARATOR ', ') as device_list FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE c.customer_name = 'JKL制造' GROUP BY n.location ORDER BY device_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出最近一周内，同时被多个客户设备告警所引用的、出现频率最高的前5个告警根因描述。",
+    "sql": "SELECT eh.root_cause, COUNT(DISTINCT n.customer_id) as affected_customer_count, COUNT(eh.event_id) as alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) AND eh.root_cause IS NOT NULL AND eh.root_cause != '' GROUP BY eh.root_cause HAVING affected_customer_count > 1 ORDER BY alarm_count DESC LIMIT 5;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计每个设备类型下，状态为active的设备所占的百分比。列出设备类型名称、总设备数、活跃设备数和活跃率。",
+    "sql": "SELECT nt.type_name, COUNT(n.ne_id) as total_devices, SUM(CASE WHEN n.state = 'active' THEN 1 ELSE 0 END) as active_devices, ROUND(SUM(CASE WHEN n.state = 'active' THEN 1 ELSE 0 END) * 100.0 / COUNT(n.ne_id), 2) as active_rate FROM t_bz_config_ci_ne_root n JOIN ne_type nt ON n.ne_type_id = nt.ne_type_id GROUP BY nt.type_name HAVING total_devices > 0 ORDER BY active_rate DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询客户MNO零售在过去24小时内新产生的、且尚未被确认的告警详情，包括设备名、告警级别、告警标题和产生时间。",
+    "sql": "SELECT n.device_name, eh.severity, eh.event_title, eh.start_time FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE c.customer_name = 'MNO零售' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 DAY) AND eh.ack_time IS NULL ORDER BY eh.start_time DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "列出所有核心路由器设备，并显示其最近一次绑定的服务包名称，以及该服务包下的服务项数量。",
+    "sql": "SELECT n.device_name, nsp.package_name, COUNT(nsi.item_id) as service_item_count FROM t_bz_config_ci_ne_root n JOIN ne_type nt ON n.ne_type_id = nt.ne_type_id LEFT JOIN (SELECT ne_id, package_name, create_time FROM ne_service_package WHERE (ne_id, create_time) IN (SELECT ne_id, MAX(create_time) FROM ne_service_package GROUP BY ne_id)) nsp ON n.ne_id = nsp.ne_id LEFT JOIN ne_service_item nsi ON nsp.package_id = nsi.package_id WHERE nt.type_name LIKE '%核心路由器%' GROUP BY n.device_name, nsp.package_name ORDER BY n.device_name;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "ne_service_package",
+      "ne_service_item"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计上周每天产生的告警总数，并按天和告警级别绘制数据所需的统计结果。",
+    "sql": "SELECT DATE(eh.start_time) as alarm_date, eh.severity, COUNT(eh.event_id) as daily_count FROM event_history eh WHERE YEARWEEK(eh.start_time, 1) = YEARWEEK(DATE_SUB(NOW(), INTERVAL 1 WEEK), 1) AND eh.severity IN ('严重', '主要', '次要') GROUP BY DATE(eh.start_time), eh.severity ORDER BY alarm_date, FIELD(eh.severity, '严重', '主要', '次要');",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "找出客户PQR物流名下，哪些设备的CPU利用率相关监控项在最近一个月内曾触发过告警？列出设备名和触发次数。",
+    "sql": "SELECT n.device_name, COUNT(eh.event_id) as cpu_alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE c.customer_name = 'PQR物流' AND eh.event_title LIKE '%CPU%' AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY n.device_name HAVING cpu_alarm_count > 0 ORDER BY cpu_alarm_count DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "查询平台中，设备型号为Cisco-ASR1002的所有设备，并关联其所属客户、区域以及当前负责的采集机信息。",
+    "sql": "SELECT n.device_name, n.model, c.customer_name, r.region_name, cv2.collector_name FROM t_bz_config_ci_ne_root n JOIN t_bz_config_customer c ON n.customer_id = c.customer_id JOIN t_bz_config_region r ON n.region_id = r.region_id LEFT JOIN collector_v2 cv2 ON n.collector_id = cv2.collector_id WHERE n.model = 'Cisco-ASR1002';",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region",
+      "collector_v2"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "统计最近一个完整月份，每个客户告警的首次响应平均时间，只统计已确认的告警。",
+    "sql": "SELECT c.customer_name, AVG(TIMESTAMPDIFF(MINUTE, eh.start_time, eh.ack_time)) as avg_first_response_minutes FROM event_history eh JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id JOIN t_bz_config_customer c ON n.customer_id = c.customer_id WHERE eh.ack_time IS NOT NULL AND eh.start_time >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH) AND eh.start_time < DATE_FORMAT(NOW(), '%Y-%m-01') GROUP BY c.customer_name HAVING avg_first_response_minutes IS NOT NULL ORDER BY avg_first_response_minutes;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "question": "帮我查一下，客户ABC公司在最近一年内，工作日上班时间发生的所有告警，按告警级别和告警类型分别统计一下数量。",
+    "sql": "SELECT \n    eh.severity AS 告警级别,\n    eh.event_type AS 告警类型,\n    COUNT(*) AS 告警数量\nFROM event_history eh\nINNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nWHERE cust.customer_name = 'ABC公司'\n  AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR)\n  AND DAYOFWEEK(eh.start_time) BETWEEN 2 AND 6 -- 周一(2) 到 周五(6)\n  AND TIME(eh.start_time) BETWEEN '09:00:00' AND '18:00:00'\nGROUP BY eh.severity, eh.event_type\nORDER BY eh.severity, 告警数量 DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出全平台范围内，当前状态为Down且持续时间超过3个月的所有设备，并列出它们的设备名称、IP地址、所属客户名称、以及状态变为Down的具体时间。",
+    "sql": "SELECT \n    ne.ne_name AS 设备名称,\n    ne.ip_address AS IP地址,\n    cust.customer_name AS 客户名称,\n    ne.state_change_time AS 状态变更时间\nFROM t_bz_config_ci_ne_root ne\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nWHERE ne.state = 'Down'\n  AND ne.state_change_time <= DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计一下，每个客户在最近一个月内，告警次数最多的前3台设备分别是哪些？需要显示客户名、设备名和告警次数。",
+    "sql": "WITH RankedAlerts AS (\n    SELECT \n        cust.customer_name,\n        ne.ne_name,\n        COUNT(eh.id) AS alert_count,\n        ROW_NUMBER() OVER (PARTITION BY cust.id ORDER BY COUNT(eh.id) DESC) AS rn\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\n    INNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\n    WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)\n    GROUP BY cust.id, cust.customer_name, ne.id, ne.ne_name\n)\nSELECT customer_name AS 客户名, ne_name AS 设备名, alert_count AS 告警次数\nFROM RankedAlerts\nWHERE rn <= 3\nORDER BY customer_name, alert_count DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询华东区域的所有客户，他们各自拥有的设备中，处于Active状态的设备数量与总设备数量的比例是多少？按比例从低到高排序。",
+    "sql": "SELECT \n    cust.customer_name AS 客户名,\n    COUNT(CASE WHEN ne.state = 'Active' THEN 1 END) AS 活跃设备数,\n    COUNT(ne.id) AS 总设备数,\n    ROUND(COUNT(CASE WHEN ne.state = 'Active' THEN 1 END) * 100.0 / COUNT(ne.id), 2) AS 活跃比例\nFROM t_bz_config_ci_ne_root ne\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nINNER JOIN t_bz_config_region reg ON cust.region_id = reg.id\nWHERE reg.region_name = '华东'\nGROUP BY cust.id, cust.customer_name\nORDER BY 活跃比例 ASC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些告警从产生到现在，持续时间超过24小时且仍未恢复的告警，列出告警标题、设备名、客户名、告警级别和持续时间。",
+    "sql": "SELECT \n    eh.title AS 告警标题,\n    ne.ne_name AS 设备名,\n    cust.customer_name AS 客户名,\n    eh.severity AS 告警级别,\n    TIMESTAMPDIFF(HOUR, eh.start_time, NOW()) AS 持续时间_小时\nFROM event_history eh\nINNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nWHERE eh.end_time IS NULL\n  AND eh.start_time <= DATE_SUB(NOW(), INTERVAL 24 HOUR)\nORDER BY 持续时间_小时 DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个设备类型下，关联了金牌服务包的设备数量，以及这些设备中当前状态为Down的比例。",
+    "sql": "SELECT \n    nt.type_name AS 设备类型,\n    COUNT(DISTINCT ne.id) AS 关联金牌服务包设备数,\n    COUNT(DISTINCT CASE WHEN ne.state = 'Down' THEN ne.id END) AS 其中Down的设备数,\n    ROUND(COUNT(DISTINCT CASE WHEN ne.state = 'Down' THEN ne.id END) * 100.0 / COUNT(DISTINCT ne.id), 2) AS Down比例\nFROM t_bz_config_ci_ne_root ne\nINNER JOIN ne_type nt ON ne.ne_type_id = nt.id\nINNER JOIN ne_service_package nsp ON ne.id = nsp.ne_id\nWHERE nsp.service_package_name = '金牌服务包'\nGROUP BY nt.id, nt.type_name\nORDER BY 关联金牌服务包设备数 DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "ne_service_package"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询上周全平台产生的告警，按小时统计告警数量，找出告警最集中的三个小时段。",
+    "sql": "WITH HourlyAlerts AS (\n    SELECT \n        HOUR(start_time) AS 小时,\n        COUNT(*) AS 告警数量\n    FROM event_history\n    WHERE YEARWEEK(start_time, 1) = YEARWEEK(DATE_SUB(NOW(), INTERVAL 1 WEEK), 1)\n    GROUP BY HOUR(start_time)\n)\nSELECT 小时, 告警数量\nFROM HourlyAlerts\nORDER BY 告警数量 DESC\nLIMIT 3;",
+    "tables": [
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些在最近30天内没有任何告警产生的客户，列出他们的客户名称、联系人姓名和电话。",
+    "sql": "SELECT \n    cust.customer_name AS 客户名称,\n    cont.contact_name AS 联系人姓名,\n    cont.phone AS 电话\nFROM t_bz_config_customer cust\nLEFT JOIN t_bz_config_contact cont ON cust.id = cont.customer_id AND cont.is_primary = 1\nWHERE cust.id NOT IN (\n    SELECT DISTINCT ne.customer_id\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\n    WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n)\nORDER BY cust.customer_name;",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_contact",
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "对于设备cisco-core-01，查询它过去一年每个月的平均告警持续时间，只统计已恢复的告警。",
+    "sql": "SELECT \n    DATE_FORMAT(start_time, '%Y-%m') AS 年月,\n    ROUND(AVG(TIMESTAMPDIFF(MINUTE, start_time, end_time)), 2) AS 平均告警时长_分钟\nFROM event_history\nWHERE ne_id = (SELECT id FROM t_bz_config_ci_ne_root WHERE ne_name = 'cisco-core-01')\n  AND start_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR)\n  AND end_time IS NOT NULL\nGROUP BY DATE_FORMAT(start_time, '%Y-%m')\nORDER BY 年月 DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "列出所有采集机及其负责采集的设备数量，同时显示这些设备中，上周产生过Critical级别告警的设备数量。",
+    "sql": "SELECT \n    cv2.name AS 采集机名称,\n    COUNT(DISTINCT ne.id) AS 负责设备总数,\n    COUNT(DISTINCT CASE WHEN eh.severity = 'Critical' AND YEARWEEK(eh.start_time, 1) = YEARWEEK(DATE_SUB(NOW(), INTERVAL 1 WEEK), 1) THEN ne.id END) AS 上周有Critical告警的设备数\nFROM collector_v2 cv2\nLEFT JOIN t_bz_config_ci_ne_root ne ON cv2.id = ne.collector_id\nLEFT JOIN event_history eh ON ne.id = eh.ne_id\nGROUP BY cv2.id, cv2.name\nORDER BY 负责设备总数 DESC;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询某客户XYZ科技下，不同设备状态的设备清单，并统计每个状态下设备的最近一次告警时间。",
+    "sql": "SELECT \n    ne.state AS 设备状态,\n    ne.ne_name AS 设备名称,\n    ne.ip_address AS IP地址,\n    MAX(eh.start_time) AS 最近告警时间\nFROM t_bz_config_ci_ne_root ne\nLEFT JOIN event_history eh ON ne.id = eh.ne_id\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nWHERE cust.customer_name = 'XYZ科技'\nGROUP BY ne.state, ne.id, ne.ne_name, ne.ip_address\nORDER BY ne.state, 最近告警时间 DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个区域在最近一个季度内，产生的Major及以上级别告警的总数，并计算这些告警的平均恢复时间。",
+    "sql": "SELECT \n    reg.region_name AS 区域名称,\n    COUNT(eh.id) AS Major以上告警总数,\n    ROUND(AVG(TIMESTAMPDIFF(HOUR, eh.start_time, eh.end_time)), 2) AS 平均恢复时间_小时\nFROM event_history eh\nINNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nINNER JOIN t_bz_config_region reg ON cust.region_id = reg.id\nWHERE eh.severity IN ('Critical', 'Major')\n  AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH)\n  AND eh.end_time IS NOT NULL\nGROUP BY reg.id, reg.region_name\nORDER BY Major以上告警总数 DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些在最近一周内，告警次数环比上一周增长超过50%的设备，列出设备名、所属客户、本周告警次数和上周告警次数。",
+    "sql": "WITH CurrentWeek AS (\n    SELECT \n        ne.id,\n        ne.ne_name,\n        cust.customer_name,\n        COUNT(eh.id) AS current_count\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\n    INNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\n    WHERE YEARWEEK(eh.start_time, 1) = YEARWEEK(NOW(), 1)\n    GROUP BY ne.id, ne.ne_name, cust.customer_name\n),\nLastWeek AS (\n    SELECT \n        ne.id,\n        COUNT(eh.id) AS last_count\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\n    WHERE YEARWEEK(eh.start_time, 1) = YEARWEEK(DATE_SUB(NOW(), INTERVAL 1 WEEK), 1)\n    GROUP BY ne.id\n)\nSELECT \n    cw.ne_name AS 设备名,\n    cw.customer_name AS 客户名,\n    cw.current_count AS 本周告警数,\n    COALESCE(lw.last_count, 0) AS 上周告警数,\n    ROUND((cw.current_count - COALESCE(lw.last_count, 0)) * 100.0 / NULLIF(COALESCE(lw.last_count, 0), 0), 2) AS 增长率\nFROM CurrentWeek cw\nLEFT JOIN LastWeek lw ON cw.id = lw.id\nWHERE COALESCE(lw.last_count, 0) > 0\n  AND (cw.current_count - COALESCE(lw.last_count, 0)) * 1.0 / COALESCE(lw.last_count, 0) > 0.5\nORDER BY 增长率 DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询所有客户，列出他们设备总数、已绑定白金服务包的设备数，以及这些白金设备中状态为Active的比例。",
+    "sql": "SELECT \n    cust.customer_name AS 客户名称,\n    COUNT(DISTINCT ne.id) AS 设备总数,\n    COUNT(DISTINCT CASE WHEN nsp.service_package_name = '白金服务包' THEN ne.id END) AS 白金设备数,\n    ROUND(COUNT(DISTINCT CASE WHEN nsp.service_package_name = '白金服务包' AND ne.state = 'Active' THEN ne.id END) * 100.0 / NULLIF(COUNT(DISTINCT CASE WHEN nsp.service_package_name = '白金服务包' THEN ne.id END), 0), 2) AS 白金设备活跃率\nFROM t_bz_config_customer cust\nLEFT JOIN t_bz_config_ci_ne_root ne ON cust.id = ne.customer_id\nLEFT JOIN ne_service_package nsp ON ne.id = nsp.ne_id\nGROUP BY cust.id, cust.customer_name\nHAVING 白金设备数 > 0\nORDER BY 白金设备数 DESC;",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_service_package"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出过去24小时内，产生告警次数最多的前5台设备，并列出这些告警的级别分布。",
+    "sql": "WITH TopDevices AS (\n    SELECT \n        ne.id,\n        ne.ne_name,\n        COUNT(eh.id) AS total_alerts\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\n    WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR)\n    GROUP BY ne.id, ne.ne_name\n    ORDER BY total_alerts DESC\n    LIMIT 5\n)\nSELECT \n    td.ne_name AS 设备名,\n    td.total_alerts AS 总告警数,\n    COUNT(CASE WHEN eh.severity = 'Critical' THEN 1 END) AS Critical,\n    COUNT(CASE WHEN eh.severity = 'Major' THEN 1 END) AS Major,\n    COUNT(CASE WHEN eh.severity = 'Minor' THEN 1 END) AS Minor,\n    COUNT(CASE WHEN eh.severity = 'Warning' THEN 1 END) AS Warning\nFROM TopDevices td\nINNER JOIN event_history eh ON td.id = eh.ne_id AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR)\nGROUP BY td.id, td.ne_name, td.total_alerts\nORDER BY td.total_alerts DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个设备类型下，设备的平均在线率，并列出在线率最低的3种设备类型。",
+    "sql": "SELECT \n    nt.type_name AS 设备类型,\n    ROUND(AVG(oa.availability), 2) AS 平均在线率\nFROM origin_availability oa\nINNER JOIN t_bz_config_ci_ne_root ne ON oa.ne_id = ne.id\nINNER JOIN ne_type nt ON ne.ne_type_id = nt.id\nWHERE oa.create_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY nt.id, nt.type_name\nORDER BY 平均在线率 ASC\nLIMIT 3;",
+    "tables": [
+      "origin_availability",
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询客户DEF集团下，所有路由器类型的设备，列出它们最近30天内的告警总数，以及这些告警中由collector-beijing-01这台采集机发现的比例。",
+    "sql": "SELECT \n    ne.ne_name AS 设备名称,\n    COUNT(eh.id) AS 总告警数,\n    COUNT(CASE WHEN cv2.name = 'collector-beijing-01' THEN 1 END) AS 北京采集机发现数,\n    ROUND(COUNT(CASE WHEN cv2.name = 'collector-beijing-01' THEN 1 END) * 100.0 / COUNT(eh.id), 2) AS 占比\nFROM t_bz_config_ci_ne_root ne\nINNER JOIN ne_type nt ON ne.ne_type_id = nt.id AND nt.type_name LIKE '%路由器%'\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id AND cust.customer_name = 'DEF集团'\nLEFT JOIN event_history eh ON ne.id = eh.ne_id AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nLEFT JOIN collector_v2 cv2 ON eh.collector_id = cv2.id\nGROUP BY ne.id, ne.ne_name\nORDER BY 总告警数 DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "t_bz_config_customer",
+      "event_history",
+      "collector_v2"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些在最近一个月内，既产生过Critical告警，又产生过Warning告警的设备，列出设备名和所属客户。",
+    "sql": "SELECT DISTINCT\n    ne.ne_name AS 设备名,\n    cust.customer_name AS 客户名\nFROM event_history eh\nINNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nWHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)\n  AND eh.severity IN ('Critical', 'Warning')\nGROUP BY ne.id, ne.ne_name, cust.customer_name\nHAVING COUNT(DISTINCT eh.severity) = 2;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个客户在每天的不同时段产生的告警数量，以客户GHI公司最近一周的数据为例。",
+    "sql": "SELECT \n    DATE(eh.start_time) AS 日期,\n    CASE \n        WHEN HOUR(eh.start_time) BETWEEN 0 AND 5 THEN '0-6点'\n        WHEN HOUR(eh.start_time) BETWEEN 6 AND 11 THEN '6-12点'\n        WHEN HOUR(eh.start_time) BETWEEN 12 AND 17 THEN '12-18点'\n        ELSE '18-24点'\n    END AS 时段,\n    COUNT(*) AS 告警数量\nFROM event_history eh\nINNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nWHERE cust.customer_name = 'GHI公司'\n  AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY DATE(eh.start_time), 时段\nORDER BY 日期, 时段;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询所有采集机的健康状态，并关联显示它们所负责的、当前状态为Down的设备列表。",
+    "sql": "SELECT \n    cv2.name AS 采集机,\n    cv2.health_status AS 采集机健康状态,\n    ne.ne_name AS 设备名,\n    cust.customer_name AS 所属客户,\n    ne.state_change_time AS 设备Down时间\nFROM collector_v2 cv2\nLEFT JOIN t_bz_config_ci_ne_root ne ON cv2.id = ne.collector_id AND ne.state = 'Down'\nLEFT JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nORDER BY cv2.name, ne.state_change_time DESC;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些告警标题中包含内存或CPU关键词，且在最近3个月内重复发生的告警模式，列出设备、告警标题和发生次数。",
+    "sql": "SELECT \n    ne.ne_name AS 设备名,\n    eh.title AS 告警标题,\n    COUNT(*) AS 发生次数\nFROM event_history eh\nINNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nWHERE (eh.title LIKE '%内存%' OR eh.title LIKE '%CPU%')\n  AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH)\nGROUP BY ne.id, ne.ne_name, eh.title\nHAVING COUNT(*) >= 3\nORDER BY 发生次数 DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个区域下，不同服务包的设备数量分布。",
+    "sql": "SELECT \n    reg.region_name AS 区域,\n    nsp.service_package_name AS 服务包,\n    COUNT(DISTINCT ne.id) AS 设备数量\nFROM t_bz_config_region reg\nLEFT JOIN t_bz_config_customer cust ON reg.id = cust.region_id\nLEFT JOIN t_bz_config_ci_ne_root ne ON cust.id = ne.customer_id\nLEFT JOIN ne_service_package nsp ON ne.id = nsp.ne_id AND nsp.service_package_name IN ('基础', '高级', '企业')\nGROUP BY reg.id, reg.region_name, nsp.service_package_name\nORDER BY reg.region_name, 设备数量 DESC;",
+    "tables": [
+      "t_bz_config_region",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_service_package"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询某台设备firewall-edge-01的历史告警，找出与它关联性最强的其他设备，列出关联设备名和共同告警次数。",
+    "sql": "WITH TargetAlerts AS (\n    SELECT start_time, end_time\n    FROM event_history\n    WHERE ne_id = (SELECT id FROM t_bz_config_ci_ne_root WHERE ne_name = 'firewall-edge-01')\n),\nRelatedAlerts AS (\n    SELECT \n        ne2.ne_name AS 关联设备,\n        COUNT(*) AS 共同告警次数\n    FROM event_history eh2\n    INNER JOIN t_bz_config_ci_ne_root ne2 ON eh2.ne_id = ne2.id\n    INNER JOIN TargetAlerts ta ON eh2.start_time BETWEEN DATE_SUB(ta.start_time, INTERVAL 5 MINUTE) AND DATE_ADD(ta.end_time, INTERVAL 5 MINUTE)\n    WHERE ne2.ne_name != 'firewall-edge-01'\n    GROUP BY ne2.id, ne2.ne_name\n)\nSELECT * FROM RelatedAlerts\nORDER BY 共同告警次数 DESC\nLIMIT 10;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "列出所有在最近一周内新上线的设备，并检查它们是否已经产生过告警。",
+    "sql": "SELECT \n    ne.ne_name AS 新设备名,\n    cust.customer_name AS 所属客户,\n    ne.create_time AS 上线时间,\n    CASE \n        WHEN COUNT(eh.id) > 0 THEN '是'\n        ELSE '否'\n    END AS 是否已产生告警,\n    COUNT(eh.id) AS 告警次数\nFROM t_bz_config_ci_ne_root ne\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nLEFT JOIN event_history eh ON ne.id = eh.ne_id AND eh.start_time >= ne.create_time\nWHERE ne.create_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY ne.id, ne.ne_name, cust.customer_name, ne.create_time\nORDER BY ne.create_time DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "对于每个客户，计算其设备在最近30天的MTTR，并列出MTTR最长的前5个客户。",
+    "sql": "SELECT \n    cust.customer_name AS 客户名,\n    COUNT(eh.id) AS 已恢复告警数,\n    ROUND(AVG(TIMESTAMPDIFF(MINUTE, eh.start_time, eh.end_time)), 2) AS 平均修复时间_分钟\nFROM event_history eh\nINNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nINNER JOIN t_bz_config_customer cust ON ne.customer_id = cust.id\nWHERE eh.end_time IS NOT NULL\n  AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nGROUP BY cust.id, cust.customer_name\nHAVING COUNT(eh.id) > 0\nORDER BY 平均修复时间_分钟 DESC\nLIMIT 5;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出在过去一周内，告警总时长排名前5的客户，并显示他们的客户名称、告警总时长以及涉及的主要设备类型。",
+    "sql": "SELECT c.customer_name, SUM(TIMESTAMPDIFF(HOUR, eh.start_time, COALESCE(eh.end_time, NOW()))) AS total_alarm_hours, GROUP_CONCAT(DISTINCT nt.name) AS main_ne_types FROM t_bz_config_customer c JOIN t_bz_config_ci_ne_root ne ON c.customer_id = ne.customer_id JOIN event_history eh ON ne.ne_id = eh.ne_id JOIN ne_type nt ON ne.ne_type_id = nt.ne_type_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY c.customer_id, c.customer_name ORDER BY total_alarm_hours DESC LIMIT 5;",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "ne_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个区域在工作日上班时间内产生的严重及以上级别的告警数量，并按告警数量从高到低给出区域排名。",
+    "sql": "SELECT r.region_name, COUNT(eh.event_id) AS high_severity_alarm_count FROM t_bz_config_region r JOIN t_bz_config_customer c ON r.region_id = c.region_id JOIN t_bz_config_ci_ne_root ne ON c.customer_id = ne.customer_id JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.severity >= 3 AND DAYOFWEEK(eh.start_time) BETWEEN 2 AND 6 AND TIME(eh.start_time) BETWEEN '09:00:00' AND '18:00:00' GROUP BY r.region_id, r.region_name ORDER BY high_severity_alarm_count DESC;",
+    "tables": [
+      "t_bz_config_region",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询哪些设备在最近一个月内，其关联的所有服务包都至少触发过一次告警，并列出这些设备的名称、IP地址以及它们触发的告警总数。",
+    "sql": "SELECT ne.ne_name, ne.ip_address, COUNT(eh.event_id) AS total_alarms FROM t_bz_config_ci_ne_root ne JOIN ne_service_package nsp ON ne.ne_id = nsp.ne_id JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND ne.ne_id IN ( SELECT DISTINCT nsp1.ne_id FROM ne_service_package nsp1 WHERE NOT EXISTS ( SELECT 1 FROM ne_service_package nsp2 LEFT JOIN event_history eh2 ON nsp2.ne_id = eh2.ne_id AND eh2.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) WHERE nsp2.ne_id = nsp1.ne_id AND nsp2.service_package_id = nsp1.service_package_id AND eh2.event_id IS NULL ) ) GROUP BY ne.ne_id, ne.ne_name, ne.ip_address;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_service_package",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出告警平均恢复时间最长的前3种设备类型，要求统计过去三个月内所有已恢复的告警。",
+    "sql": "SELECT nt.name AS device_type, AVG(TIMESTAMPDIFF(MINUTE, eh.start_time, eh.end_time)) AS avg_mttr_minutes FROM ne_type nt JOIN t_bz_config_ci_ne_root ne ON nt.ne_type_id = ne.ne_type_id JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.end_time IS NOT NULL AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH) GROUP BY nt.ne_type_id, nt.name ORDER BY avg_mttr_minutes DESC LIMIT 3;",
+    "tables": [
+      "ne_type",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询在最近一周内，连续告警持续时间超过24小时且仍未恢复的设备TOP10，并显示设备名、客户名、告警开始时间和当前持续时间。",
+    "sql": "SELECT ne.ne_name, c.customer_name, eh.start_time, TIMESTAMPDIFF(HOUR, eh.start_time, NOW()) AS ongoing_duration_hours FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer c ON ne.customer_id = c.customer_id JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.end_time IS NULL AND eh.start_time <= DATE_SUB(NOW(), INTERVAL 24 HOUR) AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) ORDER BY ongoing_duration_hours DESC LIMIT 10;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个采集机所负责监控的设备中，在过去24小时内产生告警的设备比例，并按照比例从高到低排名，仅显示比例大于0的采集机。",
+    "sql": "SELECT cv2.collector_name, COUNT(DISTINCT CASE WHEN eh.event_id IS NOT NULL THEN ne.ne_id END) / COUNT(DISTINCT ne.ne_id) AS alarm_device_ratio FROM collector_v2 cv2 LEFT JOIN t_bz_config_ci_ne_root ne ON cv2.collector_id = ne.collector_id LEFT JOIN event_history eh ON ne.ne_id = eh.ne_id AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR) GROUP BY cv2.collector_id, cv2.collector_name HAVING alarm_device_ratio > 0 ORDER BY alarm_device_ratio DESC;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些在最近一个月内，其负责的客户产生的告警总数超过该客户历史平均月告警数2倍以上的联系人，列出联系人姓名、所属客户及本月告警数。",
+    "sql": "SELECT ct.contact_name, c.customer_name, COUNT(eh.event_id) AS current_month_alarms FROM t_bz_config_contact ct JOIN t_bz_config_customer c ON ct.customer_id = c.customer_id JOIN t_bz_config_ci_ne_root ne ON c.customer_id = ne.customer_id JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND c.customer_id IN ( SELECT c_inner.customer_id FROM t_bz_config_customer c_inner JOIN t_bz_config_ci_ne_root ne_inner ON c_inner.customer_id = ne_inner.customer_id JOIN event_history eh_inner ON ne_inner.ne_id = eh_inner.ne_id GROUP BY c_inner.customer_id HAVING COUNT(eh_inner.event_id) / TIMESTAMPDIFF(MONTH, MIN(eh_inner.start_time), NOW()) * 2 < COUNT(CASE WHEN eh_inner.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) THEN 1 END) ) GROUP BY ct.contact_id, ct.contact_name, c.customer_id, c.customer_name;",
+    "tables": [
+      "t_bz_config_contact",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询在最近一个完整季度内，每个工作日上午9点到11点这个时间段内，告警频率最高的前5个设备。",
+    "sql": "SELECT ne.ne_name, COUNT(eh.event_id) / (COUNT(DISTINCT DATE(eh.start_time)) * 2) AS avg_alarms_per_hour FROM t_bz_config_ci_ne_root ne JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE QUARTER(eh.start_time) = QUARTER(DATE_SUB(NOW(), INTERVAL 3 MONTH)) AND DAYOFWEEK(eh.start_time) BETWEEN 2 AND 6 AND TIME(eh.start_time) BETWEEN '09:00:00' AND '11:00:00' GROUP BY ne.ne_id, ne.ne_name ORDER BY avg_alarms_per_hour DESC LIMIT 5;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些状态为在线，但其所属采集机健康状态为异常或离线的所有设备，并列出设备名、IP、采集机名及采集机状态。",
+    "sql": "SELECT ne.ne_name, ne.ip_address, cv2.collector_name, cv2.health_status FROM t_bz_config_ci_ne_root ne JOIN collector_v2 cv2 ON ne.collector_id = cv2.collector_id WHERE ne.status = '在线' AND cv2.health_status IN ('异常', '离线');",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "collector_v2"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个区域下，不同类型设备的告警总数，并给出每个区域内告警数最多的设备类型排名。",
+    "sql": "SELECT r.region_name, nt.name AS top_alarm_device_type, alarm_count FROM ( SELECT c.region_id, ne.ne_type_id, COUNT(eh.event_id) AS alarm_count, RANK() OVER (PARTITION BY c.region_id ORDER BY COUNT(eh.event_id) DESC) AS rnk FROM t_bz_config_customer c JOIN t_bz_config_ci_ne_root ne ON c.customer_id = ne.customer_id JOIN event_history eh ON ne.ne_id = eh.ne_id GROUP BY c.region_id, ne.ne_type_id ) ranked JOIN t_bz_config_region r ON ranked.region_id = r.region_id JOIN ne_type nt ON ranked.ne_type_id = nt.ne_type_id WHERE ranked.rnk = 1;",
+    "tables": [
+      "t_bz_config_region",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "ne_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询在过去72小时内，产生了超过3种不同告警类型的设备，列出设备名、客户名以及具体的告警类型列表。",
+    "sql": "SELECT ne.ne_name, c.customer_name, GROUP_CONCAT(DISTINCT et.name) AS alarm_types FROM t_bz_config_ci_ne_root ne JOIN t_bz_config_customer c ON ne.customer_id = c.customer_id JOIN event_history eh ON ne.ne_id = eh.ne_id JOIN event_type et ON eh.event_type_id = et.event_type_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 72 HOUR) GROUP BY ne.ne_id, ne.ne_name, c.customer_name HAVING COUNT(DISTINCT eh.event_type_id) > 3;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history",
+      "event_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些在最近一个月内没有任何告警，但其关联的服务包数量却大于等于3个的设备，列出设备名和其服务包数量。",
+    "sql": "SELECT ne.ne_name, COUNT(nsp.service_package_id) AS service_package_count FROM t_bz_config_ci_ne_root ne JOIN ne_service_package nsp ON ne.ne_id = nsp.ne_id WHERE ne.ne_id NOT IN ( SELECT DISTINCT ne_id FROM event_history WHERE start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) ) GROUP BY ne.ne_id, ne.ne_name HAVING COUNT(nsp.service_package_id) >= 3;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_service_package",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个客户在最近一年内，每月告警数量的变化趋势，并找出那些连续三个月告警数量环比增长的客户。",
+    "sql": "WITH monthly_alarms AS ( SELECT c.customer_id, c.customer_name, DATE_FORMAT(eh.start_time, '%Y-%m') AS month, COUNT(eh.event_id) AS alarm_count FROM t_bz_config_customer c JOIN t_bz_config_ci_ne_root ne ON c.customer_id = ne.customer_id JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY c.customer_id, c.customer_name, DATE_FORMAT(eh.start_time, '%Y-%m') ), growth AS ( SELECT customer_id, customer_name, month, alarm_count, LAG(alarm_count, 1) OVER (PARTITION BY customer_id ORDER BY month) AS prev_month_count FROM monthly_alarms ) SELECT DISTINCT customer_name FROM growth WHERE alarm_count > prev_month_count AND prev_month_count IS NOT NULL GROUP BY customer_id, customer_name HAVING COUNT(*) >= 3 AND MIN(month) <= DATE_SUB(MAX(month), INTERVAL 2 MONTH);",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询在最近一周内，同一设备在1小时内重复触发相同告警类型超过5次的案例，列出设备名、告警类型和重复次数。",
+    "sql": "SELECT ne.ne_name, et.name AS alarm_type, COUNT(eh.event_id) AS repeat_count FROM t_bz_config_ci_ne_root ne JOIN event_history eh ON ne.ne_id = eh.ne_id JOIN event_type et ON eh.event_type_id = et.event_type_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY ne.ne_id, ne.ne_name, eh.event_type_id, et.name, DATE(eh.start_time), HOUR(eh.start_time) HAVING COUNT(eh.event_id) > 5;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "event_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些负责设备数量排名前10%的采集机，并计算这些采集机所负责设备的平均告警率。",
+    "sql": "WITH collector_device_count AS ( SELECT cv2.collector_id, cv2.collector_name, COUNT(DISTINCT ne.ne_id) AS device_count, RANK() OVER (ORDER BY COUNT(DISTINCT ne.ne_id) DESC) AS rnk, COUNT(*) OVER () AS total_collectors FROM collector_v2 cv2 LEFT JOIN t_bz_config_ci_ne_root ne ON cv2.collector_id = ne.collector_id GROUP BY cv2.collector_id, cv2.collector_name ), top_collectors AS ( SELECT collector_id, collector_name FROM collector_device_count WHERE rnk <= CEIL(total_collectors * 0.1) ) SELECT tc.collector_name, COUNT(eh.event_id) / COUNT(DISTINCT ne.ne_id) AS avg_alarm_rate FROM top_collectors tc LEFT JOIN t_bz_config_ci_ne_root ne ON tc.collector_id = ne.collector_id LEFT JOIN event_history eh ON ne.ne_id = eh.ne_id GROUP BY tc.collector_id, tc.collector_name;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个设备类型下，告警持续时间超过该类型平均告警持续时间2倍以上的设备数量。",
+    "sql": "WITH type_avg_duration AS ( SELECT nt.ne_type_id, AVG(TIMESTAMPDIFF(MINUTE, eh.start_time, eh.end_time)) AS avg_duration FROM ne_type nt JOIN t_bz_config_ci_ne_root ne ON nt.ne_type_id = ne.ne_type_id JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.end_time IS NOT NULL GROUP BY nt.ne_type_id ) SELECT nt.name AS device_type, COUNT(DISTINCT ne.ne_id) AS exceed_count FROM ne_type nt JOIN t_bz_config_ci_ne_root ne ON nt.ne_type_id = ne.ne_type_id JOIN event_history eh ON ne.ne_id = eh.ne_id JOIN type_avg_duration tad ON nt.ne_type_id = tad.ne_type_id WHERE eh.end_time IS NOT NULL AND TIMESTAMPDIFF(MINUTE, eh.start_time, eh.end_time) > tad.avg_duration * 2 GROUP BY nt.ne_type_id, nt.name;",
+    "tables": [
+      "ne_type",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询在最近一个月内，既有割接订单又有售后工单的客户，并列出这些客户名以及他们各自的工单数量。",
+    "sql": "SELECT c.customer_name, COUNT(DISTINCT co.order_id) AS cutover_orders, COUNT(DISTINCT ao.order_id) AS aft_orders FROM t_bz_config_customer c LEFT JOIN atomic_cutover_order co ON c.customer_id = co.customer_id AND co.create_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) LEFT JOIN atomic_aft_order ao ON c.customer_id = ao.customer_id AND ao.create_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY c.customer_id, c.customer_name HAVING COUNT(DISTINCT co.order_id) > 0 AND COUNT(DISTINCT ao.order_id) > 0;",
+    "tables": [
+      "t_bz_config_customer",
+      "atomic_cutover_order",
+      "atomic_aft_order"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出在最近一周内，告警数量突然激增的日期和设备类型组合。",
+    "sql": "WITH daily_alarms AS ( SELECT DATE(eh.start_time) AS alarm_date, nt.ne_type_id, nt.name AS device_type, COUNT(eh.event_id) AS alarm_count FROM event_history eh JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.ne_id JOIN ne_type nt ON ne.ne_type_id = nt.ne_type_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 8 DAY) GROUP BY DATE(eh.start_time), nt.ne_type_id, nt.name ) SELECT da1.alarm_date, da1.device_type, da1.alarm_count AS current_day, da2.alarm_count AS previous_day FROM daily_alarms da1 LEFT JOIN daily_alarms da2 ON da1.ne_type_id = da2.ne_type_id AND da1.alarm_date = DATE_ADD(da2.alarm_date, INTERVAL 1 DAY) WHERE da1.alarm_count > da2.alarm_count * 3 AND da1.alarm_date >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询那些联系人负责的客户所产生的告警，在过去一个月内被自动确认的比例低于50%的联系人，列出其姓名和自动确认率。",
+    "sql": "SELECT ct.contact_name, SUM(CASE WHEN eh.auto_ack = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(eh.event_id) AS auto_ack_rate FROM t_bz_config_contact ct JOIN t_bz_config_customer c ON ct.customer_id = c.customer_id JOIN t_bz_config_ci_ne_root ne ON c.customer_id = ne.customer_id JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY ct.contact_id, ct.contact_name HAVING auto_ack_rate < 50;",
+    "tables": [
+      "t_bz_config_contact",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个区域在工作时间内和非工作时间产生的告警严重程度的平均值，并找出那些工作时间平均严重程度反而更高的区域。",
+    "sql": "SELECT r.region_name, AVG(CASE WHEN TIME(eh.start_time) BETWEEN '09:00:00' AND '18:00:00' THEN eh.severity END) AS avg_severity_work_hours, AVG(CASE WHEN TIME(eh.start_time) NOT BETWEEN '09:00:00' AND '18:00:00' THEN eh.severity END) AS avg_severity_non_work_hours FROM t_bz_config_region r JOIN t_bz_config_customer c ON r.region_id = c.region_id JOIN t_bz_config_ci_ne_root ne ON c.customer_id = ne.customer_id JOIN event_history eh ON ne.ne_id = eh.ne_id GROUP BY r.region_id, r.region_name HAVING avg_severity_work_hours > avg_severity_non_work_hours;",
+    "tables": [
+      "t_bz_config_region",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出在最近三个月内，从未触发过任何告警，但其所属采集机上其他设备告警总数却排名前10的采集机上的这些安静设备。",
+    "sql": "WITH top_collectors AS ( SELECT cv2.collector_id, COUNT(eh.event_id) AS total_alarms FROM collector_v2 cv2 JOIN t_bz_config_ci_ne_root ne ON cv2.collector_id = ne.collector_id JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH) GROUP BY cv2.collector_id ORDER BY total_alarms DESC LIMIT 10 ) SELECT ne.ne_name, ne.ip_address, cv2.collector_name FROM t_bz_config_ci_ne_root ne JOIN collector_v2 cv2 ON ne.collector_id = cv2.collector_id JOIN top_collectors tc ON cv2.collector_id = tc.collector_id WHERE ne.ne_id NOT IN ( SELECT DISTINCT ne_id FROM event_history WHERE start_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH) );",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询每个客户下，告警恢复时间最长的前3条告警记录，列出客户名、设备名、告警开始时间、恢复时间和持续时间。",
+    "sql": "SELECT c.customer_name, ne.ne_name, eh.start_time, eh.end_time, TIMESTAMPDIFF(MINUTE, eh.start_time, eh.end_time) AS duration_minutes FROM ( SELECT ne.customer_id, eh.ne_id, eh.start_time, eh.end_time, ROW_NUMBER() OVER (PARTITION BY ne.customer_id ORDER BY TIMESTAMPDIFF(MINUTE, eh.start_time, eh.end_time) DESC) AS rnk FROM t_bz_config_ci_ne_root ne JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.end_time IS NOT NULL ) ranked JOIN t_bz_config_customer c ON ranked.customer_id = c.customer_id JOIN t_bz_config_ci_ne_root ne ON ranked.ne_id = ne.ne_id WHERE ranked.rnk <= 3 ORDER BY c.customer_name, ranked.rnk;",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计过去一年中，每个月新增的设备数量，并与当月这些新设备产生的告警数量进行关联对比，列出月份、新增设备数、告警数。",
+    "sql": "SELECT DATE_FORMAT(ne.create_time, '%Y-%m') AS month, COUNT(DISTINCT ne.ne_id) AS new_devices, COUNT(DISTINCT eh.event_id) AS alarms_from_new_devices FROM t_bz_config_ci_ne_root ne LEFT JOIN event_history eh ON ne.ne_id = eh.ne_id AND DATE_FORMAT(eh.start_time, '%Y-%m') = DATE_FORMAT(ne.create_time, '%Y-%m') WHERE ne.create_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(ne.create_time, '%Y-%m') ORDER BY month;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些在最近一周内，每天都有告警产生，且每天告警数量都超过5条的设备，列出设备名和其一周总告警数。",
+    "sql": "SELECT ne.ne_name, COUNT(eh.event_id) AS weekly_alarm_count FROM t_bz_config_ci_ne_root ne JOIN event_history eh ON ne.ne_id = eh.ne_id WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY ne.ne_id, ne.ne_name HAVING COUNT(DISTINCT DATE(eh.start_time)) = 7 AND MIN( CASE WHEN DATE(eh.start_time) = DATE_SUB(NOW(), INTERVAL 1 DAY) THEN (SELECT COUNT(*) FROM event_history eh2 WHERE eh2.ne_id = ne.ne_id AND DATE(eh2.start_time) = DATE_SUB(NOW(), INTERVAL 1 DAY)) END ) > 5;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询每个服务包所关联的设备中，在过去一个月内产生告警的设备占比，并按照占比从高到低排序，仅显示关联设备数大于10的服务包。",
+    "sql": "SELECT sp.service_package_name, COUNT(DISTINCT CASE WHEN eh.event_id IS NOT NULL THEN ne.ne_id END) * 100.0 / COUNT(DISTINCT ne.ne_id) AS alarmed_device_percentage FROM ne_service_package sp JOIN t_bz_config_ci_ne_root ne ON sp.ne_id = ne.ne_id LEFT JOIN event_history eh ON ne.ne_id = eh.ne_id AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY sp.service_package_id, sp.service_package_name HAVING COUNT(DISTINCT ne.ne_id) > 10 ORDER BY alarmed_device_percentage DESC;",
+    "tables": [
+      "ne_service_package",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出在最近一个季度内，其负责客户的总告警数排名前5的联系人，但同时这些联系人负责的客户中，有超过30%的客户在过去一个月内没有新告警。",
+    "sql": "WITH contact_alarm_stats AS ( SELECT ct.contact_id, ct.contact_name, COUNT(DISTINCT eh.event_id) AS total_alarms_last_quarter, COUNT(DISTINCT c.customer_id) AS total_customers, COUNT(DISTINCT CASE WHEN NOT EXISTS ( SELECT 1 FROM t_bz_config_ci_ne_root ne2 JOIN event_history eh2 ON ne2.ne_id = eh2.ne_id WHERE ne2.customer_id = c.customer_id AND eh2.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) ) THEN c.customer_id END) AS customers_no_recent_alarm FROM t_bz_config_contact ct JOIN t_bz_config_customer c ON ct.customer_id = c.customer_id JOIN t_bz_config_ci_ne_root ne ON c.customer_id = ne.customer_id JOIN event_history eh ON ne.ne_id = eh.ne_id AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH) GROUP BY ct.contact_id, ct.contact_name ) SELECT contact_name, total_alarms_last_quarter, customers_no_recent_alarm * 100.0 / total_customers AS inactive_customer_percentage FROM contact_alarm_stats WHERE customers_no_recent_alarm * 100.0 / total_customers > 30 ORDER BY total_alarms_last_quarter DESC LIMIT 5;",
+    "tables": [
+      "t_bz_config_contact",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计过去一个月内，每个客户在工作日上班时间发生的严重及以上级别告警的平均持续时间，并给出平均持续时间最长的前5个客户。",
+    "sql": "SELECT c.customer_name, AVG(TIMESTAMPDIFF(SECOND, eh.start_time, eh.end_time)) AS avg_duration_seconds\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN t_bz_config_customer c ON ne.customer_id = c.id\nWHERE eh.severity IN ('CRITICAL', 'MAJOR')\n  AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)\n  AND DAYOFWEEK(eh.start_time) BETWEEN 2 AND 6\n  AND HOUR(eh.start_time) BETWEEN 9 AND 17\n  AND eh.end_time IS NOT NULL\nGROUP BY c.id, c.customer_name\nORDER BY avg_duration_seconds DESC\nLIMIT 5;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出最近一周内，告警总数排名前三的设备类型，并且这些告警必须发生在采集机状态为ACTIVE的设备上。",
+    "sql": "SELECT nt.name AS device_type, COUNT(eh.id) AS alarm_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN ne_type nt ON ne.ne_type_id = nt.id\nJOIN collector_v2 cv ON ne.collector_id = cv.id\nWHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n  AND cv.status = 'ACTIVE'\nGROUP BY nt.id, nt.name\nORDER BY alarm_count DESC\nLIMIT 3;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "collector_v2"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询某个指定区域下，所有客户在过去一个季度内，由路由器和交换机类型设备产生的、且持续时间超过1小时的告警事件总数，并按客户告警数降序排列。",
+    "sql": "SELECT c.customer_name, COUNT(eh.id) AS long_alarm_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN ne_type nt ON ne.ne_type_id = nt.id\nJOIN t_bz_config_customer c ON ne.customer_id = c.id\nJOIN t_bz_config_region r ON c.region_id = r.id\nWHERE r.region_name = '华东'\n  AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH)\n  AND nt.name IN ('路由器', '交换机')\n  AND TIMESTAMPDIFF(HOUR, eh.start_time, eh.end_time) > 1\nGROUP BY c.id, c.customer_name\nORDER BY long_alarm_count DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "t_bz_config_customer",
+      "t_bz_config_region"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出所有服务包中包含性能监控项的设备，并统计这些设备在上个月每个工作日产生的告警数量，列出设备名和对应的每日告警数。",
+    "sql": "SELECT ne.device_name, DATE(eh.start_time) AS alarm_date, COUNT(eh.id) AS daily_alarm_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN ne_service_package nsp ON ne.id = nsp.ne_id\nJOIN ne_service_item nsi ON nsp.id = nsi.service_package_id\nWHERE nsi.service_item_name LIKE '%性能监控%'\n  AND eh.start_time >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')\n  AND eh.start_time < DATE_FORMAT(NOW(), '%Y-%m-01')\n  AND DAYOFWEEK(eh.start_time) BETWEEN 2 AND 6\nGROUP BY ne.id, ne.device_name, DATE(eh.start_time)\nORDER BY ne.device_name, alarm_date;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_service_package",
+      "ne_service_item"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个采集机所管理的设备中，在过去72小时内发生过告警且告警级别为严重的设备数量，并列出管理此类设备数量最多的前3个采集机及其IP地址。",
+    "sql": "SELECT cv.name AS collector_name, cv.ip_address, COUNT(DISTINCT ne.id) AS critical_device_count\nFROM collector_v2 cv\nJOIN t_bz_config_ci_ne_root ne ON cv.id = ne.collector_id\nJOIN event_history eh ON ne.id = eh.ne_id\nWHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 72 HOUR)\n  AND eh.severity = 'CRITICAL'\nGROUP BY cv.id, cv.name, cv.ip_address\nORDER BY critical_device_count DESC\nLIMIT 3;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询某位特定联系人所负责的所有客户，其名下设备在过去一周内产生的、尚未恢复的告警列表，并按照告警开始时间倒序排列。",
+    "sql": "SELECT c.customer_name, ne.device_name, eh.alarm_type, eh.start_time, eh.severity\nFROM t_bz_config_contact ct\nJOIN t_bz_config_customer c ON ct.customer_id = c.id\nJOIN t_bz_config_ci_ne_root ne ON c.id = ne.customer_id\nJOIN event_history eh ON ne.id = eh.ne_id\nWHERE ct.contact_name = '张三' -- 替换为具体联系人姓名\n  AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n  AND eh.end_time IS NULL\nORDER BY eh.start_time DESC;",
+    "tables": [
+      "t_bz_config_contact",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出过去一个月内，平均告警响应时间最慢的5个客户。响应时间只计算在工作时间内产生的告警。",
+    "sql": "SELECT c.customer_name, AVG(TIMESTAMPDIFF(MINUTE, eh.start_time, eh.ack_time)) AS avg_response_minutes\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN t_bz_config_customer c ON ne.customer_id = c.id\nWHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)\n  AND HOUR(eh.start_time) BETWEEN 9 AND 17\n  AND eh.ack_time IS NOT NULL\nGROUP BY c.id, c.customer_name\nORDER BY avg_response_minutes DESC\nLIMIT 5;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个区域下，不同类型设备在最近30天内发生的网络连通性相关告警的次数，并给出每个区域下告警数最多的设备类型。",
+    "sql": "WITH RegionAlarm AS (\n    SELECT r.region_name, nt.name AS device_type, COUNT(eh.id) AS alarm_count\n    FROM event_history eh\n    JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\n    JOIN ne_type nt ON ne.ne_type_id = nt.id\n    JOIN t_bz_config_customer c ON ne.customer_id = c.id\n    JOIN t_bz_config_region r ON c.region_id = r.id\n    WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n      AND (eh.alarm_type LIKE '%ping%' OR eh.alarm_type LIKE '%connect%')\n    GROUP BY r.id, r.region_name, nt.id, nt.name\n)\nSELECT ra.region_name, ra.device_type, ra.alarm_count\nFROM RegionAlarm ra\nJOIN (\n    SELECT region_name, MAX(alarm_count) AS max_count\n    FROM RegionAlarm\n    GROUP BY region_name\n) max_ra ON ra.region_name = max_ra.region_name AND ra.alarm_count = max_ra.max_count\nORDER BY ra.region_name;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "t_bz_config_customer",
+      "t_bz_config_region"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询所有状态为在线的设备，找出那些在最近一周内，其关联的服务包中采集失败次数超过3次的设备，并列出设备名和所属客户。",
+    "sql": "SELECT ne.device_name, c.customer_name, COUNT(nch.id) AS collect_fail_count\nFROM t_bz_config_ci_ne_root ne\nJOIN t_bz_config_customer c ON ne.customer_id = c.id\nJOIN ne_service_package nsp ON ne.id = nsp.ne_id\nJOIN ne_collect_history nch ON nsp.id = nch.service_package_id\nWHERE ne.status = '在线'\n  AND nch.create_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n  AND nch.status = 'FAILED'\nGROUP BY ne.id, ne.device_name, c.customer_name\nHAVING collect_fail_count > 3\nORDER BY collect_fail_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "ne_service_package",
+      "ne_collect_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出在过去24小时内，产生告警频率最高的前10台设备，并同时显示这些设备所属的客户名称和负责的联系人电话。",
+    "sql": "SELECT ne.device_name, c.customer_name, ct.phone, COUNT(eh.id) AS alarm_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN t_bz_config_customer c ON ne.customer_id = c.id\nLEFT JOIN t_bz_config_contact ct ON c.id = ct.customer_id AND ct.is_primary = 1\nWHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR)\nGROUP BY ne.id, ne.device_name, c.customer_name, ct.phone\nORDER BY alarm_count DESC\nLIMIT 10;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_contact"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个客户在最近一个完整自然月内，其所有设备在核心业务时段发生的严重级别告警的总时长，并按总时长从高到低排序。",
+    "sql": "SELECT c.customer_name,\n       SUM(TIMESTAMPDIFF(HOUR,\n           GREATEST(eh.start_time, DATE_ADD(DATE(eh.start_time), INTERVAL 8 HOUR)),\n           LEAST(COALESCE(eh.end_time, NOW()), DATE_ADD(DATE(eh.start_time), INTERVAL 20 HOUR))\n       )) AS total_critical_hours\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN t_bz_config_customer c ON ne.customer_id = c.id\nWHERE eh.severity = 'CRITICAL'\n  AND eh.start_time >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')\n  AND eh.start_time < DATE_FORMAT(NOW(), '%Y-%m-01')\n  AND (eh.end_time IS NULL OR eh.end_time >= DATE_ADD(DATE(eh.start_time), INTERVAL 8 HOUR))\n  AND eh.start_time < DATE_ADD(DATE(eh.start_time), INTERVAL 20 HOUR)\nGROUP BY c.id, c.customer_name\nORDER BY total_critical_hours DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询哪些采集机管理的设备中，超过50%的设备在过去一周内都至少产生过一次告警。列出这些采集机名称及其管理的设备总数和告警设备数。",
+    "sql": "WITH DeviceAlarm AS (\n    SELECT ne.collector_id, ne.id AS device_id,\n           CASE WHEN COUNT(eh.id) > 0 THEN 1 ELSE 0 END AS has_alarm\n    FROM t_bz_config_ci_ne_root ne\n    LEFT JOIN event_history eh ON ne.id = eh.ne_id AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    GROUP BY ne.collector_id, ne.id\n),\nCollectorStats AS (\n    SELECT cv.id, cv.name,\n           COUNT(DISTINCT da.device_id) AS total_devices,\n           SUM(da.has_alarm) AS alarm_devices\n    FROM collector_v2 cv\n    LEFT JOIN DeviceAlarm da ON cv.id = da.collector_id\n    GROUP BY cv.id, cv.name\n)\nSELECT name, total_devices, alarm_devices\nFROM CollectorStats\nWHERE total_devices > 0 AND (alarm_devices * 1.0 / total_devices) > 0.5\nORDER BY (alarm_devices * 1.0 / total_devices) DESC;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出最近3个月内，从未发生过任何告警的在线状态设备，并显示这些设备所属的客户及设备类型。",
+    "sql": "SELECT ne.device_name, c.customer_name, nt.name AS device_type\nFROM t_bz_config_ci_ne_root ne\nJOIN t_bz_config_customer c ON ne.customer_id = c.id\nJOIN ne_type nt ON ne.ne_type_id = nt.id\nWHERE ne.status = '在线'\n  AND ne.id NOT IN (\n      SELECT DISTINCT eh.ne_id\n      FROM event_history eh\n      WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 3 MONTH)\n  )\nORDER BY c.customer_name, ne.device_name;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "ne_type",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个服务包在最近30天内，其绑定的设备在非工作时间产生的告警数量，并列出告警数最多的前5个服务包名称。",
+    "sql": "SELECT nsp.name AS service_package_name, COUNT(eh.id) AS off_hour_alarm_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN ne_service_package nsp ON ne.id = nsp.ne_id\nWHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n  AND (\n      (DAYOFWEEK(eh.start_time) BETWEEN 2 AND 6 AND (HOUR(eh.start_time) < 9 OR HOUR(eh.start_time) >= 18))\n      OR\n      (DAYOFWEEK(eh.start_time) IN (1, 7))\n  )\nGROUP BY nsp.id, nsp.name\nORDER BY off_hour_alarm_count DESC\nLIMIT 5;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_service_package"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询某大型客户名下，所有路由器设备在过去一周内，连续两次告警间隔小于10分钟的频繁告警序列。列出设备名、告警时间及告警类型。",
+    "sql": "SELECT ne.device_name, eh1.start_time AS alarm_time_1, eh1.alarm_type AS type_1,\n       eh2.start_time AS alarm_time_2, eh2.alarm_type AS type_2\nFROM event_history eh1\nJOIN event_history eh2 ON eh1.ne_id = eh2.ne_id\nJOIN t_bz_config_ci_ne_root ne ON eh1.ne_id = ne.id\nJOIN ne_type nt ON ne.ne_type_id = nt.id\nWHERE ne.customer_id = 1001\n  AND nt.name = '路由器'\n  AND eh1.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n  AND eh2.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n  AND eh2.start_time > eh1.start_time\n  AND TIMESTAMPDIFF(MINUTE, eh1.start_time, eh2.start_time) < 10\nORDER BY ne.device_name, eh1.start_time;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些管理着超过100台设备，且这些设备在上个月的平均每日可用性低于99.9%的采集机。列出采集机名和设备平均可用性。",
+    "sql": "SELECT cv.name AS collector_name,\n       COUNT(DISTINCT ne.id) AS device_count,\n       AVG(da.availability_percentage) AS avg_availability\nFROM collector_v2 cv\nJOIN t_bz_config_ci_ne_root ne ON cv.id = ne.collector_id\nJOIN day_availability da ON ne.id = da.ne_id\nWHERE da.stat_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')\n  AND da.stat_date < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY cv.id, cv.name\nHAVING device_count > 100 AND avg_availability < 99.9\nORDER BY avg_availability ASC;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "day_availability"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计过去一年中，每个季度内，由不同设备类型产生的重大级别以上告警的数量变化趋势。输出季度、设备类型和告警数。",
+    "sql": "SELECT CONCAT(YEAR(eh.start_time), '-Q', QUARTER(eh.start_time)) AS quarter,\n       nt.name AS device_type,\n       COUNT(eh.id) AS major_alarm_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN ne_type nt ON ne.ne_type_id = nt.id\nWHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR)\n  AND eh.severity IN ('CRITICAL', 'MAJOR')\nGROUP BY YEAR(eh.start_time), QUARTER(eh.start_time), nt.id, nt.name\nORDER BY quarter, device_type;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询所有在最近一周内有过硬件变更记录的设备，并检查这些设备在变更后是否产生了新的告警。列出设备名、变更时间及变更后告警数量。",
+    "sql": "SELECT ne.device_name, h.update_time AS hardware_change_time,\n       COUNT(eh.id) AS post_change_alarms\nFROM hardware h\nJOIN t_bz_config_ci_ne_root ne ON h.ne_id = ne.id\nLEFT JOIN event_history eh ON ne.id = eh.ne_id AND eh.start_time > h.update_time\nWHERE h.update_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY ne.id, ne.device_name, h.update_time\nORDER BY post_change_alarms DESC;",
+    "tables": [
+      "hardware",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出那些在过去一个月内，其负责的客户产生的告警总数超过该客户历史月平均告警数2倍的联系人。列出联系人姓名、客户名及本月告警数与月平均数的比值。",
+    "sql": "WITH MonthlyAvg AS (\n    SELECT c.id AS customer_id,\n           AVG(monthly_count) AS avg_monthly_alarms\n    FROM (\n        SELECT ne.customer_id,\n               DATE_FORMAT(eh.start_time, '%Y-%m') AS month,\n               COUNT(*) AS monthly_count\n        FROM event_history eh\n        JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\n        GROUP BY ne.customer_id, DATE_FORMAT(eh.start_time, '%Y-%m')\n    ) hist\n    JOIN t_bz_config_customer c ON hist.customer_id = c.id\n    GROUP BY c.id\n),\nCurrentMonth AS (\n    SELECT ne.customer_id, COUNT(*) AS current_month_alarms\n    FROM event_history eh\n    JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\n    WHERE eh.start_time >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')\n      AND eh.start_time < DATE_FORMAT(NOW(), '%Y-%m-01')\n    GROUP BY ne.customer_id\n)\nSELECT ct.contact_name, c.customer_name,\n       cm.current_month_alarms,\n       ma.avg_monthly_alarms,\n       cm.current_month_alarms / ma.avg_monthly_alarms AS ratio\nFROM t_bz_config_contact ct\nJOIN t_bz_config_customer c ON ct.customer_id = c.id\nJOIN CurrentMonth cm ON c.id = cm.customer_id\nJOIN MonthlyAvg ma ON c.id = ma.customer_id\nWHERE cm.current_month_alarms > ma.avg_monthly_alarms * 2\nORDER BY ratio DESC;",
+    "tables": [
+      "t_bz_config_contact",
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个区域在最近90天内，工作日与非工作日产生的告警总数对比。输出区域名称、工作日告警数、非工作日告警数及两者差值。",
+    "sql": "SELECT r.region_name,\n       SUM(CASE WHEN DAYOFWEEK(eh.start_time) BETWEEN 2 AND 6 THEN 1 ELSE 0 END) AS weekday_alarms,\n       SUM(CASE WHEN DAYOFWEEK(eh.start_time) IN (1, 7) THEN 1 ELSE 0 END) AS weekend_alarms,\n       SUM(CASE WHEN DAYOFWEEK(eh.start_time) BETWEEN 2 AND 6 THEN 1 ELSE -1 END) AS difference\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN t_bz_config_customer c ON ne.customer_id = c.id\nJOIN t_bz_config_region r ON c.region_id = r.id\nWHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 90 DAY)\nGROUP BY r.id, r.region_name\nORDER BY ABS(difference) DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询那些绑定了超过3个不同服务包的设备，并计算这些设备在过去一周内，每个服务包对应的平均告警响应时间，列出设备名和每个服务包的平均响应时间。",
+    "sql": "SELECT ne.device_name, nsp.name AS service_package_name,\n       AVG(TIMESTAMPDIFF(MINUTE, eh.start_time, eh.ack_time)) AS avg_response_minutes\nFROM t_bz_config_ci_ne_root ne\nJOIN ne_service_package nsp ON ne.id = nsp.ne_id\nJOIN event_history eh ON ne.id = eh.ne_id AND eh.start_time >= DATE_SUB(NOW(), INTERVAL 7 DAY) AND eh.ack_time IS NOT NULL\nWHERE ne.id IN (\n    SELECT ne_id\n    FROM ne_service_package\n    GROUP BY ne_id\n    HAVING COUNT(DISTINCT id) > 3\n)\nGROUP BY ne.id, ne.device_name, nsp.id, nsp.name\nORDER BY ne.device_name, avg_response_minutes DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_service_package",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出在最近48小时内，同一台设备上重复出现超过5次的告警模式。列出设备名、告警类型及重复次数。",
+    "sql": "SELECT ne.device_name, eh.alarm_type, COUNT(*) AS repeat_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nWHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 48 HOUR)\nGROUP BY ne.id, ne.device_name, eh.alarm_type\nHAVING repeat_count > 5\nORDER BY repeat_count DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个客户等级在最近一个月内，其设备因电源或风扇故障导致的告警总时长，并计算此类告警占总告警时长的百分比。",
+    "sql": "WITH TotalAlarmTime AS (\n    SELECT c.id AS customer_id, c.level,\n           SUM(TIMESTAMPDIFF(HOUR, eh.start_time, COALESCE(eh.end_time, NOW()))) AS total_hours\n    FROM event_history eh\n    JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\n    JOIN t_bz_config_customer c ON ne.customer_id = c.id\n    WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)\n    GROUP BY c.id, c.level\n),\nPowerFanAlarmTime AS (\n    SELECT c.id AS customer_id,\n           SUM(TIMESTAMPDIFF(HOUR, eh.start_time, COALESCE(eh.end_time, NOW()))) AS power_fan_hours\n    FROM event_history eh\n    JOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\n    JOIN t_bz_config_customer c ON ne.customer_id = c.id\n    WHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH)\n      AND (eh.alarm_type LIKE '%电源%' OR eh.alarm_type LIKE '%风扇%')\n    GROUP BY c.id\n)\nSELECT tat.level,\n       SUM(COALESCE(pfat.power_fan_hours, 0)) AS total_power_fan_hours,\n       SUM(tat.total_hours) AS total_all_hours,\n       ROUND(SUM(COALESCE(pfat.power_fan_hours, 0)) * 100.0 / SUM(tat.total_hours), 2) AS percentage\nFROM TotalAlarmTime tat\nLEFT JOIN PowerFanAlarmTime pfat ON tat.customer_id = pfat.customer_id\nGROUP BY tat.level\nORDER BY percentage DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询所有核心区域的设备，找出那些在最近一周内，其采集任务成功率低于95%的设备，并列出设备名、所属客户及采集成功率。",
+    "sql": "SELECT ne.device_name, c.customer_name,\n       SUM(CASE WHEN nch.status = 'SUCCESS' THEN 1 ELSE 0 END) * 100.0 / COUNT(nch.id) AS success_rate\nFROM t_bz_config_ci_ne_root ne\nJOIN t_bz_config_customer c ON ne.customer_id = c.id\nJOIN t_bz_config_region r ON c.region_id = r.id\nJOIN ne_collect_history nch ON ne.id = nch.ne_id\nWHERE r.region_name LIKE '%核心%'\n  AND nch.create_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nGROUP BY ne.id, ne.device_name, c.customer_name\nHAVING success_rate < 95\nORDER BY success_rate ASC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "t_bz_config_region",
+      "ne_collect_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出在过去30天内，产生告警的设备数量最多的前3个服务包，并列出这些服务包所覆盖的客户数量。",
+    "sql": "SELECT nsp.name AS service_package_name,\n       COUNT(DISTINCT ne.id) AS alarmed_device_count,\n       COUNT(DISTINCT c.id) AS customer_count\nFROM event_history eh\nJOIN t_bz_config_ci_ne_root ne ON eh.ne_id = ne.id\nJOIN ne_service_package nsp ON ne.id = nsp.ne_id\nJOIN t_bz_config_customer c ON ne.customer_id = c.id\nWHERE eh.start_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nGROUP BY nsp.id, nsp.name\nORDER BY alarmed_device_count DESC\nLIMIT 3;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_service_package",
+      "t_bz_config_customer"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个采集机的健康状态在最近24小时内的变化情况，找出那些状态从健康变为不健康超过3次的采集机，并列出采集机名及状态变化次数。",
+    "sql": "WITH HealthChanges AS (\n    SELECT ch.collector_id,\n           ch.health_status,\n           LAG(ch.health_status) OVER (PARTITION BY ch.collector_id ORDER BY ch.check_time) AS prev_status\n    FROM collector_health ch\n    WHERE ch.check_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR)\n)\nSELECT cv.name AS collector_name, COUNT(*) AS degradation_count\nFROM HealthChanges hc\nJOIN collector_v2 cv ON hc.collector_id = cv.id\nWHERE hc.health_status = 'UNHEALTHY' AND hc.prev_status = 'HEALTHY'\nGROUP BY hc.collector_id, cv.name\nHAVING degradation_count > 3\nORDER BY degradation_count DESC;",
+    "tables": [
+      "collector_health",
+      "collector_v2"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询过去30天内，每个区域中产生告警数量最多的前3种设备类型，并显示该区域、设备类型、告警总数，以及该设备类型告警占该区域总告警的百分比。要求结果按区域、百分比降序排列。",
+    "sql": "WITH region_alarm_stats AS (\n    SELECT \n        r.region_name,\n        nt.type_name,\n        COUNT(eh.event_id) as alarm_count,\n        SUM(COUNT(eh.event_id)) OVER (PARTITION BY r.region_name) as region_total\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_root_id = ne.id\n    INNER JOIN ne_type nt ON ne.ne_type_id = nt.id\n    INNER JOIN t_bz_config_region r ON ne.region_id = r.id\n    WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n    GROUP BY r.region_name, nt.type_name\n),\nranked_types AS (\n    SELECT \n        region_name,\n        type_name,\n        alarm_count,\n        region_total,\n        ROUND((alarm_count * 100.0 / region_total), 2) as percentage,\n        ROW_NUMBER() OVER (PARTITION BY region_name ORDER BY alarm_count DESC) as rn\n    FROM region_alarm_stats\n)\nSELECT \n    region_name,\n    type_name,\n    alarm_count,\n    region_total,\n    percentage\nFROM ranked_types\nWHERE rn <= 3\nORDER BY region_name, percentage DESC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "t_bz_config_region"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出在最近7天内，负责处理客户割接订单且同时负责该客户设备告警处理的前5名最活跃的TOC大AD账号。活跃度由处理的唯一订单数和参与处理的唯一告警事件数之和来定义。",
+    "sql": "WITH toc_orders AS (\n    SELECT DISTINCT \n        toc_ad_account,\n        customer_id\n    FROM atomic_cutover_order\n    WHERE create_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n),\ntoc_alarms AS (\n    SELECT DISTINCT \n        a.toc_ad_account,\n        eh.customer_id\n    FROM event_history eh\n    INNER JOIN atomic_toc_acct_mapping a ON eh.handler_id = a.small_ad_no\n    WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n),\ntoc_activity AS (\n    SELECT \n        o.toc_ad_account,\n        COUNT(DISTINCT o.customer_id) as unique_order_customers,\n        COUNT(DISTINCT a.customer_id) as unique_alarm_customers\n    FROM toc_orders o\n    LEFT JOIN toc_alarms a ON o.toc_ad_account = a.toc_ad_account AND o.customer_id = a.customer_id\n    GROUP BY o.toc_ad_account\n    UNION ALL\n    SELECT \n        a.toc_ad_account,\n        0 as unique_order_customers,\n        COUNT(DISTINCT a.customer_id) as unique_alarm_customers\n    FROM toc_alarms a\n    WHERE NOT EXISTS (SELECT 1 FROM toc_orders o WHERE o.toc_ad_account = a.toc_ad_account)\n    GROUP BY a.toc_ad_account\n),\ncombined_activity AS (\n    SELECT \n        toc_ad_account,\n        SUM(unique_order_customers) as total_order_customers,\n        SUM(unique_alarm_customers) as total_alarm_customers,\n        (SUM(unique_order_customers) + SUM(unique_alarm_customers)) as activity_score\n    FROM toc_activity\n    GROUP BY toc_ad_account\n)\nSELECT \n    toc_ad_account,\n    total_order_customers,\n    total_alarm_customers,\n    activity_score\nFROM combined_activity\nORDER BY activity_score DESC\nLIMIT 5;",
+    "tables": [
+      "atomic_cutover_order",
+      "event_history",
+      "atomic_toc_acct_mapping",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "分析每个采集机的健康状况与其负责采集的设备产生的严重告警之间的关联。查询过去24小时内，采集机健康状态为异常时，其负责的设备产生严重告警的平均数量，并与健康状态为正常时进行对比。同时列出采集机ID、状态、负责设备数、严重告警总数及平均告警数。",
+    "sql": "WITH collector_device_mapping AS (\n    SELECT \n        cv2.id as collector_id,\n        cv2.health_status,\n        COUNT(DISTINCT ne.id) as device_count\n    FROM collector_v2 cv2\n    LEFT JOIN t_bz_config_ci_ne_root ne ON cv2.id = ne.collector_id\n    WHERE cv2.last_heartbeat_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR)\n    GROUP BY cv2.id, cv2.health_status\n),\ncollector_alarms AS (\n    SELECT \n        ne.collector_id,\n        COUNT(eh.event_id) as severe_alarm_count\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_root_id = ne.id\n    INNER JOIN importance imp ON eh.importance_id = imp.id\n    WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR)\n    AND imp.importance_name IN ('紧急', '重要') -- 假设重要性名称\n    GROUP BY ne.collector_id\n)\nSELECT \n    cdm.collector_id,\n    cdm.health_status,\n    cdm.device_count,\n    COALESCE(ca.severe_alarm_count, 0) as severe_alarm_count,\n    CASE \n        WHEN cdm.device_count > 0 THEN ROUND(COALESCE(ca.severe_alarm_count, 0) * 1.0 / cdm.device_count, 2)\n        ELSE 0 \n    END as avg_alarm_per_device\nFROM collector_device_mapping cdm\nLEFT JOIN collector_alarms ca ON cdm.collector_id = ca.collector_id\nWHERE cdm.health_status IN ('正常', '异常')\nORDER BY cdm.health_status, avg_alarm_per_device DESC;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "importance"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "构建一个客户服务健康度综合评分。评分规则：基于过去30天，计算每个客户的设备可用性、告警解决率、工单满意度。三项指标分别赋予权重40%、35%、25%，计算加权总分，并列出客户ID、名称、三项指标得分及总分，仅显示总分低于60分的客户。",
+    "sql": "WITH customer_availability AS (\n    SELECT \n        ne.customer_id,\n        ROUND(AVG(da.availability_value), 2) as avg_availability\n    FROM day_availability da\n    INNER JOIN t_bz_config_ci_ne_root ne ON da.ne_id = ne.id\n    WHERE da.stat_date >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n    GROUP BY ne.customer_id\n),\ncustomer_alarm_resolution AS (\n    SELECT \n        eh.customer_id,\n        ROUND(SUM(CASE WHEN eh.status = '已解决' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as resolution_rate\n    FROM event_history eh\n    WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n    GROUP BY eh.customer_id\n),\ncustomer_order_satisfaction AS (\n    SELECT \n        customer_id,\n        ROUND(AVG(satisfaction_score), 2) as avg_satisfaction\n    FROM atomic_aft_order\n    WHERE create_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n    AND satisfaction_score IS NOT NULL\n    GROUP BY customer_id\n)\nSELECT \n    c.id as customer_id,\n    c.customer_name,\n    COALESCE(ca.avg_availability, 0) as availability_score,\n    COALESCE(car.resolution_rate, 0) as resolution_score,\n    COALESCE(cos.avg_satisfaction, 0) as satisfaction_score,\n    ROUND(\n        COALESCE(ca.avg_availability, 0) * 0.4 +\n        COALESCE(car.resolution_rate, 0) * 0.35 +\n        COALESCE(cos.avg_satisfaction, 0) * 0.25, \n    2) as total_score\nFROM t_bz_config_customer c\nLEFT JOIN customer_availability ca ON c.id = ca.customer_id\nLEFT JOIN customer_alarm_resolution car ON c.id = car.customer_id\nLEFT JOIN customer_order_satisfaction cos ON c.id = cos.customer_id\nHAVING total_score < 60\nORDER BY total_score ASC;",
+    "tables": [
+      "t_bz_config_customer",
+      "day_availability",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "atomic_aft_order"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "识别出存在潜在风险的设备。定义：设备在最近72小时内，产生了超过3次相同类型的告警，且这些告警的严重程度在递增，同时该设备没有关联的任何有效维保信息。列出设备ID、名称、告警类型、告警次数、最新严重程度及维保状态。",
+    "sql": "WITH device_alarm_patterns AS (\n    SELECT \n        eh.ne_root_id,\n        eh.event_type_id,\n        et.type_name,\n        COUNT(*) as alarm_count,\n        MAX(eh.importance_id) as max_importance_id,\n        GROUP_CONCAT(eh.importance_id ORDER BY eh.event_time ASC) as importance_sequence\n    FROM event_history eh\n    INNER JOIN event_type et ON eh.event_type_id = et.id\n    WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 72 HOUR)\n    GROUP BY eh.ne_root_id, eh.event_type_id, et.type_name\n    HAVING COUNT(*) > 3\n),\nsequence_check AS (\n    SELECT \n        dap.*,\n        CASE \n            WHEN importance_sequence REGEXP '^(.*,)?([0-9]+)(,\\2)*$' THEN 0\n            ELSE 1\n        END as is_increasing\n    FROM device_alarm_patterns dap\n),\nrisk_devices AS (\n    SELECT \n        ne.id as device_id,\n        ne.ne_name,\n        sc.type_name as alarm_type,\n        sc.alarm_count,\n        imp.importance_name as latest_severity,\n        CASE WHEN mi.id IS NULL THEN '无维保' ELSE '有维保' END as maintenance_status\n    FROM sequence_check sc\n    INNER JOIN t_bz_config_ci_ne_root ne ON sc.ne_root_id = ne.id\n    INNER JOIN importance imp ON sc.max_importance_id = imp.id\n    LEFT JOIN maintenance_info mi ON ne.id = mi.ne_id AND mi.end_time >= NOW()\n    WHERE sc.is_increasing = 1\n    AND mi.id IS NULL -- 无有效维保\n)\nSELECT * FROM risk_devices\nORDER BY alarm_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "event_type",
+      "importance",
+      "maintenance_info"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询每个区域中，客户设备的告警在采集机层面的分布情况。要求显示：区域名称、采集机健康状态、该状态下采集机数量、该区域设备总数、该区域告警总数，以及异常状态采集机所负责设备的告警数占区域总告警数的比例。按区域和采集机健康状态分组。",
+    "sql": "WITH region_stats AS (\n    SELECT \n        r.id as region_id,\n        r.region_name,\n        COUNT(DISTINCT ne.id) as total_devices,\n        COUNT(DISTINCT eh.event_id) as total_alarms\n    FROM t_bz_config_region r\n    LEFT JOIN t_bz_config_ci_ne_root ne ON r.id = ne.region_id\n    LEFT JOIN event_history eh ON ne.id = eh.ne_root_id AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    GROUP BY r.id, r.region_name\n),\ncollector_stats AS (\n    SELECT \n        ne.region_id,\n        cv2.health_status,\n        COUNT(DISTINCT cv2.id) as collector_count,\n        COUNT(DISTINCT ne.id) as devices_under_collector,\n        COUNT(DISTINCT eh.event_id) as alarms_under_collector\n    FROM collector_v2 cv2\n    INNER JOIN t_bz_config_ci_ne_root ne ON cv2.id = ne.collector_id\n    LEFT JOIN event_history eh ON ne.id = eh.ne_root_id AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    GROUP BY ne.region_id, cv2.health_status\n),\nabnormal_collector_alarms AS (\n    SELECT \n        ne.region_id,\n        COUNT(DISTINCT eh.event_id) as alarms_under_abnormal\n    FROM collector_v2 cv2\n    INNER JOIN t_bz_config_ci_ne_root ne ON cv2.id = ne.collector_id\n    INNER JOIN event_history eh ON ne.id = eh.ne_root_id AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    WHERE cv2.health_status = '异常'\n    GROUP BY ne.region_id\n)\nSELECT \n    rs.region_name,\n    COALESCE(cs.health_status, '无采集机') as health_status,\n    COALESCE(cs.collector_count, 0) as collector_count,\n    rs.total_devices,\n    rs.total_alarms,\n    COALESCE(cs.devices_under_collector, 0) as devices_under_collector,\n    COALESCE(cs.alarms_under_collector, 0) as alarms_under_collector,\n    ROUND(COALESCE(aca.alarms_under_abnormal, 0) * 100.0 / NULLIF(rs.total_alarms, 0), 2) as abnormal_collector_alarm_percentage\nFROM region_stats rs\nLEFT JOIN collector_stats cs ON rs.region_id = cs.region_id\nLEFT JOIN abnormal_collector_alarms aca ON rs.region_id = aca.region_id\nORDER BY rs.region_name, cs.health_status;",
+    "tables": [
+      "t_bz_config_region",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "collector_v2"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "分析客户的订单处理效率与设备告警响应之间的关联。对于每个客户，计算： 平均工单处理时长、 平均告警响应时长、 设备总数。然后使用K-means聚类思想，将客户分为3个等级，并列出每个等级客户的数量、平均处理时长、平均响应时长及平均设备数。",
+    "sql": "WITH customer_order_duration AS (\n    SELECT \n        customer_id,\n        AVG(TIMESTAMPDIFF(HOUR, create_time, close_time)) as avg_order_hours\n    FROM atomic_aft_order\n    WHERE close_time IS NOT NULL\n    AND create_time >= DATE_SUB(NOW(), INTERVAL 90 DAY)\n    GROUP BY customer_id\n),\ncustomer_alarm_response AS (\n    SELECT \n        customer_id,\n        AVG(TIMESTAMPDIFF(MINUTE, event_time, first_handle_time)) as avg_response_minutes\n    FROM event_history\n    WHERE first_handle_time IS NOT NULL\n    AND event_time >= DATE_SUB(NOW(), INTERVAL 90 DAY)\n    GROUP BY customer_id\n),\ncustomer_device_count AS (\n    SELECT \n        customer_id,\n        COUNT(*) as device_count\n    FROM t_bz_config_ci_ne_root\n    GROUP BY customer_id\n),\ncustomer_metrics AS (\n    SELECT \n        c.id as customer_id,\n        c.customer_name,\n        COALESCE(cod.avg_order_hours, 0) as avg_order_hours,\n        COALESCE(car.avg_response_minutes, 0) as avg_response_minutes,\n        COALESCE(cdc.device_count, 0) as device_count,\n        (COALESCE(cod.avg_order_hours, 0) * 0.6 + COALESCE(car.avg_response_minutes, 0) * 0.4) as composite_score\n    FROM t_bz_config_customer c\n    LEFT JOIN customer_order_duration cod ON c.id = cod.customer_id\n    LEFT JOIN customer_alarm_response car ON c.id = car.customer_id\n    LEFT JOIN customer_device_count cdc ON c.id = cdc.customer_id\n    WHERE cod.customer_id IS NOT NULL OR car.customer_id IS NOT NULL\n),\nclustered_customers AS (\n    SELECT \n        customer_id,\n        customer_name,\n        avg_order_hours,\n        avg_response_minutes,\n        device_count,\n        composite_score,\n        NTILE(3) OVER (ORDER BY composite_score ASC) as performance_tier\n    FROM customer_metrics\n)\nSELECT \n    CASE performance_tier\n        WHEN 1 THEN '高效'\n        WHEN 2 THEN '中等'\n        WHEN 3 THEN '待改进'\n    END as performance_level,\n    COUNT(*) as customer_count,\n    ROUND(AVG(avg_order_hours), 2) as avg_order_hours,\n    ROUND(AVG(avg_response_minutes), 2) as avg_response_minutes,\n    ROUND(AVG(device_count), 2) as avg_device_count\nFROM clustered_customers\nGROUP BY performance_tier\nORDER BY performance_tier;",
+    "tables": [
+      "t_bz_config_customer",
+      "atomic_aft_order",
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "检测采集风暴现象：找出在最近1小时内，单个采集机上发生的告警数量突增的采集机。同时，列出该采集机负责的设备类型分布及每种设备类型产生的告警数。",
+    "sql": "WITH collector_hourly_alarms AS (\n    SELECT \n        ne.collector_id,\n        DATE_FORMAT(eh.event_time, '%Y-%m-%d %H:00:00') as alarm_hour,\n        COUNT(*) as alarm_count\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_root_id = ne.id\n    WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 25 HOUR)\n    GROUP BY ne.collector_id, DATE_FORMAT(eh.event_time, '%Y-%m-%d %H:00:00')\n),\ncollector_avg_alarms AS (\n    SELECT \n        collector_id,\n        AVG(alarm_count) as avg_hourly_alarms\n    FROM collector_hourly_alarms\n    WHERE alarm_hour < DATE_FORMAT(NOW(), '%Y-%m-%d %H:00:00')\n    GROUP BY collector_id\n),\ncurrent_hour_alarms AS (\n    SELECT \n        ne.collector_id,\n        COUNT(*) as current_hour_alarms\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_root_id = ne.id\n    WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 1 HOUR)\n    GROUP BY ne.collector_id\n),\nstorm_collectors AS (\n    SELECT \n        cha.collector_id,\n        cha.current_hour_alarms,\n        caa.avg_hourly_alarms\n    FROM current_hour_alarms cha\n    INNER JOIN collector_avg_alarms caa ON cha.collector_id = caa.collector_id\n    WHERE cha.current_hour_alarms > caa.avg_hourly_alarms * 3\n),\ncollector_device_type_alarms AS (\n    SELECT \n        ne.collector_id,\n        nt.type_name,\n        COUNT(eh.event_id) as alarm_count_by_type\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root ne ON eh.ne_root_id = ne.id\n    INNER JOIN ne_type nt ON ne.ne_type_id = nt.id\n    WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 1 HOUR)\n    GROUP BY ne.collector_id, nt.type_name\n)\nSELECT \n    sc.collector_id,\n    cv2.collector_name,\n    sc.current_hour_alarms,\n    sc.avg_hourly_alarms,\n    cdta.type_name,\n    cdta.alarm_count_by_type\nFROM storm_collectors sc\nINNER JOIN collector_v2 cv2 ON sc.collector_id = cv2.id\nINNER JOIN collector_device_type_alarms cdta ON sc.collector_id = cdta.collector_id\nORDER BY sc.collector_id, cdta.alarm_count_by_type DESC;",
+    "tables": [
+      "collector_v2",
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "ne_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "构建一个设备的综合风险指数。指数由以下因素加权计算：1) 近期告警频率、2) 告警严重程度、3) 设备年龄、4) 是否在维保期内。指数范围0-100，越高风险越大。列出风险指数最高的前10台设备及其详细信息。",
+    "sql": "WITH device_alarm_stats AS (\n    SELECT \n        eh.ne_root_id,\n        COUNT(*) as alarm_count_7d,\n        AVG(CASE imp.importance_name\n            WHEN '紧急' THEN 5\n            WHEN '重要' THEN 4\n            WHEN '次要' THEN 3\n            WHEN '警告' THEN 2\n            WHEN '信息' THEN 1\n            ELSE 3\n        END) as avg_severity_score\n    FROM event_history eh\n    INNER JOIN importance imp ON eh.importance_id = imp.id\n    WHERE eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    GROUP BY eh.ne_root_id\n),\ndevice_age AS (\n    SELECT \n        id,\n        TIMESTAMPDIFF(DAY, create_time, NOW()) as age_days\n    FROM t_bz_config_ci_ne_root\n),\ndevice_maintenance AS (\n    SELECT \n        ne.id,\n        CASE WHEN MAX(mi.end_time) >= NOW() THEN 0 ELSE 1 END as no_maintenance_flag\n    FROM t_bz_config_ci_ne_root ne\n    LEFT JOIN maintenance_info mi ON ne.id = mi.ne_id\n    GROUP BY ne.id\n),\nrisk_calculation AS (\n    SELECT \n        ne.id,\n        ne.ne_name,\n        ne.ip_address,\n        nt.type_name,\n        COALESCE(das.alarm_count_7d, 0) as alarm_count_7d,\n        COALESCE(das.avg_severity_score, 0) as avg_severity_score,\n        da.age_days,\n        COALESCE(dm.no_maintenance_flag, 1) as no_maintenance_flag,\n        -- 归一化计算（假设最大告警数100，最大设备年龄1000天）\n        LEAST(COALESCE(das.alarm_count_7d, 0) / 100.0, 1) * 30 as alarm_frequency_score,\n        LEAST(COALESCE(das.avg_severity_score, 0) / 5.0, 1) * 30 as severity_score,\n        LEAST(da.age_days / 1000.0, 1) * 20 as age_score,\n        dm.no_maintenance_flag * 20 as maintenance_score\n    FROM t_bz_config_ci_ne_root ne\n    INNER JOIN ne_type nt ON ne.ne_type_id = nt.id\n    LEFT JOIN device_alarm_stats das ON ne.id = das.ne_root_id\n    LEFT JOIN device_age da ON ne.id = da.id\n    LEFT JOIN device_maintenance dm ON ne.id = dm.id\n)\nSELECT \n    id,\n    ne_name,\n    ip_address,\n    type_name,\n    alarm_count_7d,\n    ROUND(avg_severity_score, 2) as avg_severity_score,\n    age_days,\n    no_maintenance_flag,\n    ROUND(alarm_frequency_score + severity_score + age_score + maintenance_score, 2) as risk_index\nFROM risk_calculation\nORDER BY risk_index DESC\nLIMIT 10;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "importance",
+      "ne_type",
+      "maintenance_info"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "执行一个根因分析查询：找出在过去24小时内，那些引发了级联告警的设备。定义：如果设备A的告警产生后，在10分钟内，其关联的设备B也产生了相同类型的告警，则设备A被视为根因设备。需要列出根因设备、受影响设备、告警类型、告警时间差及告警内容摘要。",
+    "sql": "WITH alarm_chains AS (\n    SELECT \n        a1.ne_root_id as root_device_id,\n        a1.event_type_id,\n        a1.event_time as root_alarm_time,\n        a1.event_summary as root_summary,\n        a2.ne_root_id as affected_device_id,\n        a2.event_time as affected_alarm_time,\n        a2.event_summary as affected_summary,\n        TIMESTAMPDIFF(SECOND, a1.event_time, a2.event_time) as time_diff_seconds\n    FROM event_history a1\n    INNER JOIN t_bz_config_ci_ne_root ne1 ON a1.ne_root_id = ne1.id\n    INNER JOIN t_bz_config_ci_ne_root ne2 ON ne2.ne_parent_id = ne1.id\n    INNER JOIN event_history a2 ON ne2.id = a2.ne_root_id\n    WHERE a1.event_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR)\n    AND a2.event_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR)\n    AND a1.event_type_id = a2.event_type_id\n    AND a2.event_time > a1.event_time\n    AND TIMESTAMPDIFF(SECOND, a1.event_time, a2.event_time) BETWEEN 1 AND 600 -- 10分钟内\n)\nSELECT \n    rc.ne_name as root_device_name,\n    ac.event_type_id,\n    et.type_name,\n    ac.root_alarm_time,\n    ac.root_summary,\n    ac.affected_device_id,\n    af.ne_name as affected_device_name,\n    ac.affected_alarm_time,\n    ac.affected_summary,\n    ac.time_diff_seconds\nFROM alarm_chains ac\nINNER JOIN t_bz_config_ci_ne_root rc ON ac.root_device_id = rc.id\nINNER JOIN t_bz_config_ci_ne_root af ON ac.affected_device_id = af.id\nINNER JOIN event_type et ON ac.event_type_id = et.id\nORDER BY ac.root_alarm_time DESC, ac.time_diff_seconds ASC;",
+    "tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "event_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "查询每个区域中，在过去30天内发生过告警的设备数量，同时统计这些设备中，当前处于活跃状态且设备类型为路由器或交换机的比例。要求结果按设备数量降序排列，只显示设备数量大于10的区域。",
+    "sql": "WITH region_alarm_ne AS (\n    SELECT DISTINCT \n        r.region_name,\n        n.ne_id,\n        n.status,\n        nt.type_name\n    FROM t_bz_config_region r\n    INNER JOIN t_bz_config_ci_ne_root n ON r.region_id = n.region_id\n    INNER JOIN ne_type nt ON n.ne_type_id = nt.ne_type_id\n    INNER JOIN event_history eh ON n.ne_id = eh.ne_id\n    WHERE eh.alarm_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n),\nregion_stats AS (\n    SELECT \n        region_name,\n        COUNT(DISTINCT ne_id) AS total_alarm_ne_count,\n        COUNT(DISTINCT CASE WHEN status = 1 AND type_name IN ('路由器', '交换机') THEN ne_id END) AS active_router_switch_count\n    FROM region_alarm_ne\n    GROUP BY region_name\n    HAVING COUNT(DISTINCT ne_id) > 10\n)\nSELECT \n    region_name,\n    total_alarm_ne_count,\n    active_router_switch_count,\n    ROUND(COALESCE(active_router_switch_count * 100.0 / NULLIF(total_alarm_ne_count, 0), 0), 2) AS active_router_switch_percentage\nFROM region_stats\nORDER BY total_alarm_ne_count DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_region",
+      "ne_type",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出在过去7天内，由采集机A负责采集的、且告警级别为严重或紧急的告警数量最多的前5个客户。同时，需要关联显示这些客户所对应的主要设备类型，以及该客户所有设备的平均运行时长。",
+    "sql": "WITH collector_alarms AS (\n    SELECT \n        eh.ne_id,\n        eh.severity,\n        eh.alarm_time\n    FROM event_history eh\n    INNER JOIN collector_v2 cv ON eh.collector_id = cv.collector_id\n    WHERE cv.name = '采集机A'\n      AND eh.alarm_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n      AND eh.severity IN ('严重', '紧急')\n),\ncustomer_ne_info AS (\n    SELECT \n        c.customer_id,\n        c.customer_name,\n        n.ne_id,\n        nt.type_name,\n        DATEDIFF(NOW(), n.create_time) AS running_days\n    FROM t_bz_config_customer c\n    INNER JOIN t_bz_config_ci_ne_root n ON c.customer_id = n.customer_id\n    INNER JOIN ne_type nt ON n.ne_type_id = nt.ne_type_id\n),\ncustomer_alarm_stats AS (\n    SELECT \n        cni.customer_id,\n        cni.customer_name,\n        COUNT(DISTINCT ca.ne_id) AS severe_alarm_count,\n        ROUND(AVG(cni.running_days), 2) AS avg_running_days\n    FROM customer_ne_info cni\n    INNER JOIN collector_alarms ca ON cni.ne_id = ca.ne_id\n    GROUP BY cni.customer_id, cni.customer_name\n),\ncustomer_main_ne_type AS (\n    SELECT \n        customer_id,\n        type_name,\n        COUNT(*) AS type_count,\n        ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY COUNT(*) DESC) AS rn\n    FROM customer_ne_info\n    GROUP BY customer_id, type_name\n)\nSELECT \n    cas.customer_name,\n    cas.severe_alarm_count,\n    cmnt.type_name AS main_ne_type,\n    cas.avg_running_days\nFROM customer_alarm_stats cas\nLEFT JOIN customer_main_ne_type cmnt ON cas.customer_id = cmnt.customer_id AND cmnt.rn = 1\nORDER BY cas.severe_alarm_count DESC\nLIMIT 5;",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "event_history",
+      "collector_v2"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "分析每个设备类型下，设备的告警模式：计算在过去90天内，每个设备产生的告警总数，以及其中已恢复告警的比例。同时，找出每个设备类型下告警总数最高的设备，并显示该设备所属的客户和区域。要求最终结果包含设备类型、该类型设备总数、平均告警数、已恢复告警平均比例、以及告警最多的设备详情。",
+    "sql": "WITH ne_alarm_stats AS (\n    SELECT \n        n.ne_id,\n        n.ne_type_id,\n        n.customer_id,\n        n.region_id,\n        COUNT(eh.event_id) AS total_alarms,\n        COUNT(CASE WHEN eh.status = '恢复' THEN 1 END) AS recovered_alarms\n    FROM t_bz_config_ci_ne_root n\n    LEFT JOIN event_history eh ON n.ne_id = eh.ne_id \n        AND eh.alarm_time >= DATE_SUB(NOW(), INTERVAL 90 DAY)\n    GROUP BY n.ne_id, n.ne_type_id, n.customer_id, n.region_id\n),\ntype_summary AS (\n    SELECT \n        nt.ne_type_id,\n        nt.type_name,\n        COUNT(DISTINCT nas.ne_id) AS total_devices,\n        ROUND(AVG(nas.total_alarms), 2) AS avg_alarms_per_device,\n        ROUND(AVG(CASE WHEN nas.total_alarms > 0 THEN nas.recovered_alarms * 100.0 / nas.total_alarms ELSE 0 END), 2) AS avg_recovery_rate_percent\n    FROM ne_type nt\n    LEFT JOIN ne_alarm_stats nas ON nt.ne_type_id = nas.ne_type_id\n    GROUP BY nt.ne_type_id, nt.type_name\n),\ntop_alarm_ne AS (\n    SELECT \n        nas.ne_type_id,\n        nas.ne_id,\n        nas.total_alarms,\n        ROW_NUMBER() OVER (PARTITION BY nas.ne_type_id ORDER BY nas.total_alarms DESC) AS rn\n    FROM ne_alarm_stats nas\n)\nSELECT \n    ts.type_name,\n    ts.total_devices,\n    ts.avg_alarms_per_device,\n    ts.avg_recovery_rate_percent,\n    tan.ne_id AS top_alarm_ne_id,\n    c.customer_name,\n    r.region_name,\n    tan.total_alarms AS top_ne_alarm_count\nFROM type_summary ts\nLEFT JOIN top_alarm_ne tan ON ts.ne_type_id = tan.ne_type_id AND tan.rn = 1\nLEFT JOIN t_bz_config_ci_ne_root n ON tan.ne_id = n.ne_id\nLEFT JOIN t_bz_config_customer c ON n.customer_id = c.customer_id\nLEFT JOIN t_bz_config_region r ON n.region_id = r.region_id\nORDER BY ts.total_devices DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "t_bz_config_customer",
+      "t_bz_config_region",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "构建一个客户健康度综合评分。评分规则：1) 设备在线率占40分；2) 过去30天无严重告警占30分；3) 设备平均运行时长大于365天占30分。请列出所有客户的详细评分项得分及总分，并按总分降序排列。同时，找出每个区域中总分最高的客户。",
+    "sql": "WITH customer_device_stats AS (\n    SELECT \n        c.customer_id,\n        c.customer_name,\n        r.region_name,\n        COUNT(n.ne_id) AS total_devices,\n        COUNT(CASE WHEN n.status = 1 THEN 1 END) AS online_devices,\n        AVG(DATEDIFF(NOW(), n.create_time)) AS avg_running_days\n    FROM t_bz_config_customer c\n    LEFT JOIN t_bz_config_ci_ne_root n ON c.customer_id = n.customer_id\n    LEFT JOIN t_bz_config_region r ON n.region_id = r.region_id\n    GROUP BY c.customer_id, c.customer_name, r.region_name\n),\ncustomer_alarm_stats AS (\n    SELECT \n        n.customer_id,\n        COUNT(DISTINCT CASE WHEN eh.severity IN ('严重','紧急') AND eh.alarm_time >= DATE_SUB(NOW(), INTERVAL 30 DAY) THEN eh.event_id END) AS severe_alarms_last_30d\n    FROM t_bz_config_ci_ne_root n\n    LEFT JOIN event_history eh ON n.ne_id = eh.ne_id\n    GROUP BY n.customer_id\n),\ncustomer_scores AS (\n    SELECT \n        cds.customer_id,\n        cds.customer_name,\n        cds.region_name,\n        -- 设备在线率得分 (0-40)\n        ROUND(COALESCE(cds.online_devices * 40.0 / NULLIF(cds.total_devices, 0), 0), 2) AS online_score,\n        -- 无严重告警得分 (0-30)\n        CASE WHEN COALESCE(cas.severe_alarms_last_30d, 0) = 0 THEN 30.0 ELSE 0.0 END AS no_severe_alarm_score,\n        -- 运行时长得分 (0-30)\n        ROUND(LEAST(COALESCE(cds.avg_running_days * 30.0 / 365, 0), 30), 2) AS running_days_score\n    FROM customer_device_stats cds\n    LEFT JOIN customer_alarm_stats cas ON cds.customer_id = cas.customer_id\n),\nranked_customers AS (\n    SELECT \n        cs.*,\n        ROUND(cs.online_score + cs.no_severe_alarm_score + cs.running_days_score, 2) AS total_score,\n        ROW_NUMBER() OVER (PARTITION BY cs.region_name ORDER BY (cs.online_score + cs.no_severe_alarm_score + cs.running_days_score) DESC) AS region_rank\n    FROM customer_scores cs\n)\nSELECT \n    customer_name,\n    region_name,\n    online_score,\n    no_severe_alarm_score,\n    running_days_score,\n    total_score,\n    CASE WHEN region_rank = 1 THEN '是' ELSE '否' END AS is_top_in_region\nFROM ranked_customers\nORDER BY total_score DESC;",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_region",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "进行采集机负载与告警关联分析：对于每台采集机，计算其负责采集的设备数量，以及这些设备在过去7天内产生的告警总数。同时，检查采集机自身的健康状态，如果健康状态不是健康，则标记为需关注。要求结果按采集机负责的设备数量降序排列，并显示采集机名称、IP地址、健康状态、设备数量、各级别告警数。",
+    "sql": "WITH collector_device_count AS (\n    SELECT \n        cv.collector_id,\n        cv.name AS collector_name,\n        cv.ip_address,\n        cv.health_status,\n        COUNT(DISTINCT n.ne_id) AS managed_device_count\n    FROM collector_v2 cv\n    LEFT JOIN t_bz_config_ci_ne_root n ON cv.collector_id = n.collector_id\n    GROUP BY cv.collector_id, cv.name, cv.ip_address, cv.health_status\n),\ncollector_alarm_stats AS (\n    SELECT \n        n.collector_id,\n        eh.severity,\n        COUNT(eh.event_id) AS alarm_count\n    FROM event_history eh\n    INNER JOIN t_bz_config_ci_ne_root n ON eh.ne_id = n.ne_id\n    WHERE eh.alarm_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    GROUP BY n.collector_id, eh.severity\n),\ncollector_alarm_pivot AS (\n    SELECT \n        collector_id,\n        COALESCE(SUM(CASE WHEN severity = '紧急' THEN alarm_count END), 0) AS critical_alarms,\n        COALESCE(SUM(CASE WHEN severity = '严重' THEN alarm_count END), 0) AS major_alarms,\n        COALESCE(SUM(CASE WHEN severity = '一般' THEN alarm_count END), 0) AS minor_alarms,\n        COALESCE(SUM(CASE WHEN severity = '警告' THEN alarm_count END), 0) AS warning_alarms,\n        COALESCE(SUM(alarm_count), 0) AS total_alarms\n    FROM collector_alarm_stats\n    GROUP BY collector_id\n)\nSELECT \n    cdc.collector_name,\n    cdc.ip_address,\n    cdc.health_status,\n    CASE WHEN cdc.health_status != '健康' THEN '需关注' ELSE '正常' END AS health_alert,\n    cdc.managed_device_count,\n    COALESCE(cap.critical_alarms, 0) AS critical_alarms,\n    COALESCE(cap.major_alarms, 0) AS major_alarms,\n    COALESCE(cap.minor_alarms, 0) AS minor_alarms,\n    COALESCE(cap.warning_alarms, 0) AS warning_alarms,\n    COALESCE(cap.total_alarms, 0) AS total_alarms\nFROM collector_device_count cdc\nLEFT JOIN collector_alarm_pivot cap ON cdc.collector_id = cap.collector_id\nORDER BY cdc.managed_device_count DESC;",
+    "tables": [
+      "collector_v2",
+      "t_bz_config_ci_ne_root",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "识别高告警风险设备：找出在过去30天内告警频率排名前10的设备。同时，对于这些设备，需要提供其所属客户、设备类型、最近一次告警的详细信息以及负责采集的采集机名称。如果设备有多个告警，取最近的一次。",
+    "sql": "WITH device_alarm_stats AS (\n    SELECT \n        n.ne_id,\n        n.customer_id,\n        n.ne_type_id,\n        n.collector_id,\n        COUNT(eh.event_id) AS alarm_count,\n        COUNT(eh.event_id) * 1.0 / 30 AS alarm_frequency,\n        MAX(eh.alarm_time) AS latest_alarm_time\n    FROM t_bz_config_ci_ne_root n\n    INNER JOIN event_history eh ON n.ne_id = eh.ne_id\n    WHERE eh.alarm_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n    GROUP BY n.ne_id, n.customer_id, n.ne_type_id, n.collector_id\n),\ntop_10_high_risk AS (\n    SELECT \n        ne_id,\n        customer_id,\n        ne_type_id,\n        collector_id,\n        alarm_count,\n        alarm_frequency,\n        latest_alarm_time,\n        ROW_NUMBER() OVER (ORDER BY alarm_frequency DESC) AS risk_rank\n    FROM device_alarm_stats\n    LIMIT 10\n),\nlatest_alarm_details AS (\n    SELECT \n        eh.ne_id,\n        eh.event_type,\n        eh.alarm_time,\n        eh.status,\n        ROW_NUMBER() OVER (PARTITION BY eh.ne_id ORDER BY eh.alarm_time DESC) AS rn\n    FROM event_history eh\n    INNER JOIN top_10_high_risk tr ON eh.ne_id = tr.ne_id\n)\nSELECT \n    tr.risk_rank,\n    tr.ne_id,\n    c.customer_name,\n    nt.type_name,\n    tr.alarm_count,\n    ROUND(tr.alarm_frequency, 2) AS daily_alarm_rate,\n    lad.event_type AS latest_event_type,\n    lad.alarm_time AS latest_alarm_time,\n    lad.status AS latest_alarm_status,\n    cv.name AS collector_name\nFROM top_10_high_risk tr\nINNER JOIN t_bz_config_customer c ON tr.customer_id = c.customer_id\nINNER JOIN ne_type nt ON tr.ne_type_id = nt.ne_type_id\nLEFT JOIN latest_alarm_details lad ON tr.ne_id = lad.ne_id AND lad.rn = 1\nLEFT JOIN collector_v2 cv ON tr.collector_id = cv.collector_id\nORDER BY tr.risk_rank;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "ne_type",
+      "event_history",
+      "collector_v2"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "分析区域维保覆盖情况：计算每个区域中，有维保信息的设备比例。同时，关联这些设备的告警情况，计算有维保的设备与无维保的设备在过去90天内的平均告警数对比。要求结果包含区域名称、设备总数、有维保设备数及比例、有维保设备平均告警数、无维保设备平均告警数。",
+    "sql": "WITH region_device_maintenance AS (\n    SELECT \n        r.region_id,\n        r.region_name,\n        n.ne_id,\n        CASE WHEN mi.maintenance_id IS NOT NULL THEN 1 ELSE 0 END AS has_maintenance\n    FROM t_bz_config_region r\n    LEFT JOIN t_bz_config_ci_ne_root n ON r.region_id = n.region_id\n    LEFT JOIN maintenance_info mi ON n.ne_id = mi.ne_id\n),\nregion_device_alarms AS (\n    SELECT \n        n.ne_id,\n        COUNT(eh.event_id) AS alarm_count\n    FROM t_bz_config_ci_ne_root n\n    LEFT JOIN event_history eh ON n.ne_id = eh.ne_id \n        AND eh.alarm_time >= DATE_SUB(NOW(), INTERVAL 90 DAY)\n    GROUP BY n.ne_id\n),\nregion_stats AS (\n    SELECT \n        rdm.region_id,\n        rdm.region_name,\n        COUNT(DISTINCT rdm.ne_id) AS total_devices,\n        COUNT(DISTINCT CASE WHEN rdm.has_maintenance = 1 THEN rdm.ne_id END) AS devices_with_maintenance,\n        ROUND(AVG(CASE WHEN rdm.has_maintenance = 1 THEN rda.alarm_count END), 2) AS avg_alarms_with_maintenance,\n        ROUND(AVG(CASE WHEN rdm.has_maintenance = 0 THEN rda.alarm_count END), 2) AS avg_alarms_without_maintenance\n    FROM region_device_maintenance rdm\n    LEFT JOIN region_device_alarms rda ON rdm.ne_id = rda.ne_id\n    GROUP BY rdm.region_id, rdm.region_name\n)\nSELECT \n    region_name,\n    total_devices,\n    devices_with_maintenance,\n    ROUND(devices_with_maintenance * 100.0 / NULLIF(total_devices, 0), 2) AS maintenance_coverage_percent,\n    COALESCE(avg_alarms_with_maintenance, 0) AS avg_alarms_with_maintenance,\n    COALESCE(avg_alarms_without_maintenance, 0) AS avg_alarms_without_maintenance\nFROM region_stats\nORDER BY maintenance_coverage_percent DESC;",
+    "tables": [
+      "t_bz_config_region",
+      "t_bz_config_ci_ne_root",
+      "maintenance_info",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "构建一个设备生命周期视图：对于每个设备，计算其从创建到当前的生命周期阶段。规则：1) 创建时间<30天为新设备；2) 30天≤创建时间<365天为成长期；3) 创建时间≥365天为稳定期。同时，统计每个阶段设备的告警特征：平均告警数、最常出现的告警级别、以及处于该阶段的设备数量。要求按客户分组显示各阶段统计。",
+    "sql": "WITH ne_lifecycle AS (\n    SELECT \n        n.ne_id,\n        c.customer_name,\n        DATEDIFF(NOW(), n.create_time) AS age_days,\n        CASE \n            WHEN DATEDIFF(NOW(), n.create_time) < 30 THEN '新设备'\n            WHEN DATEDIFF(NOW(), n.create_time) < 365 THEN '成长期'\n            ELSE '稳定期'\n        END AS lifecycle_stage\n    FROM t_bz_config_ci_ne_root n\n    INNER JOIN t_bz_config_customer c ON n.customer_id = c.customer_id\n),\nne_alarm_stats AS (\n    SELECT \n        n.ne_id,\n        COUNT(eh.event_id) AS alarm_count,\n        eh.severity\n    FROM t_bz_config_ci_ne_root n\n    LEFT JOIN event_history eh ON n.ne_id = eh.ne_id\n    GROUP BY n.ne_id, eh.severity\n),\nne_most_common_severity AS (\n    SELECT \n        ne_id,\n        severity,\n        COUNT(*) AS severity_count,\n        ROW_NUMBER() OVER (PARTITION BY ne_id ORDER BY COUNT(*) DESC) AS rn\n    FROM event_history\n    GROUP BY ne_id, severity\n),\nlifecycle_summary AS (\n    SELECT \n        nl.customer_name,\n        nl.lifecycle_stage,\n        COUNT(DISTINCT nl.ne_id) AS device_count,\n        ROUND(AVG(COALESCE(nas.alarm_count, 0)), 2) AS avg_alarm_count,\n        MAX(mcs.severity) AS most_common_severity\n    FROM ne_lifecycle nl\n    LEFT JOIN ne_alarm_stats nas ON nl.ne_id = nas.ne_id\n    LEFT JOIN ne_most_common_severity mcs ON nl.ne_id = mcs.ne_id AND mcs.rn = 1\n    GROUP BY nl.customer_name, nl.lifecycle_stage\n)\nSELECT \n    customer_name,\n    lifecycle_stage,\n    device_count,\n    avg_alarm_count,\n    most_common_severity\nFROM lifecycle_summary\nORDER BY customer_name, \n    CASE lifecycle_stage \n        WHEN '新设备' THEN 1 \n        WHEN '成长期' THEN 2 \n        WHEN '稳定期' THEN 3 \n    END;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "执行根因关联分析：对于每一条严重或紧急级别的告警，尝试找出在相同设备上、在告警发生时间前1小时内发生的、可能相关的其他告警。如果找到，则记录为疑似根因告警。统计每个设备类型下，具有疑似根因告警的严重告警比例。同时，列出前5个这种关联最多的设备，显示设备ID、客户名、关联告警数量。",
+    "sql": "WITH severe_alarms AS (\n    SELECT \n        event_id,\n        ne_id,\n        event_type,\n        alarm_time,\n        severity\n    FROM event_history\n    WHERE severity IN ('严重', '紧急')\n),\nroot_cause_candidates AS (\n    SELECT \n        sa1.event_id AS main_alarm_id,\n        sa1.ne_id,\n        sa1.event_type AS main_event_type,\n        sa1.alarm_time AS main_alarm_time,\n        sa2.event_id AS related_alarm_id,\n        sa2.event_type AS related_event_type,\n        sa2.alarm_time AS related_alarm_time\n    FROM severe_alarms sa1\n    INNER JOIN event_history sa2 ON sa1.ne_id = sa2.ne_id \n        AND sa2.alarm_time BETWEEN DATE_SUB(sa1.alarm_time, INTERVAL 1 HOUR) AND sa1.alarm_time\n        AND sa2.event_type != sa1.event_type\n),\ndevice_root_cause_summary AS (\n    SELECT \n        n.ne_id,\n        nt.type_name,\n        COUNT(DISTINCT rcc.main_alarm_id) AS severe_alarms_with_candidate\n    FROM t_bz_config_ci_ne_root n\n    INNER JOIN ne_type nt ON n.ne_type_id = nt.ne_type_id\n    LEFT JOIN root_cause_candidates rcc ON n.ne_id = rcc.ne_id\n    GROUP BY n.ne_id, nt.type_name\n),\ntype_root_cause_stats AS (\n    SELECT \n        type_name,\n        COUNT(DISTINCT ne_id) AS total_devices,\n        COUNT(DISTINCT CASE WHEN severe_alarms_with_candidate > 0 THEN ne_id END) AS devices_with_root_candidate,\n        SUM(severe_alarms_with_candidate) AS total_candidate_alarms\n    FROM device_root_cause_summary\n    GROUP BY type_name\n),\ntop_5_devices AS (\n    SELECT \n        drcs.ne_id,\n        c.customer_name,\n        drcs.type_name,\n        drcs.severe_alarms_with_candidate AS related_alarm_count,\n        ROW_NUMBER() OVER (ORDER BY drcs.severe_alarms_with_candidate DESC) AS rank\n    FROM device_root_cause_summary drcs\n    INNER JOIN t_bz_config_ci_ne_root n ON drcs.ne_id = n.ne_id\n    INNER JOIN t_bz_config_customer c ON n.customer_id = c.customer_id\n    WHERE drcs.severe_alarms_with_candidate > 0\n    LIMIT 5\n)\nSELECT \n    trcs.type_name,\n    trcs.total_devices,\n    trcs.devices_with_root_candidate,\n    ROUND(trcs.devices_with_root_candidate * 100.0 / NULLIF(trcs.total_devices, 0), 2) AS device_with_candidate_percent,\n    trcs.total_candidate_alarms,\n    td.ne_id AS top_device_id,\n    td.customer_name AS top_device_customer,\n    td.related_alarm_count AS top_device_related_count\nFROM type_root_cause_stats trcs\nLEFT JOIN top_5_devices td ON trcs.type_name = td.type_name\nORDER BY trcs.devices_with_root_candidate DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "ne_type",
+      "t_bz_config_customer",
+      "event_history"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "进行跨表数据一致性校验：检查t_bz_config_ci_ne_root表中的设备，是否在event_history表中有对应的告警记录。同时，检查这些设备是否有对应的采集机配置。列出所有不一致的设备，即：1) 在device表存在但在event_history中完全无告警记录的设备；2) 在device表存在但collector_id为NULL或对应的collector_v2记录不存在的设备。对于这些设备，显示设备ID、名称、客户名、创建时间，并标注不一致类型。",
+    "sql": "WITH device_alarm_check AS (\n    SELECT \n        n.ne_id,\n        n.ne_name,\n        n.customer_id,\n        n.create_time,\n        n.collector_id,\n        CASE WHEN COUNT(eh.event_id) = 0 THEN 1 ELSE 0 END AS no_alarm_record,\n        CASE WHEN n.collector_id IS NULL OR cv.collector_id IS NULL THEN 1 ELSE 0 END AS no_valid_collector\n    FROM t_bz_config_ci_ne_root n\n    LEFT JOIN event_history eh ON n.ne_id = eh.ne_id\n    LEFT JOIN collector_v2 cv ON n.collector_id = cv.collector_id\n    GROUP BY n.ne_id, n.ne_name, n.customer_id, n.create_time, n.collector_id, cv.collector_id\n)\nSELECT \n    dac.ne_id,\n    dac.ne_name,\n    c.customer_name,\n    dac.create_time,\n    CASE \n        WHEN dac.no_alarm_record = 1 AND dac.no_valid_collector = 1 THEN '无告警记录且无有效采集机'\n        WHEN dac.no_alarm_record = 1 THEN '无任何告警记录'\n        WHEN dac.no_valid_collector = 1 THEN '无有效采集机配置'\n    END AS inconsistency_type,\n    dac.no_alarm_record,\n    dac.no_valid_collector\nFROM device_alarm_check dac\nINNER JOIN t_bz_config_customer c ON dac.customer_id = c.customer_id\nWHERE dac.no_alarm_record = 1 OR dac.no_valid_collector = 1\nORDER BY dac.create_time DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "event_history",
+      "collector_v2"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "统计每个客户在过去30天内，其所有设备产生的告警中，严重程度为CRITICAL或MAJOR的告警数量。要求：1）只统计状态不为CLEARED的告警；2）按告警数量降序排列；3）如果客户没有符合条件的告警，数量显示为0；4）需要关联设备类型表和设备区域表以获取设备类型和区域信息，但最终结果只按客户分组。",
+    "sql": "SELECT \n    c.customer_name,\n    COALESCE(COUNT(DISTINCT eh.event_id), 0) AS critical_major_alarm_count\nFROM \n    t_bz_config_customer c\nLEFT JOIN \n    t_bz_config_ci_ne_root ne ON c.customer_id = ne.customer_id\nLEFT JOIN \n    event_history eh ON ne.ne_root_id = eh.ne_root_id \n    AND eh.severity IN ('CRITICAL', 'MAJOR') \n    AND eh.status != 'CLEARED'\n    AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 30 DAY)\nLEFT JOIN \n    ne_type nt ON ne.ne_type_id = nt.ne_type_id\nLEFT JOIN \n    t_bz_config_region r ON ne.region_id = r.region_id\nGROUP BY \n    c.customer_id, c.customer_name\nORDER BY \n    critical_major_alarm_count DESC;",
+    "tables": [
+      "t_bz_config_customer",
+      "t_bz_config_ci_ne_root",
+      "event_history",
+      "ne_type",
+      "t_bz_config_region"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "找出在过去7天内，由采集机状态为ACTIVE的设备采集，且产生过告警的设备中，哪些设备在同一个采集周期内同时触发了超过3种不同事件类型的告警。要求：1）只考虑严重程度为MINOR及以上的告警；2）输出设备ID、设备名称、采集机IP、以及该采集周期内触发的事件类型数量；3）按事件类型数量降序排列。",
+    "sql": "WITH alarm_windows AS (\n    SELECT \n        ne.ne_root_id,\n        ne.ne_name,\n        cv2.collector_ip,\n        eh.event_type_id,\n        FLOOR(UNIX_TIMESTAMP(eh.event_time) / 300) AS time_window -- 5分钟窗口\n    FROM \n        t_bz_config_ci_ne_root ne\n    JOIN \n        event_history eh ON ne.ne_root_id = eh.ne_root_id\n    JOIN \n        collector_v2 cv2 ON ne.collector_id = cv2.collector_id\n    WHERE \n        eh.event_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n        AND eh.severity IN ('CRITICAL', 'MAJOR', 'MINOR')\n        AND cv2.status = 'ACTIVE'\n),\nwindow_counts AS (\n    SELECT \n        ne_root_id,\n        ne_name,\n        collector_ip,\n        time_window,\n        COUNT(DISTINCT event_type_id) AS event_type_count\n    FROM \n        alarm_windows\n    GROUP BY \n        ne_root_id, ne_name, collector_ip, time_window\n    HAVING \n        COUNT(DISTINCT event_type_id) > 3\n)\nSELECT \n    ne_root_id,\n    ne_name,\n    collector_ip,\n    MAX(event_type_count) AS max_event_types_in_window\nFROM \n    window_counts\nGROUP BY \n    ne_root_id, ne_name, collector_ip\nORDER BY \n    max_event_types_in_window DESC;",
+    "tables": [
+      "t_bz_config_ci_ne_root",
+      "collector_v2",
+      "event_history",
+      "event_type"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "question": "分析每个区域下，设备的告警与采集机健康状态的关联性。要求：1）统计过去24小时内，每个区域下状态为UNHEALTHY的采集机所管理的设备，其产生的未恢复告警总数；2）同时统计这些设备产生的告警总数；3）计算未恢复告警数占总告警数的比例；4）只考虑设备类型为ROUTER或SWITCH的设备；5）如果区域下没有符合条件的采集机或设备，则显示0；6）按未恢复告警比例降序排列。",
+    "sql": "WITH unhealthy_collector_devices AS (\n    SELECT \n        r.region_id,\n        r.region_name,\n        ne.ne_root_id\n    FROM \n        t_bz_config_region r\n    LEFT JOIN \n        t_bz_config_ci_ne_root ne ON r.region_id = ne.region_id\n    LEFT JOIN \n        collector_v2 cv2 ON ne.collector_id = cv2.collector_id\n    LEFT JOIN \n        ne_type nt ON ne.ne_type_id = nt.ne_type_id\n    WHERE \n        cv2.health_status = 'UNHEALTHY'\n        AND cv2.last_health_check_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR)\n        AND nt.ne_type_name IN ('ROUTER', 'SWITCH')\n),\nalarm_stats AS (\n    SELECT \n        ucd.region_id,\n        ucd.region_name,\n        COUNT(DISTINCT eh.event_id) AS total_alarms,\n        COUNT(DISTINCT CASE WHEN eh.status != 'CLEARED' THEN eh.event_id END) AS unresolved_alarms\n    FROM \n        unhealthy_collector_devices ucd\n    LEFT JOIN \n        event_history eh ON ucd.ne_root_id = eh.ne_root_id \n        AND eh.event_time >= DATE_SUB(NOW(), INTERVAL 24 HOUR)\n    GROUP BY \n        ucd.region_id, ucd.region_name\n)\nSELECT \n    region_id,\n    region_name,\n    COALESCE(total_alarms, 0) AS total_alarms,\n    COALESCE(unresolved_alarms, 0) AS unresolved_alarms,\n    CASE \n        WHEN COALESCE(total_alarms, 0) = 0 THEN 0.00\n        ELSE ROUND(COALESCE(unresolved_alarms, 0) * 100.0 / total_alarms, 2)\n    END AS unresolved_percentage\nFROM \n    alarm_stats\nORDER BY \n    unresolved_percentage DESC;",
+    "tables": [
+      "t_bz_config_region",
+      "t_bz_config_ci_ne_root",
+      "collector_v2",
+      "event_history",
+      "ne_type"
+    ],
+    "difficulty": "hard"
+  }
+]

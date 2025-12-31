@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "polling_config"
+  },
+  "table_comment": null,
+  "llm_description": "polling_config表存储采集任务配置信息，包含采集机ID、配置名称、时间间隔等参数，用于设备监控与告警触发。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "decimal(10,0)",
+      "description": "采集配置ID"
+    },
+    {
+      "name": "collector_id",
+      "type": "decimal(10,0)",
+      "description": "采集机ID"
+    },
+    {
+      "name": "config_name",
+      "type": "varchar(255)",
+      "description": "配置名称。常见值: Configuration Reload, lcmp Min Dead Time, Snmp Polling Interval, Api Polling interval, Http Polling Interval, Snmp Trap Udp Port, NetFlow Udp Port, Tftp Udp Port, Syslog Tcp/Udp Port, Syslog Tep/Udp Port"
+    },
+    {
+      "name": "config_time",
+      "type": "decimal(10,0)",
+      "description": "配置时间"
+    },
+    {
+      "name": "time_unit",
+      "type": "varchar(255)",
+      "description": "时间单位"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_datetime",
+      "type": "datetime",
+      "description": "更新时间"
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "polling_config表存储采集任务配置信息，包含采集机ID、配置名称、时间间隔等参数，用于设备监控与告警触发。\n表名: polling_config\n列信息: id(采集配置ID), collector_id(采集机ID), config_name(配置名称), config_time(配置时间), time_unit(时间单位), create_datetime(创建时间), update_datetime(更新时间)"
+}

@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_knowledge_category"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_knowledge_category表存储知识分类层级信息，用于客户、设备、告警等业务知识的分类管理及权限控制。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(50)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "t_dc_knowledge_category表存储知识分类层级信息，用于客户、设备、告警等业务知识的分类管理及权限控制。\n表名: t_dc_knowledge_category\n其他列: ID, PARENT_ID, NAME"
+}

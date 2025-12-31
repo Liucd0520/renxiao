@@ -1,0 +1,287 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_incident_info"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_incident_info表存储客户、设备相关告警事件信息，记录事件状态、创建时间、用户及处理详情，用于事件管理与权限追踪。",
+  "columns": [
+    {
+      "name": "INCIDENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "INCIDENT_NO",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "INFO_STATUS",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SOURCE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "OCCUR_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "INCIDENT_TITLE",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "INCIDENT_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "PROPERTY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "CLASSIFY_LEVEL1_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "CLASSIFY_LEVEL2_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "CLASSIFY_LEVEL3_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "STATUS_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "INFLUENCE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "EMERGENCY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "PRIORITY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "FRONTLINE_TRANS_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "SOLVE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "PROMOTION_WORKER",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "TRANSFER_OTHER_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "THIRD_PARTY",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "SOLVE_WAY",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "HANDLE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SOLVE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SOLVE_USER_NAME",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "SOLVE_PERIOD",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "SOLVE_ROLE",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "ACTUAL_SOLVE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "ASSIGN_TIMES",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "WHETHER_ANSWER_OVER_TIME",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "WHETHER_SOLVE_OVER_TIME",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "SATISFIED_LEVEL",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "FEED_BACK_INFO",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "INCIDENT_FINISH_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "FINISH_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "FLOW_STAGE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "PROCESS_INSTANCE_ID",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "RESPOND_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "IS_PLANNED",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_REPEAT",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "IS_SELF_SERVICE",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "IS_FLOW",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_NO",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "OBJECT_MODULE_ID",
+      "type": "decimal(3,0)",
+      "description": null
+    },
+    {
+      "name": "ACCIDENT_TYPE1_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "ACCIDENT_TYPE2_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "ACCIDENT_TYPE3_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "REGION_DESC",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "OTHER_ACCIDENT",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "UPDATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PLATFORM_ID",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 55,
+  "embedding_text": "t_bz_incident_info表存储客户、设备相关告警事件信息，记录事件状态、创建时间、用户及处理详情，用于事件管理与权限追踪。\n表名: t_bz_incident_info\n其他列: INCIDENT_ID, INCIDENT_NO, INFO_STATUS, CREATE_TIME, CREATE_USER_ID, OBJECT_ID, SOURCE_ID, OCCUR_TIME, INCIDENT_TITLE, INCIDENT_DESC, PROPERTY_ID, CLASSIFY_LEVEL1_ID, CLASSIFY_LEVEL2_ID, CLASSIFY_LEVEL3_ID, STATUS_DESC"
+}

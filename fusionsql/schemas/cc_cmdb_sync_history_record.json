@@ -1,0 +1,72 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "cc_cmdb_sync_history_record"
+  },
+  "table_comment": null,
+  "llm_description": "记录客户设备及权限数据同步历史，包含推送/拉取操作类型、时间、结果状态及重试次数，用于追踪同步状态与问题处理。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(21)",
+      "description": "ID"
+    },
+    {
+      "name": "type",
+      "type": "varchar(16)",
+      "description": "PUSH/FETCH"
+    },
+    {
+      "name": "sync_time",
+      "type": "datetime",
+      "description": "同步时间"
+    },
+    {
+      "name": "customer_id",
+      "type": "bigint(21)",
+      "description": null
+    },
+    {
+      "name": "data",
+      "type": "mediumtext",
+      "description": "数据"
+    },
+    {
+      "name": "result",
+      "type": "tinyint(2)",
+      "description": "同步结果 0 失败 1 成功 2 部分成功"
+    },
+    {
+      "name": "data_type",
+      "type": "varchar(100)",
+      "description": "data_type。常见值: resource, resourceServiceCatalog, tenant, location, contact, vendor, region, serviceCatalog, supportNote, serviceNumber"
+    },
+    {
+      "name": "op_type",
+      "type": "varchar(100)",
+      "description": "op_type。常见值: update, create, delete"
+    },
+    {
+      "name": "source_type",
+      "type": "varchar(100)",
+      "description": "source_type。常见值: OTHERS, IMPORT"
+    },
+    {
+      "name": "retry_count",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "error_msg",
+      "type": "text",
+      "description": "错误信息"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 12,
+  "embedding_text": "记录客户设备及权限数据同步历史，包含推送/拉取操作类型、时间、结果状态及重试次数，用于追踪同步状态与问题处理。\n表名: cc_cmdb_sync_history_record\n列信息: id(ID), type(PUSH/FETCH), sync_time(同步时间), data(数据), result(同步结果 0 失败 1 成功 2 部分成功), error_msg(错误信息), created_time(创建时间)\n其他列: customer_id, data_type, op_type, source_type, retry_count"
+}

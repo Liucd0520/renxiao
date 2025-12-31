@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_problem_source"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_problem_source表存储客户、设备、订单等业务实体的问题来源信息，用于告警关联和权限追溯。",
+  "columns": [
+    {
+      "name": "SOURCE_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "SOURCE_NAME",
+      "type": "varchar(50)",
+      "description": "SOURCE_NAME。常见值: 未知原因事件, 报表与例会制度, 同一事件反复发生, 主动巡检"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_problem_source表存储客户、设备、订单等业务实体的问题来源信息，用于告警关联和权限追溯。\n表名: t_dc_problem_source\n其他列: SOURCE_ID, SOURCE_NAME"
+}

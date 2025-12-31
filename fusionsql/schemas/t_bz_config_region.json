@@ -1,0 +1,87 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_region"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户区域配置信息，包含区域层级、描述、坐标及标签，用于设备监控、告警规则和用户权限管理。",
+  "columns": [
+    {
+      "name": "REGION_ID",
+      "type": "decimal(10,0)",
+      "description": "区域ID"
+    },
+    {
+      "name": "REGION_NAME",
+      "type": "varchar(255)",
+      "description": "区域名称。常见值: 上海, 浦东, 秀沿县, 南京, asia-china, 上海市, America-american, shanghai, Default, 默认"
+    },
+    {
+      "name": "REGION_DESC",
+      "type": "varchar(512)",
+      "description": "区域描述"
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "decimal(10,0)",
+      "description": "父ID"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": "客户ID"
+    },
+    {
+      "name": "LABEL",
+      "type": "varchar(255)",
+      "description": "标签"
+    },
+    {
+      "name": "LATITUDE",
+      "type": "varchar(100)",
+      "description": "纬度"
+    },
+    {
+      "name": "LONGITUDE",
+      "type": "varchar(100)",
+      "description": "经度"
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(50)",
+      "description": "创建人"
+    },
+    {
+      "name": "UPDATED_BY",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "LAST_MODIFY_TIME",
+      "type": "datetime",
+      "description": "修改时间"
+    },
+    {
+      "name": "IS_ACTIVE",
+      "type": "int(1)",
+      "description": null
+    },
+    {
+      "name": "IS_LEAF",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 15,
+  "embedding_text": "存储客户区域配置信息，包含区域层级、描述、坐标及标签，用于设备监控、告警规则和用户权限管理。\n表名: t_bz_config_region\n列信息: REGION_ID(区域ID), REGION_NAME(区域名称), REGION_DESC(区域描述), PARENT_ID(父ID), CUSTOMER_ID(客户ID), LABEL(标签), LATITUDE(纬度), LONGITUDE(经度), CREATED_BY(创建人), CREATE_TIME(创建时间), LAST_MODIFY_TIME(修改时间)\n其他列: UPDATED_BY, IS_ACTIVE, IS_LEAF, LEVEL"
+}

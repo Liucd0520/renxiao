@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_rl_authority_rptmenu_role"
+  },
+  "table_comment": null,
+  "llm_description": "存储角色与报告菜单的权限关联，用于管理用户角色对报告菜单的访问权限。",
+  "columns": [
+    {
+      "name": "relationship_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "report_menu_id",
+      "type": "decimal(19,2)",
+      "description": null
+    },
+    {
+      "name": "role_id",
+      "type": "decimal(19,2)",
+      "description": null
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "存储角色与报告菜单的权限关联，用于管理用户角色对报告菜单的访问权限。\n表名: t_rl_authority_rptmenu_role\n其他列: relationship_id, report_menu_id, role_id"
+}

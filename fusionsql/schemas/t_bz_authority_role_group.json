@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_authority_role_group"
+  },
+  "table_comment": null,
+  "llm_description": "t_bz_authority_role_group表存储角色组信息，关联系统及权限级别，用于管理用户权限配置。",
+  "columns": [
+    {
+      "name": "ROLE_GROUP_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROLE_GROUP_NAME",
+      "type": "varchar(30)",
+      "description": "ROLE_GROUP_NAME。常见值: 数据审计, viewer, test0603, 政支管理员角色组, 超级管理员, 服务台2线, 测试聊天, EOP对接, 服务台1线, 平台组"
+    },
+    {
+      "name": "ROLE_GROUP_DESC",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "SYSTEM_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "t_bz_authority_role_group表存储角色组信息，关联系统及权限级别，用于管理用户权限配置。\n表名: t_bz_authority_role_group\n其他列: ROLE_GROUP_ID, ROLE_GROUP_NAME, ROLE_GROUP_DESC, SYSTEM_ID, LEVEL_ID"
+}

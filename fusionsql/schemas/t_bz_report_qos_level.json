@@ -1,0 +1,42 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_report_qos_level"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户设备服务质量等级及告警信息，用于监控网络性能与生成QoS报告。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "SPEED_X",
+      "type": "varchar(10)",
+      "description": null
+    },
+    {
+      "name": "WARNING",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "NE_IMPORTANCE",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "SERVER_ITEM",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "NE_NAME",
+      "type": "varchar(50)",
+      "description": null
+    }
+  ],
+  "column_count": 6,
+  "embedding_text": "存储客户设备服务质量等级及告警信息，用于监控网络性能与生成QoS报告。\n表名: t_bz_report_qos_level\n其他列: ID, SPEED_X, WARNING, NE_IMPORTANCE, SERVER_ITEM, NE_NAME"
+}

@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "dcs_ack_result"
+  },
+  "table_comment": "采集机ack回传结果表",
+  "llm_description": "采集机ACK回传结果表，记录客户/设备相关业务流程处理状态，包含订单批次数、成功/失败标识、错误信息及处理时间，用于告警与数据校验。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(20)",
+      "description": "id"
+    },
+    {
+      "name": "flow_number",
+      "type": "bigint(20)",
+      "description": "流水号，一个业务流程使用同一个 id 值"
+    },
+    {
+      "name": "business_key_1",
+      "type": "varchar(50)",
+      "description": "业务键1"
+    },
+    {
+      "name": "business_key_2",
+      "type": "varchar(50)",
+      "description": "业务键2"
+    },
+    {
+      "name": "count",
+      "type": "bigint(20)",
+      "description": "批次记录数"
+    },
+    {
+      "name": "result",
+      "type": "int(10)",
+      "description": "结果 1成功:,2:失败"
+    },
+    {
+      "name": "error_msg",
+      "type": "varchar(500)",
+      "description": "错误消息"
+    },
+    {
+      "name": "create_time",
+      "type": "datetime",
+      "description": "创建时间"
+    },
+    {
+      "name": "update_time",
+      "type": "datetime",
+      "description": "更新时间"
+    },
+    {
+      "name": "process_time",
+      "type": "datetime",
+      "description": "dcs处理时间"
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "采集机ACK回传结果表，记录客户/设备相关业务流程处理状态，包含订单批次数、成功/失败标识、错误信息及处理时间，用于告警与数据校验。\n表名: dcs_ack_result\n表注释: 采集机ack回传结果表\n列信息: id(id), flow_number(流水号，一个业务流程使用同一个 id 值), business_key_1(业务键1), business_key_2(业务键2), count(批次记录数), result(结果 1成功:,2:失败), error_msg(错误消息), create_time(创建时间), update_time(更新时间), process_time(dcs处理时间)"
+}

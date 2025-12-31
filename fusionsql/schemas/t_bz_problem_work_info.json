@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_problem_work_info"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户问题工单处理信息，包含工单ID、问题ID、处理用户、提交时间、工作类型、内容及查看权限。",
+  "columns": [
+    {
+      "name": "WORK_INFO_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PROBLEM_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "SUB_WORKINFO_USER",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "SUBMIT_DATE",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "WORK_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "WORK_CONTENT",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "LOOK_RIGTH",
+      "type": "decimal(1,0)",
+      "description": null
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "存储客户问题工单处理信息，包含工单ID、问题ID、处理用户、提交时间、工作类型、内容及查看权限。\n表名: t_bz_problem_work_info\n其他列: WORK_INFO_ID, PROBLEM_ID, SUB_WORKINFO_USER, SUBMIT_DATE, WORK_TYPE, WORK_CONTENT, LOOK_RIGTH"
+}

@@ -1,0 +1,37 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_service_process_description"
+  },
+  "table_comment": null,
+  "llm_description": "存储服务流程标题、说明内容及对应图片，记录创建时间，用于客户订单处理、设备告警管理及用户权限流程的规范化描述与展示。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "process_title",
+      "type": "varchar(20)",
+      "description": "流程标题"
+    },
+    {
+      "name": "prodes_content",
+      "type": "varchar(200)",
+      "description": "流程说明内容"
+    },
+    {
+      "name": "process_img",
+      "type": "varchar(200)",
+      "description": "流程图片"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 5,
+  "embedding_text": "存储服务流程标题、说明内容及对应图片，记录创建时间，用于客户订单处理、设备告警管理及用户权限流程的规范化描述与展示。\n表名: t_gn_service_process_description\n列信息: id(id), process_title(流程标题), prodes_content(流程说明内容), process_img(流程图片), create_datetime(创建时间)"
+}

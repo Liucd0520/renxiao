@@ -1,0 +1,47 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_security_situation_awareness_log"
+  },
+  "table_comment": null,
+  "llm_description": "t_gn_security_situation_awareness_log表存储安全态势感知日志数据，记录接口、IP及名称的数据条数与日期，用于监控告警信息。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "per_interface",
+      "type": "varchar(200)",
+      "description": "接口"
+    },
+    {
+      "name": "per_ip",
+      "type": "varchar(50)",
+      "description": "IP"
+    },
+    {
+      "name": "per_name",
+      "type": "varchar(20)",
+      "description": "名称"
+    },
+    {
+      "name": "data_count",
+      "type": "int(11)",
+      "description": "数据条数"
+    },
+    {
+      "name": "data_datetime",
+      "type": "datetime",
+      "description": "数据日期，那一天的数据"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 7,
+  "embedding_text": "t_gn_security_situation_awareness_log表存储安全态势感知日志数据，记录接口、IP及名称的数据条数与日期，用于监控告警信息。\n表名: t_gn_security_situation_awareness_log\n列信息: id(id), per_interface(接口), per_ip(IP), per_name(名称), data_count(数据条数), data_datetime(数据日期，那一天的数据), create_datetime(创建时间)"
+}

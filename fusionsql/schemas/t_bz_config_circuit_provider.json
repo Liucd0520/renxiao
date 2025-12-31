@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_circuit_provider"
+  },
+  "table_comment": null,
+  "llm_description": "存储电路服务提供商配置信息，包含联系人、地址、电话等，用于客户订单处理及设备告警通知。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "DESCRIPTION",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "PROVIDER_ADDR",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "PROVIDER_PHONE",
+      "type": "varchar(30)",
+      "description": null
+    },
+    {
+      "name": "PROVIDER_FAX",
+      "type": "varchar(30)",
+      "description": null
+    },
+    {
+      "name": "CONTACT",
+      "type": "varchar(255)",
+      "description": "联系人"
+    },
+    {
+      "name": "EMAIL",
+      "type": "varchar(255)",
+      "description": "邮箱"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "存储电路服务提供商配置信息，包含联系人、地址、电话等，用于客户订单处理及设备告警通知。\n表名: t_bz_config_circuit_provider\n列信息: CONTACT(联系人), EMAIL(邮箱)\n其他列: ID, NAME, DESCRIPTION, PROVIDER_ADDR, PROVIDER_PHONE, PROVIDER_FAX"
+}

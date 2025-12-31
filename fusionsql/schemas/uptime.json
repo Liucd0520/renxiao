@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "uptime"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户设备的上下线时间，用于记录设备运行状态及服务时长统计。",
+  "columns": [
+    {
+      "name": "NE_ID",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(11,0)",
+      "description": null
+    },
+    {
+      "name": "UP_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "DOWN_TIME",
+      "type": "datetime",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "存储客户设备的上下线时间，用于记录设备运行状态及服务时长统计。\n表名: uptime\n其他列: NE_ID, CUSTOMER_ID, UP_TIME, DOWN_TIME"
+}

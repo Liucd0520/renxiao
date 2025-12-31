@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_incident_property"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_incident_property表存储告警事件属性信息，用于客户、设备及权限管理。",
+  "columns": [
+    {
+      "name": "PROPERTY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "PROPERTY_NAME",
+      "type": "varchar(50)",
+      "description": "PROPERTY_NAME。常见值: 服务请求, 投诉/建议, 故障, 咨询"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_incident_property表存储告警事件属性信息，用于客户、设备及权限管理。\n表名: t_dc_incident_property\n其他列: PROPERTY_ID, PROPERTY_NAME"
+}

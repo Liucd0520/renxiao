@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "protocol_parameter_inst"
+  },
+  "table_comment": "协议简要参数实例表",
+  "llm_description": "协议参数实例表存储客户、设备、订单相关的协议配置参数，用于动态调整业务规则和告警监控。",
+  "columns": [
+    {
+      "name": "PROTOCOL_INST_ID",
+      "type": "decimal(10,0)",
+      "description": "协议实例ID"
+    },
+    {
+      "name": "PARAMETER_NAME",
+      "type": "varchar(64)",
+      "description": "协议实例参数名称。常见值: port, readCommunity, writeCommunity, username, password, url, Secret_Access_Key, Access_Key_Id, Use Https, Timeout (s)"
+    },
+    {
+      "name": "PARAMETER_VALUE",
+      "type": "varchar(512)",
+      "description": "协议实例参数值"
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "协议参数实例表存储客户、设备、订单相关的协议配置参数，用于动态调整业务规则和告警监控。\n表名: protocol_parameter_inst\n表注释: 协议简要参数实例表\n列信息: PROTOCOL_INST_ID(协议实例ID), PARAMETER_NAME(协议实例参数名称), PARAMETER_VALUE(协议实例参数值)"
+}

@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "trap"
+  },
+  "table_comment": null,
+  "llm_description": "trap表存储设备告警事件数据，包含事件名称、值、状态、缓存策略及阈值触发次数，用于用户权限管理下的异常监控与处理。",
+  "columns": [
+    {
+      "name": "OID",
+      "type": "varchar(255)",
+      "description": "事件值"
+    },
+    {
+      "name": "EVENT_NAME",
+      "type": "varchar(255)",
+      "description": "事件名称。常见值: BGP State Change, rtt monitor, IPSEC Phase-1 IKE, IPSEC Phase-2, Chassis Alarm, egpNeighborLoss, cva Process Status, Contenet Engine Server Status, Content Engine line of status, SonicWall-FW"
+    },
+    {
+      "name": "EVENT_VALUE",
+      "type": "varchar(255)",
+      "description": "事件值"
+    },
+    {
+      "name": "EVENT_DESC",
+      "type": "varchar(255)",
+      "description": "事件描述"
+    },
+    {
+      "name": "EVENT_STATUS",
+      "type": "decimal(2,0)",
+      "description": "事件状态"
+    },
+    {
+      "name": "IS_STORM",
+      "type": "decimal(1,0)",
+      "description": "是否缓存"
+    },
+    {
+      "name": "STORM_INTERVAL",
+      "type": "decimal(10,0)",
+      "description": "缓存值间时间间隔"
+    },
+    {
+      "name": "UP_COUNTS",
+      "type": "decimal(10,0)",
+      "description": "上限出现次数"
+    },
+    {
+      "name": "DOWN_COUNTS",
+      "type": "decimal(10,0)",
+      "description": "下限出现次数"
+    },
+    {
+      "name": "MAX_COUNTS",
+      "type": "decimal(10,0)",
+      "description": "最大出现次数"
+    },
+    {
+      "name": "DRIVER",
+      "type": "varchar(255)",
+      "description": "映射驱动"
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "trap表存储设备告警事件数据，包含事件名称、值、状态、缓存策略及阈值触发次数，用于用户权限管理下的异常监控与处理。\n表名: trap\n列信息: OID(事件值), EVENT_NAME(事件名称), EVENT_VALUE(事件值), EVENT_DESC(事件描述), EVENT_STATUS(事件状态), IS_STORM(是否缓存), STORM_INTERVAL(缓存值间时间间隔), UP_COUNTS(上限出现次数), DOWN_COUNTS(下限出现次数), MAX_COUNTS(最大出现次数), DRIVER(映射驱动)"
+}

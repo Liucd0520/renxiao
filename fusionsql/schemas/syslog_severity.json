@@ -1,0 +1,27 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "syslog_severity"
+  },
+  "table_comment": null,
+  "llm_description": "syslog_severity表存储系统日志严重性级别信息，用于告警分类和设备状态监控。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "severity_name",
+      "type": "varchar(255)",
+      "description": "严重性名称。常见值: Emergency, Alert, Critical, Error, Warning, Notice, Informational, Debug"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 3,
+  "embedding_text": "syslog_severity表存储系统日志严重性级别信息，用于告警分类和设备状态监控。\n表名: syslog_severity\n列信息: id(ID), severity_name(严重性名称), create_datetime(创建时间)"
+}

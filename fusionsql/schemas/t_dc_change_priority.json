@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_change_priority"
+  },
+  "table_comment": null,
+  "llm_description": "t_dc_change_priority表存储客户订单与设备告警的优先级配置，用于管理处理顺序及权限分配。",
+  "columns": [
+    {
+      "name": "PRIORITY_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "PRIORITY_NAME",
+      "type": "varchar(25)",
+      "description": "PRIORITY_NAME。常见值: 低, 高, 无影响, 中"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "t_dc_change_priority表存储客户订单与设备告警的优先级配置，用于管理处理顺序及权限分配。\n表名: t_dc_change_priority\n其他列: PRIORITY_ID, PRIORITY_NAME"
+}

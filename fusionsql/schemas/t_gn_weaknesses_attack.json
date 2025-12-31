@@ -1,0 +1,122 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_gn_weaknesses_attack"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备攻击弱点信息，记录影响范围、处理状态及责任人，用于告警管理与设备分类维护。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "affect_type",
+      "type": "varchar(20)",
+      "description": "影响范围，1 只影响自身、2 影响内网、3 影响外网。常见值: [1], [2], [3], [2,3]"
+    },
+    {
+      "name": "auth_user",
+      "type": "varchar(20)",
+      "description": "责任人"
+    },
+    {
+      "name": "asset_id",
+      "type": "int(11)",
+      "description": "资产唯一id"
+    },
+    {
+      "name": "classify_id",
+      "type": "int(11)",
+      "description": "设备全类型id"
+    },
+    {
+      "name": "classify1_id",
+      "type": "int(11)",
+      "description": "设备类型id一级分类"
+    },
+    {
+      "name": "branch_id",
+      "type": "int(11)",
+      "description": "分支id"
+    },
+    {
+      "name": "branch_name",
+      "type": "varchar(50)",
+      "description": "分支名。常见值: 内网IP范围, 科委在电信机房的服务器网段, 政务云, 60_自然资源确权登记事务中心, 卫健委服务器, 40_上海市杨浦区消防支队, 区城运中心, 425_新江湾城城管中心, 329_新江湾城街道办, 杨浦业务网段(老)-10.216.0.0-16"
+    },
+    {
+      "name": "deal_status",
+      "type": "int(1)",
+      "description": "处理状态，0 未处理、1 已处理"
+    },
+    {
+      "name": "tag",
+      "type": "varchar(200)",
+      "description": "标签"
+    },
+    {
+      "name": "ip",
+      "type": "varchar(50)",
+      "description": "终端/服务器ip"
+    },
+    {
+      "name": "last_time",
+      "type": "int(11)",
+      "description": "最新访问时间，秒级时间戳"
+    },
+    {
+      "name": "severity_level",
+      "type": "int(2)",
+      "description": "安全等级，[0-10]"
+    },
+    {
+      "name": "is_white",
+      "type": "int(1)",
+      "description": "是否加入白名单，0 未加入、1 加入"
+    },
+    {
+      "name": "deal_time",
+      "type": "int(11)",
+      "description": "处理时间，未处理为空字符串，秒级时间戳"
+    },
+    {
+      "name": "device_info",
+      "type": "varchar(500)",
+      "description": "设备信息"
+    },
+    {
+      "name": "source",
+      "type": "varchar(20)",
+      "description": "数据来源，默认为“SIP”"
+    },
+    {
+      "name": "apikey",
+      "type": "varchar(100)",
+      "description": "apikey，默认为空，无需关注"
+    },
+    {
+      "name": "device_id",
+      "type": "varchar(20)",
+      "description": "设备id"
+    },
+    {
+      "name": "device_version",
+      "type": "varchar(500)",
+      "description": "设备版本号"
+    },
+    {
+      "name": "data_type",
+      "type": "int(1)",
+      "description": "数据类型，0 风险业务、1 风险终端"
+    },
+    {
+      "name": "create_datetime",
+      "type": "datetime",
+      "description": "创建时间"
+    }
+  ],
+  "column_count": 22,
+  "embedding_text": "存储设备攻击弱点信息，记录影响范围、处理状态及责任人，用于告警管理与设备分类维护。\n表名: t_gn_weaknesses_attack\n列信息: id(id), affect_type(影响范围，1 只影响自身、2 影响内网、3 影响外网), auth_user(责任人), asset_id(资产唯一id), classify_id(设备全类型id), classify1_id(设备类型id一级分类), branch_id(分支id), branch_name(分支名), deal_status(处理状态，0 未处理、1 已处理), tag(标签), ip(终端/服务器ip), last_time(最新访问时间，秒级时间戳), severity_level(安全等级，[0-10]), is_white(是否加入白名单，0 未加入、1 加入), deal_time(处理时间，未处理为空字符串，秒级时间戳)"
+}

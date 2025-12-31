@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_service_source_type"
+  },
+  "table_comment": null,
+  "llm_description": "该表存储服务来源类型信息，用于标识客户、设备、用户等业务实体的数据来源，支撑权限管理与告警分类。",
+  "columns": [
+    {
+      "name": "SOURCE_ID",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "SOURCE_NAME",
+      "type": "varchar(10)",
+      "description": "SOURCE_NAME。常见值: 其他流程, 电话, 电子邮件, web, 会议"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "该表存储服务来源类型信息，用于标识客户、设备、用户等业务实体的数据来源，支撑权限管理与告警分类。\n表名: t_dc_service_source_type\n其他列: SOURCE_ID, SOURCE_NAME"
+}

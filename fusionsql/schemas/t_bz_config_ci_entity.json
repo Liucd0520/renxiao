@@ -1,0 +1,172 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_ci_entity"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户实体配置信息，包含客户、联系人、部门、区域等属性，用于权限管理及告警规则配置。",
+  "columns": [
+    {
+      "name": "CI_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CODE",
+      "type": "varchar(20)",
+      "description": null
+    },
+    {
+      "name": "STATUS",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "IMPORTANCE_ID",
+      "type": "decimal(2,0)",
+      "description": null
+    },
+    {
+      "name": "REGION_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "LOCATION_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "DEPARTMENT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CONTACT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "POLICY_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "WORKPOLICY_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "LEVEL_ID",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CONTRACT_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NAME",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "CI_TYPE",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "AUDIT_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "MONITOR_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "IP_ADDRESS",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "VERSION",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "HOSTNAME",
+      "type": "varchar(255)",
+      "description": null
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "UPDATED_BY",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "AUDIT_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "DUMP_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": null
+    },
+    {
+      "name": "VENDOR_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CI_SUBCLASS",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 32,
+  "embedding_text": "存储客户实体配置信息，包含客户、联系人、部门、区域等属性，用于权限管理及告警规则配置。\n表名: t_bz_config_ci_entity\n其他列: CI_ID, PARENT_ID, CODE, STATUS, IMPORTANCE_ID, REGION_ID, LOCATION_ID, DEPARTMENT_ID, CUSTOMER_ID, CONTACT_ID, POLICY_ID, WORKPOLICY_ID, LEVEL_ID, CONTRACT_ID, NAME"
+}

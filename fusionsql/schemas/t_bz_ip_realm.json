@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_ip_realm"
+  },
+  "table_comment": null,
+  "llm_description": "存储客户IP域名及平台、部门、地址信息，用于流量监控和权限管理。",
+  "columns": [
+    {
+      "name": "REALM_ID",
+      "type": "int(11)",
+      "description": "id"
+    },
+    {
+      "name": "REALM_NAME",
+      "type": "varchar(255)",
+      "description": "域名。常见值: 测试, 测试1111"
+    },
+    {
+      "name": "IP",
+      "type": "varchar(100)",
+      "description": "ip"
+    },
+    {
+      "name": "PLATFORM_NAME",
+      "type": "varchar(255)",
+      "description": "平台名称。常见值: 平台名称1111, 平台名称, 133"
+    },
+    {
+      "name": "REALM_DESCRIBE",
+      "type": "varchar(255)",
+      "description": "总出流量"
+    },
+    {
+      "name": "CUSTOMER_ID",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "MASTER",
+      "type": "varchar(255)",
+      "description": "部门"
+    },
+    {
+      "name": "LOCATION",
+      "type": "varchar(255)",
+      "description": "地址"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "存储客户IP域名及平台、部门、地址信息，用于流量监控和权限管理。\n表名: t_bz_ip_realm\n列信息: REALM_ID(id), REALM_NAME(域名), IP(ip), PLATFORM_NAME(平台名称), REALM_DESCRIBE(总出流量), MASTER(部门), LOCATION(地址)\n其他列: CUSTOMER_ID"
+}

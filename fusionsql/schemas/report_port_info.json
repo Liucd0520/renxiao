@@ -1,0 +1,122 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_port_info"
+  },
+  "table_comment": null,
+  "llm_description": "report_port_info表存储设备端口流量使用数据，记录客户网络带宽实时及95峰值占用情况，用于生成告警和性能分析报告。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REPORT_INST_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ITEMNAME",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "SPEED",
+      "type": "decimal(20,0)",
+      "description": null
+    },
+    {
+      "name": "IN_USAGE",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "OUT_USAGE",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "IN_95_USAGE",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "OUT_95_USAGE",
+      "type": "decimal(10,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_IN_SUM",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_IN_AVG",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_IN_MIN",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_IN_MAX",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_IN_95TH",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_OUT_SUM",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_OUT_AVG",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_OUT_MIN",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_OUT_MAX",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "VALUE_OUT_95TH",
+      "type": "decimal(38,2)",
+      "description": null
+    },
+    {
+      "name": "NUM_COUNTS",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "TIME_COUNTS",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 22,
+  "embedding_text": "report_port_info表存储设备端口流量使用数据，记录客户网络带宽实时及95峰值占用情况，用于生成告警和性能分析报告。\n表名: report_port_info\n其他列: ID, REPORT_INST_ID, NE_ID, ROOT_NE_ID, ITEMNAME, SPEED, IN_USAGE, OUT_USAGE, IN_95_USAGE, OUT_95_USAGE, VALUE_IN_SUM, VALUE_IN_AVG, VALUE_IN_MIN, VALUE_IN_MAX, VALUE_IN_95TH"
+}

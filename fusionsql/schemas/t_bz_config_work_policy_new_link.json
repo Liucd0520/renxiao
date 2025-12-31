@@ -1,0 +1,52 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_work_policy_new_link"
+  },
+  "table_comment": null,
+  "llm_description": "存储工作策略与区域、场所、设备的关联配置，用于管理策略分配及用户操作记录。",
+  "columns": [
+    {
+      "name": "id",
+      "type": "bigint(10)",
+      "description": "id"
+    },
+    {
+      "name": "type",
+      "type": "varchar(30)",
+      "description": "分配类型:REGION/LOCATION/NE"
+    },
+    {
+      "name": "work_policy_id",
+      "type": "bigint(10)",
+      "description": "工作策略id"
+    },
+    {
+      "name": "region_id",
+      "type": "decimal(10,0)",
+      "description": "区域id"
+    },
+    {
+      "name": "location_id",
+      "type": "decimal(10,0)",
+      "description": "场所id"
+    },
+    {
+      "name": "ne_id",
+      "type": "decimal(10,0)",
+      "description": "设备id"
+    },
+    {
+      "name": "created_by",
+      "type": "bigint(10)",
+      "description": "创建人"
+    },
+    {
+      "name": "created_time",
+      "type": "datetime",
+      "description": "创建时间，默认为当前时间"
+    }
+  ],
+  "column_count": 8,
+  "embedding_text": "存储工作策略与区域、场所、设备的关联配置，用于管理策略分配及用户操作记录。\n表名: t_bz_config_work_policy_new_link\n列信息: id(id), type(分配类型:REGION/LOCATION/NE), work_policy_id(工作策略id), region_id(区域id), location_id(场所id), ne_id(设备id), created_by(创建人), created_time(创建时间，默认为当前时间)"
+}

@@ -1,0 +1,67 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "event_sdn"
+  },
+  "table_comment": null,
+  "llm_description": "event_sdn表存储告警信息，记录告警ID、时间、确认状态、严重程度、修复建议及设备详情，用于告警监控与修复管理。",
+  "columns": [
+    {
+      "name": "event_id",
+      "type": "int(11)",
+      "description": null
+    },
+    {
+      "name": "time_created",
+      "type": "datetime",
+      "description": "告警首次产生时间"
+    },
+    {
+      "name": "is-acked",
+      "type": "varchar(255)",
+      "description": "告警确认状态"
+    },
+    {
+      "name": "perceived_severity",
+      "type": "varchar(2550)",
+      "description": "告警当前级别"
+    },
+    {
+      "name": "repair_action",
+      "type": "varchar(2550)",
+      "description": "告警修复建议"
+    },
+    {
+      "name": "location_info",
+      "type": "varchar(2550)",
+      "description": "告警的定位信息"
+    },
+    {
+      "name": "native_probable_cause",
+      "type": "varchar(1000)",
+      "description": "告警名称"
+    },
+    {
+      "name": "md_name",
+      "type": "varchar(255)",
+      "description": "发送告警的系统名称"
+    },
+    {
+      "name": "product_type",
+      "type": "varchar(255)",
+      "description": "网元类型"
+    },
+    {
+      "name": "alarm_type_qualifier",
+      "type": "varchar(255)",
+      "description": "告警ID"
+    },
+    {
+      "name": "ip_ddress",
+      "type": "varchar(255)",
+      "description": "告警源所在的IP地址"
+    }
+  ],
+  "column_count": 11,
+  "embedding_text": "event_sdn表存储告警信息，记录告警ID、时间、确认状态、严重程度、修复建议及设备详情，用于告警监控与修复管理。\n表名: event_sdn\n列信息: time_created(告警首次产生时间), is-acked(告警确认状态), perceived_severity(告警当前级别), repair_action(告警修复建议), location_info(告警的定位信息), native_probable_cause(告警名称), md_name(发送告警的系统名称), product_type(网元类型), alarm_type_qualifier(告警ID), ip_ddress(告警源所在的IP地址)\n其他列: event_id"
+}

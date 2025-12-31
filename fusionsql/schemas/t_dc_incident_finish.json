@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_incident_finish"
+  },
+  "table_comment": null,
+  "llm_description": "记录已完成的告警处理信息，包含处理ID和类型，用于客户订单及设备维护的权限管理与状态跟踪。",
+  "columns": [
+    {
+      "name": "FINISH_ID",
+      "type": "decimal(5,0)",
+      "description": null
+    },
+    {
+      "name": "FINISH_TYPE",
+      "type": "varchar(50)",
+      "description": "FINISH_TYPE。常见值: 自动关闭, 变通方法解决, 不能重现, 成功解决, 未知原因, 不成功"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "记录已完成的告警处理信息，包含处理ID和类型，用于客户订单及设备维护的权限管理与状态跟踪。\n表名: t_dc_incident_finish\n其他列: FINISH_ID, FINISH_TYPE"
+}

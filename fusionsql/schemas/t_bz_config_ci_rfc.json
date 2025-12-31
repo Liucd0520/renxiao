@@ -1,0 +1,92 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_ci_rfc"
+  },
+  "table_comment": null,
+  "llm_description": "该表记录设备及CMDB配置项的变更历史，包含修改前后的属性值、变更类型、版本号等，用于追踪配置修改和用户操作。",
+  "columns": [
+    {
+      "name": "RFC_ID",
+      "type": "decimal(10,0)",
+      "description": "ID"
+    },
+    {
+      "name": "OLDVALUE",
+      "type": "varchar(255)",
+      "description": "修改前的值"
+    },
+    {
+      "name": "NEWVALUE",
+      "type": "varchar(255)",
+      "description": "修改后的值"
+    },
+    {
+      "name": "CI_ID",
+      "type": "decimal(10,0)",
+      "description": "设备ID"
+    },
+    {
+      "name": "PROPERTY_ID",
+      "type": "decimal(10,0)",
+      "description": "属性ID"
+    },
+    {
+      "name": "PROPERTY_NAME",
+      "type": "varchar(255)",
+      "description": "属性名称。常见值: IsConsignation, 是否交付, 设备类型, 工作开始时间, 工作结束时间, 监控策略, 业务单位, 区域, 工作策略, hostName"
+    },
+    {
+      "name": "VERSION",
+      "type": "decimal(5,0)",
+      "description": "修改的版本号(第几次修改)"
+    },
+    {
+      "name": "MODIFY_TYPE",
+      "type": "decimal(1,0)",
+      "description": "修改类型 (1增加,2删除 3修改)"
+    },
+    {
+      "name": "MODIFY_CLASSIFY",
+      "type": "decimal(2,0)",
+      "description": "分类1是CI,2是CMDB类型,3是CMDB属性"
+    },
+    {
+      "name": "CREATED_BY",
+      "type": "varchar(50)",
+      "description": "创建人"
+    },
+    {
+      "name": "UPDATED_BY",
+      "type": "varchar(50)",
+      "description": "修改人"
+    },
+    {
+      "name": "UPDATE_TIME",
+      "type": "datetime",
+      "description": "修改日期"
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": "创建日期"
+    },
+    {
+      "name": "IS_DELETED",
+      "type": "decimal(1,0)",
+      "description": "是否删除"
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "UPDATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 16,
+  "embedding_text": "该表记录设备及CMDB配置项的变更历史，包含修改前后的属性值、变更类型、版本号等，用于追踪配置修改和用户操作。\n表名: t_bz_config_ci_rfc\n列信息: RFC_ID(ID), OLDVALUE(修改前的值), NEWVALUE(修改后的值), CI_ID(设备ID), PROPERTY_ID(属性ID), PROPERTY_NAME(属性名称), VERSION(修改的版本号(第几次修改)), MODIFY_TYPE(修改类型 (1增加,2删除 3修改)), MODIFY_CLASSIFY(分类1是CI,2是CMDB类型,3是CMDB属性), CREATED_BY(创建人), UPDATED_BY(修改人), UPDATE_TIME(修改日期), CREATE_TIME(创建日期), IS_DELETED(是否删除)\n其他列: CREATE_USER_ID"
+}

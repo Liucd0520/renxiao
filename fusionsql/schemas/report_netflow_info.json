@@ -1,0 +1,77 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "report_netflow_info"
+  },
+  "table_comment": null,
+  "llm_description": "report_netflow_info表存储网络流量统计信息，记录设备间数据包与字节总量，用于客户流量分析及告警监控。",
+  "columns": [
+    {
+      "name": "ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "REPORT_INST_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "ROOT_NE_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "TYPE",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "KEYWORD",
+      "type": "varchar(64)",
+      "description": null
+    },
+    {
+      "name": "SRC_ADDR",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "DIST_ADDR",
+      "type": "varchar(128)",
+      "description": null
+    },
+    {
+      "name": "VALUE_PKTS_SUM",
+      "type": "decimal(38,10)",
+      "description": null
+    },
+    {
+      "name": "VALUE_OCTETS_SUM",
+      "type": "decimal(38,10)",
+      "description": null
+    },
+    {
+      "name": "NUM_COUNTS",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "TIME_COUNTS",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "NE_NAME",
+      "type": "varchar(512)",
+      "description": "NE_NAME。常见值: dev-206"
+    }
+  ],
+  "column_count": 13,
+  "embedding_text": "report_netflow_info表存储网络流量统计信息，记录设备间数据包与字节总量，用于客户流量分析及告警监控。\n表名: report_netflow_info\n其他列: ID, REPORT_INST_ID, NE_ID, ROOT_NE_ID, TYPE, KEYWORD, SRC_ADDR, DIST_ADDR, VALUE_PKTS_SUM, VALUE_OCTETS_SUM, NUM_COUNTS, TIME_COUNTS, NE_NAME"
+}

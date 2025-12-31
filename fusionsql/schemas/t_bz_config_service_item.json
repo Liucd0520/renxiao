@@ -1,0 +1,62 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_bz_config_service_item"
+  },
+  "table_comment": "服务项表",
+  "llm_description": "服务项表存储客户服务配置信息，包含服务名称、描述及用户操作记录，用于管理客户订单相关服务及权限配置。",
+  "columns": [
+    {
+      "name": "SERVICEITEM_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "CREATE_USER_NAME",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "CREATE_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "MODIFY_USER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    },
+    {
+      "name": "MODIFY_USER_NAME",
+      "type": "varchar(50)",
+      "description": null
+    },
+    {
+      "name": "CREATE_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "LAST_MODIFY_TIME",
+      "type": "datetime",
+      "description": null
+    },
+    {
+      "name": "S_NAME",
+      "type": "varchar(50)",
+      "description": "S_NAME。常见值: service2020-6-4-4, service2020-6-4-1, 111222, service2020-6-4-9, service2020-6-4-6, service2020-6-4-3, 1111, 1, service2020-6-4-8, service2020-6-4-5"
+    },
+    {
+      "name": "S_DESC",
+      "type": "varchar(512)",
+      "description": null
+    },
+    {
+      "name": "S_CUSTOMER_ID",
+      "type": "decimal(10,0)",
+      "description": null
+    }
+  ],
+  "column_count": 10,
+  "embedding_text": "服务项表存储客户服务配置信息，包含服务名称、描述及用户操作记录，用于管理客户订单相关服务及权限配置。\n表名: t_bz_config_service_item\n表注释: 服务项表\n其他列: SERVICEITEM_ID, CREATE_USER_NAME, CREATE_USER_ID, MODIFY_USER_ID, MODIFY_USER_NAME, CREATE_TIME, LAST_MODIFY_TIME, S_NAME, S_DESC, S_CUSTOMER_ID"
+}

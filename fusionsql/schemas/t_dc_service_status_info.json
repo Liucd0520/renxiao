@@ -1,0 +1,22 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "t_dc_service_status_info"
+  },
+  "table_comment": null,
+  "llm_description": "存储设备服务状态信息，用于监控设备运行状态及告警管理。",
+  "columns": [
+    {
+      "name": "STATUS_INFO_ID",
+      "type": "int(10)",
+      "description": null
+    },
+    {
+      "name": "STATUS_INFO_NAME",
+      "type": "varchar(10)",
+      "description": "STATUS_INFO_NAME。常见值: 需求否决, 已重派, 已关闭, 待重派, 已完成, 新建, 已确认, 待分派, 重处理, 已分派"
+    }
+  ],
+  "column_count": 2,
+  "embedding_text": "存储设备服务状态信息，用于监控设备运行状态及告警管理。\n表名: t_dc_service_status_info\n其他列: STATUS_INFO_ID, STATUS_INFO_NAME"
+}

@@ -1,0 +1,32 @@
+{
+  "meta_data": {
+    "db_id": "netcaredb_ai",
+    "table_name": "sdwan_device"
+  },
+  "table_comment": null,
+  "llm_description": "sdwan_device表存储SD-WAN设备基础信息，包含设备ID、站点ID、租户ID及设备数据，用于客户设备管理、告警监控及权限控制。",
+  "columns": [
+    {
+      "name": "deviceId",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "siteId",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "tenantId",
+      "type": "varchar(100)",
+      "description": null
+    },
+    {
+      "name": "data",
+      "type": "varchar(10000)",
+      "description": null
+    }
+  ],
+  "column_count": 4,
+  "embedding_text": "sdwan_device表存储SD-WAN设备基础信息，包含设备ID、站点ID、租户ID及设备数据，用于客户设备管理、告警监控及权限控制。\n表名: sdwan_device\n其他列: deviceId, siteId, tenantId, data"
+}
