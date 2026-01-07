@@ -1,0 +1,726 @@
+[
+  {
+    "id": 1,
+    "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root"
+    ],
+    "keyword_searches": [
+      {
+        "keyword": "ciscoA",
+        "matches": [
+          {
+            "table": "t_dc_config_device_type",
+            "column": "TYPE_NAME",
+            "value": "cisco",
+            "similarity": 0.82
+          },
+          {
+            "table": "ne_token",
+            "column": "USERNAME",
+            "value": "cisco",
+            "similarity": 0.82
+          },
+          {
+            "table": "ne_template_access_config",
+            "column": "username",
+            "value": "cisco",
+            "similarity": 0.82
+          },
+          {
+            "table": "t_bz_config_vendor",
+            "column": "VENDOR_NAME",
+            "value": "cisco",
+            "similarity": 0.82
+          },
+          {
+            "table": "t_dc_sys_language_global",
+            "column": "TABLE_VALUE_ENGLISH",
+            "value": "cisco",
+            "similarity": 0.82
+          }
+        ]
+      },
+      {
+        "keyword": "cisco",
+        "matches": [
+          {
+            "table": "t_dc_config_device_type",
+            "column": "TYPE_NAME",
+            "value": "cisco",
+            "similarity": 1.0
+          },
+          {
+            "table": "ne_token",
+            "column": "USERNAME",
+            "value": "cisco",
+            "similarity": 1.0
+          },
+          {
+            "table": "ne_template_access_config",
+            "column": "username",
+            "value": "cisco",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_config_vendor",
+            "column": "VENDOR_NAME",
+            "value": "cisco",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_dc_sys_language_global",
+            "column": "TABLE_VALUE_ENGLISH",
+            "value": "cisco",
+            "similarity": 1.0
+          }
+        ]
+      }
+    ],
+    "found_tables": [
+      "t_dc_sys_language_global",
+      "t_dc_config_device_type",
+      "ne_template_access_config",
+      "t_bz_config_vendor",
+      "ne_token"
+    ],
+    "tables_hit": [],
+    "success": false
+  },
+  {
+    "id": 2,
+    "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "keyword_searches": [
+      {
+        "keyword": "device state",
+        "matches": [
+          {
+            "table": "t_bz_incident_event_record",
+            "column": "EVENT_NAME",
+            "value": "Device state",
+            "similarity": 0.8
+          },
+          {
+            "table": "event",
+            "column": "EVENT_NAME",
+            "value": "Device state",
+            "similarity": 0.8
+          },
+          {
+            "table": "event_history",
+            "column": "EVENT_NAME",
+            "value": "Device state",
+            "similarity": 0.8
+          },
+          {
+            "table": "event_backup",
+            "column": "EVENT_NAME",
+            "value": "Device state",
+            "similarity": 0.8
+          },
+          {
+            "table": "event",
+            "column": "EVENT_VALUE",
+            "value": "Device state dow",
+            "similarity": 0.66
+          }
+        ]
+      },
+      {
+        "keyword": "Device state",
+        "matches": [
+          {
+            "table": "t_bz_incident_event_record",
+            "column": "EVENT_NAME",
+            "value": "Device state",
+            "similarity": 1.0
+          },
+          {
+            "table": "event",
+            "column": "EVENT_NAME",
+            "value": "Device state",
+            "similarity": 1.0
+          },
+          {
+            "table": "event_history",
+            "column": "EVENT_NAME",
+            "value": "Device state",
+            "similarity": 1.0
+          },
+          {
+            "table": "event_backup",
+            "column": "EVENT_NAME",
+            "value": "Device state",
+            "similarity": 1.0
+          },
+          {
+            "table": "event_knowledge",
+            "column": "EVENT_VALUE",
+            "value": "Device state up",
+            "similarity": 0.78
+          }
+        ]
+      },
+      {
+        "keyword": "down",
+        "matches": [
+          {
+            "table": "t_gn_topo_device",
+            "column": "device_status",
+            "value": "down",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_dc_sys_language_global",
+            "column": "TABLE_VALUE_CHINESE",
+            "value": "Node down",
+            "similarity": 0.32
+          },
+          {
+            "table": "t_dc_problem_category",
+            "column": "NAME",
+            "value": "Node down",
+            "similarity": 0.32
+          },
+          {
+            "table": "t_dc_incident_category",
+            "column": "NAME",
+            "value": "Node down",
+            "similarity": 0.32
+          },
+          {
+            "table": "t_dc_knowledge_category",
+            "column": "NAME",
+            "value": "Node down",
+            "similarity": 0.32
+          }
+        ]
+      }
+    ],
+    "found_tables": [
+      "event_knowledge",
+      "t_dc_sys_language_global",
+      "t_dc_incident_category",
+      "t_dc_problem_category",
+      "t_dc_knowledge_category",
+      "event",
+      "t_gn_topo_device",
+      "t_bz_incident_event_record",
+      "event_history",
+      "event_backup"
+    ],
+    "tables_hit": [
+      "event_history"
+    ],
+    "success": true
+  },
+  {
+    "id": 3,
+    "question": "现在平台上有多少家客户",
+    "expected_tables": [
+      "t_bz_config_customer"
+    ],
+    "keyword_searches": [
+      {
+        "keyword": "客户",
+        "matches": [
+          {
+            "table": "customer_cloud_monitor_key",
+            "column": "deleted",
+            "value": "N",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_dc_incident_category",
+            "column": "NAME",
+            "value": "硬盘",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_authority_users_group",
+            "column": "USERS_GROUP_NAME",
+            "value": "测试",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_config_customer",
+            "column": "CUSTOMER_NAME",
+            "value": "柯达",
+            "similarity": 1.0
+          },
+          {
+            "table": "ne_token",
+            "column": "USERNAME",
+            "value": "11",
+            "similarity": 1.0
+          }
+        ]
+      },
+      {
+        "keyword": "CUSTOMER",
+        "matches": [
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_CUSTOMER",
+            "similarity": 0.56
+          },
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_CUSTOMERGROUP",
+            "similarity": 0.39
+          },
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_USERCUSTOMER",
+            "similarity": 0.34
+          },
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_CUSTOMERCUSTOMERGROUP",
+            "similarity": 0.34
+          },
+          {
+            "table": "t_bz_config_customer",
+            "column": "CUSTOMER_NAME",
+            "value": "SJW_TEST_CUSTOMER",
+            "similarity": 0.33
+          }
+        ]
+      }
+    ],
+    "found_tables": [
+      "t_dc_incident_category",
+      "t_bz_config_customer",
+      "customer_cloud_monitor_key",
+      "t_bz_authority_users_group",
+      "ne_token",
+      "sequence"
+    ],
+    "tables_hit": [
+      "t_bz_config_customer"
+    ],
+    "success": true
+  },
+  {
+    "id": 4,
+    "question": "现在平台上有多少台设备",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "keyword_searches": [
+      {
+        "keyword": "设备",
+        "matches": [
+          {
+            "table": "customer_cloud_monitor_key",
+            "column": "deleted",
+            "value": "N",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_dc_incident_category",
+            "column": "NAME",
+            "value": "硬盘",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_authority_users_group",
+            "column": "USERS_GROUP_NAME",
+            "value": "测试",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_config_customer",
+            "column": "CUSTOMER_NAME",
+            "value": "柯达",
+            "similarity": 1.0
+          },
+          {
+            "table": "ne_token",
+            "column": "USERNAME",
+            "value": "11",
+            "similarity": 1.0
+          }
+        ]
+      },
+      {
+        "keyword": "device",
+        "matches": [
+          {
+            "table": "t_dc_sys_language_global",
+            "column": "TABLE_VALUE_ENGLISH",
+            "value": "Device",
+            "similarity": 0.65
+          },
+          {
+            "table": "ne_type",
+            "column": "NE_TYPE_NAME",
+            "value": "Device",
+            "similarity": 0.65
+          },
+          {
+            "table": "t_gn_topo_device",
+            "column": "device_alias",
+            "value": "lym-device",
+            "similarity": 0.61
+          },
+          {
+            "table": "t_bz_incident_ci_record",
+            "column": "CI_NAME",
+            "value": "lym-device",
+            "similarity": 0.61
+          },
+          {
+            "table": "t_gn_topo_device",
+            "column": "device_name",
+            "value": "lym-device",
+            "similarity": 0.61
+          }
+        ]
+      }
+    ],
+    "found_tables": [
+      "t_dc_incident_category",
+      "t_dc_sys_language_global",
+      "ne_type",
+      "t_bz_config_customer",
+      "t_gn_topo_device",
+      "t_bz_incident_ci_record",
+      "customer_cloud_monitor_key",
+      "t_bz_authority_users_group",
+      "ne_token"
+    ],
+    "tables_hit": [],
+    "success": true
+  },
+  {
+    "id": 5,
+    "question": "上个月上线的新设备有多少",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "keyword_searches": [
+      {
+        "keyword": "上线",
+        "matches": [
+          {
+            "table": "customer_cloud_monitor_key",
+            "column": "deleted",
+            "value": "N",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_dc_incident_category",
+            "column": "NAME",
+            "value": "硬盘",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_authority_users_group",
+            "column": "USERS_GROUP_NAME",
+            "value": "测试",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_config_customer",
+            "column": "CUSTOMER_NAME",
+            "value": "柯达",
+            "similarity": 1.0
+          },
+          {
+            "table": "ne_token",
+            "column": "USERNAME",
+            "value": "11",
+            "similarity": 1.0
+          }
+        ]
+      },
+      {
+        "keyword": "ONLINE",
+        "matches": [
+          {
+            "table": "cc_cmdb_field_mapping",
+            "column": "fd_name",
+            "value": "LINE",
+            "similarity": 0.53
+          },
+          {
+            "table": "t_dc_sys_language_global",
+            "column": "TABLE_VALUE_CHINESE",
+            "value": "LINUX",
+            "similarity": 0.2
+          },
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_CINEROOT",
+            "similarity": 0.11
+          },
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_GN_TOPO_LINK",
+            "similarity": 0.1
+          },
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_CINECIRCUIT",
+            "similarity": 0.09
+          }
+        ]
+      }
+    ],
+    "found_tables": [
+      "t_dc_incident_category",
+      "t_dc_sys_language_global",
+      "t_bz_config_customer",
+      "customer_cloud_monitor_key",
+      "t_bz_authority_users_group",
+      "cc_cmdb_field_mapping",
+      "ne_token",
+      "sequence"
+    ],
+    "tables_hit": [],
+    "success": true
+  },
+  {
+    "id": 6,
+    "question": "上个月下线的设备有多少",
+    "expected_tables": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "keyword_searches": [
+      {
+        "keyword": "下线",
+        "matches": [
+          {
+            "table": "customer_cloud_monitor_key",
+            "column": "deleted",
+            "value": "N",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_dc_incident_category",
+            "column": "NAME",
+            "value": "硬盘",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_authority_users_group",
+            "column": "USERS_GROUP_NAME",
+            "value": "测试",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_config_customer",
+            "column": "CUSTOMER_NAME",
+            "value": "柯达",
+            "similarity": 1.0
+          },
+          {
+            "table": "ne_token",
+            "column": "USERNAME",
+            "value": "11",
+            "similarity": 1.0
+          }
+        ]
+      },
+      {
+        "keyword": "OFFLINE",
+        "matches": [
+          {
+            "table": "cc_cmdb_field_mapping",
+            "column": "fd_name",
+            "value": "LINE",
+            "similarity": 0.46
+          },
+          {
+            "table": "t_dc_sys_language_global",
+            "column": "TABLE_VALUE_CHINESE",
+            "value": "LINUX",
+            "similarity": 0.18
+          },
+          {
+            "table": "t_bz_config_ci_ne_root",
+            "column": "IMAGE",
+            "value": "TP-LINK",
+            "similarity": 0.13
+          },
+          {
+            "table": "protocol_inst",
+            "column": "PROTOCOL_INST_NAME",
+            "value": "TP-LINK",
+            "similarity": 0.13
+          },
+          {
+            "table": "t_bz_config_vendor",
+            "column": "VENDOR_NAME",
+            "value": "TP-LINK",
+            "similarity": 0.13
+          }
+        ]
+      }
+    ],
+    "found_tables": [
+      "t_dc_incident_category",
+      "t_dc_sys_language_global",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer",
+      "protocol_inst",
+      "customer_cloud_monitor_key",
+      "t_bz_authority_users_group",
+      "cc_cmdb_field_mapping",
+      "t_bz_config_vendor",
+      "ne_token"
+    ],
+    "tables_hit": [
+      "t_bz_config_ci_ne_root"
+    ],
+    "success": true
+  },
+  {
+    "id": 7,
+    "question": "某客户设备近一周内发生过哪些类型的告警",
+    "expected_tables": [
+      "event_history",
+      "t_bz_config_ci_ne_root",
+      "t_bz_config_customer"
+    ],
+    "keyword_searches": [
+      {
+        "keyword": "告警",
+        "matches": [
+          {
+            "table": "customer_cloud_monitor_key",
+            "column": "deleted",
+            "value": "N",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_dc_incident_category",
+            "column": "NAME",
+            "value": "硬盘",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_authority_users_group",
+            "column": "USERS_GROUP_NAME",
+            "value": "测试",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_bz_config_customer",
+            "column": "CUSTOMER_NAME",
+            "value": "柯达",
+            "similarity": 1.0
+          },
+          {
+            "table": "ne_token",
+            "column": "USERNAME",
+            "value": "11",
+            "similarity": 1.0
+          }
+        ]
+      },
+      {
+        "keyword": "alarm",
+        "matches": [
+          {
+            "table": "event_history",
+            "column": "EVENT_STATUS_NAME",
+            "value": "alarm",
+            "similarity": 1.0
+          },
+          {
+            "table": "event_backup",
+            "column": "EVENT_STATUS_NAME",
+            "value": "alarm",
+            "similarity": 1.0
+          },
+          {
+            "table": "syslog_server",
+            "column": "handle",
+            "value": "alarm",
+            "similarity": 1.0
+          },
+          {
+            "table": "t_dc_sys_language_global",
+            "column": "TABLE_VALUE_ENGLISH",
+            "value": "Fog alarm",
+            "similarity": 0.5
+          },
+          {
+            "table": "t_dc_problem_category",
+            "column": "NAME",
+            "value": "Fog alarm",
+            "similarity": 0.5
+          }
+        ]
+      },
+      {
+        "keyword": "EVENT",
+        "matches": [
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_EVENT",
+            "similarity": 0.43
+          },
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_INCIDENT_EVENT_RECORD",
+            "similarity": 0.19
+          },
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_EVENT_CONDITION",
+            "similarity": 0.19
+          },
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_UIELEMENT",
+            "similarity": 0.09
+          },
+          {
+            "table": "sequence",
+            "column": "NAME",
+            "value": "SEQ_INCIDENT_WAIT",
+            "similarity": 0.08
+          }
+        ]
+      }
+    ],
+    "found_tables": [
+      "t_dc_incident_category",
+      "t_dc_sys_language_global",
+      "t_dc_problem_category",
+      "t_bz_config_customer",
+      "customer_cloud_monitor_key",
+      "t_bz_authority_users_group",
+      "syslog_server",
+      "event_history",
+      "ne_token",
+      "sequence",
+      "event_backup"
+    ],
+    "tables_hit": [
+      "event_history",
+      "t_bz_config_customer"
+    ],
+    "success": true
+  }
+]
