@@ -14,25 +14,46 @@
 
 ## 快速开始
 
-### 1. 安装依赖
+> **重要**：所有命令都必须在 `FusionSQL` 根目录下执行！
+
+### 1. 进入项目目录
 
 ```bash
 cd FusionSQL
-source .venv/bin/activate
-pip install langchain langgraph langchain-core flask httpx markdown langgraph-cli langgraph-api
 ```
 
-### 2. 启动 LangGraph 服务器
+### 2. 安装依赖
 
 ```bash
-cd FusionSQL
+source .venv/bin/activate
+pip install langchain langgraph langchain-core langchain-openai flask httpx markdown langgraph-cli langgraph-api python-dotenv
+```
+
+### 3. 配置环境变量
+
+```bash
+cp .env.example .env
+# 编辑 .env 填入你的 API Key 和 API Base URL
+```
+
+`.env` 文件内容示例：
+```
+OPENAI_API_KEY=your_api_key_here
+OPENAI_API_BASE=http://your-api-endpoint/v1
+```
+
+### 4. 启动 LangGraph 服务器
+
+```bash
 source .venv/bin/activate
 langgraph dev --no-browser
 ```
 
 服务器启动后 API 运行在 `http://127.0.0.1:2024`
 
-### 3. 启动 Web UI（新终端）
+### 5. 启动 Web UI（新终端）
+
+打开另一个终端，同样进入 FusionSQL 目录：
 
 ```bash
 cd FusionSQL
@@ -47,23 +68,16 @@ python sql_researcher/tests/web_ui.py
 ## 目录结构
 
 ```
-FusionSQL/
+FusionSQL/                     # ← 必须在这个目录下运行命令！
 ├── fusionsql/                 # FusionSQL 核心引擎
-│   ├── pipeline.py            # 主流程
-│   ├── sql_generator.py       # SQL 生成
-│   └── ...
 ├── sql_researcher/            # LangGraph Agent
-│   ├── sql_deep_researcher.py # 主流程 + 节点定义
-│   ├── sql_state.py           # 状态定义
+│   ├── sql_deep_researcher.py # 主流程
 │   ├── sql_configuration.py   # 配置项
-│   ├── sql_prompts.py         # Prompt 模板
-│   ├── tools/
-│   │   ├── fusionsql_tool.py  # FusionSQL 工具
-│   │   └── sql_executor_tool.py
+│   ├── tools/                 # 工具（FusionSQL、SQL执行器）
 │   └── tests/
-│       ├── web_ui.py          # Web 界面
-│       └── ...
-├── langgraph.json             # LangGraph 配置（根目录）
+│       └── web_ui.py          # Web 界面
+├── langgraph.json             # LangGraph 配置
+├── .env.example               # 环境变量模板
 └── docs/                      # 文档和报告
 ```
 
@@ -73,33 +87,18 @@ FusionSQL/
 
 | 版本 | 复杂问题处理时间 | 提升 |
 |-----|----------------|------|
-| 优化前 (Supervisor 模式) | 9.5 分钟 | 基准 |
-| 优化后 (并行跳过 Supervisor) | **2.5 分钟** | **~75%** |
-
-详见 `docs/20260113/performance_optimization_report.md`
+| 优化前 | 9.5 分钟 | 基准 |
+| 优化后 | **2.5 分钟** | **~75%** |
 
 ---
 
-## 配置说明
+## 常见问题
 
-| 配置项 | 说明 | 默认值 |
-|--------|------|--------|
-| `enable_decomposition_review` | 是否启用人工审核问题拆解 | `True` |
-| `enable_parallel_bypass` | 跳过 Supervisor 直接并行执行 | `True` |
-| `max_concurrent_research_units` | 最大并行研究数 | `10` |
+**Q: `langgraph.json` 找不到？**  
+A: 确保已经 `cd` 进入 FusionSQL 根目录后再运行命令
 
----
+**Q: `OPENAI_API_KEY` 未设置？**  
+A: 复制 `.env.example` 为 `.env` 并填入 API 配置
 
-## 测试问题示例
-
-**简单问题**：
-```
-现在平台上有多少家客户和多少台设备
-```
-
-**复杂问题**：
-```
-我想了解一下咱们平台的整体情况。客户数量和设备数量大概是多少？
-上个月设备的上下线情况怎么样？另外，有些设备好像一直是down的状态，
-能不能看看哪些设备down了超过3个月，顺便告诉我是哪个客户的。
-```
+**Q: 端口被占用？**  
+A: 用 `lsof -i :2024` 查找并 `kill` 占用进程
