@@ -1,0 +1,11 @@
+{
+  "dockerfile_lines": [],
+  "graphs": {
+    "SQL Researcher": "./sql_researcher/sql_deep_researcher.py:sql_researcher"
+  },
+  "python_version": "3.11",
+  "env": "./.env",
+  "dependencies": [
+    "."
+  ]
+}

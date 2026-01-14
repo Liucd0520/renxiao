@@ -1,0 +1,131 @@
+{
+  "test_time": "2026-01-09T11:24:57.053083",
+  "test_type": "SQL Researcher Integration Test",
+  "model": "Qwen2.5-Coder-32B-Instruct",
+  "summary": {
+    "total": 7,
+    "passed": 6,
+    "failed": 1,
+    "accuracy": "85.7%"
+  },
+  "results": [
+    {
+      "id": 1,
+      "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+      "status": "PASS",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root"
+      ],
+      "missing_tables": [],
+      "generated_sqls": [
+        "SELECT \n    DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01 00:00:00') AS start_time,\n    LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AS end_time;",
+        "SELECT e.*\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'ciscoA'\n  AND e.EVENT_TIME >= DATE_SUB(DATE_SUB(CURDATE(), INTERVAL DAY(CURDATE()) - 1 DAY), INTERVAL 1 MONTH)\n  AND e.EVENT_TIME < DATE_SUB(CURDATE(), INTERVAL DAY(CURDATE()) - 1 DAY);",
+        "SELECT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    COUNT(*) AS alarm_count\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root c ON e.NE_ID = c.NE_ID\nWHERE \n    c.HOST_NAME = 'ciscoA'\nGROUP BY \n    e.EVENT_TYPE_NAME\nORDER BY \n    alarm_count DESC;",
+        "SELECT \n    DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01 00:00:00') AS start_time,\n    LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AS end_time;",
+        "SELECT \n    DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01 00:00:00') AS start_time,\n    LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AS end_time;",
+        "SELECT e.*\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'ciscoA'\n  AND e.EVENT_TIME >= DATE_SUB(DATE_SUB(CURDATE(), INTERVAL DAY(CURDATE()) - 1 DAY), INTERVAL 1 MONTH)\n  AND e.EVENT_TIME < DATE_SUB(CURDATE(), INTERVAL DAY(CURDATE()) - 1 DAY);",
+        "SELECT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    COUNT(*) AS alarm_count\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root c ON e.NE_ID = c.NE_ID\nWHERE \n    c.HOST_NAME = 'ciscoA'\nGROUP BY \n    e.EVENT_TYPE_NAME\nORDER BY \n    alarm_count DESC;",
+        "-- 确定上个月的时间范围\nSELECT \n    DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01 00:00:00') AS start_time,\n    LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AS end_time;\n\n-- 查询设备ciscoA在上个月的告警记录\nSELECT e.*\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE n.HOST_NAME = 'ciscoA'\n  AND e.EVENT_TIME >= DATE_SUB(DATE_SUB(CURDATE(), INTERVAL DAY(CURDATE()) - 1 DAY), INTERVAL 1 MONTH)\n  AND e.EVENT_TIME < DATE_SUB(CURDATE(), INTERVAL DAY(CURDATE()) - 1 DAY);\n\n-- 按告警类型对设备ciscoA的告警记录进行分类统计\nSELECT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    COUNT(*) AS alarm_count\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root c ON e.NE_ID = c.NE_ID\nWHERE \n    c.HOST_NAME = 'ciscoA'\nGROUP BY \n    e.EVENT_TYPE_NAME\nORDER BY \n    alarm_count DESC;"
+      ],
+      "report_preview": "## 报告：设备ciscoA上个月告警统计\n\n### 1. 概述\n本报告旨在分析设备ciscoA在2025年12月的告警情况，并按告警类型进行分类统计。\n\n### 2. 数据范围\n- **开始时间**: 2025-12-01 00:00:00\n- **结束时间**: 2025-12-31\n\n### 3. 告警统计\n设备ciscoA在2025年12月共发生了414次告警事件。以下是按告警类型分类的统...",
+      "duration_seconds": 196.324521
+    },
+    {
+      "id": 2,
+      "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+      "status": "ERROR",
+      "error": "Timeout waiting for run to complete",
+      "duration_seconds": 361.448872
+    },
+    {
+      "id": 3,
+      "question": "现在平台上有多少家客户",
+      "status": "PASS",
+      "expected_tables": [
+        "t_bz_config_customer"
+      ],
+      "missing_tables": [],
+      "generated_sqls": [
+        "SELECT COUNT(*) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1 AND IS_DELETED = 0;",
+        "SELECT COUNT(*) AS customer_count \nFROM t_bz_config_customer \nWHERE IS_ACTIVE = 1 AND IS_DELETED = 0;",
+        "SELECT COUNT(*) AS customer_count \nFROM t_bz_config_customer \nWHERE IS_ACTIVE = 1 AND IS_DELETED = 0;"
+      ],
+      "report_preview": "## 客户数量统计报告\n\n### 问题概述\n用户询问平台上当前有多少家客户。\n\n### 数据分析\n根据最新的数据库查询结果，截至2026-01-09，平台上有500家活跃且未被删除的客户。\n\n#### 查询结果\n| customer_count |\n|----------------|\n| 500            |\n\n#### 关键洞察\n- 目前平台上有500家活跃且未被删除的客户。这意味...",
+      "duration_seconds": 45.138113
+    },
+    {
+      "id": 4,
+      "question": "现在平台上有多少台设备",
+      "status": "PASS",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "missing_tables": [],
+      "generated_sqls": [
+        "SELECT COUNT(*) AS device_count FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+        "SELECT COUNT(*) AS device_count FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;"
+      ],
+      "report_preview": "## 设备数量统计报告\n\n### 问题描述\n用户询问当前平台上设备的数量。\n\n### 关键发现\n根据查询结果，当前平台上未被删除的设备总数为 **12345** 台。\n\n### 数据展示\n| device_count |\n|--------------|\n| 12345        |\n\n### 关键洞察\n- 当前平台上有效的设备数量为 12345 台。\n- 该统计结果基于 `t_bz_conf...",
+      "duration_seconds": 49.114593
+    },
+    {
+      "id": 5,
+      "question": "上个月上线的新设备有多少",
+      "status": "PASS",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "missing_tables": [],
+      "generated_sqls": [
+        "SELECT \n    DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01 00:00:00') AS start_time,\n    LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AS end_time;",
+        "SELECT COUNT(*) AS new_device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_ONLINE = 1\n  AND ONLINE_CHANGE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND ONLINE_CHANGE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "SELECT \n    DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01 00:00:00') AS start_time,\n    LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AS end_time;",
+        "SELECT COUNT(*) AS new_device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_ONLINE = 1\n  AND ONLINE_CHANGE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND ONLINE_CHANGE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');"
+      ],
+      "report_preview": "## 上个月上线的新设备数量报告\n\n### 1. 概述\n\n本报告旨在确定2025年12月期间上线的新设备数量。通过分析数据库中的相关数据，我们能够准确地统计出该时间段内的新设备上线情况。\n\n### 2. 关键发现\n\n- **时间范围**: 2025年12月01日 00:00:00 至 2025年12月31日\n- **新设备数量**: 150台\n\n### 3. 数据展示\n\n| 时间范围起始 | 时间...",
+      "duration_seconds": 121.117297
+    },
+    {
+      "id": 6,
+      "question": "上个月下线的设备有多少",
+      "status": "PASS",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "missing_tables": [],
+      "generated_sqls": [
+        "SELECT \n    DATE_FORMAT(DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH), '%Y-%m-01') AS first_day_of_last_month,\n    LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AS last_day_of_last_month;",
+        "SELECT COUNT(*) AS offline_device_count\nFROM t_bz_config_ci_ne_root\nWHERE STATUS = 0\n  AND OFFLINE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND OFFLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "SELECT \n    DATE_FORMAT(DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH), '%Y-%m-01') AS first_day_of_last_month,\n    LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AS last_day_of_last_month;",
+        "SELECT COUNT(*) AS offline_device_count\nFROM t_bz_config_ci_ne_root\nWHERE STATUS = 0\n  AND OFFLINE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND OFFLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+        "SELECT \n    DATE_FORMAT(DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH), '%Y-%m-01') AS first_day_of_last_month,\n    LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AS last_day_of_last_month;",
+        "SELECT COUNT(*) AS offline_device_count\nFROM t_bz_config_ci_ne_root\nWHERE STATUS = 0\n  AND OFFLINE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND OFFLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');"
+      ],
+      "report_preview": "## 上个月下线设备数量报告\n\n### 1. 概述\n本报告旨在确定2025年12月期间状态变为“下线”的设备数量。通过执行特定的SQL查询，我们能够准确地获取所需的数据。\n\n### 2. 数据范围\n- **上个月的第一天**: 2025-12-01\n- **上个月的最后一天**: 2025-12-31\n\n### 3. 查询结果\n在2025年12月1日至2025年12月31日期间，共有5台设备的状态...",
+      "duration_seconds": 102.154752
+    },
+    {
+      "id": 7,
+      "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+      "status": "PASS",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root",
+        "t_bz_config_customer"
+      ],
+      "missing_tables": [],
+      "generated_sqls": [
+        "SELECT ci.CI_ID\nFROM t_bz_config_ci_ne_root ci\nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = '指定客户名' AND ci.IS_DELETED = 0;",
+        "SELECT \n    e.EVENT_NAME AS 告警类型,\n    e.EVENT_TIME AS 告警时间,\n    e.RECOVERY_TIME AS 恢复时间\nFROM \n    event_history e\nWHERE \n    e.NE_ID IN (1001, 1002, 1005, 1010)\n    AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    AND e.EVENT_STATUS_NAME = 'alarm';",
+        "SELECT ci.CI_ID\nFROM t_bz_config_ci_ne_root ci\nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = '指定客户名' AND ci.IS_DELETED = 0;",
+        "SELECT ci.CI_ID\nFROM t_bz_config_ci_ne_root ci\nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = '指定客户名' AND ci.IS_DELETED = 0;",
+        "SELECT \n    e.EVENT_NAME AS 告警类型,\n    e.EVENT_TIME AS 告警时间,\n    e.RECOVERY_TIME AS 恢复时间\nFROM \n    event_history e\nWHERE \n    e.NE_ID IN (1001, 1002, 1005, 1010)\n    AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    AND e.EVENT_STATUS_NAME = 'alarm';",
+        "SELECT \n    e.EVENT_NAME AS 告警类型,\n    e.EVENT_TIME AS 告警时间,\n    e.RECOVERY_TIME AS 恢复时间\nFROM \n    event_history e\nWHERE \n    e.NE_ID IN (1001, 1002, 1005, 1010)\n    AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    AND e.EVENT_STATUS_NAME = 'alarm';",
+        "-- 查询指定客户名下的所有设备ID\nSELECT ci.CI_ID\nFROM t_bz_config_ci_ne_root ci\nJOIN t_bz_config_customer c ON ci.CUSTOMER_ID = c.CUSTOMER_ID\nWHERE c.CUSTOMER_NAME = '指定客户名' AND ci.IS_DELETED = 0;\n\n-- 查询这些设备近一周内的告警类型、告警时间和恢复时间\nSELECT \n    e.EVENT_NAME AS 告警类型,\n    e.EVENT_TIME AS 告警时间,\n    e.RECOVERY_TIME AS 恢复时间\nFROM \n    event_history e\nWHERE \n    e.NE_ID IN (1001, 1002, 1005, 1010)\n    AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    AND e.EVENT_STATUS_NAME = 'alarm';"
+      ],
+      "report_preview": "## 客户设备告警报告\n\n### 概述\n本报告旨在回答用户关于指定客户设备在过去一周内发生的告警类型、告警时间和恢复时间的问题。报告基于数据库中的相关信息进行分析，并提供了具体的查询结果和关键洞察。\n\n### 数据结果\n\n#### 指定客户名下的设备ID\n- 设备ID: 1001\n- 设备ID: 1002\n- 设备ID: 1005\n- 设备ID: 1010\n\n#### 近一周内告警详情\n以下是这些...",
+      "duration_seconds": 168.38234
+    }
+  ]
+}

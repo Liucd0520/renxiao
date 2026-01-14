@@ -173,9 +173,28 @@ class ValueSearcher:
         Returns:
             {table: {column: [values]}} 格式的匹配结果
         """
-        # 简单分词（可以用jieba等更好的分词器）
+        # 改进的分词：分离中文和英文/数字
         import re
-        words = re.findall(r'[a-zA-Z0-9\u4e00-\u9fff]+', question)
+        
+        # 先用正则分离中文和英文/数字
+        # 例如 "设备ciscoA上个月" -> ["设备", "ciscoA", "上个月"]
+        tokens = re.findall(r'[a-zA-Z0-9]+|[\u4e00-\u9fff]+', question)
+        
+        # 尝试使用 jieba 对中文进行分词
+        words = []
+        try:
+            import jieba
+            for token in tokens:
+                if re.match(r'^[\u4e00-\u9fff]+$', token):
+                    # 中文用 jieba 分词
+                    words.extend(jieba.lcut(token))
+                else:
+                    # 英文/数字保持原样
+                    words.append(token)
+        except ImportError:
+            # 没有 jieba 就用原始 token
+            words = tokens
+        
         words = [w for w in words if len(w) >= min_word_length]
         
         all_results: Dict[str, Dict[str, List[str]]] = {}
