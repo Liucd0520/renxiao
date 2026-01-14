@@ -18,14 +18,16 @@
 
 ```bash
 cd FusionSQL
-pip install langgraph langchain langchain-core flask httpx markdown
+source .venv/bin/activate
+pip install langchain langgraph langchain-core flask httpx markdown langgraph-cli langgraph-api
 ```
 
 ### 2. 启动 LangGraph 服务器
 
 ```bash
 cd FusionSQL
-langgraph dev --no-browser -c sql_researcher/langgraph.json
+source .venv/bin/activate
+langgraph dev --no-browser
 ```
 
 服务器启动后 API 运行在 `http://127.0.0.1:2024`
@@ -34,6 +36,7 @@ langgraph dev --no-browser -c sql_researcher/langgraph.json
 
 ```bash
 cd FusionSQL
+source .venv/bin/activate
 python sql_researcher/tests/web_ui.py
 ```
 
@@ -57,10 +60,10 @@ FusionSQL/
 │   ├── tools/
 │   │   ├── fusionsql_tool.py  # FusionSQL 工具
 │   │   └── sql_executor_tool.py
-│   ├── tests/
-│   │   ├── web_ui.py          # Web 界面
-│   │   └── ...
-│   └── langgraph.json         # LangGraph 配置
+│   └── tests/
+│       ├── web_ui.py          # Web 界面
+│       └── ...
+├── langgraph.json             # LangGraph 配置（根目录）
 └── docs/                      # 文档和报告
 ```
 
