@@ -123,9 +123,76 @@ class TextToSQL:
         
         print("Pipeline 初始化完成！")
     
+    def _extract_keywords(self, question: str) -> list:
+        """
+        使用 LLM 从问题中提取关键词（CHESS 论文方法）
+        
+        Args:
+            question: 用户问题
+            
+        Returns:
+            关键词列表
+        """
+        prompt = '''从问题中提取实体关键词，这些关键词可能对应数据库中的具体值。
+只提取：设备名、客户名、厂商名、状态值等具体实体。
+如果问题中没有具体实体，返回"无"。
+
+示例1:
+问题: 设备ciscoA，上个月发生了几次告警
+提取: ciscoA
+
+示例2:
+问题: 查询客户华为公司的所有设备
+提取: 华为公司
+
+示例3:
+问题: 设备状态down超过3个月
+提取: down
+
+示例4:
+问题: 现在平台上有多少家客户
+提取: 无
+
+当前问题: {}
+提取:'''.format(question)
+        
+        try:
+            response = self.generator.llm.complete(prompt)
+            # 解析响应
+            keywords_text = response.strip()
+            
+            # 处理"无"或空返回
+            if not keywords_text or keywords_text in ['无', 'None', '无关键词', '无实体']:
+                return []
+            
+            # 清理和分割
+            import re
+            # 移除可能的前缀
+            keywords_text = re.sub(r'^(提取|关键词)[：:]\s*', '', keywords_text)
+            
+            keywords = re.split(r'[,，、\s]+', keywords_text)
+            keywords = [k.strip() for k in keywords if k.strip() and len(k.strip()) >= 2]
+            
+            # 过滤掉一些明显错误的关键词
+            invalid_keywords = {'关键词', '提取', '无', 'None', '问题', '示例'}
+            keywords = [k for k in keywords if k not in invalid_keywords]
+            
+            if keywords:
+                print(f"[LLM] 提取关键词: {keywords}")
+            return keywords
+            
+        except Exception as e:
+            logging.warning(f"LLM 关键词提取失败: {e}")
+            return []
+    
     def _find_matched_values(self, question: str) -> dict:
         """
-        使用 LSH 查找问题中的实体值
+        使用 LLM + LSH 进行 Entity Linking（CHESS 论文方法）
+        
+        流程：
+        1. LLM 提取问题中的关键词
+        2. 对每个关键词用 LSH 搜索数据库值
+        3. 返回匹配结果
         
         Returns:
             {table: {column: [values]}} 格式的匹配结果
@@ -134,28 +201,66 @@ class TextToSQL:
             return {}
         
         try:
-            return self.value_searcher.find_entity_values(
-                question,
-                top_n_per_word=3,
-                min_word_length=2,
-                min_similarity=0.3
-            )
+            # Step 1: LLM 提取关键词
+            keywords = self._extract_keywords(question)
+            if not keywords:
+                return {}
+            
+            # Step 2: 对每个关键词用 LSH 搜索
+            all_results = {}
+            for keyword in keywords:
+                results = self.value_searcher.search_grouped(
+                    keyword, 
+                    top_n=3, 
+                    min_similarity=0.6
+                )
+                
+                # 合并结果
+                for table, columns in results.items():
+                    if table not in all_results:
+                        all_results[table] = {}
+                    for column, values in columns.items():
+                        if column not in all_results[table]:
+                            all_results[table][column] = []
+                        for v in values:
+                            if v not in all_results[table][column]:
+                                all_results[table][column].append(v)
+            
+            return all_results
+            
         except Exception as e:
-            logging.warning(f"LSH 搜索失败: {e}")
+            logging.warning(f"LSH Entity Linking 失败: {e}")
             return {}
     
     def _format_matched_values(self, matched_values: dict) -> str:
         """
-        格式化匹配的值为提示文本
+        格式化 LSH Entity Linking 结果为 prompt 文本
+        
+        重要：只提供值的匹配信息，不要提及表名！
+        否则 LLM 可能被误导使用 LSH 匹配到的表而非 BGE 检索到的表。
         """
         if not matched_values:
             return ""
         
-        lines = ["## 匹配到的实体值（供参考）"]
+        # 收集所有 keyword -> matched_value 的映射（不含表名）
+        value_hints = []
+        seen_values = set()
+        
         for table, columns in matched_values.items():
             for column, values in columns.items():
-                values_str = ", ".join(f"'{v}'" for v in values[:3])
-                lines.append(f"- {table}.{column}: {values_str}")
+                for v in values[:2]:  # 每列最多2个值
+                    if v not in seen_values:
+                        seen_values.add(v)
+                        value_hints.append(v)
+        
+        if not value_hints:
+            return ""
+        
+        # 只告诉 LLM 这些值在数据库中存在，不提及具体表
+        lines = [
+            "## 值匹配提示（仅供参考，请以检索到的表为准）",
+            f"问题中提到的值在数据库中可能对应: {', '.join(repr(v) for v in value_hints[:5])}"
+        ]
         
         return "\n".join(lines)
     
@@ -173,13 +278,24 @@ class TextToSQL:
         if top_k is None:
             top_k = self.top_k
         
-        # Step 1: 检索相关表
-        retrieved = self.retriever.retrieve(question, top_k=top_k)
-        table_names = [t[0] for t in retrieved]
+        # Step 1 & 2 并行执行（BGE 检索 和 LLM+LSH Entity Linking 互不依赖）
+        from concurrent.futures import ThreadPoolExecutor
         
-        # Step 2: LSH 值匹配
-        matched_values = self._find_matched_values(question)
-        matched_hint = self._format_matched_values(matched_values)
+        def do_retrieval():
+            return self.retriever.retrieve(question, top_k=top_k)
+        
+        def do_entity_linking():
+            matched = self._find_matched_values(question)
+            return self._format_matched_values(matched)
+        
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            future_retrieval = executor.submit(do_retrieval)
+            future_linking = executor.submit(do_entity_linking)
+            
+            retrieved = future_retrieval.result()
+            matched_hint = future_linking.result()
+        
+        table_names = [t[0] for t in retrieved]
         
         # Step 3: 生成 SQL
         sql = self.generator.generate_sql(question, table_names, matched_hint=matched_hint)
@@ -201,14 +317,25 @@ class TextToSQL:
         if top_k is None:
             top_k = self.top_k
         
-        # Step 1: 检索
-        retrieved = self.retriever.retrieve(question, top_k=top_k)
+        # Step 1 & 2 并行执行
+        from concurrent.futures import ThreadPoolExecutor
+        
+        def do_retrieval():
+            return self.retriever.retrieve(question, top_k=top_k)
+        
+        def do_entity_linking():
+            matched = self._find_matched_values(question)
+            return matched, self._format_matched_values(matched)
+        
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            future_retrieval = executor.submit(do_retrieval)
+            future_linking = executor.submit(do_entity_linking)
+            
+            retrieved = future_retrieval.result()
+            matched_values, matched_hint = future_linking.result()
+        
         table_names = [t[0] for t in retrieved]
         table_scores = {t: s for t, s in retrieved}
-        
-        # Step 2: LSH 值匹配
-        matched_values = self._find_matched_values(question)
-        matched_hint = self._format_matched_values(matched_values)
         
         # Step 3: 生成
         sql = self.generator.generate_sql(question, table_names, matched_hint=matched_hint)
@@ -298,7 +425,11 @@ class AsyncTextToSQL:
         print("异步 Pipeline 初始化完成！")
     
     def _find_matched_values(self, question: str) -> dict:
-        """使用 LSH 查找问题中的实体值"""
+        """
+        使用 LSH 进行 Entity Linking
+        
+        目的：帮助 LLM 理解问题中的实体在数据库中的对应值
+        """
         if self.value_searcher is None:
             return {}
         
@@ -307,22 +438,24 @@ class AsyncTextToSQL:
                 question,
                 top_n_per_word=3,
                 min_word_length=2,
-                min_similarity=0.3
+                min_similarity=0.6  # 提高阈值，过滤低质量匹配
             )
         except Exception as e:
             logging.warning(f"LSH 搜索失败: {e}")
             return {}
     
     def _format_matched_values(self, matched_values: dict) -> str:
-        """格式化匹配的值为提示文本"""
+        """
+        格式化 LSH Entity Linking 结果为 prompt 文本
+        """
         if not matched_values:
             return ""
         
-        lines = ["## 匹配到的实体值（供参考）"]
+        lines = ["## Entity Linking（问题中的实体可能对应的数据库值）"]
         for table, columns in matched_values.items():
             for column, values in columns.items():
                 values_str = ", ".join(f"'{v}'" for v in values[:3])
-                lines.append(f"- {table}.{column}: {values_str}")
+                lines.append(f"- {table}.{column} 可能的值: {values_str}")
         
         return "\n".join(lines)
     
@@ -340,11 +473,11 @@ class AsyncTextToSQL:
         if top_k is None:
             top_k = self.top_k
         
-        # Step 1: 检索相关表（同步，因为 BGE-M3 不易改异步）
+        # Step 1: 检索相关表（BGE-M3 表级别 + 列级别融合）
         retrieved = self.retriever.retrieve(question, top_k=top_k)
         table_names = [t[0] for t in retrieved]
         
-        # Step 2: LSH 值匹配（同步）
+        # Step 2: LSH Entity Linking
         matched_values = self._find_matched_values(question)
         matched_hint = self._format_matched_values(matched_values)
         
@@ -360,12 +493,12 @@ class AsyncTextToSQL:
         if top_k is None:
             top_k = self.top_k
         
-        # Step 1: 检索
+        # Step 1: 检索（BGE-M3 表级别 + 列级别融合）
         retrieved = self.retriever.retrieve(question, top_k=top_k)
         table_names = [t[0] for t in retrieved]
         table_scores = {t: s for t, s in retrieved}
         
-        # Step 2: LSH 值匹配
+        # Step 2: LSH Entity Linking
         matched_values = self._find_matched_values(question)
         matched_hint = self._format_matched_values(matched_values)
         

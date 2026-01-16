@@ -35,7 +35,7 @@ def get_fusionsql_pipeline():
         
         try:
             from fusionsql import TextToSQL
-            _sync_pipeline = TextToSQL(enable_lsh=False)
+            _sync_pipeline = TextToSQL(enable_lsh=True)  # 启用 LSH 三路融合检索
         finally:
             sys.stdout = old_stdout
             sys.stderr = old_stderr
@@ -56,7 +56,7 @@ def get_async_fusionsql_pipeline():
         
         try:
             from fusionsql.pipeline import AsyncTextToSQL
-            _async_pipeline = AsyncTextToSQL(enable_lsh=False)
+            _async_pipeline = AsyncTextToSQL(enable_lsh=True)  # 启用 LSH 三路融合检索
         finally:
             sys.stdout = old_stdout
             sys.stderr = old_stderr

@@ -1,145 +1,232 @@
 # FusionSQL
 
-基于 **BGE-M3 融合检索**（表级别 + 列级别 Sparse 并集）的 Text-to-SQL 解决方案。
+> **Text-to-SQL 系统：融合多路检索与 Entity Linking 的智能 SQL 生成框架**
 
-## 核心特点
+---
 
-- **融合检索策略**：表 TOP-K ∪ 列 TOP-K，召回率 95.7%
-- **BGE-M3 多语言模型**：支持中英文混合查询
-- **Qwen LLM 生成**：支持 Qwen3 MoE 和 Qwen2.5-32B
-- **预计算 Embedding**：毫秒级检索速度
+## 📌 项目概述
 
-## 性能指标
+FusionSQL 是一个高精度的 Text-to-SQL 系统，核心创新在于**多路检索融合策略**和**LSH Entity Linking**，专为复杂业务数据库场景设计。
 
-| 指标 | 数值 |
-|------|------|
-| 检索召回率 | 95.7% (K=10) |
-| SQL 生成正确率 | 63.3% |
-| 检索速度 | < 100ms |
+### 核心特性
 
-### 难度分布
+- 🎯 **表级别 + 列级别双路检索**: 基于 BGE-M3 的混合检索，召回率达 95%+
+- 🔗 **LSH Entity Linking**: 基于 CHESS 论文，用 LLM 提取关键词 + LSH 匹配数据库值
+- ⚡ **并行执行优化**: BGE 检索与 Entity Linking 并行，减少延迟
+- 🤖 **支持多模型**: Qwen3-MoE、Qwen2.5-Coder-32B 等
 
-| 难度 | 检索召回率 | SQL 正确率 |
-|------|-----------|-----------|
-| Simple | 100% | 82% |
-| Medium | 96% | 68% |
-| Hard | 91% | 36% |
+---
 
-## 快速开始
+## 🏗️ 系统架构
 
-### 安装
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           FusionSQL Framework                               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   输入：自然语言问题 Q                                                        │
+│         │                                                                   │
+│         ▼                                                                   │
+│   ┌─────────────────────────────────────────────────────────────────────┐   │
+│   │              Step 1 & 2: 并行执行                                    │   │
+│   │  ┌───────────────────────────┐    ┌───────────────────────────┐     │   │
+│   │  │    BGE-M3 检索             │    │   LLM + LSH Entity Linking│     │   │
+│   │  │  ┌─────────┬─────────┐    │    │                           │     │   │
+│   │  │  │表级别检索│列级别检索│    │    │  1. LLM 提取关键词         │     │   │
+│   │  │  │ TOP-10  │ TOP-200 │    │    │  2. LSH 搜索匹配值        │     │   │
+│   │  │  └────┬────┴────┬────┘    │    │  3. 生成值匹配提示        │     │   │
+│   │  │       │  聚合到表 │         │    │                           │     │   │
+│   │  │       └────┬────┘         │    └───────────────────────────┘     │   │
+│   │  │            ▼              │                  │                   │   │
+│   │  │       UNION 并集融合       │                  │                   │   │
+│   │  │            ▼              │                  ▼                   │   │
+│   │  │       ≤ 20 张表           │           值匹配提示                  │   │
+│   │  └───────────────────────────┘                                      │   │
+│   └─────────────────────────────────────────────────────────────────────┘   │
+│                                   │                                         │
+│                                   ▼                                         │
+│   ┌─────────────────────────────────────────────────────────────────────┐   │
+│   │                     Step 3: SQL 生成 (LLM)                          │   │
+│   │                                                                     │   │
+│   │   Prompt = Schema信息 + 值匹配提示 + 用户问题                         │   │
+│   └─────────────────────────────────────────────────────────────────────┘   │
+│                                   │                                         │
+│                                   ▼                                         │
+│                            输出：SQL 语句                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🔧 核心模块
+
+### 1. BGE-M3 双路检索 (`fusionsql/retriever.py`)
+
+```
+表级别检索 (Table-Level)          列级别检索 (Column-Level)
+BGE-M3 Sparse                    BGE-M3 Sparse
+        │                                │
+        ▼                                ▼
+   Table TOP-10                   Column TOP-200
+        │                                │
+        │                         聚合到表 (Aggregate)
+        │                                │
+        │                                ▼
+        │                         Table TOP-10
+        │                                │
+        └────────────┬───────────────────┘
+                     ▼
+               UNION 并集融合  ← 核心创新：取并集而非分数累加
+                     │
+                     ▼
+             最终结果：≤ 20 张表
+```
+
+**核心创新**：使用 UNION 取并集而非分数累加，避免漏召关键表。
+
+### 2. LSH Entity Linking (`fusionsql/pipeline.py`, `fusionsql/value_search/`)
+
+基于 [CHESS 论文](https://arxiv.org/abs/2405.16755) 的实现：
+
+```
+用户问题: "设备ciscoA上个月告警统计"
+        │
+        ▼
+┌─────────────────────────────────────┐
+│ Step 1: LLM 关键词提取               │
+│ → 提取关键词: ['ciscoA']             │
+└─────────────────────────────────────┘
+        │
+        ▼
+┌─────────────────────────────────────┐
+│ Step 2: LSH 值匹配                   │
+│ → 'ciscoA' 相似匹配: 'cisco'         │
+│   (MinHash 相似度 0.82)              │
+└─────────────────────────────────────┘
+        │
+        ▼
+┌─────────────────────────────────────┐
+│ Step 3: 生成值匹配提示               │
+│ → "问题中的值可能对应: 'cisco'"      │
+│   (不含表名，避免误导)               │
+└─────────────────────────────────────┘
+```
+
+**设计要点**：
+- 只对英文/数字关键词使用 LSH（中文 n-gram 匹配不可靠）
+- 提示中不包含表名，避免误导 LLM 使用错误的表
+
+### 3. SQL 生成器 (`fusionsql/sql_generator.py`)
+
+- 同步版 `SQLGenerator` 和异步版 `AsyncSQLGenerator`
+- 支持 Qwen3-MoE、Qwen2.5-Coder-32B 等模型
+- 自动加载 Schema 信息
+
+---
+
+## 🚀 快速开始
+
+### 安装依赖
 
 ```bash
 cd FusionSQL
 pip install -r requirements.txt
 ```
 
-### 命令行模式
-
-```bash
-# 交互模式
-python -m fusionsql.run
-
-# 单次查询
-python -m fusionsql.run -q "查询平台上有多少客户"
-
-# 使用 32B 模型
-python -m fusionsql.run -q "查询告警" --model 32b
-
-# 显示检索到的表
-python -m fusionsql.run -q "查询告警" --show-tables
-```
-
-### Python 代码调用
+### 基本使用
 
 ```python
-from fusionsql import TextToSQL
+from fusionsql.pipeline import TextToSQL
 
-pipeline = TextToSQL()
-sql = pipeline.run("查询客户测试客户名下有多少设备")
+# 初始化 Pipeline（启用 LSH Entity Linking）
+pipeline = TextToSQL(enable_lsh=True)
+
+# 执行 Text-to-SQL
+question = "设备ciscoA上个月发生了几次告警"
+sql = pipeline.run(question)
 print(sql)
 ```
 
-### 切换模型
+### 获取详细信息
 
 ```python
-from fusionsql import QwenLLM
-
-# 默认使用 Qwen3 MoE
-llm = QwenLLM()
-
-# 切换到 Qwen2.5-32B
-llm = QwenLLM.create_32b()
+result = pipeline.run_with_details(question)
+print(f"检索到的表: {result['retrieved_tables']}")
+print(f"LSH 匹配值: {result['matched_values']}")
+print(f"生成的 SQL: {result['sql']}")
 ```
-
-## 目录结构
-
-```
-FusionSQL/
-├── fusionsql/              # 主代码包
-│   ├── __init__.py         # 包入口
-│   ├── pipeline.py         # 统一 Pipeline
-│   ├── retriever.py        # 融合检索器
-│   ├── sql_generator.py    # SQL 生成器
-│   ├── config.py           # 配置文件
-│   ├── run.py              # 命令行入口
-│   ├── llm/                # LLM 封装
-│   │   ├── __init__.py
-│   │   └── qwen.py
-│   ├── schema_extractor.py # Schema 提取工具
-│   ├── schema_enhancer.py  # 枚举值增强工具
-│   ├── precompute.py       # Embedding 预计算
-│   ├── schemas/            # Schema 文件（347 张表）
-│   └── schema_embeddings_v3.pkl  # 预计算 Embedding
-├── tests/                  # 测试文件
-├── docs/                   # 开发文档
-├── requirements.txt
-└── README.md
-```
-
-## 检索策略
-
-**融合检索（表 TOP-K ∪ 列 TOP-K）**
-
-1. **表级别检索**：使用 BGE-M3 Sparse 匹配表的 `embedding_text`
-2. **列级别检索**：匹配列信息，累加分数聚合到表
-3. **融合**：取两者的并集（K=10 时最多 20 张表）
-
-## 模型配置
-
-### 预设模型
-
-| 预设 | 模型 | API 地址 |
-|------|------|----------|
-| `qwen3_moe`（默认） | qwen3_30b_a3b_2507 | http://172.31.24.112:8502/v1 |
-| `qwen32b` | Qwen2.5-Coder-32B-Instruct | http://172.31.24.112:33080/v1 |
-
-### 自定义模型
-
-```python
-from fusionsql import QwenLLM
-
-llm = QwenLLM(
-    model_name="your-model",
-    base_url="http://your-server/v1",
-    api_key="your-key",
-)
-```
-
-## 首次运行
-
-首次运行时，BGE-M3 模型会自动从 HuggingFace 下载到 `~/.cache/huggingface/`（约 2.2GB）。
-
-## 依赖
-
-- `FlagEmbedding>=1.0.0` - BGE-M3 模型
-- `openai>=1.0.0` - LLM API 客户端
-- `pymysql>=1.0.0` - 数据库连接（可选，用于 Schema 提取）
-
-## 文档
-
-详细的开发文档和测试报告请查看 `docs/` 目录。
 
 ---
 
-*FusionSQL - 融合检索驱动的 Text-to-SQL 解决方案*
+## 📁 目录结构
+
+```
+FusionSQL/
+├── fusionsql/                    # 核心模块
+│   ├── pipeline.py               # Text-to-SQL Pipeline
+│   ├── retriever.py              # BGE-M3 双路检索
+│   ├── sql_generator.py          # SQL 生成器
+│   ├── precompute.py             # Schema Embedding 预计算
+│   ├── value_search/             # LSH 值搜索
+│   │   ├── search.py             # LSH 搜索器
+│   │   └── preprocess.py         # LSH 索引构建
+│   ├── lsh_index/                # 预构建的 LSH 索引
+│   ├── schema/                   # 数据库 Schema 定义
+│   └── llm/                      # LLM 封装
+│       └── qwen.py               # Qwen 模型适配
+├── sql_researcher/               # SQL Researcher 集成
+│   ├── sql_deep_researcher.py    # LangGraph 工作流
+│   └── tools/                    # 工具封装
+│       ├── fusionsql_tool.py     # FusionSQL 工具
+│       └── sql_executor_tool.py  # SQL 执行工具
+├── tests/                        # 测试脚本
+├── docs/                         # 文档和报告
+└── requirements.txt
+```
+
+---
+
+## 📊 性能测试
+
+### 7 题标准测试集
+
+| 指标 | 结果 |
+|------|------|
+| **通过率** | 6/7 (85.7%) |
+| **表召回率** | 95.2% |
+| **模型** | Qwen3-30B-A3B (MoE) |
+
+### LSH Entity Linking 效果
+
+| 问题 | LLM 提取关键词 | LSH 匹配值 |
+|------|---------------|-----------|
+| 设备ciscoA上个月告警 | `ciscoA` | `'cisco'` ✅ |
+| device state down超过3个月 | `down` | `'down'` ✅ |
+| 现在平台上有多少家客户 | (无) | (无实体) |
+
+---
+
+## 📚 相关文档
+
+- [LSH Entity Linking 集成报告](docs/20260116/lsh_entity_linking_report.md)
+- [BGE-M3 混合检索测试报告](docs/bge/hybrid_e2e/e2e_report.md)
+- [参考论文: CHESS](https://arxiv.org/abs/2405.16755)
+
+---
+
+## 🔗 与 SQL Researcher 集成
+
+FusionSQL 已集成到 SQL Researcher（基于 LangGraph 的深度研究代理）：
+
+```python
+# sql_researcher/tools/fusionsql_tool.py
+_sync_pipeline = TextToSQL(enable_lsh=True)  # LSH 已启用
+```
+
+通过 Web UI 或 API 调用时，会自动使用 FusionSQL 进行 SQL 生成。
+
+---
+
+## 📝 License
+
+MIT License

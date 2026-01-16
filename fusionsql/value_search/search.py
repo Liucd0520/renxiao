@@ -160,9 +160,11 @@ class ValueSearcher:
         min_similarity: float = 0.3
     ) -> Dict[str, Dict[str, List[str]]]:
         """
-        从问题中提取实体并匹配数据库值
+        从问题中提取实体并匹配数据库值 (Entity Linking)
         
-        简单实现：对问题中的每个词进行搜索
+        根据 CHESS 论文：用于帮助 LLM 理解问题中的实体在数据库中的对应值
+        
+        注意：只对英文/数字关键词使用 LSH，因为中文 n-gram 匹配不可靠
         
         Args:
             question: 用户问题
@@ -173,29 +175,14 @@ class ValueSearcher:
         Returns:
             {table: {column: [values]}} 格式的匹配结果
         """
-        # 改进的分词：分离中文和英文/数字
         import re
         
-        # 先用正则分离中文和英文/数字
-        # 例如 "设备ciscoA上个月" -> ["设备", "ciscoA", "上个月"]
-        tokens = re.findall(r'[a-zA-Z0-9]+|[\u4e00-\u9fff]+', question)
+        # 只提取英文/数字 token（跳过中文，因为 LSH 对中文不可靠）
+        # 例如 "设备ciscoA上个月device state down" -> ["ciscoA", "device", "state", "down"]
+        english_tokens = re.findall(r'[a-zA-Z0-9]+', question)
         
-        # 尝试使用 jieba 对中文进行分词
-        words = []
-        try:
-            import jieba
-            for token in tokens:
-                if re.match(r'^[\u4e00-\u9fff]+$', token):
-                    # 中文用 jieba 分词
-                    words.extend(jieba.lcut(token))
-                else:
-                    # 英文/数字保持原样
-                    words.append(token)
-        except ImportError:
-            # 没有 jieba 就用原始 token
-            words = tokens
-        
-        words = [w for w in words if len(w) >= min_word_length]
+        # 过滤太短的词
+        words = [w for w in english_tokens if len(w) >= min_word_length]
         
         all_results: Dict[str, Dict[str, List[str]]] = {}
         

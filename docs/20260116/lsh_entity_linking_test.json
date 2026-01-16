@@ -1,0 +1,135 @@
+{
+  "test_time": "2026-01-16T11:32:36.854920",
+  "comparison": {
+    "no_lsh": {
+      "enable_lsh": false,
+      "passed": 6,
+      "total": 7,
+      "avg_table_recall": 0.9523809523809524,
+      "avg_column_usage": 0.47619047619047616,
+      "results": [
+        {
+          "id": 1,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 1.0,
+          "sql": "SELECT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    COUNT(*) AS alarm_count\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE \n    n.HOST_NAME = 'ciscoA'\n    AND e.E",
+          "lsh_matches": 0
+        },
+        {
+          "id": 2,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 0.6666666666666666,
+          "sql": "SELECT \n    c.CUSTOMER_NAME,\n    d.HOST_NAME AS device_name\nFROM \n    t_bz_config_ci_ne_root d\nJOIN \n    t_bz_config_customer c ON d.CUSTOMER_ID = c.CUSTOMER_ID\nJOIN \n    event_history e ON d.NE_ID = ",
+          "lsh_matches": 0
+        },
+        {
+          "id": 3,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 0.0,
+          "sql": "SELECT COUNT(*) AS customer_count\nFROM t_bz_config_customer\nWHERE IS_ACTIVE = 1;",
+          "lsh_matches": 0
+        },
+        {
+          "id": 4,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 0.0,
+          "sql": "SELECT COUNT(*) AS device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_DELETED = 0;",
+          "lsh_matches": 0
+        },
+        {
+          "id": 5,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 0.0,
+          "sql": "SELECT COUNT(*) AS new_device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_ONLINE = 1\n  AND IS_ACTIVE = 1\n  AND IS_DELETED = 0\n  AND ONLINE_CHANGE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERV",
+          "lsh_matches": 0
+        },
+        {
+          "id": 6,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 1.0,
+          "sql": "SELECT COUNT(*) AS offline_device_count\nFROM t_bz_config_ci_ne_root\nWHERE OFFLINE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND OFFLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')",
+          "lsh_matches": 0
+        },
+        {
+          "id": 7,
+          "status": "PARTIAL",
+          "table_recall": 0.6666666666666666,
+          "column_usage": 0.6666666666666666,
+          "sql": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root n ON e.NE_ID = ",
+          "lsh_matches": 0
+        }
+      ]
+    },
+    "with_lsh": {
+      "enable_lsh": true,
+      "passed": 6,
+      "total": 7,
+      "avg_table_recall": 0.9523809523809524,
+      "avg_column_usage": 0.47619047619047616,
+      "results": [
+        {
+          "id": 1,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 1.0,
+          "sql": "SELECT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    COUNT(*) AS alarm_count\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root c ON e.NE_ID = c.NE_ID\nWHERE \n    c.HOST_NAME = 'ciscoA'\n    AND e.E",
+          "lsh_matches": 3
+        },
+        {
+          "id": 2,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 0.6666666666666666,
+          "sql": "SELECT \n    c.CUSTOMER_NAME,\n    d.HOST_NAME AS device_name\nFROM \n    t_bz_config_ci_ne_root d\nJOIN \n    t_bz_config_customer c ON d.CUSTOMER_ID = c.CUSTOMER_ID\nJOIN \n    event_history e ON d.NE_ID = ",
+          "lsh_matches": 1
+        },
+        {
+          "id": 3,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 0.0,
+          "sql": "SELECT COUNT(*) AS customer_count\nFROM t_bz_config_customer\nWHERE IS_ACTIVE = 1;",
+          "lsh_matches": 0
+        },
+        {
+          "id": 4,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 0.0,
+          "sql": "SELECT COUNT(*) AS device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_DELETED = 0;",
+          "lsh_matches": 0
+        },
+        {
+          "id": 5,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 0.0,
+          "sql": "SELECT COUNT(*) AS new_device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_ONLINE = 1\n  AND IS_ACTIVE = 1\n  AND IS_DELETED = 0\n  AND ONLINE_CHANGE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERV",
+          "lsh_matches": 0
+        },
+        {
+          "id": 6,
+          "status": "PASS",
+          "table_recall": 1.0,
+          "column_usage": 1.0,
+          "sql": "SELECT COUNT(*) AS offline_device_count\nFROM t_bz_config_ci_ne_root\nWHERE OFFLINE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND OFFLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')",
+          "lsh_matches": 0
+        },
+        {
+          "id": 7,
+          "status": "PARTIAL",
+          "table_recall": 0.6666666666666666,
+          "column_usage": 0.6666666666666666,
+          "sql": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root n ON e.NE_ID = ",
+          "lsh_matches": 0
+        }
+      ]
+    }
+  }
+}
