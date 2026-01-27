@@ -1,10 +1,10 @@
 {
-  "test_time": "2025-12-31T15:59:31.402619",
+  "test_time": "2026-01-23T10:42:38.984593",
   "model": "qwen3_30b_a3b_2507",
   "summary": {
     "total": 7,
-    "correct": 7,
-    "accuracy": "100.0%"
+    "correct": 6,
+    "accuracy": "85.7%"
   },
   "results": [
     {
@@ -35,7 +35,7 @@
         "t_dc_service_source_type",
         "event_type"
       ],
-      "generated_sql": "SELECT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    COUNT(*) AS alarm_count\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root c ON e.NE_ID = c.NE_ID\nWHERE \n    c.HOST_NAME = 'ciscoA'\n    AND e.EVENT_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n    AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY \n    e.EVENT_TYPE_NAME;",
+      "generated_sql": "SELECT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    COUNT(*) AS alarm_count\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE \n    n.HOST_NAME = 'ciscoA'\n    AND e.EVENT_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n    AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY \n    e.EVENT_TYPE_NAME;",
       "reference_sql": "SELECT \n    `event_type_name`, \n    COUNT(`event_id`) AS `alarm_count`\nFROM event_history\nJOIN t_bz_config_ci_ne_root ON event_history.ne_id = t_bz_config_ci_ne_root.ne_id\nWHERE t_bz_config_ci_ne_root.host_name LIKE '%ciscoA%' \n    AND event_time >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n    AND event_time < CURDATE()\nGROUP BY `event_type_name`\nORDER BY `alarm_count` DESC\nLIMIT 10;",
       "tables_correct": true,
       "missing_tables": []
@@ -65,7 +65,7 @@
         "topology_point_port",
         "atomic_cutover_order"
       ],
-      "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    d.HOST_NAME AS device_name\nFROM \n    t_bz_config_ci_ne_root d\nJOIN \n    t_bz_config_customer c ON d.CUSTOMER_ID = c.CUSTOMER_ID\nJOIN \n    event_history e ON d.NE_ID = e.NE_ID AND d.CUSTOMER_ID = e.CUSTOMER_ID\nWHERE \n    e.EVENT_NAME = 'Device state'\n    AND e.EVENT_VALUE = 'down'\n    AND e.EVENT_STATUS_NAME = 'alarm'\n    AND e.EVENT_TIME <= DATE_SUB(NOW(), INTERVAL 3 MONTH)\n    AND d.IS_ACTIVE = 1\n    AND c.IS_ACTIVE = 1\n    AND d.IS_DELETED = 0\nGROUP BY \n    c.CUSTOMER_NAME, d.HOST_NAME\nHAVING \n    MAX(e.EVENT_TIME) <= DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+      "generated_sql": "SELECT \n    c.CUSTOMER_NAME,\n    d.HOST_NAME AS device_name\nFROM \n    t_bz_config_ci_ne_root d\nJOIN \n    t_bz_config_customer c ON d.CUSTOMER_ID = c.CUSTOMER_ID\nJOIN \n    event_history e ON d.NE_ID = e.NE_ID AND d.CUSTOMER_ID = e.CUSTOMER_ID\nWHERE \n    e.EVENT_NAME = 'Device state'\n    AND e.EVENT_VALUE = 'down'\n    AND e.EVENT_STATUS_NAME = 'alarm'\n    AND e.EVENT_TIME <= DATE_SUB(NOW(), INTERVAL 3 MONTH)\n    AND d.IS_ACTIVE = 1\n    AND c.IS_ACTIVE = 1\n    AND d.IS_DELETED = 0\n    AND e.CUSTOMER_ID IS NOT NULL\n    AND d.HOST_NAME IS NOT NULL\nORDER BY \n    e.EVENT_TIME ASC;",
       "reference_sql": "SELECT \n    `t_bz_config_ci_ne_root`.`NE_ID`,\n    `t_bz_config_ci_ne_root`.`HOST_NAME`,\n    `t_bz_config_customer`.`CUSTOMER_NAME`\nFROM `t_bz_config_ci_ne_root`\nJOIN `t_bz_config_customer` ON `t_bz_config_ci_ne_root`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`\nJOIN `event_history` ON `t_bz_config_ci_ne_root`.`NE_ID` = `event_history`.`NE_ID`\nWHERE `event_history`.`EVENT_NAME` LIKE 'Device state%' \n    AND `event_history`.`EVENT_TIME` <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\nGROUP BY `t_bz_config_ci_ne_root`.`NE_ID`, `t_bz_config_customer`.`CUSTOMER_NAME`\nHAVING COUNT(DISTINCT `event_history`.`EVENT_ID`) > 0\nLIMIT 10;",
       "tables_correct": true,
       "missing_tables": []
@@ -189,7 +189,7 @@
         "ne_collect_record",
         "t_gn_all_net_device"
       ],
-      "generated_sql": "SELECT COUNT(*) AS offline_device_count\nFROM t_bz_config_ci_ne_root\nWHERE IS_DELETED = 0\n  AND OFFLINE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND OFFLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+      "generated_sql": "SELECT COUNT(*) AS offline_device_count\nFROM t_bz_config_ci_ne_root\nWHERE OFFLINE_TIME >= DATE_SUB(DATE_FORMAT(NOW(), '%Y-%m-01'), INTERVAL 1 MONTH)\n  AND OFFLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\n  AND IS_DELETED = 0;",
       "reference_sql": "SELECT COUNT(`CI_ID`) AS `offline_device_count`\nFROM `t_bz_config_ci_ne_root`\nWHERE `OFFLINE_TIME` >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)\n  AND `OFFLINE_TIME` < CURDATE()\nLIMIT 10;",
       "tables_correct": true,
       "missing_tables": []
@@ -221,10 +221,12 @@
         "t_dc_release_type",
         "t_dc_incident_finish"
       ],
-      "generated_sql": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM event_history e\nJOIN t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE n.CUSTOMER_ID = (\n    SELECT CUSTOMER_ID \n    FROM t_bz_config_customer \n    WHERE CUSTOMER_NAME = '某客户名称'  -- 需要替换为实际客户名称\n)\nAND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\nAND e.ALARM_CLEAR_TIME IS NOT NULL\nAND e.EVENT_STATUS_NAME = 'alarm'\nORDER BY e.EVENT_TIME DESC;",
+      "generated_sql": "SELECT DISTINCT \n    e.EVENT_TYPE_NAME AS alarm_type,\n    e.EVENT_TIME AS alarm_time,\n    e.ALARM_CLEAR_TIME AS recovery_time\nFROM \n    event_history e\nJOIN \n    t_bz_config_ci_ne_root n ON e.NE_ID = n.NE_ID\nWHERE \n    n.CUSTOMER_ID = 12345\n    AND e.EVENT_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n    AND e.ALARM_CLEAR_TIME IS NOT NULL\n    AND e.EVENT_STATUS_NAME = 'alarm'\nORDER BY \n    e.EVENT_TIME DESC;",
       "reference_sql": "SELECT\n  `t_bz_config_customer`.`CUSTOMER_NAME`,\n  `t_bz_config_ci_ne_root`.`HOST_NAME`,\n  `event_history`.`EVENT_NAME`,\n  `event_history`.`EVENT_TIME`\nFROM `event_history`\nJOIN `t_bz_config_ci_ne_root` ON `event_history`.`NE_ID` = `t_bz_config_ci_ne_root`.`NE_ID`\nJOIN `t_bz_config_customer` ON `event_history`.`CUSTOMER_ID` = `t_bz_config_customer`.`CUSTOMER_ID`\nWHERE `event_history`.`EVENT_TIME` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)\n  AND `event_history`.`EVENT_STATUS_NAME` = 'alarm'\nLIMIT 10;",
-      "tables_correct": true,
-      "missing_tables": []
+      "tables_correct": false,
+      "missing_tables": [
+        "t_bz_config_customer"
+      ]
     }
   ]
 }

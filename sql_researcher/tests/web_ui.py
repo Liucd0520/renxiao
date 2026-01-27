@@ -498,6 +498,9 @@ HTML_TEMPLATE = '''
             pollInterval = setInterval(pollStatus, 2000);
         }
         
+        // 记录上一次的进度，用于检测变化
+        let lastProgress = {sql_results_count: 0, notes_count: 0, stage: ''};
+        
         async function pollStatus() {
             try {
                 const res = await fetch(`/api/status/${threadId}/${currentRunId}`);
@@ -509,6 +512,9 @@ HTML_TEMPLATE = '''
                     setProgress(50, '等待人工审核...');
                     document.getElementById('reviewContent').textContent = data.interrupt_message;
                     document.getElementById('reviewCard').classList.remove('hidden');
+                    if (data.sub_questions_count) {
+                        log(`问题已拆解为 ${data.sub_questions_count} 个子问题`, 'info');
+                    }
                     log('需要确认问题拆解', 'warning');
                     return;
                 }
@@ -530,14 +536,29 @@ HTML_TEMPLATE = '''
                     return;
                 }
                 
-                // 更新进度
+                // 检测并记录进度变化
+                if (data.sql_results_count > lastProgress.sql_results_count) {
+                    log(`✅ SQL 查询完成: ${data.sql_results_count}/${data.sub_questions_count || '?'}`, 'success');
+                    lastProgress.sql_results_count = data.sql_results_count;
+                }
+                if (data.notes_count > lastProgress.notes_count) {
+                    log(`📝 研究笔记: ${data.notes_count}/${data.sub_questions_count || '?'}`, 'info');
+                    lastProgress.notes_count = data.notes_count;
+                }
+                if (data.stage_desc && data.stage_desc !== lastProgress.stage) {
+                    log(data.stage_desc, 'info');
+                    lastProgress.stage = data.stage_desc;
+                }
+                
+                // 更新进度条
                 if (data.current_node) {
-                    const nodes = ['decompose_question', 'review_decomposition', 'sql_research_supervisor', 'final_sql_report'];
+                    const nodes = ['decompose_question', 'review_decomposition', 'sql_research_supervisor', 'sql_researcher', 'final_sql_report'];
                     const idx = nodes.indexOf(data.current_node);
                     if (idx >= 0) {
                         const progress = 30 + (idx * 15);
-                        setProgress(progress, '正在执行: ' + data.current_node);
-                        setStep(idx + 2);
+                        const statusText = data.stage_desc || ('正在执行: ' + data.current_node);
+                        setProgress(progress, statusText);
+                        setStep(Math.min(idx + 2, 5));
                     }
                 }
                 
@@ -602,6 +623,7 @@ HTML_TEMPLATE = '''
             setProgress(0, '');
             threadId = null;
             currentRunId = null;
+            lastProgress = {sql_results_count: 0, notes_count: 0, stage: ''};  // 重置进度
         }
         
         // Markdown 解析器
@@ -695,6 +717,18 @@ def api_run_status(thread_id, run_id):
             state_res = client.get(f'{API_BASE}/threads/{thread_id}/state')
             state = state_res.json()
             
+            # 提取进度信息
+            values = state.get('values', {})
+            sub_questions = values.get('sub_questions', [])
+            sql_results = values.get('sql_results', [])
+            notes = values.get('notes', [])
+            
+            progress_info = {
+                'sub_questions_count': len(sub_questions),
+                'sql_results_count': len(sql_results),
+                'notes_count': len(notes),
+            }
+            
             # 只有当 run 结束（success/error/interrupted）时才检查 interrupt
             if run_status in ['success', 'error', 'interrupted']:
                 # 检查是否有待处理的 interrupt
@@ -704,19 +738,49 @@ def api_run_status(thread_id, run_id):
                             return jsonify({
                                 'status': 'interrupted',
                                 'interrupted': True,
-                                'interrupt_message': task['interrupts'][0]['value']
+                                'interrupt_message': task['interrupts'][0]['value'],
+                                **progress_info
                             })
                 
                 # 没有 interrupt，检查最终结果
                 if run_status == 'success':
-                    report = state.get('values', {}).get('final_report', '')
-                    return jsonify({'status': 'success', 'report': report})
+                    report = values.get('final_report', '')
+                    return jsonify({
+                        'status': 'success', 
+                        'report': report,
+                        **progress_info
+                    })
                 elif run_status == 'error':
-                    return jsonify({'status': 'error'})
+                    return jsonify({'status': 'error', **progress_info})
             
-            # run 仍在运行中
+            # run 仍在运行中 - 返回当前节点和进度
             current_node = state.get('next', [''])[0] if state.get('next') else run.get('current_node', '')
-            return jsonify({'status': 'running', 'current_node': current_node})
+            
+            # 根据当前节点和进度确定阶段描述
+            # 如果已经有 sql_results 或 notes，说明已经在执行研究了
+            if sql_results or notes:
+                stage_desc = f'正在执行 SQL 研究... ({len(sql_results)}/{len(sub_questions)} 完成)'
+            elif current_node == 'review_decomposition' and run_status == 'running':
+                # resume 后正在执行并行研究
+                stage_desc = '正在并行执行 FusionSQL 查询...'
+            else:
+                stage_desc = {
+                    'decompose_question': '正在拆解问题...',
+                    'review_decomposition': '等待用户确认...',
+                    'sql_research_supervisor': '正在调度研究任务...',
+                    '_execute_parallel_research': '正在并行执行 FusionSQL 查询...',
+                    'sql_researcher': '正在执行 SQL 研究...',
+                    'sql_researcher_tools': '正在执行工具调用...',
+                    'compress_sql_research': '正在压缩研究结果...',
+                    'final_sql_report': '正在生成最终报告...',
+                }.get(current_node, f'正在执行: {current_node}')
+            
+            return jsonify({
+                'status': 'running', 
+                'current_node': current_node,
+                'stage_desc': stage_desc,
+                **progress_info
+            })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

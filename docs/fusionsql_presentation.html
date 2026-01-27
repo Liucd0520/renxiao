@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FusionSQL - 智能 Text-to-SQL 系统</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-bg: #0f0f23;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --accent: #667eea;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(79, 172, 254, 0.1) 0%, transparent 40%);
+            animation: bgFloat 15s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -30px) scale(1.02);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.98);
+            }
+        }
+
+        /* Header */
+        .header {
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 5px;
+            height: 35px;
+            background: var(--primary-gradient);
+            border-radius: 3px;
+        }
+
+        /* Highlight Cards */
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .highlight-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.15);
+        }
+
+        .highlight-card:hover::before {
+            opacity: 1;
+        }
+
+        .highlight-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .highlight-value {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .highlight-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Architecture Section */
+        .architecture-diagram {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .flow-box {
+            background: rgba(102, 126, 234, 0.15);
+            border: 2px solid rgba(102, 126, 234, 0.4);
+            border-radius: 15px;
+            padding: 25px 35px;
+            text-align: center;
+            min-width: 200px;
+            transition: all 0.3s;
+        }
+
+        .flow-box:hover {
+            background: rgba(102, 126, 234, 0.25);
+            transform: scale(1.05);
+        }
+
+        .flow-box.highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            border-color: var(--accent);
+        }
+
+        .flow-box-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .flow-box-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--accent);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .parallel-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .parallel-box {
+            background: rgba(79, 172, 254, 0.1);
+            border: 2px solid rgba(79, 172, 254, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .parallel-box.lsh {
+            background: rgba(240, 147, 251, 0.1);
+            border-color: rgba(240, 147, 251, 0.3);
+        }
+
+        /* Metrics Table */
+        .metrics-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metrics-table th,
+        .metrics-table td {
+            padding: 20px 25px;
+            text-align: left;
+        }
+
+        .metrics-table th {
+            background: rgba(102, 126, 234, 0.2);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        .metrics-table tr:not(:last-child) td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .metrics-table tr:hover td {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.2), rgba(0, 242, 254, 0.2));
+            color: #00f2fe;
+        }
+
+        .badge-primary {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            color: #a78bfa;
+        }
+
+        /* Innovation Points */
+        .innovation-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        .innovation-item {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+
+        .innovation-item:hover {
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateX(10px);
+        }
+
+        .innovation-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .innovation-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .innovation-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--dark-bg);
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-desc {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 40px;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 80px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-block .keyword {
+            color: #c792ea;
+        }
+
+        .code-block .function {
+            color: #82aaff;
+        }
+
+        .code-block .string {
+            color: #c3e88d;
+        }
+
+        .code-block .comment {
+            color: #676e95;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .parallel-container {
+                grid-template-columns: 1fr;
+            }
+
+            .innovation-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animation"></div>
+
+    <header class="header">
+        <h1 class="logo">FusionSQL</h1>
+        <p class="tagline">融合多路检索与 Entity Linking 的智能 Text-to-SQL 系统</p>
+    </header>
+
+    <main class="container">
+        <!-- Key Metrics -->
+        <section class="section">
+            <h2 class="section-title">核心指标</h2>
+            <div class="highlight-grid">
+                <div class="highlight-card">
+                    <div class="highlight-icon">🎯</div>
+                    <div class="highlight-value">95.7%</div>
+                    <div class="highlight-label">表召回率（300题测试）</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">⚡</div>
+                    <div class="highlight-value">~90%</div>
+                    <div class="highlight-label">SQL 生成准确率（方案B 人工复核）</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">🚀</div>
+                    <div class="highlight-value">36ms</div>
+                    <div class="highlight-label">检索延迟（预计算后）</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">📊</div>
+                    <div class="highlight-value">344</div>
+                    <div class="highlight-label">支持的表数量</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Architecture -->
+        <section class="section">
+            <h2 class="section-title">系统架构</h2>
+            <div class="architecture-diagram">
+                <div class="flow-container">
+                    <!-- Input -->
+                    <div class="flow-row">
+                        <div class="flow-box highlight">
+                            <div class="flow-box-title">📝 自然语言问题</div>
+                            <div class="flow-box-desc">用户输入："设备ciscoA上个月告警统计"</div>
+                        </div>
+                    </div>
+
+                    <div class="flow-row">
+                        <span class="flow-arrow">↓</span>
+                    </div>
+
+                    <!-- Parallel Processing -->
+                    <div class="parallel-container">
+                        <div class="parallel-box">
+                            <div class="flow-box-title">🔍 BGE-M3 双路检索</div>
+                            <div class="flow-box-desc" style="margin-top: 15px;">
+                                <strong>表级别检索</strong> TOP-10<br>
+                                <span style="color: #4facfe;">+ Sparse 向量匹配</span><br><br>
+                                <strong>列级别检索</strong> TOP-200<br>
+                                <span style="color: #4facfe;">→ 累加分聚合 → TOP-10</span><br><br>
+                                <strong>融合策略</strong>：并集（表 ∪ 列）<br>
+                                <span style="color: #00f2fe;">最多返回 20 张表</span>
+                            </div>
+                        </div>
+                        <div class="parallel-box lsh">
+                            <div class="flow-box-title">🔗 LSH Entity Linking</div>
+                            <div class="flow-box-desc" style="margin-top: 15px;">
+                                <strong>Step 1</strong>: LLM 提取关键词<br>
+                                <span style="color: #f093fb;">→ 提取: "ciscoA"</span><br><br>
+                                <strong>Step 2</strong>: MinHash LSH 搜索<br>
+                                <span style="color: #f093fb;">→ 匹配: "cisco" (相似度 0.82)</span><br><br>
+                                <strong>Step 3</strong>: 生成值匹配提示<br>
+                                <span style="color: #f5576c;">→ 提示 LLM 正确使用值</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-row">
+                        <span class="flow-arrow">↓</span>
+                    </div>
+
+                    <!-- SQL Generation -->
+                    <div class="flow-row">
+                        <div class="flow-box highlight">
+                            <div class="flow-box-title">🤖 SQL 生成 (Qwen3 MoE)</div>
+                            <div class="flow-box-desc">Prompt = Schema信息 + 值匹配提示 + 用户问题</div>
+                        </div>
+                    </div>
+
+                    <div class="flow-row">
+                        <span class="flow-arrow">↓</span>
+                    </div>
+
+                    <!-- Output -->
+                    <div class="flow-row">
+                        <div class="flow-box"
+                            style="background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(79, 172, 254, 0.2)); border-color: #00f2fe;">
+                            <div class="flow-box-title">✅ 输出 SQL 语句</div>
+                            <div class="flow-box-desc" style="font-family: monospace; font-size: 0.85rem;">
+                                SELECT ... FROM event_history WHERE ...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Innovation Points -->
+        <section class="section">
+            <h2 class="section-title">核心创新</h2>
+            <div class="innovation-list">
+                <div class="innovation-item">
+                    <div class="innovation-icon">🔀</div>
+                    <div class="innovation-content">
+                        <h4>表+列双路融合检索</h4>
+                        <p>使用 <strong>并集策略</strong> 而非分数累加，互补优势：表级别擅长单表问题，列级别补充多表关联，召回率从 74% → 95.7%</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon">📊</div>
+                    <div class="innovation-content">
+                        <h4>Sparse 向量优于 Dense</h4>
+                        <p>在中文 Schema 检索场景下，BGE-M3 的 <strong>Sparse 模式</strong> (74%) 显著优于 Dense 模式 (45%)，关键词匹配更精确</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon">🔗</div>
+                    <div class="innovation-content">
+                        <h4>LSH Entity Linking</h4>
+                        <p>基于 <a href="https://arxiv.org/abs/2405.16755" style="color: #667eea;">CHESS 论文</a>，LLM 提取关键词
+                            + MinHash LSH 匹配数据库值，解决 "ciscoA" 等具体实体的值匹配问题</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon">⚡</div>
+                    <div class="innovation-content">
+                        <h4>并行执行优化</h4>
+                        <p>BGE 检索与 LLM+LSH Entity Linking <strong>并行执行</strong>，减少端到端延迟，提升用户体验</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon">🛡️</div>
+                    <div class="innovation-content">
+                        <h4>解决 LinkAlign "劣根性"</h4>
+                        <p>原 LinkAlign 的 LLM 过滤会误删核心表（按列投票机制缺陷），FusionSQL 直接使用向量相似度排序，<strong>避免核心表丢失</strong></p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon">📝</div>
+                    <div class="innovation-content">
+                        <h4>核心表描述增强</h4>
+                        <p>通过在核心表描述中加入 "主表"、"告警" 等业务关键词，召回率从 57% → 76%（+19%）</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methods & Strategies -->
+        <section class="section">
+            <h2 class="section-title">方法与策略</h2>
+
+            <!-- Strategy Comparison: Scheme A vs B -->
+            <div style="margin-bottom: 40px;">
+                <h3 style="font-size: 1.4rem; margin-bottom: 25px; color: var(--text-secondary);">SQL 生成策略对比</h3>
+                <div class="parallel-container">
+                    <div class="parallel-box"
+                        style="background: rgba(255, 100, 100, 0.1); border-color: rgba(255, 100, 100, 0.3);">
+                        <div class="flow-box-title" style="color: #ff6b6b;">❌ 方案 A：检索 → 直接生成</div>
+                        <div class="flow-box-desc" style="margin-top: 15px;">
+                            <div style="font-size: 2rem; font-weight: 800; color: #ff6b6b; margin-bottom: 10px;">~69%
+                            </div>
+                            <div style="margin-bottom: 15px;">整体准确率</div>
+                            <strong>问题</strong>：<br>
+                            <span style="color: #ff6b6b;">• "幻觉表" 频发（错选 event_sdn）</span><br>
+                            <span style="color: #ff6b6b;">• Medium/Hard 准确率骤降</span><br>
+                            <span style="color: #ff6b6b;">• 无法区分相似表</span>
+                        </div>
+                    </div>
+                    <div class="parallel-box"
+                        style="background: rgba(0, 242, 254, 0.1); border-color: rgba(0, 242, 254, 0.3);">
+                        <div class="flow-box-title" style="color: #00f2fe;">✅ 方案 B：检索 → 筛选 → 生成</div>
+                        <div class="flow-box-desc" style="margin-top: 15px;">
+                            <div style="font-size: 2rem; font-weight: 800; color: #00f2fe; margin-bottom: 10px;">~90%
+                            </div>
+                            <div style="margin-bottom: 15px;">整体准确率 (+21%)</div>
+                            <strong>优势</strong>：<br>
+                            <span style="color: #00f2fe;">• LLM 表筛选消除"幻觉表"</span><br>
+                            <span style="color: #00f2fe;">• Medium 60% → 90%</span><br>
+                            <span style="color: #00f2fe;">• Hard 55% → 85%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Strategies Grid -->
+            <div class="innovation-list">
+                <div class="innovation-item">
+                    <div class="innovation-icon" style="background: linear-gradient(135deg, #00f2fe, #4facfe);">🎯</div>
+                    <div class="innovation-content">
+                        <h4>LLM 表筛选 (Table Filter)</h4>
+                        <p>在检索返回的 20 张候选表中，用 LLM 再次判断哪些表真正相关。<strong>完全消除"幻觉表"问题</strong>：告警查询不再错选 event_sdn，稳定锁定
+                            event_history。</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">📊</div>
+                    <div class="innovation-content">
+                        <h4>宽表优化 (Wide-Table Optimization)</h4>
+                        <p>模型学会利用 event_history 表的冗余字段（如 customer_name）直接查询，<strong>避免不必要的 JOIN</strong>。这是比 DeepSeek
+                            参考答案更优的 OLAP 实践。</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">📝</div>
+                    <div class="innovation-content">
+                        <h4>核心表描述增强策略</h4>
+                        <p>在 embedding_text 中加入业务关键词：<strong>"设备主表"、"告警历史"、"核心表"</strong>。单独这一优化就让召回率<strong>从 57% 提升到
+                                76%</strong>（+19 个百分点）。</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon" style="background: linear-gradient(135deg, #ffd93d, #ff6b6b);">⚙️</div>
+                    <div class="innovation-content">
+                        <h4>Prompt 工程优化</h4>
+                        <p>
+                            • <strong>移除强制 JOIN 要求</strong>：让模型自主决定是否关联<br>
+                            • <strong>使用动态时间函数</strong>：DATE_SUB(NOW(), INTERVAL 1 MONTH)<br>
+                            • <strong>索引友好的 Range 查询</strong>：替代 DATE(col) 函数调用
+                        </p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon" style="background: linear-gradient(135deg, #00d9ff, #00ff88);">🔬</div>
+                    <div class="innovation-content">
+                        <h4>评判标准修正</h4>
+                        <p>发现自动化评测将<strong>"宽表优化"和"Range 查询"</strong>误判为错误。人工复核后，实际准确率从 81% 修正为
+                            <strong>90%+</strong>，还原了模型的真实能力。</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon" style="background: linear-gradient(135deg, #a78bfa, #ec4899);">🧪</div>
+                    <div class="innovation-content">
+                        <h4>科学的测试方法论</h4>
+                        <p>固定 3 张核心表生成 300 个测试问题（控制变量），而非从 344 张表随机选择。<strong>这是让召回率从 60% 跃升到 95.7% 的关键方法论转变</strong>。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Comparison -->
+        <section class="section">
+            <h2 class="section-title">性能对比</h2>
+            <table class="metrics-table">
+                <thead>
+                    <tr>
+                        <th>方案</th>
+                        <th>表召回率</th>
+                        <th>SQL 准确率</th>
+                        <th>单次耗时</th>
+                        <th>特点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>FusionSQL (Ours)</strong></td>
+                        <td><span class="badge badge-success">95.7%</span></td>
+                        <td><span class="badge badge-success">~90%</span></td>
+                        <td>~10 秒</td>
+                        <td>表+列融合 + LSH Entity Linking</td>
+                    </tr>
+                    <tr>
+                        <td>LinkAlign (原版)</td>
+                        <td><span class="badge badge-primary">52%</span></td>
+                        <td>-</td>
+                        <td>~15 分钟</td>
+                        <td>列级别 + LLM 多轮过滤</td>
+                    </tr>
+                    <tr>
+                        <td>纯表级别 BGE-M3</td>
+                        <td><span class="badge badge-primary">74%</span></td>
+                        <td>~54/100</td>
+                        <td>~10 秒</td>
+                        <td>表级别 Sparse 检索</td>
+                    </tr>
+                    <tr>
+                        <td>纯 LLM 选表</td>
+                        <td><span class="badge badge-primary">21.4%</span></td>
+                        <td>-</td>
+                        <td>~30 秒</td>
+                        <td>LLM 直接从 344 表选择</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Test Results -->
+        <section class="section">
+            <h2 class="section-title">测试结果详情</h2>
+            <div class="highlight-grid">
+                <div class="highlight-card">
+                    <div class="highlight-icon">📈</div>
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="margin-bottom: 15px;">300 题检索测试 (K=10)</h4>
+                        <table style="width: 100%; font-size: 0.9rem;">
+                            <tr>
+                                <td>Simple (单表)</td>
+                                <td style="text-align: right;"><strong>100/100 (100%)</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Medium (2表)</td>
+                                <td style="text-align: right;"><strong>96/100 (96%)</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Hard (3表)</td>
+                                <td style="text-align: right;"><strong>91/100 (91%)</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">🎯</div>
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="margin-bottom: 15px;">150 题 SQL 生成 (方案B)</h4>
+                        <table style="width: 100%; font-size: 0.9rem;">
+                            <tr>
+                                <td>Simple 准确率</td>
+                                <td style="text-align: right;"><strong>~96%</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Medium 准确率</td>
+                                <td style="text-align: right;"><strong>~90%</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Hard 准确率</td>
+                                <td style="text-align: right;"><strong>~85%</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">🔗</div>
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="margin-bottom: 15px;">LSH Entity Linking 效果</h4>
+                        <table style="width: 100%; font-size: 0.9rem;">
+                            <tr>
+                                <td>ciscoA</td>
+                                <td style="text-align: right;"><span style="color: #4facfe;">→ 'cisco' ✅</span></td>
+                            </tr>
+                            <tr>
+                                <td>down</td>
+                                <td style="text-align: right;"><span style="color: #4facfe;">→ 'down' ✅</span></td>
+                            </tr>
+                            <tr>
+                                <td>中文关键词</td>
+                                <td style="text-align: right;"><span style="color: #f5576c;">跳过（n-gram不可靠）</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="section">
+            <h2 class="section-title">技术栈</h2>
+            <div class="innovation-list">
+                <div class="innovation-item">
+                    <div class="innovation-icon">🧠</div>
+                    <div class="innovation-content">
+                        <h4>大语言模型</h4>
+                        <p><strong>Qwen3-30B-A3B (MoE)</strong> / Qwen2.5-Coder-32B-Instruct，支持多模型切换</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon">🔍</div>
+                    <div class="innovation-content">
+                        <h4>向量模型</h4>
+                        <p><strong>BGE-M3</strong>（8192 tokens），支持 Dense + Sparse + ColBERT 三种模式</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon">💾</div>
+                    <div class="innovation-content">
+                        <h4>数据库</h4>
+                        <p>MySQL (netcaredb_ai)，344 张表，3353 列</p>
+                    </div>
+                </div>
+                <div class="innovation-item">
+                    <div class="innovation-icon">⚙️</div>
+                    <div class="innovation-content">
+                        <h4>框架</h4>
+                        <p>Python + LangGraph (SQL Researcher 集成)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Timeline -->
+        <section class="section">
+            <h2 class="section-title">发展历程</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2025-12-12</div>
+                    <div class="timeline-title">LinkAlign 分析与问题定位</div>
+                    <div class="timeline-desc">发现 LinkAlign 的 LLM 过滤机制存在"劣根性"问题，核心表被误删</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025-12-16</div>
+                    <div class="timeline-title">BGE-M3 向量检索优化</div>
+                    <div class="timeline-desc">通过核心表描述增强，召回率从 57.1% 提升到 76.2%</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025-12-17</div>
+                    <div class="timeline-title">表+列融合检索研究</div>
+                    <div class="timeline-desc">发现 Sparse 优于 Dense，并集策略优于分数累加，召回率达 88%</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025-12-24</div>
+                    <div class="timeline-title">检索阶段突破</div>
+                    <div class="timeline-desc">300 题标准测试，召回率达到 <strong>95.7%</strong>，检索阶段阶段性完成</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025-12-26</div>
+                    <div class="timeline-title">SQL 生成准确率优化</div>
+                    <div class="timeline-desc">方案 B (检索→筛选→生成) 人工复核准确率达 <strong>~90%</strong></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026-01-16</div>
+                    <div class="timeline-title">LSH Entity Linking 集成</div>
+                    <div class="timeline-desc">基于 CHESS 论文实现 LLM + LSH 实体链接，解决具体值匹配问题</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">FusionSQL</div>
+        <p>理想汽车实习项目 · Text-to-SQL 研究</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">2025-2026</p>
+    </footer>
+</body>
+
+</html>

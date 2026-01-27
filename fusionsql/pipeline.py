@@ -24,13 +24,21 @@ sys.path.insert(0, PROJECT_ROOT)
 from .retriever import FastRetriever
 from .sql_generator import SQLGenerator
 
-# LSH 值匹配（可选）
+# 值匹配模块（BGE 推荐，LSH 兼容）
 try:
-    from .value_search import ValueSearcher
-    LSH_AVAILABLE = True
+    from .value_search import BGEValueSearcher, ValueSearcher
+    VALUE_SEARCH_AVAILABLE = True
 except ImportError:
-    LSH_AVAILABLE = False
-    logging.warning("LSH 值匹配模块未安装，跳过值匹配功能")
+    VALUE_SEARCH_AVAILABLE = False
+    logging.warning("值匹配模块未安装，跳过值匹配功能")
+
+# 图优化模块
+try:
+    from .graph_optimizer import GraphOptimizer
+    GRAPH_OPTIMIZER_AVAILABLE = True
+except ImportError:
+    GRAPH_OPTIMIZER_AVAILABLE = False
+    logging.warning("图优化模块未安装或 Neo4j 不可用，跳过图优化功能")
 
 
 class TextToSQL:
@@ -39,7 +47,7 @@ class TextToSQL:
     
     流程:
     1. FastRetriever.retrieve() - 检索相关表
-    2. ValueSearcher.find_entity_values() - LSH 值匹配（可选）
+    2. BGEValueSearcher/ValueSearcher - 值匹配（可选）
     3. SQLGenerator.generate_sql() - 生成SQL
     """
     
@@ -47,29 +55,33 @@ class TextToSQL:
         self,
         schema_dir: str = None,
         embeddings_file: str = None,
-        lsh_index_dir: str = None,
-        enable_lsh: bool = True,  # 新增：是否启用 LSH
+        value_index_dir: str = None,  # BGE 或 LSH 索引目录
+        value_search_mode: str = "disabled",  # "bge" | "lsh" | "disabled"（默认关闭以加快速度）
         model_name: str = None,
         model_base_url: str = None,
         model_api_key: str = None,
         temperature: float = 0,  # 温度=0 更稳定
         top_k: int = 10,
         model_preset: str = "qwen3_moe",  # 默认使用 MoE
+        enable_graph_optimizer: bool = False,  # 图优化开关
+        graph_optimizer_strategy: str = "hybrid",  # 图优化策略
     ):
         """
         初始化 Pipeline
-        
+
         Args:
             schema_dir: Schema JSON 文件目录
             embeddings_file: 预计算 embedding 文件路径
-            lsh_index_dir: LSH 索引目录（可选）
-            enable_lsh: 是否启用 LSH 值匹配（默认 True）
+            value_index_dir: 值索引目录（BGE 或 LSH）
+            value_search_mode: "bge"（推荐）、"lsh"、"disabled"
             model_name: LLM 模型名称（覆盖 preset）
             model_base_url: LLM API 地址（覆盖 preset）
             model_api_key: LLM API 密钥（覆盖 preset）
             temperature: LLM 温度
             top_k: 检索 TOP-K 数量
             model_preset: 预设模型 "qwen3_moe"(默认) 或 "qwen32b"
+            enable_graph_optimizer: 是否启用图优化（默认关闭）
+            graph_optimizer_strategy: 图优化策略 "hybrid"|"steiner_tree"|"connectivity"
         """
         # 默认路径
         our_dir = os.path.dirname(os.path.abspath(__file__))
@@ -80,8 +92,9 @@ class TextToSQL:
         if embeddings_file is None:
             embeddings_file = os.path.join(our_dir, "schema_embeddings_v3.pkl")
         
-        if lsh_index_dir is None:
-            lsh_index_dir = os.path.join(our_dir, "lsh_index")
+        # 默认索引目录
+        bge_index_dir = os.path.join(our_dir, "bge_value_index")
+        lsh_index_dir = os.path.join(our_dir, "lsh_index")
         
         # 如果没有指定模型参数，使用预设
         if model_name is None and model_base_url is None:
@@ -92,7 +105,8 @@ class TextToSQL:
             model_api_key = presets["api_key"]
         
         self.top_k = top_k
-        self.enable_lsh = enable_lsh and LSH_AVAILABLE
+        self.value_search_mode = value_search_mode if VALUE_SEARCH_AVAILABLE else "disabled"
+        self.graph_optimizer_strategy = graph_optimizer_strategy
         
         # 初始化组件
         print("初始化检索器...")
@@ -107,21 +121,52 @@ class TextToSQL:
             temperature=temperature,
         )
         
-        # 初始化 LSH 值匹配器（可选）
+        # 初始化值匹配器（BGE 推荐，LSH 备选）
         self.value_searcher = None
-        if self.enable_lsh:
-            if os.path.exists(lsh_index_dir):
+        
+        if self.value_search_mode == "bge":
+            index_dir = value_index_dir or bge_index_dir
+            if os.path.exists(index_dir):
+                print("初始化 BGE 值匹配器（共享模型）...")
+                try:
+                    self.value_searcher = BGEValueSearcher(
+                        index_dir, 
+                        model=self.retriever.model  # 共享 BGE-M3 模型
+                    )
+                    print(f"BGE 值索引加载完成")
+                except Exception as e:
+                    print(f"BGE 值匹配初始化失败: {e}")
+                    self.value_searcher = None
+            else:
+                print(f"BGE 索引目录不存在: {index_dir}，跳过值匹配")
+        
+        elif self.value_search_mode == "lsh":
+            index_dir = value_index_dir or lsh_index_dir
+            if os.path.exists(index_dir):
                 print("初始化 LSH 值匹配器...")
                 try:
-                    self.value_searcher = ValueSearcher(lsh_index_dir)
+                    self.value_searcher = ValueSearcher(index_dir)
                     print(f"LSH 索引加载完成")
                 except Exception as e:
                     print(f"LSH 初始化失败: {e}")
                     self.value_searcher = None
             else:
-                print(f"LSH 索引目录不存在: {lsh_index_dir}，跳过值匹配")
+                print(f"LSH 索引目录不存在: {index_dir}，跳过值匹配")
         
         print("Pipeline 初始化完成！")
+
+        # 初始化图优化器（可选）
+        self.graph_optimizer = None
+        if enable_graph_optimizer and GRAPH_OPTIMIZER_AVAILABLE:
+            print("初始化图优化器...")
+            try:
+                self.graph_optimizer = GraphOptimizer(lazy_init=True)
+                print("图优化器初始化完成")
+            except Exception as e:
+                print(f"图优化器初始化失败: {e}，将跳过图优化")
+                self.graph_optimizer = None
+        elif enable_graph_optimizer and not GRAPH_OPTIMIZER_AVAILABLE:
+            print("图优化模块不可用，请安装 neo4j: pip install neo4j")
     
     def _extract_keywords(self, question: str) -> list:
         """
@@ -234,32 +279,35 @@ class TextToSQL:
     
     def _format_matched_values(self, matched_values: dict) -> str:
         """
-        格式化 LSH Entity Linking 结果为 prompt 文本
+        格式化 BGE Entity Linking 结果为 prompt 文本
         
-        重要：只提供值的匹配信息，不要提及表名！
-        否则 LLM 可能被误导使用 LSH 匹配到的表而非 BGE 检索到的表。
+        改进：提供列名和值，帮助 LLM 在 WHERE 条件中使用正确的列。
+        不提及表名，避免误导表选择。
         """
         if not matched_values:
             return ""
         
-        # 收集所有 keyword -> matched_value 的映射（不含表名）
-        value_hints = []
-        seen_values = set()
+        # 收集 列名=值 的映射（不含表名）
+        column_value_hints = []
+        seen = set()
         
         for table, columns in matched_values.items():
             for column, values in columns.items():
                 for v in values[:2]:  # 每列最多2个值
-                    if v not in seen_values:
-                        seen_values.add(v)
-                        value_hints.append(v)
+                    key = f"{column}='{v}'"
+                    if key not in seen:
+                        seen.add(key)
+                        column_value_hints.append(key)
         
-        if not value_hints:
+        if not column_value_hints:
             return ""
         
-        # 只告诉 LLM 这些值在数据库中存在，不提及具体表
+        # 更明确的提示，强调使用这些列名
+        hints_str = ', '.join(column_value_hints[:5])
         lines = [
-            "## 值匹配提示（仅供参考，请以检索到的表为准）",
-            f"问题中提到的值在数据库中可能对应: {', '.join(repr(v) for v in value_hints[:5])}"
+            "## 值匹配提示",
+            f"问题中的关键词在数据库中匹配到: {hints_str}",
+            "**重要**: 在 WHERE 条件中，请优先使用上述列名（如果该列存在于你选择的表中）。"
         ]
         
         return "\n".join(lines)
@@ -291,10 +339,20 @@ class TextToSQL:
         with ThreadPoolExecutor(max_workers=2) as executor:
             future_retrieval = executor.submit(do_retrieval)
             future_linking = executor.submit(do_entity_linking)
-            
+
             retrieved = future_retrieval.result()
             matched_hint = future_linking.result()
-        
+
+        # Step 1.5: 图优化（可选）
+        if self.graph_optimizer is not None:
+            try:
+                retrieved = self.graph_optimizer.optimize(
+                    retrieved,
+                    strategy=self.graph_optimizer_strategy,
+                )
+            except Exception as e:
+                logging.warning(f"图优化失败: {e}，使用原始检索结果")
+
         table_names = [t[0] for t in retrieved]
         
         # Step 3: 生成 SQL
@@ -330,21 +388,34 @@ class TextToSQL:
         with ThreadPoolExecutor(max_workers=2) as executor:
             future_retrieval = executor.submit(do_retrieval)
             future_linking = executor.submit(do_entity_linking)
-            
+
             retrieved = future_retrieval.result()
             matched_values, matched_hint = future_linking.result()
-        
+
+        # Step 1.5: 图优化（可选）
+        graph_optimized = False
+        if self.graph_optimizer is not None:
+            try:
+                retrieved = self.graph_optimizer.optimize(
+                    retrieved,
+                    strategy=self.graph_optimizer_strategy,
+                )
+                graph_optimized = True
+            except Exception as e:
+                logging.warning(f"图优化失败: {e}，使用原始检索结果")
+
         table_names = [t[0] for t in retrieved]
         table_scores = {t: s for t, s in retrieved}
-        
+
         # Step 3: 生成
         sql = self.generator.generate_sql(question, table_names, matched_hint=matched_hint)
-        
+
         return {
             "question": question,
             "retrieved_tables": table_names,
             "table_scores": table_scores,
             "matched_values": matched_values,  # 新增
+            "graph_optimized": graph_optimized,  # 新增：是否经过图优化
             "sql": sql,
         }
 

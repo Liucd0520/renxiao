@@ -1,0 +1,25 @@
+# FusionSQL 核心依赖
+FlagEmbedding>=1.0.0      # BGE-M3 向量模型
+openai>=1.0.0             # LLM API
+pymysql>=1.0.0            # MySQL 连接
+numpy>=1.20.0             # 数值计算
+tqdm>=4.60.0              # 进度条
+
+# LSH 值匹配（可选）
+datasketch>=1.6.0         # MinHash LSH
+
+# SQL Researcher 依赖（LangGraph）
+langchain>=0.3.0
+langgraph>=0.2.0
+langchain-core>=0.3.0
+langchain-openai>=0.2.0
+langgraph-cli>=0.1.0
+langgraph-api>=0.1.0
+
+# Web UI
+flask>=2.0.0
+httpx>=0.25.0
+markdown>=3.0.0
+
+# 工具
+python-dotenv>=1.0.0

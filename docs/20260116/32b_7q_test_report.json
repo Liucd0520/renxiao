@@ -1,0 +1,258 @@
+{
+  "test_time": "2026-01-16T16:20:08.178864",
+  "model": "Qwen2.5-Coder-32B-Instruct",
+  "lsh_enabled": true,
+  "summary": {
+    "total": 7,
+    "passed": 6,
+    "failed": 1,
+    "accuracy": "85.7%"
+  },
+  "results": [
+    {
+      "id": 1,
+      "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+      "status": "PASS",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root"
+      ],
+      "hit_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root"
+      ],
+      "miss_tables": [],
+      "table_recall": 1.0,
+      "retrieved_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_incident_info",
+        "t_bz_config_ci_entity",
+        "ne_syslog_filter_script",
+        "t_bz_config_customer",
+        "t_gn_botnet",
+        "event_yjk_history",
+        "t_bz_problem_info",
+        "event_history"
+      ],
+      "lsh_matched": {
+        "t_dc_sys_language_global": {
+          "TABLE_VALUE_ENGLISH": [
+            "cisco"
+          ]
+        },
+        "t_bz_config_vendor": {
+          "VENDOR_NAME": [
+            "cisco"
+          ]
+        },
+        "t_dc_config_device_type": {
+          "TYPE_NAME": [
+            "cisco"
+          ]
+        }
+      },
+      "sql": "SELECT \n    e.EVENT_TYPE_NAME AS alarm_type, \n    COUNT(*) AS alarm_count\nFROM \n    t_bz_config_ci_ne_root n\nJOIN \n    event_history e ON n.NE_ID = e.NE_ID\nWHERE \n    n.HOST_NAME = 'ciscoA' \n    AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01')\n    AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY \n    e.EVENT_TYPE_NAME;",
+      "duration_seconds": 11.5
+    },
+    {
+      "id": 2,
+      "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+      "status": "FAIL",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root",
+        "t_bz_config_customer"
+      ],
+      "hit_tables": [
+        "t_bz_config_customer"
+      ],
+      "miss_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root"
+      ],
+      "table_recall": 0.3333333333333333,
+      "retrieved_tables": [
+        "t_bz_config_customer",
+        "t_gn_topo_link",
+        "t_gn_topo_device",
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "sdw_dp_device",
+        "t_dc_config_device_type",
+        "sdw_dp_device_performance",
+        "event_history",
+        "customer"
+      ],
+      "lsh_matched": {
+        "t_gn_topo_device": {
+          "device_status": [
+            "down"
+          ]
+        }
+      },
+      "sql": "SELECT \n    t_gn_topo_device.device_name, \n    t_bz_config_customer.customer_name\nFROM \n    t_gn_topo_device\nJOIN \n    t_bz_config_customer ON t_gn_topo_device.customer_id = t_bz_config_customer.customer_id\nWHERE \n    t_gn_topo_device.device_status = 'down' \n    AND t_gn_topo_device.update_time < DATE_SUB(NOW(), INTERVAL 3 MONTH);",
+      "duration_seconds": 8.4
+    },
+    {
+      "id": 3,
+      "question": "现在平台上有多少家客户",
+      "status": "PASS",
+      "expected_tables": [
+        "t_bz_config_customer"
+      ],
+      "hit_tables": [
+        "t_bz_config_customer"
+      ],
+      "miss_tables": [],
+      "table_recall": 1.0,
+      "retrieved_tables": [
+        "t_bz_config_customer",
+        "customer",
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_authority_users",
+        "event_yjk_history",
+        "t_bz_incident_info",
+        "t_bz_config_work_policy_new",
+        "temp",
+        "customer_collector_v2"
+      ],
+      "lsh_matched": {},
+      "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;",
+      "duration_seconds": 5.5
+    },
+    {
+      "id": 4,
+      "question": "现在平台上有多少台设备",
+      "status": "PASS",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "hit_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "miss_tables": [],
+      "table_recall": 1.0,
+      "retrieved_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_topo_link",
+        "t_gn_weaknesses_attack",
+        "t_gn_vulnerability_clear_transmission",
+        "sdw_dp_device",
+        "ont_status"
+      ],
+      "lsh_matched": {},
+      "sql": "SELECT COUNT(*) FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;",
+      "duration_seconds": 5.0
+    },
+    {
+      "id": 5,
+      "question": "上个月上线的新设备有多少",
+      "status": "PASS",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "hit_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "miss_tables": [],
+      "table_recall": 1.0,
+      "retrieved_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_weaknesses_attack",
+        "t_gn_topo_link",
+        "t_gn_vulnerability_clear_transmission",
+        "sdw_dp_device",
+        "ont_status"
+      ],
+      "lsh_matched": {},
+      "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_CHANGE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_CHANGE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');",
+      "duration_seconds": 7.7
+    },
+    {
+      "id": 6,
+      "question": "上个月下线的设备有多少",
+      "status": "PASS",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "hit_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "miss_tables": [],
+      "table_recall": 1.0,
+      "retrieved_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "ont_status",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_topo_link",
+        "t_gn_weaknesses_attack",
+        "t_gn_vulnerability_clear_transmission",
+        "sdw_dp_device"
+      ],
+      "lsh_matched": {
+        "sdwan_ipsubnets": {
+          "cryptographicPwd": [
+            "3"
+          ]
+        },
+        "t_bz_config_ci_rfc": {
+          "NEWVALUE": [
+            "AP"
+          ]
+        },
+        "ne_template_collect_config": {
+          "name": [
+            "6"
+          ]
+        }
+      },
+      "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_SUB(NOW(), INTERVAL 1 MONTH);",
+      "duration_seconds": 5.9
+    },
+    {
+      "id": 7,
+      "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+      "status": "PASS",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root",
+        "t_bz_config_customer"
+      ],
+      "hit_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root",
+        "t_bz_config_customer"
+      ],
+      "miss_tables": [],
+      "table_recall": 1.0,
+      "retrieved_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_config_customer",
+        "t_bz_incident_info",
+        "event_yjk_history",
+        "ne_syslog_filter_script",
+        "syslog_filter_script",
+        "event_history",
+        "event_sdn",
+        "t_gn_botnet"
+      ],
+      "lsh_matched": {},
+      "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = <指定的客户ID> AND\n    eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);",
+      "duration_seconds": 10.8
+    }
+  ]
+}

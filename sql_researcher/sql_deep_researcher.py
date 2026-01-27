@@ -841,6 +841,10 @@ async def compress_sql_research(
     messages = [SystemMessage(content=compression_prompt)] + researcher_messages
     response = await synthesizer_model.ainvoke(messages)
 
+    sql_query = state.get("sql_query")
+    sql_result = state.get("sql_result")
+    print(f"[DEBUG compress_sql_research] topic={state.get('research_topic', 'unknown')[:50]}, sql_query={'YES' if sql_query else 'NO'}, sql_result={'YES' if sql_result else 'NO'}")
+
     return {
         "compressed_research": str(response.content),
         "sql_query": state.get("sql_query"),

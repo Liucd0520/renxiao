@@ -1,0 +1,54 @@
+{
+  "correct": 5,
+  "results": [
+    {
+      "id": 1,
+      "gen": 0,
+      "ref": 0,
+      "ok": true,
+      "sql": "SELECT \n    e.EVENT_TYPE_NAME AS alarm_type, \n    COUNT(*) AS alarm_count\nFROM \n    t_bz_config_ci_ne_root n\nJOIN \n    event_history e ON n.NE_ID = e.NE_ID\nWHERE \n    n.HOST_NAME = 'ciscoA' \n    AND e.EVENT_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01')\n    AND e.EVENT_TIME < DATE_FORMAT(NOW(), '%Y-%m-01')\nGROUP BY \n    e.EVENT_TYPE_NAME;"
+    },
+    {
+      "id": 2,
+      "gen": "ERR",
+      "ref": 10,
+      "ok": false,
+      "sql": "SELECT \n    t_gn_topo_device.device_name AS device_name,\n    t_bz_config_customer.customer_name AS customer_name\nFROM \n    t_gn_topo_device\nJOIN \n    t_bz_config_customer ON t_gn_topo_device.customer_id = t_bz_config_customer.customer_id\nWHERE \n    t_gn_topo_device.device_status = 'down'\n    AND t_gn_topo_device.update_time < DATE_SUB(NOW(), INTERVAL 3 MONTH);"
+    },
+    {
+      "id": 3,
+      "gen": 1,
+      "ref": 1,
+      "ok": true,
+      "sql": "SELECT COUNT(DISTINCT CUSTOMER_ID) AS customer_count FROM t_bz_config_customer WHERE IS_ACTIVE = 1;"
+    },
+    {
+      "id": 4,
+      "gen": 1,
+      "ref": 1,
+      "ok": true,
+      "sql": "SELECT COUNT(*) FROM t_bz_config_ci_ne_root WHERE IS_DELETED = 0;"
+    },
+    {
+      "id": 5,
+      "gen": 1,
+      "ref": 1,
+      "ok": true,
+      "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 1 \nAND ONLINE_CHANGE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') \nAND ONLINE_CHANGE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');"
+    },
+    {
+      "id": 6,
+      "gen": 1,
+      "ref": 1,
+      "ok": true,
+      "sql": "SELECT COUNT(*) \nFROM t_bz_config_ci_ne_root \nWHERE IS_ONLINE = 0 AND OFFLINE_TIME >= DATE_FORMAT(NOW() - INTERVAL 1 MONTH, '%Y-%m-01') AND OFFLINE_TIME < DATE_FORMAT(NOW(), '%Y-%m-01');"
+    },
+    {
+      "id": 7,
+      "gen": "ERR",
+      "ref": 0,
+      "ok": false,
+      "sql": "SELECT \n    eh.EVENT_NAME AS 告警类型,\n    eh.EVENT_TIME AS 告警时间,\n    eh.ALARM_REC_TIME AS 恢复时间\nFROM \n    event_history_sdwan eh\nJOIN \n    t_bz_config_ci_ne_root ci ON eh.ROOT_NE_ID = ci.NE_ID\nJOIN \n    t_bz_config_customer cu ON ci.CUSTOMER_ID = cu.CUSTOMER_ID\nWHERE \n    cu.CUSTOMER_ID = <指定的客户ID> AND\n    eh.ALARM_TIME >= DATE_SUB(NOW(), INTERVAL 7 DAY);"
+    }
+  ]
+}

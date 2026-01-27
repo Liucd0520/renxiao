@@ -45,3 +45,8 @@ Thumbs.db
 # Project specific
 # 不提交预计算的 embedding 文件（太大）
 # fusionsql/schema_embeddings_v3.pkl
+
+# Large binary files
+fusionsql/bge_value_index/value_index.faiss
+fusionsql/bge_value_index/embeddings_raw.npy
+.langgraph_api/*.pckl

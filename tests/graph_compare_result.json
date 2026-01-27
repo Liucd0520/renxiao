@@ -1,0 +1,243 @@
+{
+  "test_time": "2026-01-23T15:57:37.394748",
+  "baseline_correct": 7,
+  "graph_correct": 7,
+  "results": [
+    {
+      "id": 1,
+      "question": "设备ciscoA，上个月发生了几次告警，按告警类型进行分类统计",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root"
+      ],
+      "baseline_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_incident_info",
+        "t_bz_config_ci_entity",
+        "ne_syslog_filter_script",
+        "t_bz_config_customer",
+        "t_gn_botnet",
+        "event_yjk_history",
+        "t_bz_problem_info",
+        "event_history"
+      ],
+      "baseline_ok": true,
+      "graph_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_incident_info",
+        "t_bz_config_customer",
+        "t_bz_config_ci_entity",
+        "t_bz_problem_info",
+        "ne_syslog_filter_script",
+        "event_history",
+        "t_gn_botnet",
+        "event_yjk_history"
+      ],
+      "graph_ok": true
+    },
+    {
+      "id": 2,
+      "question": "列出平台上设备device state down状态超过3个月的设备清单及客户名称",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root",
+        "t_bz_config_customer"
+      ],
+      "baseline_tables": [
+        "t_bz_config_customer",
+        "t_gn_topo_link",
+        "t_gn_topo_device",
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "sdw_dp_device",
+        "t_dc_config_device_type",
+        "sdw_dp_device_performance",
+        "event_history",
+        "customer"
+      ],
+      "baseline_ok": true,
+      "graph_tables": [
+        "t_bz_config_customer",
+        "t_gn_topo_link",
+        "t_gn_topo_device",
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "sdw_dp_device",
+        "customer",
+        "event_history",
+        "sdw_dp_device_performance",
+        "t_dc_config_device_type"
+      ],
+      "graph_ok": true
+    },
+    {
+      "id": 3,
+      "question": "现在平台上有多少家客户",
+      "expected_tables": [
+        "t_bz_config_customer"
+      ],
+      "baseline_tables": [
+        "t_bz_config_customer",
+        "customer",
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_authority_users",
+        "event_yjk_history",
+        "t_bz_incident_info",
+        "t_bz_config_work_policy_new",
+        "temp",
+        "customer_collector_v2"
+      ],
+      "baseline_ok": true,
+      "graph_tables": [
+        "t_bz_config_customer",
+        "customer",
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_authority_users",
+        "event_yjk_history",
+        "t_bz_incident_info",
+        "t_bz_config_work_policy_new",
+        "temp",
+        "customer_collector_v2"
+      ],
+      "graph_ok": true
+    },
+    {
+      "id": 4,
+      "question": "现在平台上有多少台设备",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "baseline_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_topo_link",
+        "t_gn_weaknesses_attack",
+        "t_gn_vulnerability_clear_transmission",
+        "sdw_dp_device",
+        "ont_status"
+      ],
+      "baseline_ok": true,
+      "graph_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_vulnerability_clear_transmission",
+        "t_gn_topo_link",
+        "t_gn_weaknesses_attack",
+        "ont_status",
+        "sdw_dp_device"
+      ],
+      "graph_ok": true
+    },
+    {
+      "id": 5,
+      "question": "上个月上线的新设备有多少",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "baseline_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_weaknesses_attack",
+        "t_gn_topo_link",
+        "t_gn_vulnerability_clear_transmission",
+        "sdw_dp_device",
+        "ont_status"
+      ],
+      "baseline_ok": true,
+      "graph_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_vulnerability_clear_transmission",
+        "t_gn_vulnerability_hole",
+        "t_gn_weaknesses_attack",
+        "t_gn_topo_link",
+        "ont_status"
+      ],
+      "graph_ok": true
+    },
+    {
+      "id": 6,
+      "question": "上个月下线的设备有多少",
+      "expected_tables": [
+        "t_bz_config_ci_ne_root"
+      ],
+      "baseline_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "ont_status",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_topo_link",
+        "t_gn_weaknesses_attack",
+        "t_gn_vulnerability_clear_transmission",
+        "sdw_dp_device"
+      ],
+      "baseline_ok": true,
+      "graph_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_gn_traffic_abnormality",
+        "t_gn_scanning_probe",
+        "t_gn_botnet",
+        "t_gn_vulnerability_clear_transmission",
+        "ont_status",
+        "t_gn_topo_link",
+        "t_gn_weaknesses_attack",
+        "sdw_dp_device"
+      ],
+      "graph_ok": true
+    },
+    {
+      "id": 7,
+      "question": "某客户设备近一周内发生过哪些类型的告警？具体告警时间和恢复时间分别是什么？",
+      "expected_tables": [
+        "event_history",
+        "t_bz_config_ci_ne_root",
+        "t_bz_config_customer"
+      ],
+      "baseline_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_gn_business_application_change",
+        "t_bz_config_customer",
+        "t_bz_incident_info",
+        "event_yjk_history",
+        "ne_syslog_filter_script",
+        "syslog_filter_script",
+        "event_history",
+        "event_sdn",
+        "t_gn_botnet"
+      ],
+      "baseline_ok": true,
+      "graph_tables": [
+        "t_bz_config_ci_ne_root",
+        "t_bz_config_customer",
+        "t_gn_business_application_change",
+        "ne_syslog_filter_script",
+        "t_bz_incident_info",
+        "syslog_filter_script",
+        "event_history",
+        "event_yjk_history",
+        "event_backup",
+        "event_sdn"
+      ],
+      "graph_ok": true
+    }
+  ]
+}
